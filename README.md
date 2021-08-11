@@ -22,8 +22,8 @@ tokenizer = BertTokenizer.from_pretrained('songhee/i-manaul-mbert')
 ```bash
 python  run_squad.py   --model_type bert \
                        --model_name_or_path bert-base-multilingual-uncased \
-                       --output_dir bert_models \
-                       --data_dir data \
+                       --output_dir ${output_dir} \
+                       --data_dir ${data_dir} \
                        --train_file i-manual_train.json \
                        --predict_file KorQuAD_v1.0_dev.json \
                        --evaluate_during_training \
@@ -41,9 +41,8 @@ python  run_squad.py   --model_type bert \
 ```bash
 python  run_squad.py   --model_type bert \
                        --model_name_or_path bert-base-multilingual-uncased \
-                       --output_dir . \
-                       --cache_dir bert_models \
-                       --data_dir data \
+                       --output_dir ${output_dir} \
+                       --data_dir ${data_dir} \
                        --train_file i-manual_train.json \
                        --predict_file KorQuAD_v1.0_dev.json \
                        --per_gpu_train_batch_size 8 \
@@ -56,7 +55,7 @@ python  run_squad.py   --model_type bert \
 
 - evaluate
 ```console
-$ python3 evaluate_v1_0.py data/KorQuAD_v1.0_dev.json predictions_.json
+$ python3 evaluate_v1_0.py ${data_dir}/KorQuAD_v1.0_dev.json ${output_dir}/predictions_.json
 ```
 
 ## Results
