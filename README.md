@@ -14,7 +14,8 @@ tokenizer = BertTokenizer.from_pretrained('songhee/i-manaul-mbert')
 
 ## Usage
 
-코드는 monologg/KoBERT-KorQuAD 의 run_squad 를 가져와 사용
+- 코드는 monologg/KoBERT-KorQuAD 의 run_squad 를 가져와 일부 수정해 사용
+- transformers 버전 변경으로 pretrained_config_archive_map.keys()를 그대로 사용할 수 없음.
 
 ### 1. Training
 
