@@ -53,11 +53,6 @@ from transformers import (
     XLNetTokenizer,
     get_linear_schedule_with_warmup,
     squad_convert_examples_to_features,
-    BartConfig,
-    BartForQuestionAnswering,
-    MT5Config,
-    MT5Model,
-    MT5Tokenizer
 )
 from transformers.data.metrics.squad_metrics import (
     compute_predictions_log_probs,
@@ -66,7 +61,6 @@ from transformers.data.metrics.squad_metrics import (
 )
 from transformers.data.processors.squad import SquadResult, SquadV1Processor, SquadV2Processor
 
-from tokenization_kobert import KoBertTokenizer
 
 try:
     from torch.utils.tensorboard import SummaryWriter
@@ -76,15 +70,6 @@ except ImportError:
 
 logger = logging.getLogger(__name__)
 
-
-
-"""
-ALL_MODELS = sum(
-    (tuple(conf.pretrained_config_archive_map.keys()) for conf in (BertConfig, DistilBertConfig, RobertaConfig, XLNetConfig, XLMConfig,BartConfig, MT5Config)),
-    (),
-)
-"""
-
 ALL_MODELS = sum((tuple(conf[0].keys()) for conf in 
     (BertConfig.get_config_dict("bert-base-multilingual-uncased"),
      DistilBertConfig.get_config_dict("distilbert-base-multilingual-cased"),
@@ -92,8 +77,6 @@ ALL_MODELS = sum((tuple(conf[0].keys()) for conf in
      XLMConfig.get_config_dict("xlm-mlm-100-1280"),
      RobertaConfig.get_config_dict("distilroberta-base"), 
      AlbertConfig.get_config_dict("albert-base-v2"),
-     MT5Config.get_config_dict("google/mt5-small"),
-     BartConfig.get_config_dict("facebook/bart-base"),
     )
     ), ())
 
@@ -105,8 +88,6 @@ MODEL_CLASSES = {
     "xlm": (XLMConfig, XLMForQuestionAnswering, XLMTokenizer),
     "distilbert": (DistilBertConfig, DistilBertForQuestionAnswering, DistilBertTokenizer),
     "albert": (AlbertConfig, AlbertForQuestionAnswering, AlbertTokenizer),
-    "kobert": (BertConfig, BertForQuestionAnswering, KoBertTokenizer),
-    "distilkobert": (DistilBertConfig, DistilBertForQuestionAnswering, KoBertTokenizer),
 }
 
 
@@ -120,7 +101,6 @@ def set_seed(args):
 
 def to_list(tensor):
     return tensor.detach().cpu().tolist()
-
 
 def train(args, train_dataset, model, tokenizer):
     """ Train the model """
@@ -810,11 +790,6 @@ def main():
             cache_dir=args.cache_dir if args.cache_dir else None,
             )
     
-    if args.model_type in ["mt5", "kobart"]:
-        special_tokens = { 'cls_token':'<cls>'}
-        tokenizer.add_special_tokens(special_tokens)
-        
-
     model = model_class.from_pretrained(
         args.model_name_or_path,
         from_tf=bool(".ckpt" in args.model_name_or_path),
