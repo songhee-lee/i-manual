@@ -16,6 +16,9 @@ class QuestionAnswering():
             pretrained_model_name_or_path (str):
                 Pretrained huggingface model name or model path.
         """
+        
+        self.config = AutoConfig.from_pretrained(
+            pretrained_model_name_or_path)
         self.model = AutoModelForQuestionAnswering.from_pretrained(
             pretrained_model_name_or_path)
         self.tokenizer = AutoTokenizer.from_pretrained(
