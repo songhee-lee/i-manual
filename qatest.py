@@ -16,9 +16,9 @@ class QuestionAnswering():
             pretrained_model_name_or_path (str):
                 Pretrained huggingface model name or model path.
         """
-        self.model = BertModel.from_pretrained(
+        self.model = AutoModelForQuestionAnswering.from_pretrained(
             pretrained_model_name_or_path)
-        self.tokenizer = BertTokenizer.from_pretrained(
+        self.tokenizer = AutoTokenizer.from_pretrained(
             pretrained_model_name_or_path)
 
         self.pipeline =  QuestionAnsweringPipeline(self.model, self.tokenizer)
