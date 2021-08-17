@@ -46,16 +46,15 @@ python  run_squad.py   --model_type bert \
                        --model_name_or_path bert-base-multilingual-uncased \
                        --output_dir {$output_dir} \
                        --data_dir {$data_dir} \
-                       --train_file i-manual_train.json \
                        --predict_file KorQuAD_v1.0_dev.json \
                        --per_gpu_train_batch_size 8 \
                        --per_gpu_eval_batch_size 8 \
                        --max_seq_length 512 \
 	               --max_query_length 100 \
-		       --max_answer_length 500 \
+		       --max_answer_length 512 \
                        --max_seq_length 512 \
-                       --logging_steps 1000 \
-                       --save_steps 4000 \
+                       --logging_steps 100 \
+                       --save_steps 100 \
                        --do_eval \
 ```
 
@@ -67,7 +66,7 @@ $ python3 evaluate_v1_0.py {$data_dir}/KorQuAD_v1.0_dev.json {$output_dir}/predi
 <br><br>
 ## Results
 
-- i-maunal test data로 학습, KorQuad Dev set으로 테스트한 결과
+- i-maunal test data로 학습, i-manual test data로 테스트한 결과
 
 
 |                         | Exact Match (%) | F1 Score (%) |
