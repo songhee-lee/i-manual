@@ -38,9 +38,9 @@ python3  run_squad.py  --model_type bert \
                        --do_train \
 ```
 
-<br>
 ### 2. Evaluation
 - make prediction files
+
 ```bash
 python  run_squad.py   --model_type bert \
                        --model_name_or_path bert-base-multilingual-uncased \
