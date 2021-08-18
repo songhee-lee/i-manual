@@ -40,7 +40,7 @@ class QuestionAnswering():
         input_ids = inputs["input_ids"].tolist()[0]
 
         text_tokens = self.tokenizer.convert_ids_to_tokens(input_ids)
-        answer_start_scores, answer_end_scores = self.model(**inputs)
+        answer_start_scores, answer_end_scores = self.model(**inputs, return_dict=False)
 
         answer_start = torch.argmax(answer_start_scores)  # Get the most likely beginning of answer with the argmax of the score
         answer_end = torch.argmax(answer_end_scores) + 1  # Get the most likely end of answer with the argmax of the score
