@@ -3,8 +3,7 @@ from transformers import AutoConfig
 import torch
 import argparse
 import json
-import sys
-sys.stdout = open('output.txt', 'w')
+from difflib import SequenceMatcher
 
 class QuestionAnswering():
     """I-manual question answering class.
@@ -43,7 +42,7 @@ class QuestionAnswering():
         input_ids = inputs["input_ids"].tolist()[0]
 
         text_tokens = self.tokenizer.convert_ids_to_tokens(input_ids)
-        answer_start_scores, answer_end_scores = self.model(**inputs, return_dict=False)
+        answer_start_scores, answer_end_scores = self.model(**inputs)
 
         answer_start = torch.argmax(answer_start_scores)  # Get the most likely beginning of answer with the argmax of the score
         answer_end = torch.argmax(answer_end_scores) + 1  # Get the most likely end of answer with the argmax of the score
@@ -65,11 +64,16 @@ def main():
         type=str,
         required=True
     )
-
+    parser.add_argument(
+        "--data_path",
+        default=None,
+        type=str,
+        required=True
+    )
 
     args = parser.parse_args()
 
-    with open("data/i-manual_changed.json", "r", encoding="utf-8") as reader:
+    with open(args.data_path, "r", encoding="utf-8") as reader:
         input_data = json.load(reader)["data"]    
     
     res_c = open("correct_answer.txt", "w")
@@ -92,8 +96,9 @@ def main():
         for k in range(0, len(qas)):
                 question = qas[k]['question_c']
                 answer = qa(question=question, context=context)
-               
-                if answer['answer'] == qas[k]['answer'] :
+              
+                ratio = SequenceMatcher(None, answer['answer'], qas[k]['answer']).ratio()
+                if ratio > 0.8 :
                     f = res_c
                 else :
                     f = res_ic
