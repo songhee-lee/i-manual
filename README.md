@@ -66,7 +66,7 @@ $ python3 evaluate_v1_0.py {$data_dir}/KorQuAD_v1.0_dev.json {$output_dir}/predi
 |                         | Exact Match (%) | F1 Score (%) |
 | ----------------------- | --------------- | ------------ |
 | mBERT                   |     99.79424    |   99.867896  |
-<br><br>
+<br><br><br><br>
 
 ### i-manual data 변형
 - 각 answer에 매칭되는 question 을 변형해 데이터 생성
