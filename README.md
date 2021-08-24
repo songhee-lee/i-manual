@@ -94,8 +94,15 @@ $ python3 qatest_changed.py --model_name_or_path {$trained_model_dir} --data_pat
 - No answer는 답이 출력되지 않은 경우
 - Bad case는 다른 답변을 출력했으나 답이 맞지 않다고 판단된 경우
 
+<br><br>
 
-
+## Add vocab
+```bash
+$ python3 python add_tokens.py --model_name_or_path {$trained_model_dir} --output_dir {$output_dir} --data_path {$data_dir}/add_tokens.txt
+```
+- add_tokens.txt : [UNK]를 출력하는 모든 token list.
+- add_tokens.py : token list 파일을 입력할 때 trained_model에 token을 추가하고 다시 저장하는 함수
+<br><br>
 ## References
 
 - [KoBERT-KorQuAD](https://github.com/monologg/KoBERT-KorQuAD)
