@@ -61,13 +61,16 @@ $ python3 evaluate_v1_0.py {$data_dir}/KorQuAD_v1.0_dev.json {$output_dir}/predi
 
 <br><br>
 ## Results
-- i-maunal test data로 학습, i-manual test data로 테스트한 결과
+1. i-maunal test data로 학습, i-manual test data로 테스트한 결과
+2. i-manual test data를 train/dev 로 나누어 테스트한 결과
 
 |                         | Exact Match (%) | F1 Score (%) |
 | ----------------------- | --------------- | ------------ |
-| mBERT                   |     99.79424    |   99.867896  |
+| mBERT (i-manual test)   |     99.79424    |   99.867896  |
+| mBERT (i-manual dev)    |                 |              |
 
-<br><br><br><br>
+
+<br><br>
 
 ### i-manual data 변형
 - 각 answer에 매칭되는 question 을 변형해 데이터 생성
