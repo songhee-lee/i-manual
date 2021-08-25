@@ -30,7 +30,7 @@ def main():
     model = AutoModelForQuestionAnswering.from_pretrained(args.model_name_or_path, config=config)
 
     # Load data
-    f = open("add_tokens.txt", "r")
+    f = open(args.data_path, "r")
     data = f.read().split()
 
     # Add tokens 
