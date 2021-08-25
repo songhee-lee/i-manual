@@ -2,6 +2,63 @@ from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 from transformers import AutoConfig
 import torch
 import argparse
+import json
+
+def remove_white_space(answer):
+
+    if not answer:
+        return answer
+
+    # 작은 따옴표의 개수에 따라 시작 위치 변경
+    toggle_c = answer.count("'")
+    
+    if toggle_c and toggle_c % 2 == 0 :  #짝수개일 경우 시작부분부터 시작  카운트
+        toggle = True
+    else :
+        toggle = False      #홀수개일 경우 끝부분부터 시작 카운트
+   
+    tokens = answer.split()
+    l_space = ["‘","("]  # 다음 토큰에 붙어야 하는 토큰
+    r_space = [",", ".","!","?",")", "’", "~","%"] # 이전 토큰에 붙어야하는 토큰
+    numberts = ["0", "1","2","3","4","5","6","7","8","9"]
+    length = len(tokens)
+
+    result = []
+    result.append(tokens[0])
+    l_s = False
+    for i in range(1, length):
+        
+        # 다음 토큰에 붙어야 하는 경우
+        if tokens[i] in l_space or (tokens[i] == "'" and toggle):
+            l_s = True
+            
+            if tokens[i-1]=="'" and toggle: #이전에 ' 로 끝난 경우
+                result[-1] = result[-1]+tokens[i] #그 뒤에 붙이기
+            else:
+                result.append(tokens[i])
+            
+            if tokens[i] == "'":
+                toggle = False
+
+            continue
+        
+        # 앞 토큰에 붙어야 하는 경우
+        if tokens[i] in r_space or l_s or (tokens[i] == "'" and toggle==False):
+            result[-1] = result[-1]+tokens[i]
+            l_s = False
+
+            if tokens[i] == "'":
+                toggle = True
+            continue
+
+    
+        if tokens[i-1]=="'" and toggle: #이전에 '로 끝난 경우
+            result[-1] = result[-1]+tokens[i] #그 뒤에 붙이기
+        else:    
+            result.append(tokens[i])
+        
+
+    return " ".join(result)
 
 class QuestionAnswering():
     """I-manual question answering class.
@@ -40,20 +97,23 @@ class QuestionAnswering():
         input_ids = inputs["input_ids"].tolist()[0]
 
         text_tokens = self.tokenizer.convert_ids_to_tokens(input_ids)
-        answer_start_scores, answer_end_scores = self.model(**inputs, return_dict=False)
+        answer_start_scores, answer_end_scores = self.model(**inputs)
 
         answer_start = torch.argmax(answer_start_scores)  # Get the most likely beginning of answer with the argmax of the score
         answer_end = torch.argmax(answer_end_scores) + 1  # Get the most likely end of answer with the argmax of the score
         
         answer = self.tokenizer.convert_tokens_to_string(self.tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
-
+        answer = remove_white_space(answer)
+    
         return { "question" : question,
                  "answer" : answer,
                  "input_ids" : input_ids,
-                 "answer_start_scores" : answer_start_scores,
-                 "answer_end_scores" : answer_end_scores,
+                 "text_tokens" : text_tokens,
+                 "answer_start" : answer_start,
+                 "answer_end" : answer_end,
                  }
 
+    
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -62,31 +122,39 @@ def main():
         type=str,
         required=True
     )
-
+    parser.add_argument(
+        "--data_path",
+        default=None,
+        type=str,
+        required=True
+    )
 
     args = parser.parse_args()
 
-
-    context = r"""전략은 각자의 바디그래프에 맞게 흐르는 독특한 에너지의 디자인을 이해하고, 저항을 받지 않고 제대로 작동되도록 사는 방법을 말합니다.
-    전략은 다른 사람들과 비교하는 버릇을 깨고 스스로의 독특함을 발견하여, 자기 자신의 모습 그대로를 그냥 즐길 수 있게 합니다.
-    전략을 알면 진정한 자기 모습을 찾는 과정에 도움이 됩니다. 자신의 전략에 맞추어 사는 것이 개인적 실험의 시작입니다.
-    스스로 전략을 실험해 그것이 옳은지 알아보세요.
-    자신의 전략과 결정권을 사용해 자기 자신이 아닌 세상 밖의 권위에 맹목적으로 의존하는 버릇을 바꾸기 시작해봐요."""
-
-    questions = [
-        "전략이란 무엇인가요?",
-        "전략을 왜 알려주나요?",
-        "전략을 왜 따라야 하나요?",
-        "전략을 알면 무엇이 좋은가요?",
-        ]
-
-
+    with open(args.data_path, "r", encoding="utf-8") as reader:
+        input_data = json.load(reader)["data"]    
+    
     qa = QuestionAnswering(args.model_name_or_path)
 
-    for question in questions:
-        answer = qa(question=question, context=context)
-        print(f"Question: {answer['question']}")
-        print(f"Answer: {answer['answer']}\n")
+    for i in range(0, len(input_data)):
+        data = input_data[i]
+
+        context = data['paragraph']
+        qas = data['qas']
         
+        print("=================================\n")
+        print(f"Context   : {context}\n\n")
+
+        for k in range(0, len(qas)):
+                question = qas[k]['question_c']
+                answer = qa(question=question, context=context)
+                
+                print(f"ID      : {qas[k]['id']}\n")
+                print(f"Original: {qas[k]['question']}\n")
+                print(f"Answer  : {qas[k]['answer']}\n\n")
+                print(f"Question: {answer['question']}\n")
+                print(f"Answer  : {answer['answer']}\n")
+                print("----------\n")
+
 if __name__ == "__main__":
     main()
