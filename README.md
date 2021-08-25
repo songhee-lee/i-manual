@@ -90,7 +90,8 @@ $ python3 qatest_changed.py --model_name_or_path {$trained_model_dir} --data_pat
 | 다른 답변 중 Bad case      |        2        |
 
 - white space는 원문 text 와 띄어쓰기의 차이가 있는 경우로 추후 보정하거나 보정하지 않아도 큰 문제가 아님
-- [UNK] 토큰 발생은 토크나이저에 해당 vocab이 없는 경우로, add vocab 과정에서 해결 가능
+	-> <b>Remove white space 과정에서 해결 가능<\b>
+- [UNK] 토큰 발생은 토크나이저에 해당 vocab이 없는 경우로, <b>add vocab 과정에서 해결 가능<\b>
 - No answer는 답이 출력되지 않은 경우
 - Bad case는 다른 답변을 출력했으나 답이 맞지 않다고 판단된 경우
 
@@ -103,6 +104,14 @@ $ python3 python add_tokens.py --model_name_or_path {$trained_model_dir} --outpu
 - add_tokens.txt : [UNK]를 출력하는 모든 token list.
 - add_tokens.py : token list 파일을 입력할 때 trained_model에 token을 추가하고 다시 저장하는 함수
 <br><br>
+	
+## Remove white space
+- qatest.py 에 remove_white_space 함수 추가
+- 앞 토큰에 붙어야 하는 경우, 뒷 토큰에 붙어야 하는 경우, 그리고 앞/뒤 토큰 모두 붙어야 하는 경우로 나누어 조건 생성
+- 특수한 경우에 대한 조건 생성
+	ex) 0.5%
+	ex) '아하!'(긍정) 소리는 <b>vs<\b> 에너지(활력)가 있는지
+<br><br>	
 ## References
 
 - [KoBERT-KorQuAD](https://github.com/monologg/KoBERT-KorQuAD)
