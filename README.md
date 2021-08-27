@@ -61,13 +61,16 @@ $ python3 evaluate_v1_0.py {$data_dir}/KorQuAD_v1.0_dev.json {$output_dir}/predi
 
 <br><br>
 ## Results
-1. i-maunal test data로 학습, i-manual test data로 테스트한 결과
-2. i-manual test data를 train/dev 로 나누어 테스트한 결과
 
 |                         | Exact Match (%) | F1 Score (%) |
 | ----------------------- | --------------- | ------------ |
-| mBERT (i-manual test)   |     99.79424    |   99.867896  |
-| mBERT (i-manual dev)    |                 |              |
+| mBERT (i-manual train)  |     99.79424    |   99.867896  |
+| mBERT (i-manual test)   |     38.01653    |   74.549626  |
+
+1. i-maunal test data로 학습, i-manual test data로 테스트한 결과
+2. i-manual test data를 train/dev 로 나누어 테스트한 결과
+	- test 데이터에 대한 eval의 경우 완전히 같지 않지만 정답으로 처리되는 경우(짧은 답변, 긴 답변, 다르지만 좋은 답변)가 많음.
+	- Good case 90%, No answer 3%, Bad case 7%
 
 
 <br><br>
@@ -95,6 +98,7 @@ $ python3 qatest_changed.py --model_name_or_path {$trained_model_dir} --data_pat
 - No answer는 답이 출력되지 않은 경우
 - Bad case는 다른 답변을 출력했으나 답이 맞지 않다고 판단된 경우
 
+<br>=> Good case 93%, No answer 5%, Bad case 2%
 <br><br>
 
 ## Add vocab
