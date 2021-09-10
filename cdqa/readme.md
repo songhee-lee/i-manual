@@ -47,9 +47,8 @@ questions_tag = [ '종족', '사회적 성향', '에너지 흐름', '결정 방�
 |1|1|3|
 |6|||
 |5|||
-|------|---|---|---|
 - 성공 : 옳바른 paragraphs을 유사도 1위로 추출 성공
 - 애매 
-  1. 유사도 top3 안에 들지만 옳바른 paragraphs의 유사도가 1위가 아닌 경우
-  2. 같은 title 안의 paragraphs이 나뉜 경우에서, 다른 paragraphs가 유사도 1위를 한 경우
+  a. 유사도 top3 안에 들지만 옳바른 paragraphs의 유사도가 1위가 아닌 경우
+  b. 같은 title 안의 paragraphs이 나뉜 경우에서, 다른 paragraphs가 유사도 1위를 한 경우
 - 실패 : 유사도 top 3 안에 옳바른 paragraphs이 없음
