@@ -1,10 +1,11 @@
-# 진행사항
+## 진행사항
 - TF-IDF로 context top_n을 추출 -> QA 진행
 - 질문에 tag 달아 contcat 후 결과 확인
 - 내담자의 context 중에서만 question-paragraphs 유사도 분석 실시
   한 사람당 context : 13 ~ 15개
 <br> 
-# 1. Load Data
+
+## 1. Load Data
 - I-manual data에서 제목(title), paragraph 정보만 가져온다.
 - 내담자의 정보에 해당되는 정보만 뽑아낸다.
 - 내담자의 정보(tag)를 paragraphs에 덧붙인다.
@@ -17,13 +18,15 @@ paragraphs_tag = ['종족 - 스피드에너자이저', '사회적 성향 - 연�
         '에고센터(DEFINED)', '방향센터(DEFINED)', '생각센터(UNDEFINED)', '영감센터(UNDEFINED)', '표현센터(DEFINED)']
 ```
 <br>
-# 2. Tokenizer
+
+## 2. Tokenizer
 - 각 paragraphs 토큰화
 - 불용어 및 특수기호 제거
 - I-manual data 내 특수 단어 학습 (tokenizer update)
 
 <br>
-# 3. TF-IDF
+
+## 3. TF-IDF
 - 내담자 질문에 tag 달기 : 진행 단계에 대한 정보가 될 것.
 ```
 questions_tag = [ '종족', '사회적 성향', '에너지 흐름', '결정 방식', '전략', 
@@ -34,7 +37,8 @@ questions_tag = [ '종족', '사회적 성향', '에너지 흐름', '결정 방�
   내담자의 전체 paragraph + 내담자의 question
 - 해당 질문과 유사도가 가장 높은 top_n개 추출
 <br>
-# 4. Result
+
+## 4. Result
 |categories|성공|애매|실패|
 |------|---|---|---|
 |20|5||
