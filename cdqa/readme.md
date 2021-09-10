@@ -23,7 +23,7 @@ paragraphs_tag = ['종족 - 스피드에너자이저', '사회적 성향 - 연�
 - 각 paragraphs 토큰화
 - 불용어 및 특수기호 제거
 - I-manual data 내 특수 단어 학습 (tokenizer update)
-
+	-> add_tokens2.txt
 <br>
 
 ## 3. TF-IDF
