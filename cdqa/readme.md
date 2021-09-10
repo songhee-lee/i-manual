@@ -33,7 +33,7 @@ questions_tag = [ '종족', '사회적 성향', '에너지 흐름', '결정 방�
 - TfidfVectorizer 이용해 tf-idf matrix 계산
   내담자의 전체 paragraph + 내담자의 question
 - 해당 질문과 유사도가 가장 높은 top_n개 추출
-
+<br>
 # 4. Result
 |categories|성공|애매|실패|
 |------|---|---|---|
