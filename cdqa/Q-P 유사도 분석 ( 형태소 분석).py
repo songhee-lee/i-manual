@@ -4,7 +4,6 @@
 # In[ ]:
 
 
-# 변수  설정
 json_file_name = 'i-manual-321006-6ae924a51dde.json'
 tokenizer_dic_name = 'add_tok'
 
@@ -673,9 +672,22 @@ def mecab_normalize(text_list):
 # In[ ]:
 
 
-top_n = 1
-context = tokenized_paragraphs_edit
+type_num = 1 # question만 형태소 분석
+type_num = 2 # paragraphs만 형태소 분석
+type_num = 3 # question과 paragraphs 형태소 분석
 
+
+# In[ ]:
+
+
+### paragraph
+if type_num == 1:
+    context = tokenized_paragraphs_edit
+else:
+    context = mecab_normalize(paragraphs)
+    context = detokenized(paragraphs)
+    context = [remove_white_space(text) for text in context]
+    
 correct = 0
 incorrect = 0
 a_c = 0
@@ -683,35 +695,42 @@ a_i = 0
 result_dic = {'tag':[], '정답':[], '오답':[]}
 
 for tag in tags:
-    tokenized_questions = mecab_normalize(personal_questions[tag])
+    print("\n============",tag,"==============\n")
+    
+    ### question
+    if type_num == 2:
+        tokenized_questions = tokenized_text(personal_questions[tag])
+    else :
+        tokenized_questions = mecab_normalize(personal_questions[tag])
     tokenized_questions = detokenized(tokenized_questions)
-    #tokenized_questions = all_questions[tag]
-
+   
+    ### answer (original paragraph)
     answer_list = personal_answers[tag]
-    answer_list = tokenized_text(answer_list)
+    if type_num == 1:
+        answer_list = tokenized_text(answer_list)
+    else:
+        answer_list = mecab_normalize(answer_list)
     answer_list = detokenized(answer_list)
-    
     answer_list = [ remove_white_space(text) for text in answer_list]
-
-    
+   
+    ### TF-IDF
     for answer, question in zip(answer_list, tokenized_questions) :
-        results = get_similar_paragraphs(context, question, top_n)
+        results = get_similar_paragraphs(context, question, 1)
 
-        #print(results['question'], "\n")
+        print(results['question'], "\n")
 
         if results['top_similar_paragraphs'][0]['similarity'] > 0 :
-            #prediction = results['top_similar_paragraphs'][i]['paragraphs'].replace(tag_+ " : ", '')
             prediction = results['top_similar_paragraphs'][0]['paragraphs']
 
-            #print(prediction, "\n")
-            #print(answer, "\n")
+            print(prediction, "\n")
+            print(answer, "\n")
 
             if prediction == answer :
                 correct +=1 
-                #print("==================================정답!\n")
+                print("==================================정답!\n")
             else :
                 incorrect +=1
-                #print("==================================오답!\n")
+                print("==================================오답!\n")
 
     result_dic['tag'].append(tag)
     result_dic['정답'].append(correct)
@@ -743,45 +762,67 @@ result_df
 # In[ ]:
 
 
-top_n = 1
-context = tokenized_paragraphs_edit
-setting = [['가이드', 0,2], ['감정 결정방식',4,6]]
+type_num = 1 # question만 형태소 분석
+type_num = 2 # paragraphs만 형태소 분석
+type_num = 3 # question과 paragraphs 형태소 분석
 
+
+# In[ ]:
+
+
+### paragraph
+if type_num == 1:
+    context = tokenized_paragraphs_edit
+else:
+    context = mecab_normalize(paragraphs)
+    context = detokenized(paragraphs)
+    context = [remove_white_space(text) for text in context]
+
+setting = [['가이드', 0,2], ['감정 결정방식',4,6]]
 for tag, start, end in setting :
+    print("\n============",tag,"==============\n")
     c = context[start:end]
     
     correct = 0
     incorrect = 0
 
-    tokenized_questions = mecab_normalize(personal_questions[tag])
+    ### question
+    if type_num == 2:
+        tokenized_questions = tokenized_text(personal_questions[tag])
+    else :
+        tokenized_questions = mecab_normalize(personal_questions[tag])
     tokenized_questions = detokenized(tokenized_questions)
-    #tokenized_questions = all_questions[tag]
-
+   
+    ### answer (original paragraph)
     answer_list = personal_answers[tag]
-    answer_list = tokenized_text(answer_list)
+    if type_num == 1:
+        answer_list = tokenized_text(answer_list)
+    else:
+        answer_list = mecab_normalize(answer_list)
     answer_list = detokenized(answer_list)
-
     answer_list = [ remove_white_space(text) for text in answer_list]
-
+    
+    # TF-IDF
     for answer, question in zip(answer_list, tokenized_questions) :
         results = get_similar_paragraphs(c, question, top_n)
 
-        #print(results['question'], "\n")
+        print(results['question'], "\n")
 
         if results['top_similar_paragraphs'][0]['similarity'] > 0 :
-            #prediction = results['top_similar_paragraphs'][i]['paragraphs'].replace(tag_+ " : ", '')
+            prediction = results['top_similar_paragraphs'][i]['paragraphs'].replace(tag_+ " : ", '')
             prediction = results['top_similar_paragraphs'][0]['paragraphs']
 
-            #print(prediction, "\n")
-            #print(answer, "\n")
+            print(prediction, "\n")
+            print(answer, "\n")
 
             if prediction == answer :
                 correct +=1 
-                #print("==================================정답!\n")
+                print("==================================정답!\n")
             else :
                 incorrect +=1
-                #print("==================================오답!\n")
-    print("\n----",tag,"----\n")
+                print("==================================오답!\n")
+                
+    print("---------result---------\n")
     print("정답: ",correct)
     print("오답: ",incorrect)
 
