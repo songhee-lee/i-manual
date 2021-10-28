@@ -142,4 +142,4 @@ class ActionLeadingOtherCenters3(Action):
         #response = tracker.get_slot('result') 원하는 부분에 붙여넣기
         dispatcher.utter_message(f'이 설명에 대해서 동의하시나요?(마스터봇질문)', buttons=buttons)
 
-        return [SlotSet('step', 5)]
+        return [SlotSet('step', 5), SlotSet('is_finished', True)]

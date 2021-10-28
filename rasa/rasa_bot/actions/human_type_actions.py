@@ -38,14 +38,14 @@ class ActionLeadingTypeIntro(Action):
                 elif (metadata["t"] == 2):
                     # 혁신주도가
                     dispatcher.utter_message(
-                        f'안녕하세요, 당신은 인류의 10%에 해당하는 사람입니다.')
+                        f'안녕하세요, {metadata["pn"]}님은 인류의 10%에 해당하는 사람입니다.')
                 elif (metadata["t"] == 3):
                     dispatcher.utter_message(
-                        f'안녕하세요, 당신은 인류의 23%에 해당하는 사람입니다.')
+                        f'안녕하세요, {metadata["pn"]}님은 인류의 23%에 해당하는 사람입니다.')
                 elif (metadata["t"] == 4):
                     # 거울
                     dispatcher.utter_message(
-                        f'안녕하세요, 당신은 인류의 1%에 해당하는 정말 정말 특별한 사람입니다.')
+                        f'안녕하세요, {metadata["pn"]}님은 인류의 1%에 해당하는 정말 정말 특별한 사람입니다.')
             else:
                 dispatcher.utter_message(
                     f'다음으로 종족을 살펴보겠습니다.')

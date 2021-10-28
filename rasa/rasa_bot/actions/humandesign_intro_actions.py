@@ -17,6 +17,11 @@ class ActionSetPriority(Action): #맨 처음
 
         #metadata = extract_metadata_from_tracker(tracker)
         metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t": 3, "p": 52, "d": 3}
+        #이후 action_set_priority를 초기 action으로 한 뒤 주석 제거
+        #dispatcher.utter_message(
+        #    f'안녕하세요. {metadata["pn"]}님 아이매뉴얼 마스터 봇입니다. 나답게 살기 위한 여행은 즐겁게 하고 계신가요?')
+        #dispatcher.utter_message(
+        #    f'안녕하세요. 저는 아이메뉴얼 마스터 봇입니다. 저는 좀 더 나답게 사는 것을 도와드리기 위해 기다리고 있었어요. {metadata["pn"]}님의 메뉴얼 설명을 원하시면 "시작" 이라고 말해주세요!')
         #리딩 우선순위 정하는 부분
         leading_priority=[]
         if metadata["t"] in [2,3,4]:
@@ -44,7 +49,7 @@ class ActionSetPriority(Action): #맨 처음
         for i in [4,3,5,2,6,0]: #메타데이터 변경시 수정
             if i not in center_priority:
                 center_priority.append(i)
-        return [SlotSet('leading_priority', leading_priority), SlotSet('center_priority', center_priority)] #slot추가 필요
+        return [SlotSet('leading_priority', leading_priority), SlotSet('center_priority', center_priority), SlotSet('step', 0), SlotSet('is_finished', False), SlotSet('center_step', 0)] #slot추가 필요
 
 class ActionStart(Action):
     def name(self):
@@ -71,28 +76,34 @@ class ActionStep(Action):
     def run(self, dispatcher, tracker, domain):
         print('action_step')
         leading_priority = tracker.get_slot('leading_priority')
+        is_finished = tracker.get_slot("is_finished")
         step = tracker.get_slot('step')
         plus_step = step + 1
         center_step = tracker.get_slot('center_step')
-        if step == 5:
-            return [FollowupAction(name='action_last_message')]
-        elif step == 4:
-            return [FollowupAction(name='action_leading_other_centers1')]
+        if is_finished==True:
+            return [FollowupAction(name='action_masterbot')] #masterbot에서 처리할 수 있게
+        # step5인 상태로 계속하면 끝내버리고, 끝났다고 알려줌
         else:
-            if leading_priority[step]==0:
-                return [FollowupAction(name='action_leading_type_intro')]
-            elif leading_priority[step]==1:
-                return [FollowupAction(name='action_leading_profile_intro')]
-            elif leading_priority[step]==2:
-                return [FollowupAction(name='action_leading_definition_intro')]
-            elif leading_priority[step]==3:
-                return [FollowupAction(name='action_leading_centers_intro1')]
+            if step == 5:
+                return [SlotSet('is_finished', True), FollowupAction(name='action_last_message')]
+            elif step == 4:
+                return [FollowupAction(name='action_leading_other_centers1')]
+            else:
+                if leading_priority[step]==0:
+                    return [FollowupAction(name='action_leading_type_intro')]
+                elif leading_priority[step]==1:
+                    return [FollowupAction(name='action_leading_profile_intro')]
+                elif leading_priority[step]==2:
+                    return [FollowupAction(name='action_leading_definition_intro')]
+                elif leading_priority[step]==3:
+                    return [FollowupAction(name='action_leading_centers_intro1')]
 
         return []
 
 class ActionMore(Action):
     def name(self):
         return "action_more"
+        #leading_more -> action_more
 
     def run(self, dispatcher, tracker, domain):
         print('action_more')

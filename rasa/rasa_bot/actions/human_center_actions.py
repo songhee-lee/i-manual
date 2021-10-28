@@ -150,7 +150,7 @@ class ActionLeadingCentersIntro1(Action):
             f'더 자세히 듣고 싶으신가요?', buttons=buttons)
 
 
-        return [SlotSet('center_step', 1), SlotSet('center_type', h_center), SlotSet("step", step)] #centerstep 1개 완료
+        return [SlotSet('center_step', 1), SlotSet('center_type', h_center), SlotSet("step", step)]
 
 
 class ActionLeadingCenters1(Action):
@@ -272,26 +272,19 @@ class ActionLeadingCenters1(Action):
             msg2 = "말과 행동의 방식이 일관되지 않은 당신은 말이나 행동을 할 때 불안감에 휩싸이기도 합니다. ‘무슨 말이든 해야할 것 같은데? 무슨 말을 해야하지? 가만히 있어도 되나?’ 라는 생각을 하며 말과 행동에 대한 압박을 느끼기 때문에 계속 말하고, 지나치게 말하고, 아무 말이나 하는 것입니다. "
             msg3 = "이것은 자신으로부터 비롯된 것이 아닌, 외부의 영향입니다. 이로 인해 당신은 위와 같은 현상을 겪을 수 있고, 다른 사람들과의 소통에 있어서 힘들어질 수 있기 때문에 지나친 말과 행동에 유의해야 합니다. 당신이 먼저 말을 시작하기 보다는 가능한 다른 사람들이 당신에게 말을 걸었을 때, 얘기를 시작하는 것이 좋습니다."
             msg4 = "당신은 다양한 방식으로 표현을 할 수 있으며, 누구의 말이 더 신뢰할 수 있는지를 잘 구별할 수 있는 잠재성이 있습니다.전체 인류의 약 28%는 이 센터가 정의되어 있지 않습니다."
+
         dispatcher.utter_message(msg)
         dispatcher.utter_message(msg2)
         dispatcher.utter_message(msg3)
         dispatcher.utter_message(msg4)
-        if metadata['ct'][h_center] == 0:
-            unego_question = unego_get_question(h_center)
-            dispatcher.utter_message(unego_question[0])
-            dispatcher.utter_message(unego_question[1])
-            return [SlotSet('bot_question', unego_question[1]), SlotSet("is_question", 0),
-                    SlotSet("center_type", h_center), SlotSet("center_step", 1),
-                    SlotSet("center_question", True), SlotSet("step", step)]
 
-        buttons = []
-        buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\"}"})
-        buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro2"})
 
-        dispatcher.utter_message(
-            f'{h_type}에 대해 질문 있으신가요?', buttons=buttons)
 
-        return [SlotSet('center_step', 1), SlotSet('center_type', h_center), SlotSet("step", step)] #centerstep 1개 완료
+        return [SlotSet("is_question", 0), SlotSet("center_type", h_center), SlotSet("center_step", 1),
+                SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True),
+                FollowupAction(name="action_center_unego_question")]
+
+
 class ActionLeadingCentersIntro2(Action):
     def name(self) -> Text:
         return "action_leading_centers_intro2"
@@ -398,7 +391,7 @@ class ActionLeadingCentersIntro2(Action):
         dispatcher.utter_message(
             f'더 자세히 듣고 싶으신가요?', buttons=buttons)
 
-        return [SlotSet('center_step', 2), SlotSet('center_type', h_center), SlotSet("step", step)]  # centerstep 1개 완료
+        return [SlotSet('center_step', 2), SlotSet('center_type', h_center), SlotSet("step", step)]
 
 class ActionLeadingCenters2(Action):
     def name(self) -> Text:
@@ -414,8 +407,7 @@ class ActionLeadingCenters2(Action):
         step = tracker.get_slot('step')
         leading_priority = tracker.get_slot('leading_priority')
         priority = tracker.get_slot('center_priority')
-        dispatcher.utter_message(
-            f'다음 센터를 살펴보겠습니다.')
+
 
         print("get Step")
         print(tracker.get_slot('step'))
@@ -507,27 +499,17 @@ class ActionLeadingCenters2(Action):
             msg2 = "말과 행동의 방식이 일관되지 않은 당신은 말이나 행동을 할 때 불안감에 휩싸이기도 합니다. ‘무슨 말이든 해야할 것 같은데? 무슨 말을 해야하지? 가만히 있어도 되나?’ 라는 생각을 하며 말과 행동에 대한 압박을 느끼기 때문에 계속 말하고, 지나치게 말하고, 아무 말이나 하는 것입니다. "
             msg3 = "이것은 자신으로부터 비롯된 것이 아닌, 외부의 영향입니다. 이로 인해 당신은 위와 같은 현상을 겪을 수 있고, 다른 사람들과의 소통에 있어서 힘들어질 수 있기 때문에 지나친 말과 행동에 유의해야 합니다. 당신이 먼저 말을 시작하기 보다는 가능한 다른 사람들이 당신에게 말을 걸었을 때, 얘기를 시작하는 것이 좋습니다."
             msg4 = "당신은 다양한 방식으로 표현을 할 수 있으며, 누구의 말이 더 신뢰할 수 있는지를 잘 구별할 수 있는 잠재성이 있습니다.전체 인류의 약 28%는 이 센터가 정의되어 있지 않습니다."
+
         dispatcher.utter_message(msg)
         dispatcher.utter_message(msg2)
         dispatcher.utter_message(msg3)
         dispatcher.utter_message(msg4)
-        if metadata['ct'][h_center] == 0:
-            unego_question = unego_get_question(h_center)
-            dispatcher.utter_message(unego_question[0])
-            dispatcher.utter_message(unego_question[1])
-            return [SlotSet('bot_question', unego_question[1]), SlotSet("is_question", 0),
-                    SlotSet("center_type", h_center), SlotSet("center_step", 2),
-                    SlotSet("center_question", True), SlotSet("step", step)]
 
-        buttons = []
-        buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\"}"})
-        buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro3"})
-
-        dispatcher.utter_message(
-            f'{h_type}에 대해 질문 있으신가요?', buttons=buttons)
+        return [SlotSet("is_question", 0), SlotSet("center_type", h_center), SlotSet("center_step", 2),
+                SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True),
+                FollowupAction(name="action_center_unego_question")]
 
 
-        return [SlotSet('center_step', 2), SlotSet('center_type', h_center), SlotSet("step", step)]
 
 class ActionLeadingCentersIntro3(Action):
     def name(self) -> Text:
@@ -634,7 +616,7 @@ class ActionLeadingCentersIntro3(Action):
         dispatcher.utter_message(
             f'더 자세히 듣고 싶으신가요?', buttons=buttons)
 
-        return [SlotSet('center_step', 3), SlotSet('center_type', h_center), SlotSet("step", step)]  # centerstep 1개 완료
+        return [SlotSet('center_step', 3), SlotSet('center_type', h_center), SlotSet("step", step)]
 
 
 class ActionLeadingCenters3(Action):
@@ -650,8 +632,7 @@ class ActionLeadingCenters3(Action):
         step = tracker.get_slot('step')
         leading_priority = tracker.get_slot('leading_priority')
         priority = tracker.get_slot('center_priority')
-        dispatcher.utter_message(
-            f'다음 센터를 살펴보겠습니다.')
+
 
         print("get Step")
         print(tracker.get_slot('step'))
@@ -747,22 +728,12 @@ class ActionLeadingCenters3(Action):
         dispatcher.utter_message(msg2)
         dispatcher.utter_message(msg3)
         dispatcher.utter_message(msg4)
-        if metadata['ct'][h_center] == 0:
-            unego_question = unego_get_question(h_center)
-            dispatcher.utter_message(unego_question[0])
-            dispatcher.utter_message(unego_question[1])
-            return [SlotSet('bot_question', unego_question[1]), SlotSet("is_question", 0),
-                    SlotSet("center_type", h_center), SlotSet("center_step", 3),
-                    SlotSet("center_question", True), SlotSet("step", step)]
 
-        buttons = []
-        buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\"}"})
-        buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro4"})
+        return [SlotSet("is_question", 0), SlotSet("center_type", h_center), SlotSet("center_step", 3),
+                SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True),
+                FollowupAction(name="action_center_unego_question")]
 
-        dispatcher.utter_message(
-            f'{h_type}에 대해 질문 있으신가요?', buttons=buttons)
 
-        return [SlotSet('center_step', 3), SlotSet('center_type', h_center), SlotSet("step", step)]
 
 class ActionLeadingCentersIntro4(Action):
     def name(self) -> Text:
@@ -869,7 +840,7 @@ class ActionLeadingCentersIntro4(Action):
         dispatcher.utter_message(
             f'더 자세히 듣고 싶으신가요?', buttons=buttons)
 
-        return [SlotSet('center_step', 4), SlotSet('center_type', h_center), SlotSet("step", step)]  # centerstep 1개 완료
+        return [SlotSet('center_step', 4), SlotSet('center_type', h_center), SlotSet("step", step)]
 
 
 class ActionLeadingCenters4(Action):
@@ -886,8 +857,7 @@ class ActionLeadingCenters4(Action):
         leading_priority = tracker.get_slot('leading_priority')
         priority = tracker.get_slot('center_priority')
         step = tracker.get_slot('step')
-        dispatcher.utter_message(
-            f'다음 센터를 살펴보겠습니다.')
+
 
         print("get Step")
         print(tracker.get_slot('step'))
@@ -983,22 +953,11 @@ class ActionLeadingCenters4(Action):
         dispatcher.utter_message(msg2)
         dispatcher.utter_message(msg3)
         dispatcher.utter_message(msg4)
-        if metadata['ct'][h_center] == 0:
-            unego_question = unego_get_question(h_center)
-            dispatcher.utter_message(unego_question[0])
-            dispatcher.utter_message(unego_question[1])
-            return [SlotSet('bot_question', unego_question[1]), SlotSet("is_question", 0),
-                    SlotSet("center_type", h_center), SlotSet("center_step", 4),
-                    SlotSet("center_question", True), SlotSet("step", step)]
 
-        buttons = []
-        buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\"}"})
-        buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro5"})
+        return [SlotSet("is_question", 0), SlotSet("center_type", h_center), SlotSet("center_step", 4),
+                SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True),
+                FollowupAction(name="action_center_unego_question")]
 
-        dispatcher.utter_message(
-            f'{h_type}에 대해 질문 있으신가요?', buttons=buttons)
-
-        return [SlotSet('center_step', 4), SlotSet('center_type', h_center), SlotSet("step", step)]
 
 class ActionLeadingCentersIntro5(Action):
     def name(self) -> Text:
@@ -1105,7 +1064,7 @@ class ActionLeadingCentersIntro5(Action):
         dispatcher.utter_message(
             f'더 자세히 듣고 싶으신가요?', buttons=buttons)
 
-        return [SlotSet('center_step', 5), SlotSet('center_type', h_center), SlotSet("step", step)]  # centerstep 1개 완료
+        return [SlotSet('center_step', 5), SlotSet('center_type', h_center), SlotSet("step", step)]
 
 
 class ActionLeadingCenters5(Action):
@@ -1121,8 +1080,7 @@ class ActionLeadingCenters5(Action):
         step = tracker.get_slot('step')
         leading_priority = tracker.get_slot('leading_priority')
         priority = tracker.get_slot('center_priority')
-        dispatcher.utter_message(
-            f'다음 센터를 살펴보겠습니다.')
+
 
         print("get Step")
         print(tracker.get_slot('step'))
@@ -1218,22 +1176,12 @@ class ActionLeadingCenters5(Action):
         dispatcher.utter_message(msg2)
         dispatcher.utter_message(msg3)
         dispatcher.utter_message(msg4)
-        if metadata['ct'][h_center] == 0:
-            unego_question = unego_get_question(h_center)
-            dispatcher.utter_message(unego_question[0])
-            dispatcher.utter_message(unego_question[1])
-            return [SlotSet('bot_question', unego_question[1]), SlotSet("is_question", 0),
-                    SlotSet("center_type", h_center), SlotSet("center_step", 5),
-                    SlotSet("center_question", True), SlotSet("step", step)]
 
-        buttons = []
-        buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\"}"})
-        buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro6"})
+        return [SlotSet("is_question", 0), SlotSet("center_type", h_center), SlotSet("center_step", 5),
+                SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True),
+                FollowupAction(name="action_center_unego_question")]
 
-        dispatcher.utter_message(
-            f'{h_type}에 대해 질문 있으신가요?', buttons=buttons)
 
-        return [SlotSet('center_step', 5), SlotSet('center_type', h_center), SlotSet("step", step)]
 
 class ActionLeadingCentersIntro6(Action):
     def name(self) -> Text:
@@ -1340,7 +1288,7 @@ class ActionLeadingCentersIntro6(Action):
         dispatcher.utter_message(
             f'더 자세히 듣고 싶으신가요?', buttons=buttons)
 
-        return [SlotSet('center_step', 6), SlotSet('center_type', h_center), SlotSet("step", step)]  # centerstep 1개 완료
+        return [SlotSet('center_step', 6), SlotSet('center_type', h_center), SlotSet("step", step)]
 
 
 class ActionLeadingCenters6(Action):
@@ -1356,8 +1304,7 @@ class ActionLeadingCenters6(Action):
         step = tracker.get_slot('step')
         leading_priority = tracker.get_slot('leading_priority')
         priority = tracker.get_slot('center_priority')
-        dispatcher.utter_message(
-            f'다음 센터를 살펴보겠습니다.')
+
 
         print("get Step")
         print(tracker.get_slot('step'))
@@ -1449,27 +1396,18 @@ class ActionLeadingCenters6(Action):
             msg2 = "말과 행동의 방식이 일관되지 않은 당신은 말이나 행동을 할 때 불안감에 휩싸이기도 합니다. ‘무슨 말이든 해야할 것 같은데? 무슨 말을 해야하지? 가만히 있어도 되나?’ 라는 생각을 하며 말과 행동에 대한 압박을 느끼기 때문에 계속 말하고, 지나치게 말하고, 아무 말이나 하는 것입니다. "
             msg3 = "이것은 자신으로부터 비롯된 것이 아닌, 외부의 영향입니다. 이로 인해 당신은 위와 같은 현상을 겪을 수 있고, 다른 사람들과의 소통에 있어서 힘들어질 수 있기 때문에 지나친 말과 행동에 유의해야 합니다. 당신이 먼저 말을 시작하기 보다는 가능한 다른 사람들이 당신에게 말을 걸었을 때, 얘기를 시작하는 것이 좋습니다."
             msg4 = "당신은 다양한 방식으로 표현을 할 수 있으며, 누구의 말이 더 신뢰할 수 있는지를 잘 구별할 수 있는 잠재성이 있습니다.전체 인류의 약 28%는 이 센터가 정의되어 있지 않습니다."
+
         dispatcher.utter_message(msg)
         dispatcher.utter_message(msg2)
         dispatcher.utter_message(msg3)
         dispatcher.utter_message(msg4)
-        if metadata['ct'][h_center] == 0:
-            unego_question = unego_get_question(h_center)
-            dispatcher.utter_message(unego_question[0])
-            dispatcher.utter_message(unego_question[1])
-            return [SlotSet('bot_question', unego_question[1]), SlotSet("is_question", 0),
-                    SlotSet("center_type", h_center), SlotSet("center_step", 6),
-                    SlotSet("center_question", True), SlotSet("step", step)]
-
-        buttons = []
-        buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\"}"})
-        buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_question"})
-
-        dispatcher.utter_message(
-            f'{h_type}에 대해 질문 있으신가요?', buttons=buttons)
 
 
-        return [SlotSet('center_step', 6), SlotSet('center_type', h_center), SlotSet("step", step)]
+        return [SlotSet("is_question", 0), SlotSet("center_type", h_center), SlotSet("center_step", 6),
+                SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True)
+                , FollowupAction(name="action_center_unego_question")]
+
+
 
 class ActionLeadingCentersQuestion(Action):
     def name(self) -> Text:
@@ -1485,7 +1423,7 @@ class ActionLeadingCentersQuestion(Action):
         leading_priority = tracker.get_slot('leading_priority')
         center_type = tracker.get_slot('center_type')
 
-        return [SlotSet('step', step), FollowupAction(name='action_more')]
+        return [SlotSet('step', step), SlotSet("center_question", False), FollowupAction(name='action_more')]
 
 class ActionCenterUnegoQuestion(Action):
     def name(self) -> Text:
@@ -1510,4 +1448,4 @@ class ActionCenterUnegoQuestion(Action):
 
         return [SlotSet('bot_question', unego_question[1]), SlotSet("is_question", 0),
                 SlotSet("center_type", center_type), SlotSet("center_step", center_step),
-                SlotSet("center_question", True), SlotSet("step", step)]
+                SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True)]

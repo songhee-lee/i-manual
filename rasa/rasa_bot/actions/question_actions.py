@@ -134,19 +134,22 @@ class ActionQuestion(Action):
 
         metadata = extract_metadata_from_tracker(tracker)
         leading_priority = tracker.get_slot('leading_priority')
-
+        step = tracker.get_slot('step')
+        q_type = leading_priority[step - 1]
         is_question = tracker.get_slot('is_question')
         print("is_question", is_question)
         step = tracker.get_slot("step")
         print(step)
         if is_question:
-            dispatcher.utter_message(
-                f'무엇이 궁금하신가요?')
+            if q_type == 0:
+                return [FollowupAction(name="action_leading_type_question")]
+            else:
+                dispatcher.utter_message('무엇이 궁금하신가요?')
         else:
-            return [SlotSet("is_question", 0)]
+            return [SlotSet("is_question", False)]
         h_type = ''
 
-        return [SlotSet("step", step), SlotSet("is_question", 1)]
+        return [SlotSet("step", step), SlotSet("is_question", True)]
 
 
 class ActionDefaultFallback(Action):
@@ -160,7 +163,11 @@ class ActionDefaultFallback(Action):
         metadata = extract_metadata_from_tracker(tracker)
         metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "t": 3, "p": 52, "d": 3}
         user_reponse_type = 0
+        # 질문인지 아닌지(0이면 질문아님, 1이면 질문)
         is_question = tracker.get_slot("is_question")
+        # 감정분석인지 아닌지(0이면 아님, 1이면 감정분석)
+        is_sentiment = tracker.get_slot("is_sentiment")
+
         center_question = tracker.get_slot("center_question")
         user_text = tracker.latest_message['text']
         question = tracker.get_slot("bot_question")
@@ -171,11 +178,12 @@ class ActionDefaultFallback(Action):
 
         step = tracker.get_slot("step")
         print("step", step)
-
+        answer = ""
         # 설명 완료한 개수-> step
         # 방금 설명한 파트는 step - 1의 인덱스를 가짐
         if is_question:
             q_type = leading_priority[step - 1]
+
             answer = ""
             # 내담자의 정보에 해당하는 context를 가져옴
             context = retrieve_context(q_type, ct_index=ct_index, metadata=metadata)
@@ -184,19 +192,20 @@ class ActionDefaultFallback(Action):
             print(answer)
 
         else:
-            user_reponse_type = sentiment_predict(question, user_text)
-            if user_reponse_type == 0:
-                print("중립")
-                answer = "답변이 중립이군요"
-            elif user_reponse_type == 1:
-                print("긍정")
-                answer = "답변이 긍정이군요"
-            elif user_reponse_type == 2:
-                print("부정")
-                answer = "답변이 부정이군요"
+            if is_sentiment:
+                user_reponse_type = sentiment_predict(question, user_text)
+                if user_reponse_type == 0:
+                    print("중립")
+                    answer = "답변이 중립이군요"
+                elif user_reponse_type == 1:
+                    print("긍정")
+                    answer = "답변이 긍정이군요"
+                elif user_reponse_type == 2:
+                    print("부정")
+                    answer = "답변이 부정이군요"
 
         # 올바른 질문이 아닌경우
-        if answer == "":
+        if is_question and answer == "":
             # 다시 action_default_fallback으로 넘어오는 분기 필요!!
             answer = "질문을 잘 못 알아들었어요"
 
@@ -223,38 +232,47 @@ class ActionDefaultFallback(Action):
                 elif center_step == 5:
                     qa_buttons.append({"title": f'확인', "payload": "/leading_centers_intro6"})
                 elif center_step == 6:
-                    qa_buttons.append({"title": f'확인', "payload": "/leading_more"})
-                qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question"})
+                    qa_buttons.append({"title": f'확인', "payload": "/leading_more{\"center_question\":\"False\"}"})
+                qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question{\"is_question\":\"True\", \"center_question\":\"True\"}"})
             # 센터 질문이 아니면
             else:
                 qa_buttons.append({"title": f'확인', "payload": "/leading_more"})
-                qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question"})
+                qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question{\"is_question\":\"True\"}"})
 
             dispatcher.utter_message(f'{answer}')
             dispatcher.utter_message(f'궁금증이 풀리셨나요?', buttons=qa_buttons)
 
         # 감정분석이면
         else:
-            sentiment_buttons=[]
-            sentiment_buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\", \"center_question\":\"True\"}"})
-            if center_step == 1:
-                sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro2"})
-            elif center_step == 2:
-                sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro3"})
-            elif center_step == 3:
-                sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro4"})
-            elif center_step == 4:
-                sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro5"})
-            elif center_step == 5:
-                sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro6"})
-            elif center_step == 6:
-                step += 1
-                sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_more"})
-            dispatcher.utter_message(f'{answer}')
-            dispatcher.utter_message(f'{center_info[ct_index]}에 대해 질문 있으신가요?', buttons=sentiment_buttons)
+            if is_sentiment:
+                sentiment_buttons=[]
+                sentiment_buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\", \"center_question\":\"True\"}"})
+                if center_step == 1:
+                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro2"})
+                elif center_step == 2:
+                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro3"})
+                elif center_step == 3:
+                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro4"})
+                elif center_step == 4:
+                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro5"})
+                elif center_step == 5:
+                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro6"})
+                elif center_step == 6:
+                    step += 1
+                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_more{\"center_question\":\"False\"}"})
+                dispatcher.utter_message(f'{answer}')
+                dispatcher.utter_message(f'{center_info[ct_index]}에 대해 질문 있으신가요?', buttons=sentiment_buttons)
+            else:
+                notice_buttons = []
+                notice_buttons.append({"title": f'질문', "payload": "/question{\"is_question\":\"True\"}"})
+                notice_buttons.append({"title": f'괜찮아요', "payload": "/leading_more"})
+
+                notice = '''지금은 채팅하실 수 없습니다. 혹시 질문 있으신가요?'''
+                dispatcher.utter_message(f'{notice}', buttons=notice_buttons)
 
 
-        return [SlotSet("step", step), SlotSet("is_question", 0), SlotSet("center_question", False)]
+
+        return [SlotSet("step", step), SlotSet("is_question", False), SlotSet("is_sentiment", False)]
 
 class ActionQuestionIntro(Action):
     def name(self):

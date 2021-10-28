@@ -198,7 +198,7 @@ class ActionLeadingDefinition(Action):
 
         dispatcher.utter_message(
              f'{h_type}에 대해 질문 있으신가요?', buttons=buttons)
-
+        
         if leading_priority[0]==2:
             return [SlotSet('step', 1)]
         elif leading_priority[1]==2:

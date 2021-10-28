@@ -9,29 +9,6 @@ from rasa_sdk.events import FollowupAction
 
 logger = logging.getLogger(__name__)
 
-class ActionInitialized(Action):
-    def name(self) -> Text:
-        return "action_initialized"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        print('action_initialized')
-        print(tracker.latest_message)
-        # dispatcher.utter_message("로케이션 세팅 완료!")
-        metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "se": [2, 0, 6], "t": 3, "p": 52, "d": 3}
-        dispatcher.utter_message(
-            f'안녕하세요. {metadata["pn"]}님 아이매뉴얼 마스터 봇입니다. 나답게 살기 위한 여행은 즐겁게 하고 계신가요?')
-        dispatcher.utter_message(
-            f'저는 {metadata["pn"]}님께서 좀더 나답게 사는 것을 도와드리기 위해 기다리고 있어요.')
-
-
-
-        buttons = []
-        buttons.append({"title": "네, 좋아요", "payload": "/leading_type"})
-        buttons.append({"title": "다음에 올께요", "payload": "/goodbye"})
-        buttons.append({"title": "질문이 있어요", "payload": "/question"})
-        dispatcher.utter_message("그럼 저와 함께 종족부터 차근차근 시작해 볼까요? 진행하면서 문제가 있으면 '마스터 봇'을 입력해주세요 (:", buttons=buttons)
-        return []
 
 
 class ActionLastMessage(Action):
@@ -128,10 +105,13 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t": 3, "p": 52, "d": 3}
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
-        dispatcher.utter_message(
-            f'안녕하세요 {metadata["pn"]}님, 저를 부르셨나요~? :) 다시 찾아주셔서 감사해요~')
+        is_finished = tracker.get_slot("is_finished")
+        user_text = tracker.latest_message['text']
+        if(user_text == "마스터 봇" or user_text == "마스터봇"):
+            dispatcher.utter_message(
+                f'안녕하세요 {metadata["pn"]}님, 저를 부르셨나요~? :) 다시 찾아주셔서 감사해요~')
         #다시 들어왔을 때 판단
-        if step==5:
+        if is_finished==True:
             buttons = []
             buttons.append({"title": "종족", "payload": "/leading_type_intro"})
             buttons.append({"title": "사회적 성향", "payload": "/leading_profile_intro"})
@@ -139,17 +119,19 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
             buttons.append({"title": "센터", "payload": "/leading_centers_intro1"})
         
             dispatcher.utter_message("다시 듣고 싶은 항목을 선택해 주세요", buttons=buttons)
-        elif step==4:
-            return [FollowupAction(name='action_leading_other_centers1')]
         else:
-            if leading_priority[step]==0:
-                return [FollowupAction(name='action_leading_type_intro')]
-            elif leading_priority[step]==1:
-                return [FollowupAction(name='action_leading_profile_intro')]
-            elif leading_priority[step]==2:
-                return [FollowupAction(name='action_leading_definition_intro')]
-            elif leading_priority[step]==3:
-                return [FollowupAction(name='action_leading_centers_intro1')]
+            if step==5:
+                return [FollowupAction(name='action_leading_other_centers1')]
+            elif step==4:
+                return [FollowupAction(name='action_leading_other_centers1')]
+            else:
+                if leading_priority[step]==0:
+                    return [FollowupAction(name='action_leading_type_intro')]
+                elif leading_priority[step]==1:
+                    return [FollowupAction(name='action_leading_profile_intro')]
+                elif leading_priority[step]==2:
+                    return [FollowupAction(name='action_leading_definition_intro')]
+                elif leading_priority[step]==3:
+                    return [FollowupAction(name='action_leading_centers_intro1')]
         return []
         # dispatcher.utter_message("로케이션 세팅 완료!")
-
