@@ -1,0 +1,256 @@
+version: "2.0"
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+  - masterbot:
+      use_entities: false
+  - type_common_mean:
+      use_entities: false
+  - type_common_difference:
+      use_entities: false
+  - type_how_to_live:
+      use_entities: true
+  - initialized:
+      use_entities: true
+  - humandesign_type:
+      use_entities: true
+  - humandesign_profile:
+      use_entities: true
+  - humandesign_definition:
+      use_entities: true
+  - humandesign_authority:
+      use_entities: true
+  - humandesign_centers:
+      use_entities: true
+  - humandesign_channels:
+      use_entities: true
+  - goodbye:
+     use_entities: false
+  - leading_type:
+     use_entities: false
+  - leading_type_intro: # 무현추가
+     use_entities: false
+  - leading_type_question: # 무현추가
+     use_entities: true
+  - leading_more:
+     use_entities: false
+  - leading_profile:
+     use_entities: false
+  - leading_profile_intro: # 무현추가
+     use_entities: false
+  - leading_definition_intro: # 무현추가
+     use_entities: false
+  - leading_definition:
+     use_entities: false  
+  - leading_definition_more:
+     use_entities: false  
+  - leading_authority:
+     use_entities: false  
+  - leading_authority_more:
+     use_entities: false
+  - leading_centers_intro1:
+      use_entities: false
+  - leading_centers_intro2:
+      use_entities: false
+  - leading_centers_intro3:
+      use_entities: false
+  - leading_centers_intro4:
+      use_entities: false
+  - leading_centers_intro5:
+      use_entities: false
+  - leading_centers_intro6:
+      use_entities: false
+  - leading_centers1:
+      use_entities: false
+  - leading_centers2:
+      use_entities: false
+  - leading_centers3:
+      use_entities: false
+  - leading_centers4:
+      use_entities: false
+  - leading_centers5:
+      use_entities: false
+  - leading_centers6:
+      use_entities: false
+  - leading_centers_question:
+      use_entities: false
+  - leading_channels:
+      use_entities: false  
+  - leading_gates:
+      use_entities: false  
+  - continue:
+     use_entities: false  
+  - profile_common_mean:
+     use_entities: false  
+  - definition_common_mean:
+     use_entities: false  
+  - authority_common_mean:
+     use_entities: false  
+  - last_message:
+     use_entities: false
+  - last_message_response:
+     use_entities: true
+  - question: ###추
+      use_entities: true
+  - have_question:
+      use_entities: true
+  - explain:
+      use_entities: true
+  - qa:
+      use_entities: true
+  - start:
+      use_entities: true
+  - leading_step:
+      use_entities: true
+  - leading_other_centers1:
+      use_entities: false
+  - leading_other_centers2:
+      use_entities: false
+  - leading_other_centers3:
+      use_entities: false
+  - question_intro: # 무현추가
+      use_entities: true
+  - type_question: # 무현추가
+      use_entities: true
+  - strategy_question: # 무현추가
+      use_entities: true
+  - center_unego_question:
+      use_entities: false
+
+entities:
+  - id
+  - type
+  - profile
+  - definition
+  - authority
+  - center
+  - result
+  - leading_priority
+  - center_priority
+  - step
+  - center_step
+  - is_question #무현 추가
+  - bot_question #무현 추가
+  - center_type #무현 추가
+  - center_question #무현 추가
+  - context_index # 무현 추가
+
+slots:
+  center_priority:
+    type: list
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  leading_priority:
+    type: list
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  channel:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  result:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  step:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  id:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  center_step:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  is_question: #무현 추가 (0이면 감정분석, 1이면 질문)
+    type: bool
+    initial_value: true
+    auto_fill: true
+    influence_conversation: false
+  bot_question: #무현 추가 (봇이 던지는 비자아 질문 감정분석위해서 필요)
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  center_type: #무현 추가 (진행중인 센터 정보)
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  center_question:
+    type: bool
+    initial_value: false
+    auto_fill: true
+    influence_conversation: false
+  context_index: #무현 추가 (종족, 결정방식 질문의 context index)
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+
+responses:
+  utter_default:
+    - text: 잘 못 알아들었어요! 다시 말씀해주실 수 있을까요?
+  utter_reset:
+    - text: 정말 리셋하시겠어요? 한 번 실행하면 되돌릴 수 없어요.
+actions:
+  - action_default_fallback
+  - utter_reset
+  - utter_default
+  - action_initialized
+  - action_goodbye
+  - action_leading_more #선택시 필요?
+  - action_last_message
+  - action_last_message_response
+  - action_masterbot
+  - action_default_fallback #qa나 감정분석으로 넘어감
+  - action_question
+  - action_have_question
+  - action_question_intro # 무현 추가(자세히 버튼 전 질문시 넘어가는 분기)
+  - action_type_question # 무현 추가
+  - action_strategy_question # 무현 추가
+  - action_set_priority
+  - action_leading_centers_intro1
+  - action_leading_centers_intro2
+  - action_leading_centers_intro3
+  - action_leading_centers_intro4
+  - action_leading_centers_intro5
+  - action_leading_centers_intro6
+  - action_leading_centers1
+  - action_leading_centers2
+  - action_leading_centers3
+  - action_leading_centers4
+  - action_leading_centers5
+  - action_leading_centers6
+  - action_leading_centers_question
+  - action_center_unego_question # 무현 추가
+  - action_leading_other_centers1
+  - action_leading_other_centers2
+  - action_leading_other_centers3
+  - action_leading_type
+  - action_leading_type_intro # 무현 추가
+  - action_leading_type_question # 무현 추가
+  - action_leading_profile
+  - action_leading_profile_intro # 무현 추가
+  - action_leading_definition
+  - action_leading_definition_intro
+  - action_leading_authority
+  - action_start
+  - action_step
+  - action_more
+###위에2추가
+
+forms: {}
+e2e_actions: []

@@ -1,0 +1,22 @@
+<!DDOTYPE html>
+<html lang="en">
+<head>
+  <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" href="https://npm-scalableminds.s3.eu-central-1.amazonaws.com/@scalableminds/chatroom@master/dist/Chatroom.css" />
+</head>
+<body>
+  <div class="chat-container"></div>
+
+  <script src="https://npm-scalableminds.s3.eu-central-1.amazonaws.com/@scalableminds/chatroom@master/dist/Chatroom.js"/></script>
+  <script type="text/javascript">
+    var chatroom = new window.Chatroom({
+      host: "http://localhost:5005",
+      title: "rasa test",
+      container: document.querySelector(".chat-container"),
+      welcomeMessage: "안녕하세요. 저는 아이메뉴얼 마스터 봇입니다. 저는 좀 더 나답게 사는 것을 도와드리기 위해 기다리고 있었어요. 김재헌님의 메뉴얼 설명을 원하시면 '시작' 이라고 말해주세요!",
+      speechRecognition: "en-US",
+      <!-- voiceLang: "en-US"-->
+    });
+    chatroom.openChat();
+  </script>
+</body>

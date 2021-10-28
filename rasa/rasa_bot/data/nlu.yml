@@ -1,0 +1,52 @@
+version: "2.0"
+nlu:
+  - intent: masterbot
+    examples: |
+      - 마스터봇
+      - 마스터 봇
+      - masterbot
+      - master bot
+      - 헤이 마스터봇
+      - 헤이 마스터 봇
+      - 안녕 마스터 봇
+      - 안녕 마스터봇
+      - 마스터 봇 거기 있니?
+      - 헤이
+      - 하이 마스터봇
+      - 하이 마스터 봇
+      - ㅎㅇ 마스터봇
+      - ㅎㄴ 마스터 봇
+  - intent: reset
+    examples: |
+      - 리셋
+      - 재시작
+      - reset
+      - restart
+  - intent: initialized
+    examples: |
+      - initialized
+      - 초기화
+      - 처음 실행
+  #밑에 두개 추가
+  - intent: explain
+    examples: |
+      - 설명
+      - 설명해주세요
+      - 설명이 필요해요
+  - intent: question
+    examples: |
+      - 질문
+      - 질문할래요
+      - 질문있어요
+      - 궁금한게 있어요
+      - 궁금한거
+      - 질문이요
+  - intent: start
+    examples: |
+      - 시작
+      - 시작
+      - 시박
+      - 시닥
+      - 시자악
+      - 시작해주세요
+      - 시작이 필요해요
