@@ -51,29 +51,9 @@ intents:
      use_entities: false  
   - leading_authority_more:
      use_entities: false
-  - leading_centers_intro1:
+  - leading_centers_intro:
       use_entities: false
-  - leading_centers_intro2:
-      use_entities: false
-  - leading_centers_intro3:
-      use_entities: false
-  - leading_centers_intro4:
-      use_entities: false
-  - leading_centers_intro5:
-      use_entities: false
-  - leading_centers_intro6:
-      use_entities: false
-  - leading_centers1:
-      use_entities: false
-  - leading_centers2:
-      use_entities: false
-  - leading_centers3:
-      use_entities: false
-  - leading_centers4:
-      use_entities: false
-  - leading_centers5:
-      use_entities: false
-  - leading_centers6:
+  - leading_centers:
       use_entities: false
   - leading_centers_question:
       use_entities: false
@@ -105,12 +85,6 @@ intents:
       use_entities: true
   - leading_step:
       use_entities: true
-  - leading_other_centers1:
-      use_entities: false
-  - leading_other_centers2:
-      use_entities: false
-  - leading_other_centers3:
-      use_entities: false
   - question_intro: # 무현추가
       use_entities: true
   - type_question: # 무현추가
@@ -176,7 +150,7 @@ slots:
     influence_conversation: true
   is_question: #무현 추가 (0이면 감정분석, 1이면 질문)
     type: bool
-    initial_value: true
+    initial_value: false
     auto_fill: true
     influence_conversation: false
   bot_question: #무현 추가 (봇이 던지는 비자아 질문 감정분석위해서 필요)
@@ -197,6 +171,16 @@ slots:
   context_index: #무현 추가 (종족, 결정방식 질문의 context index)
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  is_sentiment:
+    type: bool
+    initial_value: false
+    auto_fill: true
+    influence_conversation: false
+  is_finished:
+    type: bool
+    initial_value: false
     auto_fill: true
     influence_conversation: false
 
@@ -222,23 +206,10 @@ actions:
   - action_type_question # 무현 추가
   - action_strategy_question # 무현 추가
   - action_set_priority
-  - action_leading_centers_intro1
-  - action_leading_centers_intro2
-  - action_leading_centers_intro3
-  - action_leading_centers_intro4
-  - action_leading_centers_intro5
-  - action_leading_centers_intro6
-  - action_leading_centers1
-  - action_leading_centers2
-  - action_leading_centers3
-  - action_leading_centers4
-  - action_leading_centers5
-  - action_leading_centers6
+  - action_leading_centers_intro
+  - action_leading_centers
   - action_leading_centers_question
   - action_center_unego_question # 무현 추가
-  - action_leading_other_centers1
-  - action_leading_other_centers2
-  - action_leading_other_centers3
   - action_leading_type
   - action_leading_type_intro # 무현 추가
   - action_leading_type_question # 무현 추가
