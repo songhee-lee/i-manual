@@ -153,63 +153,15 @@ stories:
       - intent: leading_authority
       - action: action_leading_authority
 
-  - story: Say leading_centers_intro1
+  - story: Say leading_centers_intro
     steps:
-      - intent: leading_centers_intro1
-      - action: action_leading_centers_intro1
-  - story: Say leading_centers_intro2
-    steps:
-      - intent: leading_centers_intro2
-      - action: action_leading_centers_intro2
+      - intent: leading_centers_intro
+      - action: action_leading_centers_intro
 
-  - story: Say leading_centers_intro3
+  - story: Say leading_centers
     steps:
-      - intent: leading_centers_intro3
-      - action: action_leading_centers_intro3
-
-  - story: Say leading_centers_intro4
-    steps:
-      - intent: leading_centers_intro4
-      - action: action_leading_centers_intro4
-
-  - story: Say leading_centers_intro5
-    steps:
-      - intent: leading_centers_intro5
-      - action: action_leading_centers_intro5
-
-  - story: Say leading_centers_intro6
-    steps:
-      - intent: leading_centers_intro6
-      - action: action_leading_centers_intro6
-
-  - story: Say leading_centers1
-    steps:
-      - intent: leading_centers1
-      - action: action_leading_centers1
-  - story: Say leading_centers2
-    steps:
-      - intent: leading_centers2
-      - action: action_leading_centers2
-
-  - story: Say leading_centers3
-    steps:
-      - intent: leading_centers3
-      - action: action_leading_centers3
-
-  - story: Say leading_centers4
-    steps:
-      - intent: leading_centers4
-      - action: action_leading_centers4
-
-  - story: Say leading_centers5
-    steps:
-      - intent: leading_centers5
-      - action: action_leading_centers5
-
-  - story: Say leading_centers6
-    steps:
-      - intent: leading_centers6
-      - action: action_leading_centers6
+      - intent: leading_centers
+      - action: action_leading_centers
 
   - story: Say leading_centers_question
     steps:
@@ -220,17 +172,6 @@ stories:
     steps:
       - intent: center_unego_question
       - action: action_center_unego_question
-
-  - story: Say leading_other_centers2
-    steps:
-      - intent: leading_other_centers2
-      - action: action_leading_other_centers2
-
-  - story: Say leading_other_centers3
-    steps:
-      - intent: leading_other_centers3
-      - action: action_leading_other_centers3
-
 
   - story: Say Last Message 
     steps:
