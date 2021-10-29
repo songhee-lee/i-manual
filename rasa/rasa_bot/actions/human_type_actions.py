@@ -21,7 +21,8 @@ class ActionLeadingTypeIntro(Action):
         metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "t": 3, "p": 52}
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
-        if step==5:
+        is_finished = tracker.get_slot('is_finished')
+        if is_finished == True:
             dispatcher.utter_message(
                 f'그럼 종족에 대해 다시 알려드릴게요!'
             )

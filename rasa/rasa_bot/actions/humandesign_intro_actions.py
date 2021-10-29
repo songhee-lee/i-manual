@@ -46,7 +46,7 @@ class ActionSetPriority(Action): #맨 처음
             if metadata['ct'][i]==1 and (metadata["ct"][i] not in center_priority):
                 center_priority.append(i)
 
-        for i in [4,3,5,2,6,0]: #메타데이터 변경시 수정
+        for i in [8, 7, 6, 5, 2, 4, 3, 1, 0]: #메타데이터 변경시 수정
             if i not in center_priority:
                 center_priority.append(i)
         return [SlotSet('leading_priority', leading_priority), SlotSet('center_priority', center_priority), SlotSet('step', 0), SlotSet('is_finished', False), SlotSet('center_step', 0)] #slot추가 필요
@@ -65,7 +65,7 @@ class ActionStart(Action):
         elif leading_priority[0]==2:
             return [FollowupAction(name='action_leading_definition_intro')]
         elif leading_priority[0]==3:
-            return [FollowupAction(name='action_leading_centers_intro1')]
+            return [FollowupAction(name='action_leading_centers_intro')]
 
         return []
 
@@ -82,21 +82,23 @@ class ActionStep(Action):
         center_step = tracker.get_slot('center_step')
         if is_finished==True:
             return [FollowupAction(name='action_masterbot')] #masterbot에서 처리할 수 있게
-        # step5인 상태로 계속하면 끝내버리고, 끝났다고 알려줌
+        # is_finished 상태로 계속하면 끝내버리고, 끝났다고 알려줌
+
         else:
-            if step == 5:
-                return [SlotSet('is_finished', True), FollowupAction(name='action_last_message')]
-            elif step == 4:
-                return [FollowupAction(name='action_leading_other_centers1')]
+            if center_step != 9 and center_step !=0:
+                return [FollowupAction(name='action_leading_centers_intro')]
             else:
-                if leading_priority[step]==0:
-                    return [FollowupAction(name='action_leading_type_intro')]
-                elif leading_priority[step]==1:
-                    return [FollowupAction(name='action_leading_profile_intro')]
-                elif leading_priority[step]==2:
-                    return [FollowupAction(name='action_leading_definition_intro')]
-                elif leading_priority[step]==3:
-                    return [FollowupAction(name='action_leading_centers_intro1')]
+                if step == 4:
+                    return [SlotSet('is_finished', True), FollowupAction(name='action_last_message')]
+                else:
+                    if leading_priority[step]==0:
+                        return [FollowupAction(name='action_leading_type_intro')]
+                    elif leading_priority[step]==1:
+                        return [FollowupAction(name='action_leading_profile_intro')]
+                    elif leading_priority[step]==2:
+                        return [FollowupAction(name='action_leading_definition_intro')]
+                    elif leading_priority[step]==3:
+                        return [FollowupAction(name='action_leading_centers_intro')]
 
         return []
 

@@ -220,19 +220,11 @@ class ActionDefaultFallback(Action):
         if is_question:
             qa_buttons = []
             # 센터 질문이면
-            if center_step is not None and center_question:
-                if center_step == 1:
-                    qa_buttons.append({"title": f'확인', "payload": "/leading_centers_intro2"})
-                elif center_step == 2:
-                    qa_buttons.append({"title": f'확인', "payload": "/leading_centers_intro3"})
-                elif center_step == 3:
-                    qa_buttons.append({"title": f'확인', "payload": "/leading_centers_intro4"})
-                elif center_step == 4:
-                    qa_buttons.append({"title": f'확인', "payload": "/leading_centers_intro5"})
-                elif center_step == 5:
-                    qa_buttons.append({"title": f'확인', "payload": "/leading_centers_intro6"})
-                elif center_step == 6:
+            if center_step !=0 and center_question:
+                if center_step == 9:
                     qa_buttons.append({"title": f'확인', "payload": "/leading_more{\"center_question\":\"False\"}"})
+                else:
+                    qa_buttons.append({"title": f'확인', "payload": "/leading_centers_intro"})
                 qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question{\"is_question\":\"True\", \"center_question\":\"True\"}"})
             # 센터 질문이 아니면
             else:
@@ -247,19 +239,10 @@ class ActionDefaultFallback(Action):
             if is_sentiment:
                 sentiment_buttons=[]
                 sentiment_buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\", \"center_question\":\"True\"}"})
-                if center_step == 1:
-                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro2"})
-                elif center_step == 2:
-                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro3"})
-                elif center_step == 3:
-                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro4"})
-                elif center_step == 4:
-                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro5"})
-                elif center_step == 5:
-                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro6"})
-                elif center_step == 6:
-                    step += 1
+                if center_step == 9:
                     sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_more{\"center_question\":\"False\"}"})
+                else:
+                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro"})
                 dispatcher.utter_message(f'{answer}')
                 dispatcher.utter_message(f'{center_info[ct_index]}에 대해 질문 있으신가요?', buttons=sentiment_buttons)
             else:
@@ -329,18 +312,10 @@ class ActionQuestionIntro(Action):
             buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\"}"})
 
         if is_center:
-            if center_step == 1:
-                buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro2"})
-            elif center_step == 2:
-                buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro3"})
-            elif center_step == 3:
-                buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro4"})
-            elif center_step == 4:
-                buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro5"})
-            elif center_step == 5:
-                buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro6"})
-            elif center_step == 6:
+            if center_step == 9:
                 buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_question"})
+            else:
+                buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro"})
         else:
             buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_more"})
 

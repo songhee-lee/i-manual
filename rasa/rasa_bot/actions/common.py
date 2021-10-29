@@ -32,7 +32,7 @@ def koelectra_qa_getanswer(context, question):
 
 def unego_get_question(ct, defined=False):
     question = ""
-    # 0: 연료, 1: 직관, 2: 감정, 3: 에고, 4: 방향, 5: 표현
+    # 0: 연료, 1: 활력, 2: 직관, 3: 감정, 4: 에고, 5: 방향, 6: 표현, 7: 생각, 8: 영감
     # 연료센터
     if ct == 0 and not defined:
         qlist_0 = [
@@ -46,70 +46,103 @@ def unego_get_question(ct, defined=False):
             "연료 센터 (정의) 비자아 질문"
         ]
         question = random.choice(qlist_0)
+    # 활력센터
+    elif ct == 1 and not defined:
+        qlist_1 = [
+            "활력 센터 (미정의) 비자아 질문"
+        ]
+        question = random.choice(qlist_1)
+    elif ct == 1 and defined:
+        qlist_1 = [
+            "활력 센터 (정의) 비자아 질문"
+        ]
+        question = random.choice(qlist_1)
     # 직관센터
     elif ct == 2 and not defined:
-        qlist_1 = [
+        qlist_2 = [
             "나에게 좋지 않은 관계나 일이나 장소등에 집착하고 의지하고 있지는 않은가요?",
         ]
-        question = random.choice(qlist_1)
+        question = random.choice(qlist_2)
     elif ct == 2 and defined:
-        qlist_1 = [
+        qlist_2 = [
             "직관 센터 (정의) 비자아 질문"
         ]
-        question = random.choice(qlist_1)
+        question = random.choice(qlist_2)
     # 감정센터
     elif ct == 3 and not defined:
-        qlist_2 = [
+        qlist_3 = [
             "본인은 두려워서 차라리 말을 안하고 있나요?",
             "본인은 말을 해서 화가 나게 될 것 같으면 차라리 말을 말자라며 혼자 끙끙하나요?"
         ]
-        question = random.choice(qlist_2)
+        question = random.choice(qlist_3)
     elif ct == 3 and defined:
-        qlist_2 = [
+        qlist_3 = [
             "감정 센터 (정의) 비자아 질문"
         ]
-        question = random.choice(qlist_2)
+        question = random.choice(qlist_3)
 
     # 에고센터
     elif ct == 4 and not defined:
-        qlist_3 = [
+        qlist_4 = [
             "언제나 뭔가를 입증해야한다고 느끼고 생각하시나요?",
             "나를 입증하기 위해 필요하지 않은 약속까지 하고 스스로를 괴롭히고 있지는 않은가요?"
         ]
-        question = random.choice(qlist_3)
+        question = random.choice(qlist_4)
     elif ct == 4 and defined:
-        qlist_3 = [
+        qlist_4 = [
             "에고 센터 (정의) 비자아 질문"
         ]
-        question = random.choice(qlist_3)
+        question = random.choice(qlist_4)
 
     # 방향센터
     elif ct == 5 and not defined:
-        qlist_4 = [
+        qlist_5 = [
             "본인은 끊임없이 사랑을 찾고 있는가요?",
             "본인은 지속적으로 삶의 의미와 방향성을 찾고 있는가?",
             "수시로 바뀌는 자신에게 늘 불안감을 느끼는가요?"
         ]
-        question = random.choice(qlist_4)
+        question = random.choice(qlist_5)
     elif ct == 5 and defined:
-        qlist_4 = [
+        qlist_5 = [
             "방향 센터 (정의) 비자아 질문"
         ]
-        question = random.choice(qlist_4)
+        question = random.choice(qlist_5)
 
     # 표현센터
     elif ct == 6 and not defined:
-        qlist_5 = [
+        qlist_6 = [
             "본인은 끊임없이 사랑을 찾고 있는가요?",
             "본인은 지속적으로 삶의 의미와 방향성을 찾고 있는가?",
             "수시로 바뀌는 자신에게 늘 불안감을 느끼는가요?"
         ]
-        question = random.choice(qlist_5)
+        question = random.choice(qlist_6)
     elif ct == 6 and defined:
-        qlist_5 = [
+        qlist_6 = [
             "표현 센터 (정의) 비자아 질문"
         ]
-        question = random.choice(qlist_5)
+        question = random.choice(qlist_6)
+    # 생각센터
+    elif ct == 7 and not defined:
+        qlist_7 = [
+            "생각 센터 (미정의) 비자아 질문"
+        ]
+        question = random.choice(qlist_7)
+    elif ct == 7 and defined:
+        qlist_7 = [
+            "생각 센터 (정의) 비자아 질문"
+        ]
+        question = random.choice(qlist_7)
+    # 영감센터
+    elif ct == 8 and not defined:
+        qlist_8 = [
+            "영감 센터 (미정의) 비자아 질문"
+        ]
+        question = random.choice(qlist_8)
+    elif ct == 8 and defined:
+        qlist_8 = [
+            "영감 센터 (정의) 비자아 질문"
+        ]
+        question = random.choice(qlist_8)
     question_intro = [
         "제가 질문 한가지 할게요! 질문을 보시고 솔직하게 답변해주시면 됩니다 :)",
         "지금까지 설명을 토대로 내담자님의 성향에 대해서 한가지 질문할게요!!",

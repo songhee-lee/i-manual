@@ -116,22 +116,17 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
             buttons.append({"title": "종족", "payload": "/leading_type_intro"})
             buttons.append({"title": "사회적 성향", "payload": "/leading_profile_intro"})
             buttons.append({"title": "에너지 흐름", "payload": "/leading_definition_intro"})
-            buttons.append({"title": "센터", "payload": "/leading_centers_intro1"})
+            buttons.append({"title": "센터", "payload": "/leading_centers_intro"})
         
             dispatcher.utter_message("다시 듣고 싶은 항목을 선택해 주세요", buttons=buttons)
         else:
-            if step==5:
-                return [FollowupAction(name='action_leading_other_centers1')]
-            elif step==4:
-                return [FollowupAction(name='action_leading_other_centers1')]
-            else:
-                if leading_priority[step]==0:
-                    return [FollowupAction(name='action_leading_type_intro')]
-                elif leading_priority[step]==1:
-                    return [FollowupAction(name='action_leading_profile_intro')]
-                elif leading_priority[step]==2:
-                    return [FollowupAction(name='action_leading_definition_intro')]
-                elif leading_priority[step]==3:
-                    return [FollowupAction(name='action_leading_centers_intro1')]
-        return []
+            if leading_priority[step]==0:
+                return [FollowupAction(name='action_leading_type_intro')]
+            elif leading_priority[step]==1:
+                return [FollowupAction(name='action_leading_profile_intro')]
+            elif leading_priority[step]==2:
+                return [FollowupAction(name='action_leading_definition_intro')]
+            elif leading_priority[step]==3:
+                return [FollowupAction(name='action_leading_centers_intro')]
+        return [SlotSet('center_step', 0)]
         # dispatcher.utter_message("로케이션 세팅 완료!")
