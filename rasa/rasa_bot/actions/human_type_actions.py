@@ -165,38 +165,40 @@ class ActionLeadingTypeQuestion(Action):
 
         buttons = []
         if metadata["t"] == 0:
-            buttons.append({"title": f'어떻게 살아가야 하나요?',
-                            "payload": "/type_question{\"bot_question\":\"어떻게 살아가야 하나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'어떤 장점이 있을까요?',
-                            "payload": "/type_question{\"bot_question\":\"어떤 장점이 있을까요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'가이드 아이는 어떻게 키워야 하나요?',
-                            "payload": "/type_question{\"bot_question\":\"가이드 아이는 어떻게 키워야 하나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'초대를 기다린다는게 무슨 뜻인가요?',
-                            "payload": "/strategy_question{\"bot_question\":\"초대가 무엇인가요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'초대를 받은 후 어떻게 해야하나요?',
-                            "payload": "/strategy_question{\"bot_question\":\"초대를 받은 후 어떻게 해야하나요?\", \"context_index\": 0}"})
+
+            buttons.append({"title": f'어떤 에너지를 가지고 있나요?',
+                            "payload": "/type_question{\"bot_question\":\"어떤 에너지를 가지고 있나요?\", \"context_index\": 1}"})
+            buttons.append({"title": f'힘들 때 어떻게 해야 하나요?',
+                            "payload": "/type_question{\"bot_question\":\"힘들 때 어떻게 해야 하나요?\", \"context_index\": 1}"})
+            buttons.append({"title": f'에너자이저의 전략은 뭔가요?',
+                            "payload": "/strategy_question{\"bot_question\":\"에너자이저의 전략은 뭔가요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'어떤 질문을 해야 되나요?',
+                            "payload": "/strategy_question{\"bot_question\":\"어떤 질문을 해야 되나요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'에너자이저 아이는 어떻게 키워야 하나요?',
+                            "payload": "/strategy_question{\"bot_question\":\"에너자이저 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
         elif metadata["t"] == 1:
-            buttons.append({"title": f'어떻게 살아가야 하나요?',
-                            "payload": "/type_question{\"bot_question\":\"어떻게 살아가야 하나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'어떤 장점이 있을까요?',
-                            "payload": "/type_question{\"bot_question\":\"어떤 장점이 있을까요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'가이드 아이는 어떻게 키워야 하나요?',
-                            "payload": "/type_question{\"bot_question\":\"가이드 아이는 어떻게 키워야 하나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'초대를 기다린다는게 무슨 뜻인가요?',
-                            "payload": "/strategy_question{\"bot_question\":\"초대가 무엇인가요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'초대를 받은 후 어떻게 해야하나요?',
-                            "payload": "/strategy_question{\"bot_question\":\"초대를 받은 후 어떻게 해야하나요?\", \"context_index\": 0}"})
+
+            buttons.append({"title": f'어떤 단점이 있을까요?',
+                            "payload": "/type_question{\"bot_question\":\"어떤 단점이 있을까요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'힘들 때 어떻게 해야 하나요?',
+                            "payload": "/type_question{\"bot_question\":\"힘들 때 어떻게 해야 하나요?\", \"context_index\": 1}"})
+            buttons.append({"title": f'스피드 에너자이저의 전략은 뭔가요?',
+                            "payload": "/strategy_question{\"bot_question\":\"스피드 에너자이저의 전략은 뭔가요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'어떤 질문을 해야 되나요?',
+                            "payload": "/strategy_question{\"bot_question\":\"어떤 질문을 해야 되나요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'스피드 에너자이저 아이는 어떻게 키워야 하나요?',
+                            "payload": "/strategy_question{\"bot_question\":\"에너자이저 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
         elif metadata["t"] == 2:
             buttons.append({"title": f'어떻게 살아가야 하나요?',
-                            "payload": "/type_question{\"bot_question\":\"어떻게 살아가야 하나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'어떤 장점이 있을까요?',
-                            "payload": "/type_question{\"bot_question\":\"어떤 장점이 있을까요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'가이드 아이는 어떻게 키워야 하나요?',
-                            "payload": "/type_question{\"bot_question\":\"가이드 아이는 어떻게 키워야 하나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'초대를 기다린다는게 무슨 뜻인가요?',
-                            "payload": "/strategy_question{\"bot_question\":\"초대가 무엇인가요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'초대를 받은 후 어떻게 해야하나요?',
-                            "payload": "/strategy_question{\"bot_question\":\"초대를 받은 후 어떻게 해야하나요?\", \"context_index\": 0}"})
+                            "payload": "/type_question{\"bot_question\":\"어떻게 살아가야 하나요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'주변 사람들은 왜 저를 힘들게 할까요?',
+                            "payload": "/type_question{\"bot_question\":\"주변 사람들은 왜 저를 힘들게 할까요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'혁신주도가의 전략은 무엇인가요?',
+                            "payload": "/strategy_question{\"bot_question\":\"혁신주도가의 전략은 무엇인가요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'알림은 어떻게 해야하나요?',
+                            "payload": "/strategy_question{\"bot_question\":\"알림은 어떻게 해야하나요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'혁신주도가 아이는 어떻게 키워야 하나요?',
+                            "payload": "/strategy_question{\"bot_question\":\"혁신주도가 아이는 어떻게 키워야 하나요?\", \"context_index\": 1}"})
         elif metadata["t"] == 3:
             buttons.append({"title": f'어떻게 살아가야 하나요?',
                             "payload": "/type_question{\"bot_question\":\"어떻게 살아가야 하나요?\", \"context_index\": 1}"})
@@ -209,16 +211,17 @@ class ActionLeadingTypeQuestion(Action):
             buttons.append({"title": f'초대를 받은 후 어떻게 해야하나요?',
                             "payload": "/strategy_question{\"bot_question\":\"초대를 받은 후 어떻게 해야하나요?\", \"context_index\": 0}"})
         elif metadata["t"] == 4:
+
             buttons.append({"title": f'어떻게 살아가야 하나요?',
-                            "payload": "/type_question{\"bot_question\":\"어떻게 살아가야 하나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'어떤 장점이 있을까요?',
-                            "payload": "/type_question{\"bot_question\":\"어떤 장점이 있을까요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'가이드 아이는 어떻게 키워야 하나요?',
-                            "payload": "/type_question{\"bot_question\":\"가이드 아이는 어떻게 키워야 하나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'초대를 기다린다는게 무슨 뜻인가요?',
-                            "payload": "/strategy_question{\"bot_question\":\"초대가 무엇인가요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'초대를 받은 후 어떻게 해야하나요?',
-                            "payload": "/strategy_question{\"bot_question\":\"초대를 받은 후 어떻게 해야하나요?\", \"context_index\": 0}"})
+                            "payload": "/type_question{\"bot_question\":\"어떻게 살아가야 하나요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'거울 종족의 전략은 무엇인가요?',
+                            "payload": "/strategy_question{\"bot_question\":\"거울 종족의 전략은 무엇인가요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'한 달간 기다리지 않으면 안되나요?',
+                            "payload": "/strategy_question{\"bot_question\":\"한 달간 기다리지 않으면 안되나요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'잘 기다리려면 어떻게 해야되나요?',
+                            "payload": "/strategy_question{\"bot_question\":\"거울 종족의 기다림을 어떻게 도와줘야 하나요?\", \"context_index\": 0}"})
+            buttons.append({"title": f'거울 종족 아이는 어떻게 키워야 하나요?',
+                            "payload": "/strategy_question{\"bot_question\":\"거울 종족 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
 
         dispatcher.utter_message(f'다음 질문중에서 선택해주세요', buttons=buttons)
 
