@@ -91,7 +91,9 @@ intents:
       use_entities: true
   - strategy_question: # 무현추가
       use_entities: true
-  - center_unego_question:
+  - center_unego_question: # 무현추가
+      use_entities: false
+  - center_detail_intro: # 무현추가
       use_entities: false
 
 entities:
@@ -221,6 +223,7 @@ actions:
   - action_start
   - action_step
   - action_more
+  - action_center_detail_intro
 ###위에2추가
 
 forms: {}

@@ -146,7 +146,7 @@ class ActionQuestion(Action):
             else:
                 dispatcher.utter_message('무엇이 궁금하신가요?')
         else:
-            return [SlotSet("is_question", False)]
+            return [SlotSet("is_question", False), FollowupAction(name="action_default_fallback")]
         h_type = ''
 
         return [SlotSet("step", step), SlotSet("is_question", True)]
@@ -165,8 +165,10 @@ class ActionDefaultFallback(Action):
         user_reponse_type = 0
         # 질문인지 아닌지(0이면 질문아님, 1이면 질문)
         is_question = tracker.get_slot("is_question")
+        print("is_question", is_question)
         # 감정분석인지 아닌지(0이면 아님, 1이면 감정분석)
         is_sentiment = tracker.get_slot("is_sentiment")
+        print("is_sentiment", is_sentiment)
 
         center_question = tracker.get_slot("center_question")
         user_text = tracker.latest_message['text']
@@ -220,11 +222,8 @@ class ActionDefaultFallback(Action):
         if is_question:
             qa_buttons = []
             # 센터 질문이면
-            if center_step !=0 and center_question:
-                if center_step == 9:
-                    qa_buttons.append({"title": f'확인', "payload": "/leading_more{\"center_question\":\"False\"}"})
-                else:
-                    qa_buttons.append({"title": f'확인', "payload": "/leading_centers_intro"})
+            if center_question:
+                qa_buttons.append({"title": f'확인', "payload": "/center_unego_question"})
                 qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question{\"is_question\":\"True\", \"center_question\":\"True\"}"})
             # 센터 질문이 아니면
             else:
@@ -236,15 +235,14 @@ class ActionDefaultFallback(Action):
 
         # 감정분석이면
         else:
+            print("center step", center_step)
             if is_sentiment:
-                sentiment_buttons=[]
-                sentiment_buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\", \"center_question\":\"True\"}"})
-                if center_step == 9:
-                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_more{\"center_question\":\"False\"}"})
+                dispatcher.utter_message(answer)
+                if center_step < 8:
+                    center_step += 1
+                    return [SlotSet("step", step), SlotSet("is_question", False), SlotSet("is_sentiment", False), SlotSet("center_step", center_step), FollowupAction(name='action_leading_centers_intro')]
                 else:
-                    sentiment_buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro"})
-                dispatcher.utter_message(f'{answer}')
-                dispatcher.utter_message(f'{center_info[ct_index]}에 대해 질문 있으신가요?', buttons=sentiment_buttons)
+                    return [SlotSet("step", step), SlotSet("is_question", False), SlotSet("is_sentiment", False), SlotSet("center_step", center_step), FollowupAction(name='action_more')]
             else:
                 notice_buttons = []
                 notice_buttons.append({"title": f'질문', "payload": "/question{\"is_question\":\"True\"}"})
@@ -268,10 +266,10 @@ class ActionQuestionIntro(Action):
         human_types = ["에너자이저 종족", "스피드 에너자이저 종족", "혁신주도가 종족", "가이드 종족", "거울 종족"]
         human_definition = ["절전모드", "한 묶음 흐름", "두 묶음 흐름", "세 묶음 흐름", "네 묶음 흐름"]
         human_center = ["연료센터", "활력센터", "직관센터", "감정센터", "에고센터", "방향센터", "표현센터", "생각센터", "영감센터"]
-        human_profile = {13: "연구자/은근 도전가 (1/3)", 14: "연구자/은근 사교가 (1/4)", 24:"은둔자/은근 사교가 (2/4)",
-                         25:"은둔자/은근 해결사 (2/5)", 35:"도전가/은근 해결사 (3/5)", 36:"도전가/은근 관조자 (3/6)",
-                         41:"사교가/은근 연구자 (4/1)", 46:"사교가/은근 관조자 (4/6)", 51:"해결사/은근 연구자 (5/1)",
-                         52:"해결사/은근 은둔자 (5/2)", 62:"관조자/은근 은둔자 (6/2)", 63:"관조자/은근 도전가 (6/3)"}
+        human_profile = {13: "1/3", 14: "1/4", 24: "2/4",
+                         25:"2/5", 35:"3/5", 36:"3/6",
+                         41:"4/1", 46:"4/6", 51:"5/1",
+                         52:"5/2", 62:"6/2", 63:"6/3"}
         step = tracker.get_slot("step")
         is_question = tracker.get_slot("is_question")
         center_question = tracker.get_slot("center_question")
@@ -289,17 +287,17 @@ class ActionQuestionIntro(Action):
         # 종족
         if q_type == 0:
             is_type = True
-            bot_text = f"{human_types[metadata['t']]}에 대해 질문있으신가요?"
+            bot_text = f"자, {human_types[metadata['t']]}에 대해 질문있으신가요?"
         # 프로파일
         elif q_type == 1:
-            bot_text = f"{human_profile[metadata['p']]}에 대해 질문있으신가요?"
+            bot_text = f"자, {human_profile[metadata['p']]} 성향에 대해 질문있으신가요?"
         # 에너지흐름
         elif q_type == 2:
             bot_text = f"{human_definition[metadata['d']]}에 대해 질문있으신가요?"
         # 센터
         elif q_type == 3:
             is_center = True
-            tmp_index = center_priority[center_step - 1]
+            tmp_index = center_priority[center_step]
             if metadata['ct'][tmp_index] == 0:
                 bot_text = f"{human_center[tmp_index]} (미정의)에 대해 질문있으신가요?"
             else:
@@ -315,7 +313,7 @@ class ActionQuestionIntro(Action):
             if center_step == 9:
                 buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_question"})
             else:
-                buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_intro"})
+                buttons.append({"title": f'아뇨 질문 없어요', "payload": "/center_unego_question"})
         else:
             buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_more"})
 

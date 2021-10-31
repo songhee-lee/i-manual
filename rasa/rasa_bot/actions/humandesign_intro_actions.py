@@ -85,7 +85,7 @@ class ActionStep(Action):
         # is_finished 상태로 계속하면 끝내버리고, 끝났다고 알려줌
 
         else:
-            if center_step != 9 and center_step !=0:
+            if center_step < 8 and center_step !=0:
                 return [FollowupAction(name='action_leading_centers_intro')]
             else:
                 if step == 4:

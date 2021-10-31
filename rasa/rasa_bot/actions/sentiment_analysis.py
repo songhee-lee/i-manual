@@ -2,10 +2,8 @@ import pandas as pd
 import torch
 import torch.nn as nn
 import numpy as np
-from torch.nn import functional as F
-from torch.utils.data import DataLoader, Dataset
 from transformers import AutoTokenizer, ElectraForSequenceClassification, AdamW
-from tqdm.notebook import tqdm
+
 
 # GPU 사용
 device = torch.device("cpu")
@@ -15,11 +13,10 @@ model = nn.DataParallel(model) # use multi-gpu
 model.to(device)
 saved_checkpoint = torch.load("./data/model.pt", map_location=torch.device('cpu'))
 model.load_state_dict(saved_checkpoint, strict=False)
-
+tokenizer = AutoTokenizer.from_pretrained("monologg/koelectra-small-v2-discriminator")
 
 def convert_input_data(sentences):
     # Koelectra의 토크나이저로 문장을 토큰으로 분리
-    tokenizer = AutoTokenizer.from_pretrained("monologg/koelectra-small-v2-discriminator")
     tokenized_texts = [tokenizer.tokenize(sent) for sent in sentences]
 
     # 입력 토큰의 최대 시퀀스 길이

@@ -173,6 +173,11 @@ stories:
       - intent: center_unego_question
       - action: action_center_unego_question
 
+  - story: Say center_detail_intro
+    steps:
+      - intent: center_detail_intro
+      - action: action_center_detail_intro
+
   - story: Say Last Message 
     steps:
       - intent: last_message
