@@ -115,6 +115,11 @@ entities:
   - context_index # 무현 추가
 
 slots:
+  select_metadata:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 1
+    auto_fill: true
+    influence_conversation: false
   center_priority:
     type: list
     initial_value: null
