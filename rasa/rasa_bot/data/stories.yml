@@ -200,10 +200,11 @@ stories:
     steps:
       - intent: reset
       - action: utter_reset
-
+#action_set_metadata는 추후 삭제
   - story: Say start
     steps:
       - intent: start
+      - action: action_set_metadata
       - action: action_set_priority
       - action: action_start
 
