@@ -144,7 +144,7 @@ class ActionQuestion(Action):
         print("is_question", is_question)
         step = tracker.get_slot("step")
         print(step)
-        if is_question==True:
+        if is_question:
             if q_type == 0:
                 return [FollowupAction(name="action_leading_type_question")]
             else:
@@ -190,7 +190,7 @@ class ActionDefaultFallback(Action):
         answer = ""
         # 설명 완료한 개수-> step
         # 방금 설명한 파트는 step - 1의 인덱스를 가짐
-        if is_question==True:
+        if is_question:
             q_type = leading_priority[step - 1]
 
             answer = ""
@@ -214,7 +214,7 @@ class ActionDefaultFallback(Action):
                     answer = "비자아 코멘트"
 
         # 올바른 질문이 아닌경우
-        if is_question==True and answer == "":
+        if is_question and answer == "":
             # 다시 action_default_fallback으로 넘어오는 분기 필요!!
             answer = "질문을 잘 못 알아들었어요"
 
@@ -226,8 +226,7 @@ class ActionDefaultFallback(Action):
             return [SlotSet("step", step)]
 
         # QA이면
-        if is_question==True:
-            print("center_question : ", center_question)
+        if is_question:
             qa_buttons = []
             # 센터 질문이면
             if center_question==True:
@@ -244,7 +243,7 @@ class ActionDefaultFallback(Action):
         # 감정분석이면
         else:
             print("center step", center_step)
-            if is_sentiment==True:
+            if is_sentiment:
                 dispatcher.utter_message(answer)
                 if center_step < 8:
                     center_step += 1
