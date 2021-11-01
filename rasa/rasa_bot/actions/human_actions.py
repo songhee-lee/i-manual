@@ -41,22 +41,24 @@ class ActionLastMessageResponse(Action):
         #metadata = extract_metadata_from_tracker(tracker)
         metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t": 3, "p": 52, "d": 3}
 
-        if response == 'yes':
-            dispatcher.utter_message(
-                f'다행이예요! 앞으로도 쭉 나답게 잘 살기를 바라요! 잊을만하면 다시 찾아와주세요.')
-        ###아래줄 추가
-        elif response == 'fin_question':
-            dispatcher.utter_message(
-                f'궁금증이 해결되셔서 다행이에요! 앞으로도 쭉 나답게 잘 살기를 바라요! 잊을만하면 다시 찾아와주세요.'
-            )
-        else:
-            dispatcher.utter_message(
-                f'불만족스러우셨군요, 좀더 노력해서 좀더 나은 마스터봇이 되어볼게요!')
+        # if response == 'yes':
+        #     dispatcher.utter_message(
+        #         f'다행이예요! 앞으로도 쭉 나답게 잘 살기를 바라요! 잊을만하면 다시 찾아와주세요.')
+        # ###아래줄 추가
+        # elif response == 'fin_question':
+        #     dispatcher.utter_message(
+        #         f'궁금증이 해결되셔서 다행이에요! 앞으로도 쭉 나답게 잘 살기를 바라요! 잊을만하면 다시 찾아와주세요.'
+        #     )
+        # else:
+        #     dispatcher.utter_message(
+        #         f'불만족스러우셨군요, 좀더 노력해서 좀더 나은 마스터봇이 되어볼게요!')
 
-        dispatcher.utter_message(
-            f'그럼 {metadata["pn"]}님, 다음에 한번 들러주세요! :) ')
-        dispatcher.utter_message(
-            f'제가 다시 필요해진다면, 입력창에 "마스터 봇"을 입력해주세요! 언제든지 기다리고 있을게요 :)')
+        dispatcher.utter_message("당신이 타고난 디자인에 대한 마스터봇의 설명이 이해가 잘 되셨나요?")
+        dispatcher.utter_message('아이매뉴얼에서 준비한 당신의 설명서를꼼꼼이 읽어보시길 바랍니다.')
+        dispatcher.utter_message("그대로 궁금한 점이 있다면 언제든 다시 마스터봇을 호출하여 질문을 해주세요.")
+        dispatcher.utter_message("당신이 타고난 디자인대로 행복하게 살 수 있기를 응원합니다. 다시 만나요~")
+        #dispatcher.utter_message(
+        #    f'제가 다시 필요해진다면, 입력창에 "마스터 봇"을 입력해주세요! 언제든지 기다리고 있을게요 :)')
 
         return []        
 

@@ -54,15 +54,15 @@ class ActionLeadingTypeIntro(Action):
         if metadata["t"] == 0:
             h_type = "에너자이저 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_0.png"
-            msg_1 = "인류의 37%를 차지하는 꾸준함의 종족이에요. 이 시대에서 꼭 필요한 절대 지치지 않는 에너지를 가지고 있는 성실함의 아이콘!"
-            msg_2 = "뿜뿜! 힘이 넘치는 에너자이저 종족은 잠들기 전에 자신이 가진 에너지를 모두 소진하고 잠드는게 다음 날 더 개운하고 만족스러운 수면을 취할 수 있답니다. 자신의 에너지를 완전히 몰두시킬만한 일이 뭔지 찾아보고, 그 일이 나에게 맞는지 '활력센터의 반응'을 통해 결정한다면 틀림 없이 만족을 경험할 수 있을 거에요 "
-            msg_3 = ""
+            msg_1 = "당신은 자신이 사랑하는 것이나 관심있는 일에 에너지를 사용하는 사람들입니다. 이러한 부류의 사람들을 에너자이저 종족, 또는 제너레이터 종족이라고 부릅니다. 이 세상은 당신과 같은 종족의 사람들이 건설하는 곳입니다."
+            msg_2 = "모든 상황을 꾸준히 차분히 단계를 밟아가고 중간에 문제가 생기면 잠시 정지했다가 다시 꾸준히 단계를 밟아가는 사람들입니다. 이런 성향 때문에 주변에서는 좀 느리다 답답하다 생각할 수도 있습니다."
+            msg_3 = "당신이 꼭 기억해야 할 것은 어떤 정체의 순간이 오더라도 꾸준히 계속하게 된다면 성공할 수 있지만 그 답답함을 못 이겨 포기한다면 힘을 쓸 곳을 잃기 때문에 좌절하고 포기하게 된다는 점입니다."
         elif metadata["t"] == 1:
             h_type = "스피드 에너자이저 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_1.png"
-            msg_1 = "인류의 33%를 차지하는 민첩함의 종족이에요. 본능적으로 행동이 앞서는 실천력, 모든 일을 수용할 수 있는 융통성까지 갖춘 행동대장!"
-            msg_2 = "힘이 넘치는 에너자이저에 빠른 스피드까지! 스피드 에너자이저는 너무 급하게 움직이다가 뭔가를 놓치고 빼먹거나 깜박 잊고 지나치는 경우가 있을 수 있어요. 중간점검을 하면서 잊어버리거나 못보고 지나친 부분은 없는지 살펴보는게 좋을 것 같아요. 아참! 스피드 에너자이저도 결국에는 에너자이저 종족 이므로 '활력센터 반응'을 꼭 따라야 한다는 점! 잊지마세요~ "
-            msg_3 = ""
+            msg_1 = "당신은 자신이 사랑하는 것이나 관심있는 일에 에너지를 사용하는 사람들입니다. 더욱이 당신은 그 에너지를 빠르게 실천으로 옮기는 행동력도 지니고 있습니다. 이러한 부류의 사람들을 스피드에너자이저 종족, 또는 매니페스팅 제너레이터 종족이라고 부릅니다. 이 세상은 당신과 같은 종족의 사람들이 건설하는 곳입니다."
+            msg_2 = "당신은 꾸준히 단계를 밟아가기 보다는 몇단계씩 건너뛰기도 하고, 때론 다시 돌아와 놓친 부분을 해내기도 합니다. 잠시도 가만히 있지 않고, 계속해서 뭔가를 하는 당신은 빠릿빠릿하다는 얘기를 자주 듣는 편입니다. 여러가지 일들을 빠르게 진행하다보니 빠트리거나 놓치기도 합니다. "
+            msg_3 = "당신은 빠르게 결과를 보여주려고 하지만 조급하지 않게 여유를 갖고 일처리를 할 수 있도록 노력하는 것이 좋습니다. 또한, 자신을 돌볼 시간을 갖는 것도 잊지 말기 바랍니다."
         elif metadata["t"] == 2:
             h_type = "혁신주도가 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_2.png"
@@ -89,19 +89,27 @@ class ActionLeadingTypeIntro(Action):
         dispatcher.utter_message(msg_1)
         dispatcher.utter_message(msg_2)
         dispatcher.utter_message(msg_3)
+
+        if leading_priority[0]==0:
+            step = 1
+        elif leading_priority[1]==0:
+            step = 2
+        elif leading_priority[2]==0:
+            step = 3
+        elif leading_priority[3]==0:
+            step = 4
+
         buttons = []
         buttons.append({"title": f'네. 더 알고싶어요', "payload": "/leading_type"})
         buttons.append({"title": f'아뇨 충분해요', "payload": "/leading_type_question"})
-        dispatcher.utter_message(f'어때요? 중요한 얘기들이 아직 남아 있는데, {h_type}에 대해 좀더 알아볼까요?', buttons=buttons)
+        if metadata["t"] == 2 or metadata["t"] == 3 or metadata["t"] == 4:
+            dispatcher.utter_message(f'어때요? 중요한 얘기들이 아직 남아 있는데, {h_type}에 대해 좀더 알아볼까요?', buttons=buttons)
+            return [SlotSet('step', step)]
+        else:
+            dispatcher.utter_message(f'자, {h_type}에 대해 이해가 되셨나요?')
+            return [SlotSet('step', step), FollowupAction(name='action_leading_type_question')]
 
-        if leading_priority[0]==0:
-            return [SlotSet('step', 1)]
-        elif leading_priority[1]==0:
-            return [SlotSet('step', 2)]
-        elif leading_priority[2]==0:
-            return [SlotSet('step', 3)]
-        elif leading_priority[3]==0:
-            return [SlotSet('step', 4)]
+
 
 class ActionLeadingType(Action):
     def name(self) -> Text:
@@ -115,17 +123,10 @@ class ActionLeadingType(Action):
         leading_priority = tracker.get_slot('leading_priority')
 
         h_type = ''
-        if metadata["t"] == 0:
-            h_type = "에너자이저 종족"
-            msg_1 = "인류의 37%를 차지하는 꾸준함의 종족이에요. 이 시대에서 꼭 필요한 절대 지치지 않는 에너지를 가지고 있는 성실함의 아이콘!"
-            msg_2 = "뿜뿜! 힘이 넘치는 에너자이저 종족은 잠들기 전에 자신이 가진 에너지를 모두 소진하고 잠드는게 다음 날 더 개운하고 만족스러운 수면을 취할 수 있답니다. 자신의 에너지를 완전히 몰두시킬만한 일이 뭔지 찾아보고, 그 일이 나에게 맞는지 '활력센터의 반응'을 통해 결정한다면 틀림 없이 만족을 경험할 수 있을 거에요 "
-            msg_3 = ""
-        elif metadata["t"] == 1:
-            h_type = "스피드 에너자이저 종족"
-            msg_1 = "인류의 33%를 차지하는 민첩함의 종족이에요. 본능적으로 행동이 앞서는 실천력, 모든 일을 수용할 수 있는 융통성까지 갖춘 행동대장!"
-            msg_2 = "힘이 넘치는 에너자이저에 빠른 스피드까지! 스피드 에너자이저는 너무 급하게 움직이다가 뭔가를 놓치고 빼먹거나 깜박 잊고 지나치는 경우가 있을 수 있어요. 중간점검을 하면서 잊어버리거나 못보고 지나친 부분은 없는지 살펴보는게 좋을 것 같아요. 아참! 스피드 에너자이저도 결국에는 에너자이저 종족 이므로 '활력센터 반응'을 꼭 따라야 한다는 점! 잊지마세요~ "
-            msg_3 = ""
-        elif metadata["t"] == 2:
+        msg_1 = ""
+        msg_2 = ""
+        msg_3 = ""
+        if metadata["t"] == 2:
             h_type = "혁신주도가 종족"
             msg_1 = "수직적 계급사회를 이루던 때에는 주로 고위층이었기에 자신들의 영향력을 발휘하는 것에 저항이나 어려움이 비교적 없었겠지만 현대사회에서는 모두가 평등하고 자유로운 시대이다 보니, 지금의 혁신주도가 종족들은 때때로 사람들로부터 저항을 받거나, 다른 이들이 당신의 행동에 대해 불편하게 느끼는 경우가 종종 있습니다. 마찰을 겪게 되는거죠."
             msg_2 = '당신은 지극히 독립적이며, 자신이 하고자 하는 일에 방해받고 싶어하지 않습니다. 그렇게 하기 위해서는 꼭 알아야 하는 삶의 전략이 바로 알려주기입니다. 내가 뭔가를 하고자 할 때, 혹은 뭔가를 이미 하고 있는 와중이더라도, 나의 주변인에게, 특히 평소에도 나와 마찰을 겪던 사람이라면 더더욱, 미리 내가 무엇을 할 것인지 혹은 지금 내가 무엇을 하고 있는지 알려주기를 통해서 그들과의 마찰을 최소화할 수 있습니다.'
