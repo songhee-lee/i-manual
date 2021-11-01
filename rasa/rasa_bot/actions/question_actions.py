@@ -200,13 +200,13 @@ class ActionDefaultFallback(Action):
                 user_reponse_type = sentiment_predict(question, user_text)
                 if user_reponse_type == 0:
                     print("중립")
-                    answer = "답변이 중립이군요"
+                    answer = "비자아 코멘트(중립)"
                 elif user_reponse_type == 1:
                     print("긍정")
-                    answer = "답변이 긍정이군요"
+                    answer = "축하합니다. 당신의 센터는 건강합니다."
                 elif user_reponse_type == 2:
                     print("부정")
-                    answer = "답변이 부정이군요"
+                    answer = "비자아 코멘트"
 
         # 올바른 질문이 아닌경우
         if is_question and answer == "":

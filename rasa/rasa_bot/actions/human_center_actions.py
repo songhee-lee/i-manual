@@ -48,32 +48,49 @@ class ActionLeadingCentersIntro(Action):
                 dispatcher.utter_message(
                     f'우리 몸에는 9개의 센터가 있으며, 어떻게 당신이 가진 9가지 재능의 힘을 펼칠 수 있는지 알 수 있습니다. 당신의 센터가 정의되어 다른 사람들에게 영향을 미치는 부분과 반대로 다른 사람이나 환경에 의해 영향을 받거나, 관련된 측면에서 다른 사람을 인식할 수 있는 미정의된 센터를 확인할 수 있습니다.')
                 if center_priority[0] == 0: #센터 우선순위중 1순위가 0번째센터면
-                    dispatcher.utter_message(
-                        f'0번째 센터 인트로')
-                elif center_priority[0] == 1:
-                    dispatcher.utter_message(
-                        f'1번째 센터 인트로')
+                    if metadata['ct'][0] == 0:
+                        dispatcher.utter_message(
+                            f'당신은 그동안 주변환경이 주는 불편한 육체적 압박감을 느끼며 그것으로 인해 바쁘고 뭔가에 쫓기듯 살아오지는 않았나요?')
+                    else:
+                        dispatcher.utter_message(
+                            f'당신은 자신만의 특별한 방식으로 스트레스를 컨트롤하고 오히려 그것을 원동력 삼아 세상으로 나아갈 수 있는 능력을 갖고 태어난 사람입니다.')
+
                 elif center_priority[0] == 2:
-                    dispatcher.utter_message(
-                        f'2번째 센터 인트로')
+                    if metadata['ct'][2] == 0:
+                        dispatcher.utter_message(
+                            f'당신은 생존에 대한 불안감으로부터 자유로운 특별한 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 이 설명을 잘 들어보시기 바랍니다.')
+                    else:
+                        dispatcher.utter_message(
+                            f'당신은 직관적으로 무엇이 나의 생존에 도움이 되는지 알아차릴 수 있는 능력을 갖고 태어난 사람입니다.')
                 elif center_priority[0] == 3:
-                    dispatcher.utter_message(
-                        f'3번째 센터 인트로')
+                    if metadata['ct'][3] == 0:
+                        dispatcher.utter_message(
+                            f'당신은 다른 사람들의 감정 에너지에 영향을 받아 때론 다열질이라는 얘기까지 들으며 살아가고 있습니다만, 사실 당신 자신의 감정 에너지는 매우 평온한 사람입니다.')
+                    else:
+                        dispatcher.utter_message(
+                            f'당신은 자신만의 감정을 갖고 있으며 당신이 발신하는 감정의 에너지는 다른 사람들의 감정에 영향을 미치도록 디자인되어 있는 사람입니다. 평소에 당신의 감정으로 인해 어려움이 있었다면 제 설명에 집중해주기 바랍니다.')
                 elif center_priority[0] == 4:
-                    dispatcher.utter_message(
-                        f'4번째 센터 인트로')
+                    if metadata['ct'][4] == 0:
+                        dispatcher.utter_message(
+                            f'당신은 자신을 증명하거나 자신의 존재를 드러내기 위해 애쓸 필요가 없는 부류의 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 이 설명을 잘 들어보시기 바랍니다.')
+                    else:
+                        dispatcher.utter_message(
+                            f'당신은 다른 사람들과 약속을 하고 그 약속을 지키는 과정에서 별다른 스트레스를 받지 않고, 당신의 의지력을 잘 활용할 줄 아는 그런 부류의 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 이 설명을 잘 들어보시기 바랍니다.')
                 elif center_priority[0] == 5:
-                    dispatcher.utter_message(
-                        f'5번째 센터 인트로')
+                    if metadata['ct'][5] == 0:
+                        dispatcher.utter_message(
+                            f'당신은 자유로운 정체성을 갖는 특별한 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 이 설명을 잘 들어보시기 바랍니다.')
+                    else:
+                        dispatcher.utter_message(
+                            f'당신은 자신의 정체성에 대한 안정된 확신을 갖고 있는 사람입니다. ')
                 elif center_priority[0] == 6:
-                    dispatcher.utter_message(
-                        f'당신은 인류의 28%에 해당하는 특별한 사람입니다.')
-                elif center_priority[0] == 7:
-                    dispatcher.utter_message(
-                        f'7번째 센터 인트로')
-                elif center_priority[0] == 8:
-                    dispatcher.utter_message(
-                        f'8번째 센터 인트로')
+                    if metadata['ct'][6] == 0:
+                        dispatcher.utter_message(
+                            f'당신은 인류의 28%에 해당하는 특별한 사람입니다.')
+                    else:
+                        dispatcher.utter_message(
+                            f'당신은 자신만의 고유한 표현방식이 있고, 언제 표현해야 할 지를 알고 있는 사람입니다. 당신이 이러한 점에서 어려움을 겪고 있다면 이제부터의 설명을 잘 들어보세요.')
+
             else: #인트로도 아니고, 끝난것도 아니면
                 if center_step == 0: #즉 중간에 나온 센터인데 그중 첫번째 센터 설명일때
                     dispatcher.utter_message(
@@ -400,9 +417,6 @@ class ActionCenterDetailIntro(Action):
         if h_center == 0 and metadata['ct'][0] == 1:
             h_type = "연료 센터 ( 정의 )"
             dispatcher.utter_message("다른 두개의 센터와의 관계도 설명해 볼까요?", buttons=buttons)
-        elif h_center == 1 and metadata["ct"][1] == 1:
-            h_type = "활력 센터 ( 정의 )"
-            dispatcher.utter_message("더 자세히 듣고 싶으신가요?", buttons=buttons)
         elif h_center == 2 and metadata['ct'][2] == 1:
             h_type = "직관 센터 ( 정의 )"
             dispatcher.utter_message("직관센터는 당신의 건강과 밀접합니다. 좀더 설명을 들으시겠어요?", buttons=buttons)
@@ -420,20 +434,12 @@ class ActionCenterDetailIntro(Action):
         elif h_center == 6 and metadata['ct'][6] == 1:
             h_type = "표현 센터 ( 정의 )"
             dispatcher.utter_message("어떤 상황들이 있을 수 있는지 좀더 얘기해 볼까요?", buttons=buttons)
-        elif h_center == 7 and metadata["ct"][7] == 1:
-            h_type = "생각 센터 ( 정의 )"
-            dispatcher.utter_message("더 자세히 듣고 싶으신가요?", buttons=buttons)
-        elif h_center == 8 and metadata["ct"][8] == 1:
-            h_type = "영감 센터 ( 정의 )"
-            dispatcher.utter_message("더 자세히 듣고 싶으신가요?", buttons=buttons)
+
 
 
         elif h_center == 0 and metadata['ct'][0] == 0:
             h_type = "연료 센터 ( 미정의 )"
             dispatcher.utter_message("자, 이제는 극복할 수 있는 방법에 대해 좀더 얘기해볼까요?", buttons=buttons)
-        elif h_center == 1 and metadata['ct'][1] == 0:
-            h_type = "활력 센터 ( 미정의 )"
-            dispatcher.utter_message("더 자세히 듣고 싶으신가요?", buttons=buttons)
         elif h_center == 2 and metadata['ct'][2] == 0:
             h_type = "직관 센터 ( 미정의 )"
             dispatcher.utter_message("자, 당신이 알아야 할 점을 좀더 얘기해 볼까요?", buttons=buttons)
@@ -449,11 +455,6 @@ class ActionCenterDetailIntro(Action):
         elif h_center == 6 and metadata['ct'][6] == 0:
             h_type = "표현 센터 ( 미정의 )"
             dispatcher.utter_message("당신의 좋은 모습을 이해할 수 있겠죠? 좋지 않은 모습에 대해서도 알려줄까요?", buttons=buttons)
-        elif h_center == 7 and metadata['ct'][7] == 0:
-            h_type = "생각 센터 ( 미정의 )"
-            dispatcher.utter_message("더 자세히 듣고 싶으신가요?", buttons=buttons)
-        elif h_center == 8 and metadata['ct'][8] == 0:
-            h_type = "영감 센터 ( 미정의 )"
-            dispatcher.utter_message("더 자세히 듣고 싶으신가요?", buttons=buttons)
+
 
         return []

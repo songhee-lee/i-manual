@@ -34,7 +34,7 @@ class ActionLeadingDefinitionIntro(Action):
                         f'절전모드 인트로')
                 elif (metadata["t"] == 1):
                     dispatcher.utter_message(
-                        f'당신은 다른 누구의 도움이 없이 혼자서도 잘 조화를 이루어 흐르는 에너지를 지니고 있습니다.')
+                        f'한 묵음 흐름 인트로')
                 elif (metadata["t"] == 2):
                     dispatcher.utter_message(
                         f'두 묶음 흐름 인트로')
