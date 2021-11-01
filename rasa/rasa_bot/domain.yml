@@ -201,6 +201,7 @@ actions:
   - utter_reset
   - utter_default
   - action_initialized
+  - action_set_metadata #추후 삭제
   - action_goodbye
   - action_leading_more #선택시 필요?
   - action_last_message
