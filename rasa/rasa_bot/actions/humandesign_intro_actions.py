@@ -13,7 +13,7 @@ class ActionSetMetadata(Action):
 
     def run(selfself, dispatcher, tracker, domain):
         print('action_set_metadata')
-        return [SlotSet('select_metadata', 3)]
+        return [SlotSet('select_metadata', 7)]
 
 class ActionSetPriority(Action): #맨 처음
     def name(self):
@@ -52,11 +52,11 @@ class ActionSetPriority(Action): #맨 처음
         center_priority = []
         #미정의 먼저
         for i in metadata['se']:
-            if metadata['ct'][i]==0 and (metadata["ct"][i] not in center_priority):
+            if metadata['ct'][i]==0 and (i not in center_priority):
                 center_priority.append(i)
         #그다음 정의
         for i in metadata['se']:
-            if metadata['ct'][i]==1 and (metadata["ct"][i] not in center_priority):
+            if metadata['ct'][i]==1 and (i not in center_priority):
                 center_priority.append(i)
 
         for i in [8, 7, 6, 5, 2, 4, 3, 1, 0]:
