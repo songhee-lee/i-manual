@@ -126,7 +126,9 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         
             dispatcher.utter_message("다시 듣고 싶은 항목을 선택해 주세요", buttons=buttons)
         else:
-            if leading_priority[step]==0:
+            if step == 4:
+                return [SlotSet('is_finished', True), FollowupAction(name='action_last_message')]
+            elif leading_priority[step]==0:
                 return [FollowupAction(name='action_leading_type_intro')]
             elif leading_priority[step]==1:
                 return [FollowupAction(name='action_leading_profile_intro')]
