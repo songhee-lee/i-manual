@@ -133,7 +133,9 @@ class ActionQuestion(Action):
         print('action_question')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
@@ -163,7 +165,10 @@ class ActionDefaultFallback(Action):
         print('action_default_fallback')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
+
         user_reponse_type = 0
         # 질문인지 아닌지(0이면 질문아님, 1이면 질문)
         is_question = tracker.get_slot("is_question")
@@ -264,7 +269,10 @@ class ActionQuestionIntro(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_question_intro')
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
+
         human_types = ["에너자이저 종족", "스피드 에너자이저 종족", "혁신주도가 종족", "가이드 종족", "거울 종족"]
         human_definition = ["절전모드", "한 묶음 흐름", "두 묶음 흐름", "세 묶음 흐름", "네 묶음 흐름"]
         human_center = ["연료센터", "활력센터", "직관센터", "감정센터", "에고센터", "방향센터", "표현센터", "생각센터", "영감센터"]
@@ -333,7 +341,10 @@ class ActionTypeQuestion(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_type_question')
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
+
         type_index = metadata["t"]
         question = tracker.get_slot("bot_question")
         context_index = tracker.get_slot("context_index")
@@ -356,7 +367,10 @@ class ActionStrategyQuestion(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_strategy_question')
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
+
         type_index = metadata["t"]
         question = tracker.get_slot("bot_question")
         context_index = tracker.get_slot("context_index")

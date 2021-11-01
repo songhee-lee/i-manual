@@ -18,7 +18,10 @@ class ActionLeadingTypeIntro(Action):
         print('action_leading_type_intro')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
+
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
         is_finished = tracker.get_slot('is_finished')
@@ -119,7 +122,10 @@ class ActionLeadingType(Action):
         print('action_leading_type')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
+
         leading_priority = tracker.get_slot('leading_priority')
 
         h_type = ''
@@ -166,7 +172,10 @@ class ActionLeadingTypeQuestion(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_leading_type_question')
         # metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
+
         leading_priority = tracker.get_slot('leading_priority')
 
         buttons = []

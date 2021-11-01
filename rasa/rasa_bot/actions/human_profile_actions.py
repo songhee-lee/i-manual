@@ -18,7 +18,10 @@ class ActionLeadingProfileIntro(Action):
         print('action_leading_profile_intro')
 
         # metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
+
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
         is_finished = tracker.get_slot('is_finished')
@@ -201,7 +204,10 @@ class ActionLeadingProfile(Action):
         print('action_leading_profile')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
+
         # msg4 = "그러나 이러한 원리와 원칙을 기반으로 많은 시도를 통해 잘 준비되어졌을 때, 매우 강해집니다. 당신은 자기자신이 단단하게 무르익어가는 과정에 몰입하며 그 결과로 자신이 강해지거나 자신에게 힘이 되는 것을 찾아내게 될 것입니다."
         # msg5 = "변화에 대한 적응력과 엄청난 회복력을 지닌 당신은, 시행착오로 쓰러진 자신을 오뚝이처럼 다시 일으켜 세워 세상을 향해 무엇이 ‘잘못된 것’인지를 발견하고 보여줍니다. 원리와 원칙을 잘 갖추고, 시행착오를 겪는 것에 좌절하거나 무기력해지지 않고 꿋꿋이 나아가는 것이야말로 진정 당신이 타고난 모습입니다. "
         # tag = "원리원칙 지킴이,내성적인 타입,실패를 두려워 말 것"
@@ -277,7 +283,9 @@ class ActionGetHumanDesignProfile(Action):
         entities = tracker.latest_message['entities']
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
 
         for i in range(len(entities)):
             h_profile = (entities[i]['value'])
@@ -439,7 +447,9 @@ class ActionGetHumanDesignCommonProfile(Action):
         # },
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
 
         print("MetaData: ", metadata)
 

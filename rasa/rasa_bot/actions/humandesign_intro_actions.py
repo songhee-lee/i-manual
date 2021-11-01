@@ -16,7 +16,9 @@ class ActionSetPriority(Action): #맨 처음
         print('action_set_priority')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
 
         #se는 의식해 의식지구 무의식해 무의식지구
         #metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t": 3, "p": 52, "d": 3}

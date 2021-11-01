@@ -19,7 +19,8 @@ class ActionLastMessage(Action):
         print('action_last_message')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
 
         buttons = []
         buttons.append({"title": "예", "payload": "/last_message_response{\"result\":\"yes\"}"})
@@ -39,8 +40,8 @@ class ActionLastMessageResponse(Action):
         response = tracker.get_slot('result')
         print(response)
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
-
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
         # if response == 'yes':
         #     dispatcher.utter_message(
         #         f'다행이예요! 앞으로도 쭉 나답게 잘 살기를 바라요! 잊을만하면 다시 찾아와주세요.')
@@ -70,7 +71,8 @@ class ActionGoodbye(Action):
         print('action_goodbye')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
         dispatcher.utter_message(
             f'그럼 {metadata["pn"]}님, 다음에 한번 들러주세요! :) ')
 
@@ -104,7 +106,8 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         entities = tracker.latest_message['entities']
         
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
 
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")

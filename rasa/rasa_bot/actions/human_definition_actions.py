@@ -18,7 +18,8 @@ class ActionLeadingDefinitionIntro(Action):
         print('action_leading_definition_intro')
 
         # metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
@@ -128,7 +129,9 @@ class ActionLeadingDefinition(Action):
         print('action_leading_definition')
 
         # metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
@@ -214,7 +217,9 @@ class ActionLeadingDefinitionMore(Action):
         print('action_leading_definition_more')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
 
         #dispatcher.utter_message(
         #    f'다음으로 당신의 에너지 흐름에 대해 살펴보겠습니다.')
@@ -272,7 +277,9 @@ class ActionGetHumanDesignDefinition(Action):
         entities = tracker.latest_message['entities']
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
 
         for i in range(len(entities)):
             h_definition = (entities[i]['value'])
@@ -359,7 +366,9 @@ class ActionGetHumanDesignCommonDefinition(Action):
         # },
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = extract_metadata_from_data(1)
+
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
 
         print("MetaData: ", metadata)
 
