@@ -156,8 +156,8 @@ slots:
     auto_fill: true
     influence_conversation: true
   is_question: #무현 추가 (0이면 감정분석, 1이면 질문)
-    type: bool
-    initial_value: false
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
     auto_fill: true
     influence_conversation: false
   bot_question: #무현 추가 (봇이 던지는 비자아 질문 감정분석위해서 필요)
@@ -171,8 +171,8 @@ slots:
     auto_fill: true
     influence_conversation: false
   center_question:
-    type: bool
-    initial_value: false
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
     auto_fill: true
     influence_conversation: false
   context_index: #무현 추가 (종족, 결정방식 질문의 context index)
@@ -181,13 +181,13 @@ slots:
     auto_fill: true
     influence_conversation: false
   is_sentiment:
-    type: bool
-    initial_value: false
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
     auto_fill: true
     influence_conversation: false
   is_finished:
-    type: bool
-    initial_value: false
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
     auto_fill: true
     influence_conversation: false
 
