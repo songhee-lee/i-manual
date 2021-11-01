@@ -4,7 +4,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
-from actions.common import extract_metadata_from_tracker
+from actions.common import extract_metadata_from_tracker, extract_metadata_from_data
 from rasa_sdk.events import FollowupAction
 logger = logging.getLogger(__name__)
 
@@ -16,12 +16,17 @@ class ActionSetPriority(Action): #맨 처음
         print('action_set_priority')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t": 3, "p": 52, "d": 3}
+        metadata = extract_metadata_from_data(1)
+
+        #se는 의식해 의식지구 무의식해 무의식지구
+        #metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t": 3, "p": 52, "d": 3}
+
         #이후 action_set_priority를 초기 action으로 한 뒤 주석 제거
         #dispatcher.utter_message(
         #    f'안녕하세요. {metadata["pn"]}님 아이매뉴얼 마스터 봇입니다. 나답게 살기 위한 여행은 즐겁게 하고 계신가요?')
         #dispatcher.utter_message(
         #    f'안녕하세요. 저는 아이메뉴얼 마스터 봇입니다. 저는 좀 더 나답게 사는 것을 도와드리기 위해 기다리고 있었어요. {metadata["pn"]}님의 메뉴얼 설명을 원하시면 "시작" 이라고 말해주세요!')
+
         #리딩 우선순위 정하는 부분
         leading_priority=[]
         if metadata["t"] in [2,3,4]:
@@ -46,7 +51,7 @@ class ActionSetPriority(Action): #맨 처음
             if metadata['ct'][i]==1 and (metadata["ct"][i] not in center_priority):
                 center_priority.append(i)
 
-        for i in [8, 7, 6, 5, 2, 4, 3, 1, 0]: #메타데이터 변경시 수정
+        for i in [8, 7, 6, 5, 2, 4, 3, 1, 0]:
             if i not in center_priority:
                 center_priority.append(i)
         return [SlotSet('leading_priority', leading_priority), SlotSet('center_priority', center_priority), SlotSet('step', 0), SlotSet('is_finished', False), SlotSet('center_step', 0)] #slot추가 필요
@@ -78,7 +83,6 @@ class ActionStep(Action):
         leading_priority = tracker.get_slot('leading_priority')
         is_finished = tracker.get_slot("is_finished")
         step = tracker.get_slot('step')
-        plus_step = step + 1
         center_step = tracker.get_slot('center_step')
         if is_finished==True:
             return [FollowupAction(name='action_masterbot')] #masterbot에서 처리할 수 있게

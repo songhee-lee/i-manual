@@ -4,7 +4,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
-from actions.common import extract_metadata_from_tracker
+from actions.common import extract_metadata_from_tracker, extract_metadata_from_data
 from rasa_sdk.events import FollowupAction
 import time
 
@@ -18,7 +18,7 @@ class ActionLeadingTypeIntro(Action):
         print('action_leading_type_intro')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "t": 3, "p": 52}
+        metadata = extract_metadata_from_data(1)
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
         is_finished = tracker.get_slot('is_finished')
@@ -29,7 +29,7 @@ class ActionLeadingTypeIntro(Action):
         else:
             if leading_priority[0]==0: #종족이 첫번째 설명이라면
                 if (metadata["t"] == 0):
-                    # 가이드
+                    # 에너자이저
                     dispatcher.utter_message(
                         f'에너자이저 종족 인트로')
                 elif (metadata["t"] == 1):
@@ -119,7 +119,7 @@ class ActionLeadingType(Action):
         print('action_leading_type')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "t": 3, "p": 52}
+        metadata = extract_metadata_from_data(1)
         leading_priority = tracker.get_slot('leading_priority')
 
         h_type = ''
@@ -166,7 +166,7 @@ class ActionLeadingTypeQuestion(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_leading_type_question')
         # metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "t": 3, "p": 52}
+        metadata = extract_metadata_from_data(1)
         leading_priority = tracker.get_slot('leading_priority')
 
         buttons = []

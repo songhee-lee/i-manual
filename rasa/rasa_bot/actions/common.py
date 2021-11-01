@@ -6,7 +6,31 @@ import random
 model_path = "songhee/i-manual-mbert"
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForQuestionAnswering.from_pretrained(model_path, return_dict=False)
-
+def extract_metadata_from_data(num):
+    metadata = {}
+    if num==1:
+        metadata = {"pn": "001", "ct": [1, 0, 1, 0, 0, 1, 1, 0, 0], "se": [1, 2, 0, 6], "t": 3, "p": 14, "d": 2}
+    elif num==2:
+        metadata = {"pn": "002", "ct": [0, 0, 1, 0, 0, 1, 1, 1, 1], "se": [0, 6, 2, 1], "t": 3, "p": 13, "d": 2}
+    elif num==3:
+        metadata = {"pn": "003", "ct": [1, 0, 1, 1, 1, 0, 1, 0, 0], "se": [6, 1, 3, 7], "t": 2, "p": 41, "d": 1}
+    elif num==4:
+        metadata = {"pn": "004", "ct": [0, 0, 0, 1, 0, 0, 1, 0, 0], "se": [3, 3, 7, 6], "t": 2, "p": 24, "d": 1}
+    elif num==5:
+        metadata = {"pn": "005", "ct": [0, 0, 0, 0, 0, 0, 0, 0, 0], "se": [1, 3, 6, 1], "t": 4, "p": 51, "d": 0}
+    elif num==6:
+        metadata = {"pn": "006", "ct": [0, 0, 0, 0, 0, 0, 0, 0, 0], "se": [5, 5, 5, 5], "t": 4, "p": 24, "d": 0}
+    elif num==7:
+        metadata = {"pn": "007", "ct": [0, 1, 1, 1, 0, 1, 1, 0, 0], "se": [1, 6, 1, 3], "t": 0, "p": 52, "d": 2}
+    elif num==8:
+        metadata = {"pn": "008", "ct": [1, 1, 0, 1, 1, 0, 0, 0, 0], "se": [4, 3, 6, 1], "t": 0, "p": 62, "d": 2}
+    elif num==9:
+        metadata = {"pn": "009", "ct": [1, 1, 1, 1, 1, 1, 1, 1, 1], "se": [3, 1, 1, 6], "t": 1, "p": 36, "d": 3}
+    elif num==10:
+        metadata = {"pn": "001", "ct": [1, 1, 1, 0, 0, 1, 1, 1, 0], "se": [2, 1, 6, 0], "t": 1, "p": 35, "d": 1}
+    else:
+        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "se": [2, 0, 6], "t": 3, "p": 52, "d": 3}
+    return metadata
 def extract_metadata_from_tracker(tracker):
     events = tracker.current_state()['events']
     user_events = []

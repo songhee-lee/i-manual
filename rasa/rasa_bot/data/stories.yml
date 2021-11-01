@@ -33,10 +33,11 @@ stories:
   #       - action: utter_thanks
   #       - action: utter_end
   #       - action: action_restart
-  - story: Say Initial
+  - story: Say initial
     steps:
       - intent: initialized
-      - action: action_initialized
+      - action: action_set_priority
+      - action: action_start
 
   - story: Say goodbye
     steps:
