@@ -4,7 +4,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
-from actions.common import extract_metadata_from_tracker
+from actions.common import extract_metadata_from_tracker, extract_metadata_from_data
 from rasa_sdk.events import FollowupAction
 
 logger = logging.getLogger(__name__)
@@ -18,7 +18,7 @@ class ActionLeadingDefinitionIntro(Action):
         print('action_leading_definition_intro')
 
         # metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "se": [2, 0, 6], "t": 3, "p": 52, "d": 3}
+        metadata = extract_metadata_from_data(1)
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
@@ -131,7 +131,7 @@ class ActionLeadingDefinition(Action):
         print('action_leading_definition')
 
         # metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t": 3, "p": 52, "d": 3}
+        metadata = extract_metadata_from_data(1)
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
@@ -216,7 +216,8 @@ class ActionLeadingDefinitionMore(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_leading_definition_more')
 
-        metadata = extract_metadata_from_tracker(tracker)
+        #metadata = extract_metadata_from_tracker(tracker)
+        metadata = extract_metadata_from_data(1)
 
         #dispatcher.utter_message(
         #    f'다음으로 당신의 에너지 흐름에 대해 살펴보겠습니다.')
@@ -273,7 +274,8 @@ class ActionGetHumanDesignDefinition(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         entities = tracker.latest_message['entities']
 
-        metadata = extract_metadata_from_tracker(tracker)
+        #metadata = extract_metadata_from_tracker(tracker)
+        metadata = extract_metadata_from_data(1)
 
         for i in range(len(entities)):
             h_definition = (entities[i]['value'])
@@ -359,7 +361,9 @@ class ActionGetHumanDesignCommonDefinition(Action):
         #     "type": "web_url"
         # },
 
-        metadata = extract_metadata_from_tracker(tracker)
+        #metadata = extract_metadata_from_tracker(tracker)
+        metadata = extract_metadata_from_data(1)
+
         print("MetaData: ", metadata)
 
         dispatcher.utter_message(

@@ -4,7 +4,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
-from actions.common import extract_metadata_from_tracker, unego_get_question
+from actions.common import extract_metadata_from_tracker, unego_get_question, extract_metadata_from_data
 from rasa_sdk.events import FollowupAction
 
 
@@ -24,7 +24,7 @@ class ActionLeadingCentersIntro(Action):
         definedCnt = 0
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn":"김재헌", "ct":[1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t":3, "p":52}
+        metadata = extract_metadata_from_data(1)
         print("MetaData: ", metadata)
 
         leading_priority = tracker.get_slot('leading_priority')
@@ -223,7 +223,7 @@ class ActionLeadingCenters(Action):
         definedCnt = 0
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn":"김재헌", "ct":[1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t":3, "p":52}
+        metadata = extract_metadata_from_data(1)
         print("MetaData: ", metadata)
 
         leading_priority = tracker.get_slot('leading_priority')
@@ -379,7 +379,7 @@ class ActionLeadingCentersQuestion(Action):
         print('action_leading_centers_question')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn":"김재헌", "ct":[1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t":3, "p":52}
+        metadata = extract_metadata_from_data(1)
         print("MetaData: ", metadata)
         step = tracker.get_slot('step')
 
@@ -393,7 +393,7 @@ class ActionCenterUnegoQuestion(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_center_unego_question')
         # metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "se": [2, 0, 6], "t": 3, "p": 52}
+        metadata = extract_metadata_from_data(1)
         center_type = tracker.get_slot("center_type")
         center_step = tracker.get_slot("center_step")
         step = tracker.get_slot("step")
@@ -418,7 +418,8 @@ class ActionCenterDetailIntro(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_center_detail_intro')
         # 자세히 설명하기 위한 인트로 (센터별로 다르기때문에 새로 구현)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "se": [2, 0, 6], "t": 3, "p": 52}
+        #metadata = extract_metadata_from_tracker(tracker)
+        metadata = extract_metadata_from_data(1)
 
         center_step = tracker.get_slot("center_step")
         center_priority = tracker.get_slot('center_priority')

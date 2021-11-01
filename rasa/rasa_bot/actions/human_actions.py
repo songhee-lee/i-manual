@@ -4,7 +4,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
-from actions.common import extract_metadata_from_tracker
+from actions.common import extract_metadata_from_tracker, extract_metadata_from_data
 from rasa_sdk.events import FollowupAction
 
 logger = logging.getLogger(__name__)
@@ -19,7 +19,7 @@ class ActionLastMessage(Action):
         print('action_last_message')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t": 3, "p": 52, "d": 3}
+        metadata = extract_metadata_from_data(1)
 
         buttons = []
         buttons.append({"title": "예", "payload": "/last_message_response{\"result\":\"yes\"}"})
@@ -39,7 +39,7 @@ class ActionLastMessageResponse(Action):
         response = tracker.get_slot('result')
         print(response)
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t": 3, "p": 52, "d": 3}
+        metadata = extract_metadata_from_data(1)
 
         if response == 'yes':
             dispatcher.utter_message(
@@ -67,8 +67,8 @@ class ActionGoodbye(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_goodbye')
 
-        metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "se": [2, 0, 6], "t": 3, "p": 52, "d": 3}
+        #metadata = extract_metadata_from_tracker(tracker)
+        metadata = extract_metadata_from_data(1)
         dispatcher.utter_message(
             f'그럼 {metadata["pn"]}님, 다음에 한번 들러주세요! :) ')
 
@@ -102,7 +102,8 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         entities = tracker.latest_message['entities']
         
         #metadata = extract_metadata_from_tracker(tracker)
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0],"se":[2,0,6], "t": 3, "p": 52, "d": 3}
+        metadata = extract_metadata_from_data(1)
+
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
         is_finished = tracker.get_slot("is_finished")
