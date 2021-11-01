@@ -178,6 +178,7 @@ class ActionDefaultFallback(Action):
         print("is_sentiment", is_sentiment)
 
         center_question = tracker.get_slot("center_question")
+        print("before QA center question", center_question)
         user_text = tracker.latest_message['text']
         question = tracker.get_slot("bot_question")
         ct_index = tracker.get_slot("center_type")
@@ -229,7 +230,8 @@ class ActionDefaultFallback(Action):
         if is_question:
             qa_buttons = []
             # 센터 질문이면
-            if center_question==True:
+            print("after QA center question", center_question)
+            if center_question:
                 qa_buttons.append({"title": f'확인', "payload": "/center_unego_question"})
                 qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question{\"is_question\":\"True\", \"center_question\":\"True\"}"})
             # 센터 질문이 아니면
@@ -260,7 +262,7 @@ class ActionDefaultFallback(Action):
 
 
 
-        return [SlotSet("step", step), SlotSet("is_question", False), SlotSet("is_sentiment", False)]
+        return [SlotSet("step", step), SlotSet("is_question", False), SlotSet("is_sentiment", False), SlotSet("center_question", False)]
 
 class ActionQuestionIntro(Action):
     def name(self):
