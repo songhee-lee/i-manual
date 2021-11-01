@@ -107,10 +107,9 @@ class ActionLeadingDefinitionIntro(Action):
         # dispatcher.utter_message(json_message = {
         #                         "type": "arrContents", "content": [[msg, msg2], [msg3, msg4], [msg5]], "tags": f'{tag}'})
 
-        # 마지막 센터에 밑에 주석 제거
 
-        dispatcher.utter_message(
-            f'{h_type}에 대해 이해가 되셨나요?')
+        #dispatcher.utter_message(
+        #    f'{h_type}에 대해 이해가 되셨나요?')
 
         if leading_priority[0] == 2:
             return [SlotSet('step', 1), FollowupAction(name='action_question_intro')]
