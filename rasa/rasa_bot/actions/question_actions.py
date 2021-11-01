@@ -150,10 +150,10 @@ class ActionQuestion(Action):
             else:
                 dispatcher.utter_message('무엇이 궁금하신가요?')
         else:
-            return [SlotSet("is_question", False), FollowupAction(name="action_default_fallback")]
+            return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
         h_type = ''
 
-        return [SlotSet("step", step), SlotSet("is_question", True)]
+        return [SlotSet("step", step), SlotSet("is_question", 1)]
 
 
 class ActionDefaultFallback(Action):
@@ -221,23 +221,23 @@ class ActionDefaultFallback(Action):
 
             dispatcher.utter_message(answer)
             buttons = []
-            buttons.append({"title": f'질문', "payload": "/question{\"is_question\":\"True\"}"})
+            buttons.append({"title": f'질문', "payload": "/question{\"is_question\":\"1\"}"})
             buttons.append({"title": f'괜찮아요', "payload": "/leading_more"})
             dispatcher.utter_message("다시 질문하고 싶으시면 질문 버튼을 클릭해주세요!", buttons=buttons)
             return [SlotSet("step", step)]
 
         # QA이면
-        if is_question:
+        if is_question==1:
             qa_buttons = []
             # 센터 질문이면
             print("after QA center question", center_question)
-            if center_question:
+            if center_question==1:
                 qa_buttons.append({"title": f'확인', "payload": "/center_unego_question"})
-                qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question{\"is_question\":\"True\", \"center_question\":\"True\"}"})
+                qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question{\"is_question\":\"1\", \"center_question\":\"1\"}"})
             # 센터 질문이 아니면
             else:
                 qa_buttons.append({"title": f'확인', "payload": "/leading_more"})
-                qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question{\"is_question\":\"True\"}"})
+                qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question{\"is_question\":\"1\"}"})
 
             dispatcher.utter_message(f'{answer}')
             dispatcher.utter_message(f'궁금증이 풀리셨나요?', buttons=qa_buttons)
@@ -249,12 +249,12 @@ class ActionDefaultFallback(Action):
                 dispatcher.utter_message(answer)
                 if center_step < 8:
                     center_step += 1
-                    return [SlotSet("step", step), SlotSet("is_question", False), SlotSet("is_sentiment", False), SlotSet("center_step", center_step), FollowupAction(name='action_leading_centers_intro')]
+                    return [SlotSet("step", step), SlotSet("is_question", 0), SlotSet("is_sentiment", 0), SlotSet("center_step", center_step), FollowupAction(name='action_leading_centers_intro')]
                 else:
-                    return [SlotSet("step", step), SlotSet("is_question", False), SlotSet("is_sentiment", False), SlotSet("center_step", center_step), FollowupAction(name='action_more')]
+                    return [SlotSet("step", step), SlotSet("is_question", 0), SlotSet("is_sentiment", 0), SlotSet("center_step", center_step), FollowupAction(name='action_more')]
             else:
                 notice_buttons = []
-                notice_buttons.append({"title": f'질문', "payload": "/question{\"is_question\":\"True\"}"})
+                notice_buttons.append({"title": f'질문', "payload": "/question{\"is_question\":\"1\"}"})
                 notice_buttons.append({"title": f'괜찮아요', "payload": "/leading_more"})
 
                 notice = '''지금은 채팅하실 수 없습니다. 혹시 질문 있으신가요?'''
@@ -262,7 +262,7 @@ class ActionDefaultFallback(Action):
 
 
 
-        return [SlotSet("step", step), SlotSet("is_question", False), SlotSet("is_sentiment", False), SlotSet("center_question", False)]
+        return [SlotSet("step", step), SlotSet("is_question", 0), SlotSet("is_sentiment", 0), SlotSet("center_question", 0)]
 
 class ActionQuestionIntro(Action):
     def name(self):
@@ -292,13 +292,13 @@ class ActionQuestionIntro(Action):
         leading_priority = tracker.get_slot('leading_priority')
         q_type = leading_priority[step - 1]
 
-        is_center = False
-        is_type = False
+        is_center = 0
+        is_type = 0
 
         bot_text = ''
         # 종족
         if q_type == 0:
-            is_type = True
+            is_type = 1
             bot_text = f"자, {human_types[metadata['t']]}에 대해 질문있으신가요?"
         # 프로파일
         elif q_type == 1:
@@ -308,7 +308,7 @@ class ActionQuestionIntro(Action):
             bot_text = f"{human_definition[metadata['d']]}에 대해 질문있으신가요?"
         # 센터
         elif q_type == 3:
-            is_center = True
+            is_center = 1
             tmp_index = center_priority[center_step]
             if metadata['ct'][tmp_index] == 0:
                 bot_text = f"{human_center[tmp_index]} (미정의)에 대해 질문있으신가요?"
@@ -319,7 +319,7 @@ class ActionQuestionIntro(Action):
         if is_type:
             buttons.append({"title": f'네. 질문 있어요', "payload": "/leading_type_question"})
         else:
-            buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\"}"})
+            buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"1\"}"})
 
         if is_center:
             if center_step == 9:
@@ -332,9 +332,9 @@ class ActionQuestionIntro(Action):
         dispatcher.utter_message(bot_text, buttons=buttons)
 
         if is_center:
-            return [SlotSet("center_question", True)]
+            return [SlotSet("center_question", 1)]
         else:
-            return [SlotSet("center_question", False)]
+            return [SlotSet("center_question", 0)]
 
 class ActionTypeQuestion(Action):
     def name(self):

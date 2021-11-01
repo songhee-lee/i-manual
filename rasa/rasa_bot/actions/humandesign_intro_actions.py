@@ -62,7 +62,7 @@ class ActionSetPriority(Action): #맨 처음
         for i in [8, 7, 6, 5, 2, 4, 3, 1, 0]:
             if i not in center_priority:
                 center_priority.append(i)
-        return [SlotSet('leading_priority', leading_priority), SlotSet('center_priority', center_priority), SlotSet('step', 0), SlotSet('is_finished', False), SlotSet('center_step', 0), SlotSet('is_question', False), SlotSet('center_type',0), SlotSet('center_question', False), SlotSet('is_sentiment', False)] #slot추가 필요
+        return [SlotSet('leading_priority', leading_priority), SlotSet('center_priority', center_priority), SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0), SlotSet('center_type',0), SlotSet('center_question', 0), SlotSet('is_sentiment', 0)] #slot추가 필요
 
 class ActionStart(Action):
     def name(self):
@@ -92,16 +92,16 @@ class ActionStep(Action):
         is_finished = tracker.get_slot("is_finished")
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
-        if is_finished==True:
+        if is_finished==1:
             return [FollowupAction(name='action_masterbot')] #masterbot에서 처리할 수 있게
         # is_finished 상태로 계속하면 끝내버리고, 끝났다고 알려줌
 
         else:
-            if center_step < 8 and center_step !=0:
+            if leading_priority[step-1]==3 and center_step < 9:
                 return [FollowupAction(name='action_leading_centers_intro')]
             else:
                 if step == 4:
-                    return [SlotSet('is_finished', True), FollowupAction(name='action_last_message')]
+                    return [SlotSet('is_finished', 1), FollowupAction(name='action_last_message')]
                 else:
                     if leading_priority[step]==0:
                         return [FollowupAction(name='action_leading_type_intro')]

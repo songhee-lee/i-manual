@@ -113,11 +113,12 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         step = tracker.get_slot("step")
         is_finished = tracker.get_slot("is_finished")
         user_text = tracker.latest_message['text']
+        center_step = tracker.get_slot('center_step')
         if(user_text == "마스터 봇" or user_text == "마스터봇"):
             dispatcher.utter_message(
                 f'안녕하세요 {metadata["pn"]}님, 저를 부르셨나요~? :) 다시 찾아주셔서 감사해요~')
         #다시 들어왔을 때 판단
-        if is_finished==True:
+        if is_finished==1:
             buttons = []
             buttons.append({"title": "종족", "payload": "/leading_type_intro"})
             buttons.append({"title": "사회적 성향", "payload": "/leading_profile_intro"})
@@ -126,15 +127,19 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         
             dispatcher.utter_message("다시 듣고 싶은 항목을 선택해 주세요", buttons=buttons)
         else:
-            if step == 4:
-                return [SlotSet('is_finished', True), FollowupAction(name='action_last_message')]
-            elif leading_priority[step]==0:
-                return [FollowupAction(name='action_leading_type_intro')]
-            elif leading_priority[step]==1:
-                return [FollowupAction(name='action_leading_profile_intro')]
-            elif leading_priority[step]==2:
-                return [FollowupAction(name='action_leading_definition_intro')]
-            elif leading_priority[step]==3:
+            if leading_priority[step - 1] == 3 and center_step < 9:
                 return [FollowupAction(name='action_leading_centers_intro')]
+            else:
+                if step == 4:
+                    return [SlotSet('is_finished', 1), FollowupAction(name='action_last_message')]
+                else:
+                    if leading_priority[step] == 0:
+                        return [FollowupAction(name='action_leading_type_intro')]
+                    elif leading_priority[step] == 1:
+                        return [FollowupAction(name='action_leading_profile_intro')]
+                    elif leading_priority[step] == 2:
+                        return [FollowupAction(name='action_leading_definition_intro')]
+                    elif leading_priority[step] == 3:
+                        return [FollowupAction(name='action_leading_centers_intro')]
         return [SlotSet('center_step', 0)]
         # dispatcher.utter_message("로케이션 세팅 완료!")

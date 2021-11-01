@@ -25,7 +25,7 @@ class ActionLeadingProfileIntro(Action):
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
         is_finished = tracker.get_slot('is_finished')
-        if is_finished == True:
+        if is_finished == 1:
             dispatcher.utter_message(
                 f'그럼 프로파일에 대해 다시 알려드릴게요!'
             )
@@ -260,7 +260,7 @@ class ActionLeadingProfile(Action):
         dispatcher.utter_message(msg4)
         dispatcher.utter_message(msg5)
         buttons = []
-        buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\", \"center_question\":\"False\"}"})
+        buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"1\", \"center_question\":\"0\"}"})
         buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_more"})
         dispatcher.utter_message(f"{h_type}에 대해 질문 있으신가요?", buttons=buttons)
 

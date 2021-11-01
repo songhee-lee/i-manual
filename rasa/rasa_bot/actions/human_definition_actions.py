@@ -24,7 +24,7 @@ class ActionLeadingDefinitionIntro(Action):
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
         is_finished = tracker.get_slot('is_finished')
-        if is_finished == True:
+        if is_finished == 1:
             dispatcher.utter_message(
                 f'그럼 에너지 흐름에 대해 다시 알려드릴게요!'
             )
