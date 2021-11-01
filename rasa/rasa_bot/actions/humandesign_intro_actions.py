@@ -7,6 +7,13 @@ from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReve
 from actions.common import extract_metadata_from_tracker, extract_metadata_from_data
 from rasa_sdk.events import FollowupAction
 logger = logging.getLogger(__name__)
+class ActionSetMetadata(Action):
+    def name(self):
+        return "action_set_metadata"
+
+    def run(selfself, dispatcher, tracker, domain):
+        print('action_set_metadata')
+        return [SlotSet('select_metadata', 3)]
 
 class ActionSetPriority(Action): #맨 처음
     def name(self):
@@ -14,7 +21,6 @@ class ActionSetPriority(Action): #맨 처음
 
     def run(self, dispatcher, tracker, domain):
         print('action_set_priority')
-
         #metadata = extract_metadata_from_tracker(tracker)
 
         select_metadata = tracker.get_slot('select_metadata')
