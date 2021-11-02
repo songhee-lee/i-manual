@@ -263,7 +263,8 @@ class ActionLeadingCenters(Action):
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
-
+        if center_step==9:
+            return[FollowupAction(name="action_more")]
         center_priority = tracker.get_slot('center_priority')
 
         if leading_priority[0]==3:
