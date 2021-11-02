@@ -4,7 +4,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
-from actions.common import extract_metadata_from_tracker, koelectra_qa_getanswer, extract_metadata_from_data
+from actions.common import extract_metadata_from_tracker, koelectra_qa_getanswer, extract_metadata_from_data, unego_get_question
 from actions.sentiment_analysis import sentiment_predict
 from rasa_sdk.events import FollowupAction
 
@@ -185,10 +185,11 @@ class ActionDefaultFallback(Action):
         center_step = tracker.get_slot("center_step")
         # tracker 에서 필요한 변수 load
         leading_priority = tracker.get_slot('leading_priority')
-
+        center_type = tracker.get_slot('center_type')
         step = tracker.get_slot("step")
         print("step", step)
         answer = ""
+
         # 설명 완료한 개수-> step
         # 방금 설명한 파트는 step - 1의 인덱스를 가짐
         if is_question:
@@ -203,16 +204,20 @@ class ActionDefaultFallback(Action):
 
         else:
             if is_sentiment:
+                if metadata['ct'][center_type] == 0:
+                    unego_question = unego_get_question(center_type, defined=False)
+                else:
+                    unego_question = unego_get_question(center_type, defined=True)
                 user_reponse_type = sentiment_predict(question, user_text)
                 if user_reponse_type == 0:
                     print("중립")
                     answer = "비자아 코멘트(중립)"
                 elif user_reponse_type == 1:
                     print("긍정")
-                    answer = "축하합니다. 당신의 센터는 건강합니다."
+                    answer = unego_question[2]
                 elif user_reponse_type == 2:
                     print("부정")
-                    answer = "비자아 코멘트"
+                    answer = unego_question[3]
 
         # 올바른 질문이 아닌경우
         if is_question and answer == "":
