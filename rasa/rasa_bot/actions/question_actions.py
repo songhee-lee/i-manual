@@ -252,7 +252,7 @@ class ActionDefaultFallback(Action):
             print("center step", center_step)
             if is_sentiment:
                 dispatcher.utter_message(answer)
-                if center_step < 8:
+                if center_step < 9:
                     center_step += 1
                     return [SlotSet("step", step), SlotSet("is_question", 0), SlotSet("is_sentiment", 0), SlotSet("center_step", center_step), FollowupAction(name='action_leading_centers_intro')]
                 else:
