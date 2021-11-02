@@ -99,7 +99,7 @@ class ActionLeadingCentersIntro(Action):
                     dispatcher.utter_message(f'우리 몸에는 9개의 센터가 있으며, 어떻게 당신이 가진 9가지 재능의 힘을 펼칠 수 있는지 알 수 있습니다. 당신의 센터가 정의되어 다른 사람들에게 영향을 미치는 부분과 반대로 다른 사람이나 환경에 의해 영향을 받거나, 관련된 측면에서 다른 사람을 인식할 수 있는 미정의된 센터를 확인할 수 있습니다.')
                 else:
                     dispatcher.utter_message(
-                        f'다음 센터에 대해 알려드릴게요!.')
+                        f'다음 센터에 대해 알려드릴게요!')
 
 
 
