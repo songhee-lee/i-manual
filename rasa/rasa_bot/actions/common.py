@@ -1,11 +1,12 @@
-from transformers import AutoTokenizer, AutoModelForQuestionAnswering
+from transformers import BertTokenizer, BertForQuestionAnswering, AutoConfig
 import torch
 import pandas as pd
 import random
 
-model_path = "mtr0930/i-manual_integrated_tokenizer"
-tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = AutoModelForQuestionAnswering.from_pretrained(model_path, return_dict=False)
+model_path = "songhee/i-manual-mbert"
+config = AutoConfig.from_pretrained(model_path)
+tokenizer = BertTokenizer.from_pretrained(model_path)
+model = BertForQuestionAnswering.from_pretrained(model_path, config=config)
 def extract_metadata_from_data(num):
     metadata = {}
     if num==1:
