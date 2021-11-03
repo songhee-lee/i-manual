@@ -217,7 +217,6 @@ actions:
   - action_goodbye
   - action_leading_more #선택시 필요?
   - action_last_message
-  - action_last_message_response
   - action_masterbot
   - action_default_fallback #qa나 감정분석으로 넘어감
   - action_question
@@ -242,6 +241,7 @@ actions:
   - action_step
   - action_more
   - action_center_detail_intro
+  - action_masterbot_more
 ###위에2추가
 
 forms: {}
