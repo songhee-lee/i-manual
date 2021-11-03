@@ -184,13 +184,6 @@ stories:
       - intent: last_message
       - action: action_last_message
 
-  - story: Say Last Message Response
-    steps:
-      - intent: last_message_response
-      - action: action_last_message_response
-      - slot_was_set:
-        - result: "yes"
-
   - story: Say masterbot
     steps:
       - intent: masterbot
@@ -212,3 +205,8 @@ stories:
     steps:
       - intent: leading_step
       - action: action_step
+
+  - story: masterbot_more
+    steps:
+      - intent: leading_masterbot_more
+      - action: action_masterbot_more
