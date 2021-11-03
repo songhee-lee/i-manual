@@ -193,20 +193,26 @@ stories:
     steps:
       - intent: reset
       - action: utter_reset
-#action_set_metadata는 추후 삭제
-  - story: Say start
-    steps:
-      - intent: start
-      - action: action_set_metadata
-      - action: action_set_priority
-      - action: action_start
 
   - story: Say step
     steps:
       - intent: leading_step
       - action: action_step
 
+#action_set_metadata action'만' 추후 삭제
+  - story: Say start
+    steps:
+      - intent: start
+      - action: action_set_metadata
+      - action: action_set_priority
+
+# 추후 삭제
   - story: masterbot_more
     steps:
       - intent: leading_masterbot_more
       - action: action_masterbot_more
+# 추후 삭제
+  - story: center_drop
+    steps:
+      - intent: leading_drop_center
+      - action: action_drop_center
