@@ -7,7 +7,7 @@ model_path = "songhee/i-manual-mbert"
 config = AutoConfig.from_pretrained(model_path)
 tokenizer = BertTokenizer.from_pretrained(model_path)
 model = BertForQuestionAnswering.from_pretrained(model_path, config=config)
-def extract_metadata_from_data(num):
+def extract_metadata_from_data(num): #추후 삭제이후 각 파일의 import부분도 삭제
     metadata = {}
     if num==1:
         metadata = {"pn": "001", "ct": [1, 0, 1, 0, 0, 1, 1, 0, 0], "se": [1, 2, 0, 6], "t": 3, "p": 14, "d": 2}
@@ -30,7 +30,7 @@ def extract_metadata_from_data(num):
     elif num==10:
         metadata = {"pn": "001", "ct": [1, 1, 1, 0, 0, 1, 1, 1, 0], "se": [2, 1, 6, 0], "t": 1, "p": 35, "d": 1}
     else:
-        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "se": [2, 0, 6], "t": 3, "p": 52, "d": 3}
+        metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "se": [1, 2, 0, 6], "t": 3, "p": 52, "d": 3}
     return metadata
 def extract_metadata_from_tracker(tracker):
     events = tracker.current_state()['events']
@@ -86,7 +86,7 @@ def unego_get_question(ct, unego_count, defined=False):
             "쉬고 있으면 오히려 불안하고, 할 일을 찾아서 하는 편인가요?"
         ]
         question = qlist_1[unego_count]
-        ego_comment = "당신은 매우 자유롭게 당신의 활력 센터를 쓸 수 있답니다당신이 원하면 당신은 자유로울 수 있어요"
+        ego_comment = "당신은 매우 자유롭게 당신의 활력 센터를 쓸 수 있답니다 당신이 원하면 당신은 자유로울 수 있어요"
         unego_comment = "갑자기 솟구치는 힘이 온전히 당신의 에너지가 아님을 의식해야 해요. 몸이 피로하다고 보내는 신호를 계속 무시하고 일에 박차를 가한다면 건강도 위협할 수 있답니다. '쉼'을 즐기고 받아들이는 연습이 필요해요."
     elif ct == 1 and defined:
         qlist_1 = [

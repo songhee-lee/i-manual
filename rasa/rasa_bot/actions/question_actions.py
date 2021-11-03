@@ -267,14 +267,14 @@ class ActionDefaultFallback(Action):
                     else:
                         unego_question = unego_get_question(center_type, unego_count-1, defined=True)
 
-                    # 비자아인 경우(중립, 부정)
+                    # 자아인 경우(중립, 부정)
                     if sentiment_result <= 0:
                         dispatcher.utter_message("주의! 나다움을 잃고 있어요!")
-                        answer = unego_question[2]
-                    # 자아인 경우(긍정)
+                        answer = unego_question[1]
+                    # 비자아인 경우(긍정)
                     else:
                         dispatcher.utter_message("좋아요! 나 답게 잘 살고 있어요!!")
-                        answer = unego_question[1]
+                        answer = unego_question[2]
 
                     dispatcher.utter_message(answer)
                     return [SlotSet("sentiment_result", 0), FollowupAction(name='action_center_unego_question')]
