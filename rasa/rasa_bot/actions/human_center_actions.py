@@ -36,7 +36,7 @@ class ActionLeadingCentersIntro(Action):
         if center_step == 9:
             return [FollowupAction(name="action_more")]
         is_finished = tracker.get_slot('is_finished')
-        if is_finished == True:
+        if is_finished == 1:
             if center_step == 0:
                 dispatcher.utter_message(
                     f'그럼 센터에 대해 다시 알려드릴게요!'
@@ -459,7 +459,7 @@ class ActionLeadingCenters(Action):
 
         dispatcher.utter_message(f'당신의 {center_name}에 대해 이해가 되었나요?')
         return [SlotSet("is_question", 0), SlotSet("center_type", h_center), SlotSet("center_step", center_step),
-                SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True),
+                SlotSet("center_question", 1), SlotSet("step", step), SlotSet("is_sentiment", 1),
                 FollowupAction(name="action_question_intro")]
 
 
@@ -476,7 +476,7 @@ class ActionLeadingCentersQuestion(Action):
         print("MetaData: ", metadata)
         step = tracker.get_slot('step')
 
-        return [SlotSet('step', step), SlotSet("center_question", False), FollowupAction(name='action_more')]
+        return [SlotSet('step', step), SlotSet("center_question", 0), FollowupAction(name='action_more')]
 
 
 class ActionCenterDetailIntro(Action):

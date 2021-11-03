@@ -225,7 +225,12 @@ class ActionDefaultFallback(Action):
 
             dispatcher.utter_message(answer)
             buttons = []
-            buttons.append({"title": f'질문', "payload": "/question{\"is_question\":\"1\"}"})
+            if center_question == 1:
+                buttons.append(
+                    {"title": f'질문', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
+            else:
+                buttons.append(
+                    {"title": f'질문', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
             buttons.append({"title": f'괜찮아요', "payload": "/leading_more"})
             dispatcher.utter_message("다시 질문하고 싶으시면 질문 버튼을 클릭해주세요!", buttons=buttons)
             return [SlotSet("step", step)]
@@ -236,12 +241,16 @@ class ActionDefaultFallback(Action):
             # 센터 질문이면
             print("after QA center question", center_question)
             if center_question==1:
-                qa_buttons.append({"title": f'괜찮아요', "payload": "/center_unego_question"})
-                qa_buttons.append({"title": f'다른 질문도 할래요!', "payload": "/question{\"is_question\":\"1\", \"center_question\":\"1\"}"})
+                qa_buttons.append(
+                    {"title": f'괜찮아요', "payload": "/center_unego_question{\"is_question\":0, \"center_question\":0}"})
+                qa_buttons.append(
+                    {"title": f'다른 질문도 할래요!', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
             # 센터 질문이 아니면
             else:
-                qa_buttons.append({"title": f'괜찮아요', "payload": "/leading_more"})
-                qa_buttons.append({"title": f'다른 질문도 할래요!', "payload": "/question{\"is_question\":\"1\"}"})
+                qa_buttons.append(
+                    {"title": f'괜찮아요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
+                qa_buttons.append(
+                    {"title": f'다른 질문도 할래요!', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
 
             dispatcher.utter_message(f'{answer}')
             dispatcher.utter_message(f'다른 질문있나요?', buttons=qa_buttons)
@@ -273,15 +282,21 @@ class ActionDefaultFallback(Action):
                     return [SlotSet("sentiment_result", sentiment_result), FollowupAction(name='action_center_unego_question')]
             else:
                 notice_buttons = []
-                notice_buttons.append({"title": f'질문', "payload": "/question{\"is_question\":\"1\"}"})
-                notice_buttons.append({"title": f'괜찮아요', "payload": "/leading_more"})
+                if center_question == 1:
+                    notice_buttons.append(
+                        {"title": f'질문', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
+                else:
+                    notice_buttons.append(
+                        {"title": f'질문', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+
+                notice_buttons.append({"title": f'괜찮아요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
                 notice = '''지금은 채팅하실 수 없습니다. 혹시 질문 있으신가요?'''
                 dispatcher.utter_message(f'{notice}', buttons=notice_buttons)
 
 
 
-        return [SlotSet("step", step), SlotSet("is_question", 0), SlotSet("is_sentiment", 0), SlotSet("center_question", 0)]
+        return [SlotSet("step", step),SlotSet("is_sentiment", 0)]
 
 class ActionQuestionIntro(Action):
     def name(self):
@@ -376,10 +391,10 @@ class ActionCenterUnegoQuestion(Action):
             dispatcher.utter_message(unego_question[0])
 
             return [SlotSet('bot_question', unego_question[0]), SlotSet("is_question", 0),
-                SlotSet("center_question", True), SlotSet("is_sentiment", True), SlotSet("unego_count", unego_count)]
+                SlotSet("center_question", 1), SlotSet("is_sentiment", 1), SlotSet("unego_count", unego_count)]
 
         return [SlotSet("is_question", 0),SlotSet("center_type", center_type), SlotSet("center_step", center_step + 1),
-                SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True),
+                SlotSet("center_question", 1), SlotSet("step", step), SlotSet("is_sentiment", 1),
                 SlotSet("unego_count", 0), FollowupAction(name="action_more")]
 
 class ActionTypeQuestion(Action):
