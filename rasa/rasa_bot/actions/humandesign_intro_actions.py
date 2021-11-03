@@ -13,7 +13,7 @@ class ActionSetMetadata(Action):
 
     def run(selfself, dispatcher, tracker, domain):
         print('action_set_metadata')
-        return [SlotSet('select_metadata', 8)]
+        return [SlotSet('select_metadata', 6)]
 
 class ActionSetPriority(Action): #맨 처음
     def name(self):
@@ -103,6 +103,7 @@ class ActionStep(Action):
                 if step == 4:
                     return [SlotSet('is_finished', 1), FollowupAction(name='action_last_message')]
                 else:
+                    dispatcher.utter_message("자, 이제 다른 특징에 대해 알아봅시다")
                     if leading_priority[step]==0:
                         return [FollowupAction(name='action_leading_type_intro')]
                     elif leading_priority[step]==1:
@@ -123,6 +124,8 @@ class ActionMore(Action):
         print('action_more')
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
+        if step == 4:
+            return [SlotSet('is_finished', 1), FollowupAction(name='action_last_message')]
         buttons = []
         buttons.append({"title": f'계속', "payload": "/leading_step"})
         buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})

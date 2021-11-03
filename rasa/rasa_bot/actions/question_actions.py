@@ -260,15 +260,17 @@ class ActionDefaultFallback(Action):
 
                     # 비자아인 경우(중립, 부정)
                     if sentiment_result <= 0:
-                        answer = unego_question[3]
+                        dispatcher.utter_message("주의! 나다움을 잃고 있어요!")
+                        answer = unego_question[2]
                     # 자아인 경우(긍정)
                     else:
-                        answer = unego_question[2]
+                        dispatcher.utter_message("좋아요! 나 답게 잘 살고 있어요!!")
+                        answer = unego_question[1]
 
                     dispatcher.utter_message(answer)
-                    return [FollowupAction(name='action_center_unego_question')]
+                    return [SlotSet("sentiment_result", 0), FollowupAction(name='action_center_unego_question')]
                 else:
-                    return [FollowupAction(name='action_center_unego_question')]
+                    return [SlotSet("sentiment_result", sentiment_result), FollowupAction(name='action_center_unego_question')]
             else:
                 notice_buttons = []
                 notice_buttons.append({"title": f'질문', "payload": "/question{\"is_question\":\"1\"}"})
@@ -316,21 +318,10 @@ class ActionQuestionIntro(Action):
         # 종족
         if q_type == 0:
             is_type = 1
-            bot_text = f"자, {human_types[metadata['t']]}에 대해 질문있으신가요?"
-        # 프로파일
-        elif q_type == 1:
-            bot_text = f"자, {human_profile[metadata['p']]} 성향에 대해 질문있으신가요?"
-        # 에너지흐름
-        elif q_type == 2:
-            bot_text = f"{human_definition[metadata['d']]}에 대해 질문있으신가요?"
-        # 센터
+
         elif q_type == 3:
             is_center = 1
-            tmp_index = center_priority[center_step]
-            if metadata['ct'][tmp_index] == 0:
-                bot_text = f"{human_center[tmp_index]} (미정의)에 대해 질문있으신가요?"
-            else:
-                bot_text = f"{human_center[tmp_index]} (정의)에 대해 질문있으신가요?"
+
 
         buttons = []
         if is_type:
@@ -340,13 +331,13 @@ class ActionQuestionIntro(Action):
 
         if is_center:
             if center_step == 9:
-                buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_centers_question"})
+                buttons.append({"title": f'아뇨. 질문 없어요', "payload": "/leading_centers_question"})
             else:
-                buttons.append({"title": f'아뇨 질문 없어요', "payload": "/center_unego_question"})
+                buttons.append({"title": f'아뇨. 질문 없어요', "payload": "/center_unego_question"})
         else:
-            buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_more"})
+            buttons.append({"title": f'아뇨. 질문 없어요', "payload": "/leading_more"})
 
-        dispatcher.utter_message(bot_text, buttons=buttons)
+        dispatcher.utter_message("질문이 있나요?", buttons=buttons)
 
         if is_center:
             return [SlotSet("center_question", 1)]
@@ -359,6 +350,7 @@ class ActionCenterUnegoQuestion(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_center_unego_question')
+        human_center = ["연료센터", "활력센터", "직관센터", "감정센터", "에고센터", "방향센터", "표현센터", "생각센터", "영감센터"]
         # metadata = extract_metadata_from_tracker(tracker)
         select_metadata = tracker.get_slot('select_metadata')
         metadata = extract_metadata_from_data(select_metadata)
@@ -377,10 +369,13 @@ class ActionCenterUnegoQuestion(Action):
             else:
                 unego_question = unego_get_question(center_type, unego_count-1, defined=True)
 
+            # 조건화 질문 시작시 멘트
+            if unego_count == 1:
+                dispatcher.utter_message(f"자, 다음의 질문에 답해보세요. 당신의 {human_center[center_type]}가 어떤 상태인지 알려드릴께요.")
+            # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아
             dispatcher.utter_message(unego_question[0])
-            dispatcher.utter_message(unego_question[1])
 
-            return [SlotSet('bot_question', unego_question[1]), SlotSet("is_question", 0),
+            return [SlotSet('bot_question', unego_question[0]), SlotSet("is_question", 0),
                 SlotSet("center_question", True), SlotSet("is_sentiment", True), SlotSet("unego_count", unego_count)]
 
         return [SlotSet("is_question", 0),SlotSet("center_type", center_type), SlotSet("center_step", center_step + 1),
