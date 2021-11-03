@@ -237,7 +237,7 @@ class ActionLeadingTypeQuestion(Action):
                             "payload": "/strategy_question{\"bot_question\":\"거울 종족의 기다림을 어떻게 도와줘야 하나요?\", \"context_index\": 0}"})
             buttons.append({"title": f'거울 종족 아이는 어떻게 키워야 하나요?',
                             "payload": "/strategy_question{\"bot_question\":\"거울 종족 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
-
+        buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
         dispatcher.utter_message(f'질문이 있다면 다음 중에서 선택해보세요', buttons=buttons)
 
         return []

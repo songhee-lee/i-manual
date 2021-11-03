@@ -13,7 +13,7 @@ class ActionSetMetadata(Action):
 
     def run(selfself, dispatcher, tracker, domain):
         print('action_set_metadata')
-        return [SlotSet('select_metadata', 5)]
+        return [SlotSet('select_metadata', 8)]
 
 class ActionSetPriority(Action): #맨 처음
     def name(self):

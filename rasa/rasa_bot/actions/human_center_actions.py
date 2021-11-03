@@ -32,22 +32,22 @@ class ActionLeadingCentersIntro(Action):
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
+        if center_step == 9:
+            return [FollowupAction(name="action_more")]
         is_finished = tracker.get_slot('is_finished')
         if is_finished == True:
             if center_step==0:
                 dispatcher.utter_message(
                     f'그럼 센터에 대해 다시 알려드릴게요!'
                 )
-                dispatcher.utter_message(
-                    f'우리 몸에는 9개의 센터가 있으며, 어떻게 당신이 가진 9가지 재능의 힘을 펼칠 수 있는지 알 수 있습니다. 당신의 센터가 정의되어 다른 사람들에게 영향을 미치는 부분과 반대로 다른 사람이나 환경에 의해 영향을 받거나, 관련된 측면에서 다른 사람을 인식할 수 있는 미정의된 센터를 확인할 수 있습니다.')
+
             else:
                 dispatcher.utter_message(
                     f'다음 센터에 대해 알려드릴게요!'
                 )
         else:
             if leading_priority[0]==3 and center_step==0: #센터에 대한 인트로 추가
-                dispatcher.utter_message(
-                    f'우리 몸에는 9개의 센터가 있으며, 어떻게 당신이 가진 9가지 재능의 힘을 펼칠 수 있는지 알 수 있습니다. 당신의 센터가 정의되어 다른 사람들에게 영향을 미치는 부분과 반대로 다른 사람이나 환경에 의해 영향을 받거나, 관련된 측면에서 다른 사람을 인식할 수 있는 미정의된 센터를 확인할 수 있습니다.')
+
                 if center_priority[0] == 0: #센터 우선순위중 1순위가 0번째센터면
                     if metadata['ct'][0] == 0:
                         dispatcher.utter_message(
@@ -92,14 +92,13 @@ class ActionLeadingCentersIntro(Action):
                         dispatcher.utter_message(
                             f'당신은 자신만의 고유한 표현방식이 있고, 언제 표현해야 할 지를 알고 있는 사람입니다. 당신이 이러한 점에서 어려움을 겪고 있다면 이제부터의 설명을 잘 들어보세요.')
 
-            else: #인트로도 아니고, 끝난것도 아니면
-                if center_step == 0: #즉 중간에 나온 센터인데 그중 첫번째 센터 설명일때
-                    dispatcher.utter_message(
-                        f'다음으로 센터를 살펴보겠습니다.')
-                    dispatcher.utter_message(f'우리 몸에는 9개의 센터가 있으며, 어떻게 당신이 가진 9가지 재능의 힘을 펼칠 수 있는지 알 수 있습니다. 당신의 센터가 정의되어 다른 사람들에게 영향을 미치는 부분과 반대로 다른 사람이나 환경에 의해 영향을 받거나, 관련된 측면에서 다른 사람을 인식할 수 있는 미정의된 센터를 확인할 수 있습니다.')
-                else:
-                    dispatcher.utter_message(
-                        f'다음 센터에 대해 알려드릴게요!')
+            # else: #인트로도 아니고, 끝난것도 아니면
+            #     if center_step == 0: #즉 중간에 나온 센터인데 그중 첫번째 센터 설명일때
+            #         dispatcher.utter_message(
+            #             f'다음으로 센터를 살펴보겠습니다.')
+            #     else:
+            #         dispatcher.utter_message(
+            #             f'다음 센터에 대해 알려드릴게요!')
 
 
 
@@ -229,7 +228,7 @@ class ActionLeadingCentersIntro(Action):
             msg = "당신은 다른 사람이나 다른 무언가로부터 늘 영감을 받는 사람입니다. 또한, ‘누가 나에게 혼란을 주고, 누가 나에게 영감을 주는지 구별할 수 있는 사람이기도 합니다."
             msg2 = "평소에 생각이 많지 않다가 어떤 때는 지나치게 생각이 많아져 머리가 지끈거리거나, 생각을 하고 또 하다가 불면증에 시달린 경험들이 있나요? 이것은 당신 자신으로부터 비롯된 것이 아니라 외부의 영향 때문입니다. 당신에게는 혼란과 영감을 잘 구별할 수 있는 잠재력이 있습니다."
 
-        dispatcher.utter_message(f'{metadata["pn"]}님의 "{h_type}"에 대해서 설명드릴께요!', image=img)
+        dispatcher.utter_message(image=img)
         if msg != "":
             dispatcher.utter_message(msg)
         if msg2 != "":
@@ -374,32 +373,6 @@ class ActionLeadingCentersQuestion(Action):
 
         return [SlotSet('step', step), SlotSet("center_question", False), FollowupAction(name='action_more')]
 
-
-class ActionCenterUnegoQuestion(Action):
-    def name(self) -> Text:
-        return "action_center_unego_question"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        print('action_center_unego_question')
-        # metadata = extract_metadata_from_tracker(tracker)
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
-        center_type = tracker.get_slot("center_type")
-        center_step = tracker.get_slot("center_step")
-        step = tracker.get_slot("step")
-        print(step)
-        unego_question = ''
-        if metadata['ct'][center_type] == 0:
-            unego_question = unego_get_question(center_type, defined=False)
-        else:
-            unego_question = unego_get_question(center_type, defined=True)
-
-        dispatcher.utter_message(unego_question[0])
-        dispatcher.utter_message(unego_question[1])
-
-        return [SlotSet('bot_question', unego_question[1]), SlotSet("is_question", 0),
-                SlotSet("center_type", center_type), SlotSet("center_step", center_step),
-                SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True)]
 
 class ActionCenterDetailIntro(Action):
     def name(self) -> Text:

@@ -187,6 +187,8 @@ class ActionDefaultFallback(Action):
         leading_priority = tracker.get_slot('leading_priority')
         center_type = tracker.get_slot('center_type')
         step = tracker.get_slot("step")
+        unego_count = tracker.get_slot("unego_count")
+        sentiment_result = tracker.get_slot("sentiment_result")
         print("step", step)
         answer = ""
 
@@ -204,20 +206,17 @@ class ActionDefaultFallback(Action):
 
         else:
             if is_sentiment:
-                if metadata['ct'][center_type] == 0:
-                    unego_question = unego_get_question(center_type, defined=False)
-                else:
-                    unego_question = unego_get_question(center_type, defined=True)
+                # 0:중립, 1:긍정, 2:부정
                 user_reponse_type = sentiment_predict(question, user_text)
                 if user_reponse_type == 0:
                     print("중립")
-                    answer = "비자아 코멘트(중립)"
                 elif user_reponse_type == 1:
                     print("긍정")
-                    answer = unego_question[2]
+                    sentiment_result += 1
                 elif user_reponse_type == 2:
                     print("부정")
-                    answer = unego_question[3]
+                    sentiment_result -= 1
+
 
         # 올바른 질문이 아닌경우
         if is_question and answer == "":
@@ -237,26 +236,39 @@ class ActionDefaultFallback(Action):
             # 센터 질문이면
             print("after QA center question", center_question)
             if center_question==1:
-                qa_buttons.append({"title": f'확인', "payload": "/center_unego_question"})
-                qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question{\"is_question\":\"1\", \"center_question\":\"1\"}"})
+                qa_buttons.append({"title": f'괜찮아요', "payload": "/center_unego_question"})
+                qa_buttons.append({"title": f'다른 질문도 할래요!', "payload": "/question{\"is_question\":\"1\", \"center_question\":\"1\"}"})
             # 센터 질문이 아니면
             else:
-                qa_buttons.append({"title": f'확인', "payload": "/leading_more"})
-                qa_buttons.append({"title": f'아뇨! 더 질문할래요', "payload": "/question{\"is_question\":\"1\"}"})
+                qa_buttons.append({"title": f'괜찮아요', "payload": "/leading_more"})
+                qa_buttons.append({"title": f'다른 질문도 할래요!', "payload": "/question{\"is_question\":\"1\"}"})
 
             dispatcher.utter_message(f'{answer}')
-            dispatcher.utter_message(f'궁금증이 풀리셨나요?', buttons=qa_buttons)
+            dispatcher.utter_message(f'다른 질문있나요?', buttons=qa_buttons)
 
         # 감정분석이면
         else:
             print("center step", center_step)
             if is_sentiment:
                 dispatcher.utter_message(answer)
-                if center_step < 9:
-                    center_step += 1
-                    return [SlotSet("step", step), SlotSet("is_question", 0), SlotSet("is_sentiment", 0), SlotSet("center_step", center_step), FollowupAction(name='action_leading_centers_intro')]
+                # 비자아 질문 3개 다한 경우
+                if unego_count == 3:
+                    if metadata['ct'][center_type] == 0:
+                        unego_question = unego_get_question(center_type, unego_count-1, defined=False)
+                    else:
+                        unego_question = unego_get_question(center_type, unego_count-1, defined=True)
+
+                    # 비자아인 경우(중립, 부정)
+                    if sentiment_result <= 0:
+                        answer = unego_question[3]
+                    # 자아인 경우(긍정)
+                    else:
+                        answer = unego_question[2]
+
+                    dispatcher.utter_message(answer)
+                    return [FollowupAction(name='action_center_unego_question')]
                 else:
-                    return [SlotSet("step", step), SlotSet("is_question", 0), SlotSet("is_sentiment", 0), SlotSet("center_step", center_step), FollowupAction(name='action_more')]
+                    return [FollowupAction(name='action_center_unego_question')]
             else:
                 notice_buttons = []
                 notice_buttons.append({"title": f'질문', "payload": "/question{\"is_question\":\"1\"}"})
@@ -341,6 +353,40 @@ class ActionQuestionIntro(Action):
         else:
             return [SlotSet("center_question", 0)]
 
+class ActionCenterUnegoQuestion(Action):
+    def name(self) -> Text:
+        return "action_center_unego_question"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print('action_center_unego_question')
+        # metadata = extract_metadata_from_tracker(tracker)
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
+        center_type = tracker.get_slot("center_type")
+        center_step = tracker.get_slot("center_step")
+        # 비자아 질문 개수 확인
+        unego_count = tracker.get_slot("unego_count")
+        # default 값이 0이므로 시작 count 를 1로 설정.
+        unego_count += 1
+        step = tracker.get_slot("step")
+        print(step)
+        unego_question = ''
+        if unego_count < 4:
+            if metadata['ct'][center_type] == 0:
+                unego_question = unego_get_question(center_type, unego_count-1, defined=False)
+            else:
+                unego_question = unego_get_question(center_type, unego_count-1, defined=True)
+
+            dispatcher.utter_message(unego_question[0])
+            dispatcher.utter_message(unego_question[1])
+
+            return [SlotSet('bot_question', unego_question[1]), SlotSet("is_question", 0),
+                SlotSet("center_question", True), SlotSet("is_sentiment", True), SlotSet("unego_count", unego_count)]
+
+        return [SlotSet("is_question", 0),SlotSet("center_type", center_type), SlotSet("center_step", center_step + 1),
+                SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True),
+                SlotSet("unego_count", 0), FollowupAction(name="action_more")]
+
 class ActionTypeQuestion(Action):
     def name(self):
         return "action_type_question"
@@ -363,9 +409,9 @@ class ActionTypeQuestion(Action):
         dispatcher.utter_message(answer)
 
         buttons = []
-        buttons.append({"title": f'궁금증이 풀렸어요!', "payload": "/leading_more"})
-        buttons.append({"title": f'아뇨! 다른 질문도 할래요', "payload": "/leading_type_question"})
-        dispatcher.utter_message(f'궁금증이 풀리셨나요?', buttons=buttons)
+        buttons.append({"title": f'괜찮아요', "payload": "/leading_more"})
+        buttons.append({"title": f'다른 질문도 할래요!', "payload": "/leading_type_question"})
+        dispatcher.utter_message(f'다른 질문있나요?', buttons=buttons)
 
 class ActionStrategyQuestion(Action):
     def name(self):
@@ -391,6 +437,6 @@ class ActionStrategyQuestion(Action):
         dispatcher.utter_message(answer)
 
         buttons = []
-        buttons.append({"title": f'궁금증이 풀렸어요!', "payload": "/leading_more"})
-        buttons.append({"title": f'아뇨! 다른 질문도 할래요', "payload": "/leading_type_question"})
-        dispatcher.utter_message(f'궁금증이 풀리셨나요?', buttons=buttons)
+        buttons.append({"title": f'괜찮아요', "payload": "/leading_more"})
+        buttons.append({"title": f'다른 질문도 할래요!', "payload": "/leading_type_question"})
+        dispatcher.utter_message(f'다른 질문있나요?', buttons=buttons)

@@ -113,6 +113,8 @@ entities:
   - center_type #무현 추가
   - center_question #무현 추가
   - context_index # 무현 추가
+  - unego_count # 무현 추가
+  - sentiment_result # 무현 추가
 
 slots:
   select_metadata:
@@ -187,6 +189,16 @@ slots:
     influence_conversation: false
   is_finished:
     type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
+    auto_fill: true
+    influence_conversation: false
+  unego_count:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
+    auto_fill: true
+    influence_conversation: false
+  sentiment_result:
+    type: rasa.shared.core.slots.TextSlot # 0:중립, 1:긍정, 2:부정
     initial_value: 0
     auto_fill: true
     influence_conversation: false
