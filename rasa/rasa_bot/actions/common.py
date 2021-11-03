@@ -45,7 +45,7 @@ def koelectra_qa_getanswer(context, question):
 
     inputs = tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
     input_ids = inputs["input_ids"].tolist()[0]
-    answer_start_scores, answer_end_scores = model(**inputs)
+    answer_start_scores, answer_end_scores = model(**inputs, return_dict=False)
     answer_start = torch.argmax(
         answer_start_scores
     )  # Get the most likely beginning of answer with the argmax of the score
