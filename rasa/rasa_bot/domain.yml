@@ -95,6 +95,10 @@ intents:
       use_entities: false
   - center_detail_intro: # 무현추가
       use_entities: false
+  - leading_masterbot_more:
+      use_entities: false
+  - leading_drop_center:
+      use_entities: false
 
 entities:
   - id
@@ -241,7 +245,8 @@ actions:
   - action_step
   - action_more
   - action_center_detail_intro
-  - action_masterbot_more
+  - action_masterbot_more # 추후 삭제
+  - action_drop_center #추후 삭제
 ###위에2추가
 
 forms: {}
