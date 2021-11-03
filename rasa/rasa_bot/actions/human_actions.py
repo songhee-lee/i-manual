@@ -9,33 +9,12 @@ from rasa_sdk.events import FollowupAction
 
 logger = logging.getLogger(__name__)
 
-
-
 class ActionLastMessage(Action):
     def name(self) -> Text:
         return "action_last_message"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_last_message')
-
-        #metadata = extract_metadata_from_tracker(tracker)
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
-
-        buttons = []
-        buttons.append({"title": "예", "payload": "/last_message_response{\"result\":\"yes\"}"})
-        buttons.append({"title": "아니오", "payload": "/last_message_response{\"result\":\"no\"}"})
-
-        dispatcher.utter_message(
-            f'지금까지 {metadata["pn"]}님과 좀더 나답게 살 수 있는 방법에 대해 알아보았는데, 만족스러우셨나요?', buttons=buttons)
-        return []
-
-class ActionLastMessageResponse(Action):
-    def name(self) -> Text:
-        return "action_last_message_response"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        print('action_last_message_response')
 
         response = tracker.get_slot('result')
         print(response)
@@ -81,23 +60,6 @@ class ActionGoodbye(Action):
 
         return []
 
-#class ActionContinue(Action):
-#    def name(self) -> Text:
-#        return "action_continue"
-#
-#    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#        entities = tracker.latest_message['entities']
-#        global step
-#
-#        step = tracker.get_slot('step')
-#        if step is None:
-#            step = 1
-#
-#        print(step)
-#
-#        #return [SlotSet('step', step + 1), ActionLeadingPart1(self).run(dispatcher,Tracker,Dict[Text,Any])]
-#        # dispatcher.utter_message("로케이션 세팅 완료!")
-
 class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터 설명할지
     def name(self) -> Text:
         return "action_masterbot"
@@ -127,19 +89,42 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         
             dispatcher.utter_message("다시 듣고 싶은 항목을 선택해 주세요", buttons=buttons)
         else:
-            if leading_priority[step - 1] == 3 and center_step < 9:
-                return [FollowupAction(name='action_leading_centers_intro')]
+            buttons = []
+            buttons.append({"title": "네 이어서 들을래요", "payload": "/leading_masterbot_more"})
+            buttons.append({"title": "아뇨! 처음부터 들을래요", "payload": "/initialized"})
+
+            dispatcher.utter_message("지난번에 이어서 들으시겠어요?", buttons=buttons)
+        return []
+        # dispatcher.utter_message("로케이션 세팅 완료!")
+
+
+class ActionMasterbotMore(Action):  # 수정필요 entity를 통해 어디부분부터 설명할지
+    def name(self) -> Text:
+        return "action_masterbot_more"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        entities = tracker.latest_message['entities']
+
+        # metadata = extract_metadata_from_tracker(tracker)
+        select_metadata = tracker.get_slot('select_metadata')
+        metadata = extract_metadata_from_data(select_metadata)
+
+        leading_priority = tracker.get_slot("leading_priority")
+        step = tracker.get_slot("step")
+        center_step = tracker.get_slot('center_step')
+        if leading_priority[step - 1] == 3 and center_step < 9:
+            return [FollowupAction(name='action_leading_centers_intro')]
+        else:
+            if step == 4:
+                return [SlotSet('is_finished', 1), FollowupAction(name='action_last_message')]
             else:
-                if step == 4:
-                    return [SlotSet('is_finished', 1), FollowupAction(name='action_last_message')]
-                else:
-                    if leading_priority[step] == 0:
-                        return [FollowupAction(name='action_leading_type_intro')]
-                    elif leading_priority[step] == 1:
-                        return [FollowupAction(name='action_leading_profile_intro')]
-                    elif leading_priority[step] == 2:
-                        return [FollowupAction(name='action_leading_definition_intro')]
-                    elif leading_priority[step] == 3:
-                        return [FollowupAction(name='action_leading_centers_intro')]
-        return [SlotSet('center_step', 0)]
+                if leading_priority[step] == 0:
+                    return [FollowupAction(name='action_leading_type_intro')]
+                elif leading_priority[step] == 1:
+                    return [FollowupAction(name='action_leading_profile_intro')]
+                elif leading_priority[step] == 2:
+                    return [FollowupAction(name='action_leading_definition_intro')]
+                elif leading_priority[step] == 3:
+                    return [FollowupAction(name='action_leading_centers_intro')]
+        return []
         # dispatcher.utter_message("로케이션 세팅 완료!")

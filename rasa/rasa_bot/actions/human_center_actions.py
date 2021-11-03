@@ -32,11 +32,11 @@ class ActionLeadingCentersIntro(Action):
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
-        center_type = tracker.get_slot('center_type')
+        center_type = center_priority[center_step]
         if center_step == 9:
-            return [FollowupAction(name="action_more")]
+            return [FollowupAction(name="action_more"), SlotSet("center_step", 0)]
         is_finished = tracker.get_slot('is_finished')
-        if is_finished == 1:
+        if is_finished == True:
             if center_step == 0:
                 dispatcher.utter_message(
                     f'그럼 센터에 대해 다시 알려드릴게요!'
@@ -459,7 +459,7 @@ class ActionLeadingCenters(Action):
 
         dispatcher.utter_message(f'당신의 {center_name}에 대해 이해가 되었나요?')
         return [SlotSet("is_question", 0), SlotSet("center_type", h_center), SlotSet("center_step", center_step),
-                SlotSet("center_question", 1), SlotSet("step", step), SlotSet("is_sentiment", 1),
+                SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True),
                 FollowupAction(name="action_question_intro")]
 
 
@@ -476,7 +476,7 @@ class ActionLeadingCentersQuestion(Action):
         print("MetaData: ", metadata)
         step = tracker.get_slot('step')
 
-        return [SlotSet('step', step), SlotSet("center_question", 0), FollowupAction(name='action_more')]
+        return [SlotSet('step', step), SlotSet("center_question", False), FollowupAction(name='action_more')]
 
 
 class ActionCenterDetailIntro(Action):
@@ -541,3 +541,9 @@ class ActionCenterDetailIntro(Action):
             dispatcher.utter_message("당신의 좋은 모습을 이해할 수 있겠죠? 좋지 않은 모습에 대해서도 알려줄까요?", buttons=buttons)
 
         return []
+#class ActionCenterMore(Action):
+#    def name(self) -> Text:
+#        return "action_center_more"
+
+#    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#        print('action_center_more')

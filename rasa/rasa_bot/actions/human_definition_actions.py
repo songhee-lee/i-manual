@@ -193,7 +193,7 @@ class ActionLeadingDefinition(Action):
 
         #마지막 센터에 밑에 주석 제거
         buttons = []
-        buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":1}"})
+        buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\"}"})
         buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_more"})
 
         dispatcher.utter_message(
