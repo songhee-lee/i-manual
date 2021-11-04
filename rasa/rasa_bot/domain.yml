@@ -121,11 +121,11 @@ entities:
   - sentiment_result # 무현 추가
 
 slots:
-  select_metadata:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: 1
-    auto_fill: true
-    influence_conversation: false
+#  select_metadata:
+#    type: rasa.shared.core.slots.TextSlot
+#    initial_value: 1
+#    auto_fill: true
+#    influence_conversation: false
   center_priority:
     type: list
     initial_value: null
@@ -206,7 +206,36 @@ slots:
     initial_value: 0
     auto_fill: true
     influence_conversation: false
-
+  pn:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  t:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  p:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  d:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  ct:
+    type: list
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  se:
+    type: list
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
 responses:
   utter_default:
     - text: 잘 못 알아들었어요! 다시 말씀해주실 수 있을까요?
@@ -218,6 +247,7 @@ actions:
   - utter_default
   - action_initialized
   - action_set_metadata #추후 삭제
+  - action_set_metadata2 #추후 삭제
   - action_goodbye
   - action_leading_more #선택시 필요?
   - action_last_message
