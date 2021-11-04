@@ -204,7 +204,8 @@ stories:
     steps:
       - intent: start
       - action: action_set_metadata
-      - action: action_set_priority
+#      - action: action_set_metadata2
+#      - action: action_set_priority
 
 # 추후 삭제
   - story: masterbot_more
@@ -216,3 +217,8 @@ stories:
     steps:
       - intent: leading_drop_center
       - action: action_drop_center
+# 추후 삭제
+  - story: get_user
+    steps:
+      - intent: get_user
+      - action: action_set_metadata2
