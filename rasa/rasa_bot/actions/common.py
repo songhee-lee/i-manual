@@ -2,7 +2,12 @@ from transformers import BertTokenizer, BertForQuestionAnswering, AutoConfig
 import torch
 import pandas as pd
 import random
+from pymongo import MongoClient 
 
+# MongoDB setting
+my_client = MongoClient("mongodb://localhost:27017/")
+mydb = my_client['i-Manual'] # i-Manaul database 생성
+mycol = mydb['users'] # users Collection 생성
 
 model_path = "songhee/i-manual-mbert"
 config = AutoConfig.from_pretrained(model_path)
@@ -31,6 +36,8 @@ def extract_metadata_from_data(tracker): #추후 삭제이후 각 파일의 impo
     #    metadata = {"pn": "001", "ct": [1, 1, 1, 0, 0, 1, 1, 1, 0], "se": [2, 1, 6, 0], "t": 1, "p": 35, "d": 1}
     #else:
     #    metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "se": [1, 2, 0, 6], "t": 3, "p": 52, "d": 3}
+    #uId = tracker.get_slot("displayId")
+    #dt = tracker.get_slot("birthdayUtc")
     pn = tracker.get_slot("pn")
     t = tracker.get_slot("t")
     p = tracker.get_slot("p")
@@ -48,8 +55,19 @@ def extract_metadata_from_tracker(tracker):
 
     return user_events[-1]['metadata']
 
-def koelectra_qa_getanswer(context, question):
+def koelectra_qa_getanswer(context, question, metadata=None):
+    # Mongo DB
+        # check a user if he is new user
+    x = mycol.find_one({"displayName":metadata["pn"]})
+    if not x:
+		#x = mycol.insert_one({"displayId":metadata["uId"], "displayName":metadata["pn"], "birthdayUtc":metadata["dt"], "type": metadata["t"], "profile":metadata["p"], "definition":metadata["d"], "centers":metadata["ct"],"questions":[]})
+        x = mycol.insert_one({"displayName":metadata["pn"], "type": metadata["t"], "profile":metadata["p"], "definition":metadata["d"], "centers":metadata["ct"],"questions":[]})
 
+        # add user question
+    if metadata != None:
+        #mycol.update({"displayId":metadata["uId"]}, {"$addToSet" :{"questions":question}})
+        mycol.update({"displayName":metadata["pn"]}, {"$addToSet" :{"questions":question}})
+        
     inputs = tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
     input_ids = inputs["input_ids"].tolist()[0]
     answer_start_scores, answer_end_scores = model(**inputs, return_dict=False)
