@@ -19,8 +19,9 @@ class ActionLeadingTypeIntro(Action):
 
         #metadata = extract_metadata_from_tracker(tracker)
 
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
@@ -77,7 +78,7 @@ class ActionLeadingTypeIntro(Action):
             msg_3 = "즉, 당신이 원하는 것을 즉시 표현하고 드러내고 실행하고 실체화시킬 수 있는 에너지를 가졌다는 것입니다. 다만, 어떻게 하면 사람들과 더 조화롭게 지낼 수 있을지에 대해서는 약간 어려움을 느낄 수도 있고, 자주 크고 작은 마찰을 겪었을지도 모르겠네요."
         elif metadata["t"] == 3:
             h_type = "가이드 종족"
-            img = "https://asset.i-manual.co.kr/static/images/share/profile/type_3M.png"
+            img = "https://asset.i-manual.co.kr/static/images/share/profile/type_3.png"
             msg_1 = "당신과 같은 능력을 가진 사람들을 가이드 종족 또는 프로젝터(Projector) 종족이라고 부릅니다. 즉, 다른 사람들의 마음을 읽고 그들을 잘 가이드 할 수 있다는 의미에서의 가이드입니다. 또는 다른 사람의 속마음을 투사할 수 있는 능력이 있다는 점에서 프로젝터라고 불리기도 합니다. "
             msg_2 = '다만 가이드 종족은 언제나 그 길이 보이지만, 상대방의 입장에서는 내가 원하지도 않았는데 나를 꿰뚫어보는 느낌이 달갑지 않을 수 있기 때문에, 초대가 없이 먼저 나서서 달려들면 환영받지 못하거나, 기껏 다 도와주고서도 보상이나 좋은 말을 듣기는커녕 시기나 질투, 비아냥거림의 희생자가 될 수도 있습니다. '
 
@@ -132,8 +133,9 @@ class ActionLeadingType(Action):
 
         #metadata = extract_metadata_from_tracker(tracker)
 
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         leading_priority = tracker.get_slot('leading_priority')
 
@@ -191,8 +193,9 @@ class ActionLeadingTypeQuestion(Action):
         print('action_leading_type_question')
         # metadata = extract_metadata_from_tracker(tracker)
 
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         leading_priority = tracker.get_slot('leading_priority')
 

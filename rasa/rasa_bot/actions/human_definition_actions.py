@@ -18,8 +18,9 @@ class ActionLeadingDefinitionIntro(Action):
         print('action_leading_definition_intro')
 
         # metadata = extract_metadata_from_tracker(tracker)
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
@@ -129,8 +130,9 @@ class ActionLeadingDefinition(Action):
 
         # metadata = extract_metadata_from_tracker(tracker)
 
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')

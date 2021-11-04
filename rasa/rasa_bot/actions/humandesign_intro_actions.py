@@ -12,10 +12,43 @@ class ActionSetMetadata(Action):
     def name(self):
         return "action_set_metadata"
 
-    def run(selfself, dispatcher, tracker, domain):
+    def run(self, dispatcher, tracker, domain):
         print('action_set_metadata')
-        return [SlotSet('select_metadata', 22)]
+        dispatcher.utter_message(f'내담자님의 정보를 입력해주세요')
+        return [FollowupAction(name='action_listen')]
+        #return [SlotSet('select_metadata', 1)] #10개의 특별한 케이스
 
+class ActionSetMetadata2(Action):
+    def name(self):
+        return "action_set_metadata2"
+
+    def run(self, dispatcher, tracker, domain):
+        print('action_set_metadata2')
+        user_text = tracker.latest_message['text']
+        user_text = user_text.split("/")
+        if user_text[1]=="에너자이저":
+            user_text[1]=0
+        elif user_text[1]=="스피드 에너자이저" or user_text[1]=="스피드에너자이저":
+            user_text[1]=1
+        elif user_text[1]=="혁신주도가" or user_text[1]=="매니페스터":
+            user_text[1]=2
+        elif user_text[1]=="가이드":
+            user_text[1]=3
+        elif user_text[1]=="거울":
+            user_text[1]=4
+        user_text[2] = int(user_text[2])
+        user_text[3] = int(user_text[3])
+        user_text[4] = user_text[4].split(',')
+        user_text[4] = list(map(int, user_text[4]))
+        user_text[5] = user_text[5].split(',')
+        user_text[5] = list(map(int, user_text[5]))
+        print("pn = ", user_text[0])
+        print("t = ", user_text[1])
+        print("p = ", user_text[2])
+        print("d = ", user_text[3])
+        print("ct = ", user_text[4])
+        print("se = ", user_text[5])
+        return [FollowupAction(name='action_set_priority'), SlotSet("pn", user_text[0]), SlotSet("t", user_text[1]), SlotSet("p", user_text[2]), SlotSet("d", user_text[3]), SlotSet("ct", user_text[4]), SlotSet("se", user_text[5])]
 class ActionSetPriority(Action): #맨 처음
     def name(self):
         return "action_set_priority"
@@ -24,8 +57,9 @@ class ActionSetPriority(Action): #맨 처음
         print('action_set_priority')
         #metadata = extract_metadata_from_tracker(tracker)
 
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         #이후 action_set_priority를 초기 action으로 한 뒤 주석 제거
         #dispatcher.utter_message(
@@ -120,8 +154,12 @@ class ActionMore(Action):
         print('action_more')
         leading_priority = tracker.get_slot('leading_priority')
 
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #metadata = extract_metadata_from_tracker(tracker)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+
+        metadata = extract_metadata_from_data(tracker)
+
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
@@ -170,8 +208,11 @@ class ActionDropCenter(Action):
         print('action_drop_center')
         leading_priority = tracker.get_slot('leading_priority')
 
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+
+        metadata = extract_metadata_from_data(tracker)
+
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')

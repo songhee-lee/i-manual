@@ -134,8 +134,9 @@ class ActionQuestion(Action):
 
         #metadata = extract_metadata_from_tracker(tracker)
 
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
@@ -166,8 +167,9 @@ class ActionDefaultFallback(Action):
 
         #metadata = extract_metadata_from_tracker(tracker)
 
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         user_reponse_type = 0
         # 질문인지 아닌지(0이면 질문아님, 1이면 질문)
@@ -306,8 +308,9 @@ class ActionQuestionIntro(Action):
         print('action_question_intro')
         #metadata = extract_metadata_from_tracker(tracker)
 
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         human_types = ["에너자이저 종족", "스피드 에너자이저 종족", "혁신주도가 종족", "가이드 종족", "거울 종족"]
         human_definition = ["절전모드", "한 묶음 흐름", "두 묶음 흐름", "세 묶음 흐름", "네 묶음 흐름"]
@@ -367,8 +370,10 @@ class ActionCenterUnegoQuestion(Action):
         print('action_center_unego_question')
         human_center = ["연료센터", "활력센터", "직관센터", "감정센터", "에고센터", "방향센터", "표현센터", "생각센터", "영감센터"]
         # metadata = extract_metadata_from_tracker(tracker)
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
+
         center_type = tracker.get_slot("center_type")
         center_step = tracker.get_slot("center_step")
         # 비자아 질문 개수 확인
@@ -405,8 +410,9 @@ class ActionTypeQuestion(Action):
         print('action_type_question')
         #metadata = extract_metadata_from_tracker(tracker)
 
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         type_index = metadata["t"]
         question = tracker.get_slot("bot_question")
@@ -431,8 +437,9 @@ class ActionStrategyQuestion(Action):
         print('action_strategy_question')
         #metadata = extract_metadata_from_tracker(tracker)
 
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         type_index = metadata["t"]
         question = tracker.get_slot("bot_question")

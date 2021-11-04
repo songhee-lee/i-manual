@@ -24,8 +24,10 @@ class ActionLeadingCentersIntro(Action):
         definedCnt = 0
 
         # metadata = extract_metadata_from_tracker(tracker)
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
+
         print("MetaData: ", metadata)
 
         leading_priority = tracker.get_slot('leading_priority')
@@ -317,8 +319,10 @@ class ActionLeadingCenters(Action):
         definedCnt = 0
 
         # metadata = extract_metadata_from_tracker(tracker)
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
+
         print("MetaData: ", metadata)
 
         leading_priority = tracker.get_slot('leading_priority')
@@ -471,8 +475,10 @@ class ActionLeadingCentersQuestion(Action):
         print('action_leading_centers_question')
 
         # metadata = extract_metadata_from_tracker(tracker)
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
+
         print("MetaData: ", metadata)
         step = tracker.get_slot('step')
 
@@ -487,8 +493,9 @@ class ActionCenterDetailIntro(Action):
         print('action_center_detail_intro')
         # 자세히 설명하기 위한 인트로 (센터별로 다르기때문에 새로 구현)
         # metadata = extract_metadata_from_tracker(tracker)
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         center_step = tracker.get_slot("center_step")
         center_priority = tracker.get_slot('center_priority')

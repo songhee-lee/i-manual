@@ -19,8 +19,10 @@ class ActionLastMessage(Action):
         response = tracker.get_slot('result')
         print(response)
         #metadata = extract_metadata_from_tracker(tracker)
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
+
         # if response == 'yes':
         #     dispatcher.utter_message(
         #         f'다행이예요! 앞으로도 쭉 나답게 잘 살기를 바라요! 잊을만하면 다시 찾아와주세요.')
@@ -50,8 +52,10 @@ class ActionGoodbye(Action):
         print('action_goodbye')
 
         #metadata = extract_metadata_from_tracker(tracker)
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
+
         dispatcher.utter_message(
             f'그럼 {metadata["pn"]}님, 다음에 한번 들러주세요! :) ')
 
@@ -68,8 +72,9 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         entities = tracker.latest_message['entities']
         
         #metadata = extract_metadata_from_tracker(tracker)
-        select_metadata = tracker.get_slot('select_metadata')
-        metadata = extract_metadata_from_data(select_metadata)
+        #select_metadata = tracker.get_slot('select_metadata')
+        #metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
@@ -108,6 +113,7 @@ class ActionMasterbotMore(Action):  # 수정필요 entity를 통해 어디부분
         # metadata = extract_metadata_from_tracker(tracker)
         select_metadata = tracker.get_slot('select_metadata')
         metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
 
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
