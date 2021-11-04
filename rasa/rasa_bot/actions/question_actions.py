@@ -193,6 +193,7 @@ class ActionDefaultFallback(Action):
         center_step = tracker.get_slot("center_step")
         # tracker 에서 필요한 변수 load
         leading_priority = tracker.get_slot('leading_priority')
+        center_priority = tracker.get_slot("center_priority")
         center_type = tracker.get_slot('center_type')
         step = tracker.get_slot("step")
         unego_count = tracker.get_slot("unego_count")
@@ -217,6 +218,103 @@ class ActionDefaultFallback(Action):
             # QA 모듈
             answer = koelectra_qa_getanswer(context, user_text)
             print(answer)
+
+            qa_step=""
+            if q_type==0:
+                if metadata["t"]==0:
+                    qa_step = "종족(에너자이저)"
+                elif metadata["t"]==1:
+                    qa_step = "종족(스피드 에너자이저)"
+                elif metadata["t"]==2:
+                    qa_step = "종족(혁신주도가)"
+                elif metadata["t"]==3:
+                    qa_step = "종족(가이드)"
+                elif metadata["t"]==4:
+                    qa_step = "종족(거울)"
+            elif q_type==1:
+                if metadata["p"]==13:
+                    qa_step = "프로파일(1/3)"
+                elif metadata["p"]==14:
+                    qa_step = "프로파일(1/4)"
+                elif metadata["p"]==24:
+                    qa_step = "프로파일(2/4)"
+                elif metadata["p"]==25:
+                    qa_step = "프로파일(2/5)"
+                elif metadata["p"]==35:
+                    qa_step = "프로파일(3/5)"
+                elif metadata["p"]==36:
+                    qa_step = "프로파일(3/6)"
+                elif metadata["p"]==41:
+                    qa_step = "프로파일(4/1)"
+                elif metadata["p"]==46:
+                    qa_step = "프로파일(4/6)"
+                elif metadata["p"]==51:
+                    qa_step = "프로파일(5/1)"
+                elif metadata["p"]==52:
+                    qa_step = "프로파일(5/2)"
+                elif metadata["p"]==62:
+                    qa_step = "프로파일(6/2)"
+                elif metadata["p"]==63:
+                    qa_step = "프로파일(6/3)"
+            elif q_type==2:
+                if metadata["d"]==0:
+                    qa_step = "에너지 흐름(절전모드)"
+                elif metadata["d"]==1:
+                    qa_step = "에너지 흐름(한묶음 흐름)"
+                elif metadata["d"]==2:
+                    qa_step = "에너지 흐름(두묶음 흐름)"
+                elif metadata["d"]==3:
+                    qa_step = "에너지 흐름(세묶음 흐름)"
+                elif metadata["d"]==4:
+                    qa_step = "에너지 흐름(네묶음 흐름)"
+
+            elif q_type==3:
+                if center_priority[center_step]==0 and metadata["ct"][0] == 0:
+                    qa_step = "연료센터(미정의)"
+                elif center_priority[center_step]==0 and metadata["ct"][0] == 1:
+                    qa_step = "연료센터(정의)"
+
+                elif center_priority[center_step]==1 and metadata["ct"][1] == 0:
+                    qa_step = "활력센터(미정의)"
+                elif center_priority[center_step]==1 and metadata["ct"][1] == 1:
+                    qa_step = "활력센터(정의)"
+
+                elif center_priority[center_step]==2 and metadata["ct"][2] == 0:
+                    qa_step = "직관센터(미정의)"
+                elif center_priority[center_step]==2 and metadata["ct"][2] == 1:
+                    qa_step = "직관센터(정의)"
+
+                elif center_priority[center_step]==3 and metadata["ct"][3] == 0:
+                    qa_step = "감정센터(미정의)"
+                elif center_priority[center_step]==3 and metadata["ct"][3] == 1:
+                    qa_step = "감정센터(정의)"
+
+                elif center_priority[center_step]==4 and metadata["ct"][4] == 0:
+                    qa_step = "에고센터(미정의)"
+                elif center_priority[center_step]==4 and metadata["ct"][4] == 1:
+                    qa_step = "에고센터(정의)"
+
+                elif center_priority[center_step]==5 and metadata["ct"][5] == 0:
+                    qa_step = "방향센터(미정의)"
+                elif center_priority[center_step]==5 and metadata["ct"][5] == 1:
+                    qa_step = "방향센터(정의)"
+
+                elif center_priority[center_step]==6 and metadata["ct"][6] == 0:
+                    qa_step = "표현센터(미정의)"
+                elif center_priority[center_step]==6 and metadata["ct"][6] == 1:
+                    qa_step = "표현센터(정의)"
+
+                elif center_priority[center_step] == 7 and metadata["ct"][7] == 0:
+                    qa_step = "생각센터(미정의)"
+                elif center_priority[center_step] == 7 and metadata["ct"][7] == 1:
+                    qa_step = "생각센터(정의)"
+
+                elif center_priority[center_step] == 8 and metadata["ct"][8] == 0:
+                    qa_step = "영감센터(미정의)"
+                elif center_priority[center_step] == 8 and metadata["ct"][8] == 1:
+                    qa_step = "영감센터(정의)"
+
+            print("qa_step = ", qa_step)
 
         else:
             if is_sentiment:
