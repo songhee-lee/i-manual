@@ -56,17 +56,15 @@ def extract_metadata_from_tracker(tracker):
     return user_events[-1]['metadata']
 
 def koelectra_qa_getanswer(context, question, metadata=None):
-    # Mongo DB
-        # check a user if he is new user
-    x = mycol.find_one({"displayName":metadata["pn"]})
-    if not x:
-		#x = mycol.insert_one({"displayId":metadata["uId"], "displayName":metadata["pn"], "birthdayUtc":metadata["dt"], "type": metadata["t"], "profile":metadata["p"], "definition":metadata["d"], "centers":metadata["ct"],"questions":[]})
-        x = mycol.insert_one({"displayName":metadata["pn"], "type": metadata["t"], "profile":metadata["p"], "definition":metadata["d"], "centers":metadata["ct"],"questions":[]})
-
-        # add user question
+    # Mongo DB 
     if metadata != None:
-        #mycol.update({"displayId":metadata["uId"]}, {"$addToSet" :{"questions":question}})
-        mycol.update({"displayName":metadata["pn"]}, {"$addToSet" :{"questions":question}})
+	# check a user if he is new user
+    	x = mycol.find_one({"displayName":metadata["pn"]})
+    	if not x:
+		x = mycol.insert_one({"displayName":metadata["pn"], "type": metadata["t"], "profile":metadata["p"], "definition":metadata["d"], "centers":metadata["ct"],"questions":[]})
+
+	# add user question
+    	mycol.update({"displayName":metadata["pn"]}, {"$addToSet" :{"questions":question}})
         
     inputs = tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
     input_ids = inputs["input_ids"].tolist()[0]
