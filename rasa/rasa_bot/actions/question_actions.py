@@ -227,17 +227,17 @@ class ActionDefaultFallback(Action):
                     user_reponse_type=2
                 else:
                     user_reponse_type = sentiment_predict(question, user_text)
-                    
+
                 if user_reponse_type == 0:
                     print("중립")
-                elif user_reponse_type == 1:
+                elif user_reponse_type == 1: #긍정
                     if question not in opposite_question:
                         print("비자아")
                         sentiment_result -= 1
                     else:
                         print("자아")
                         sentiment_result +=1
-                elif user_reponse_type == 2:
+                elif user_reponse_type == 2: #부정
                     if question not in opposite_question:
                         print("자아")
                         sentiment_result += 1
