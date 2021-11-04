@@ -208,33 +208,33 @@ class ActionDefaultFallback(Action):
 
         else:
             if is_sentiment:
-                # 0:중립, 1:긍정, 2:부정
+                # 0:중립, 1:비자아, 2:자아
                 user_reponse_type = sentiment_predict(question, user_text)
                 if user_reponse_type == 0:
                     print("중립")
                 elif user_reponse_type == 1:
-                    print("긍정")
-                    sentiment_result += 1
-                elif user_reponse_type == 2:
-                    print("부정")
+                    print("비자아")
                     sentiment_result -= 1
+                elif user_reponse_type == 2:
+                    print("자아")
+                    sentiment_result += 1
 
 
         # 올바른 질문이 아닌경우
         if is_question and answer == "":
             # 다시 action_default_fallback으로 넘어오는 분기 필요!!
-            answer = "질문을 잘 못 알아들었어요"
+            answer = "잘 이해할 수 없습니다. 궁금한 게 있으시면 아이매뉴얼을 읽어보세요!"
 
             dispatcher.utter_message(answer)
             buttons = []
             if center_question == 1:
                 buttons.append(
-                    {"title": f'질문', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
+                    {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
             else:
                 buttons.append(
-                    {"title": f'질문', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
-            buttons.append({"title": f'괜찮아요', "payload": "/leading_more"})
-            dispatcher.utter_message("다시 질문하고 싶으시면 질문 버튼을 클릭해주세요!", buttons=buttons)
+                    {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+            buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
+            dispatcher.utter_message("질문이 있나요?", buttons=buttons)
             return [SlotSet("step", step)]
 
         # QA이면
@@ -244,15 +244,16 @@ class ActionDefaultFallback(Action):
             print("after QA center question", center_question)
             if center_question==1:
                 qa_buttons.append(
-                    {"title": f'괜찮아요', "payload": "/center_unego_question{\"is_question\":0, \"center_question\":0}"})
+                    {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
                 qa_buttons.append(
-                    {"title": f'다른 질문도 할래요!', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
+                    {"title": f'질문 없어요', "payload": "/center_unego_question{\"is_question\":0, \"center_question\":0}"})
             # 센터 질문이 아니면
             else:
                 qa_buttons.append(
-                    {"title": f'괜찮아요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
+                    {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
                 qa_buttons.append(
-                    {"title": f'다른 질문도 할래요!', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+                    {"title": f'질문 없어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
+
 
             dispatcher.utter_message(f'{answer}')
             dispatcher.utter_message(f'다른 질문있나요?', buttons=qa_buttons)
@@ -269,13 +270,12 @@ class ActionDefaultFallback(Action):
                     else:
                         unego_question = unego_get_question(center_type, unego_count-1, defined=True)
 
-                    # 자아인 경우(중립, 부정)
-                    if sentiment_result <= 0:
+                    # 자아인 경우
+                    if sentiment_result > 0:
                         dispatcher.utter_message("좋아요! 나 답게 잘 살고 있어요!!")
                         answer = unego_question[1]
-                    # 비자아인 경우(긍정)
+                    # 비자아 혹은 중립인 경우
                     else:
-
                         dispatcher.utter_message("주의! 나다움을 잃고 있어요!")
                         answer = unego_question[2]
 
@@ -287,14 +287,14 @@ class ActionDefaultFallback(Action):
                 notice_buttons = []
                 if center_question == 1:
                     notice_buttons.append(
-                        {"title": f'질문', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
+                        {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
                 else:
                     notice_buttons.append(
-                        {"title": f'질문', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+                        {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
 
-                notice_buttons.append({"title": f'괜찮아요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
+                notice_buttons.append({"title": f'질문 없어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
-                notice = '''지금은 채팅하실 수 없습니다. 혹시 질문 있으신가요?'''
+                notice = '''지금은 채팅하실 수 없습니다. 혹시 질문이 있나요?'''
                 dispatcher.utter_message(f'{notice}', buttons=notice_buttons)
 
 

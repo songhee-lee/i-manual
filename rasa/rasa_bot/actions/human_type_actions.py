@@ -209,8 +209,6 @@ class ActionLeadingTypeQuestion(Action):
                             "payload": "/type_question{\"bot_question\":\"힘들 때 어떻게 해야 하나요?\", \"context_index\": 1}"})
             buttons.append({"title": f'에너자이저의 전략은 뭔가요?',
                             "payload": "/strategy_question{\"bot_question\":\"에너자이저의 전략은 뭔가요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'어떤 질문을 해야 되나요?',
-                            "payload": "/strategy_question{\"bot_question\":\"어떤 질문을 해야 되나요?\", \"context_index\": 0}"})
             buttons.append({"title": f'에너자이저 아이는 어떻게 키워야 하나요?',
                             "payload": "/strategy_question{\"bot_question\":\"에너자이저 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
         elif metadata["t"] == 1:
@@ -221,8 +219,6 @@ class ActionLeadingTypeQuestion(Action):
                             "payload": "/type_question{\"bot_question\":\"힘들 때 어떻게 해야 하나요?\", \"context_index\": 1}"})
             buttons.append({"title": f'스피드 에너자이저의 전략은 뭔가요?',
                             "payload": "/strategy_question{\"bot_question\":\"스피드 에너자이저의 전략은 뭔가요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'어떤 질문을 해야 되나요?',
-                            "payload": "/strategy_question{\"bot_question\":\"어떤 질문을 해야 되나요?\", \"context_index\": 0}"})
             buttons.append({"title": f'스피드 에너자이저 아이는 어떻게 키워야 하나요?',
                             "payload": "/strategy_question{\"bot_question\":\"에너자이저 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
         elif metadata["t"] == 2:
