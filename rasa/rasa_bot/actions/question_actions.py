@@ -449,7 +449,7 @@ class ActionTypeQuestion(Action):
         print(step)
 
         context = type_retrieve_context(type_index, context_index=context_index)
-        answer = koelectra_qa_getanswer(context, question)
+        answer = koelectra_qa_getanswer(context, question, metadata=metadata)
         dispatcher.utter_message(answer)
 
         buttons = []
