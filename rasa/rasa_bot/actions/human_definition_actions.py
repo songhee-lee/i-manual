@@ -62,7 +62,7 @@ class ActionLeadingDefinitionIntro(Action):
             msg5 = "이 에너지 흐름을 가진 사람들은 인류의 1% 분포에 해당됩니다."
             tag = "카멜레온,무한한 잠재성,틈틈이 휴식할 것"
         elif metadata["d"] == 1:
-            h_type = "한 묶음 흐름"
+            h_type = "한 묶음 에너지 흐름"
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_1.png"
             msg = "당신은 다른 누구의 도움이 없이 혼자서도 잘 조화를 이루어 흐르는 에너지를 지니고 있습니다. "
             msg2 = "정의된 여러 개의 센터가 한 묶음으로 연결 되어있어 다른 사람을 통한 센터 연결이 필요 없습니다. "
@@ -71,7 +71,7 @@ class ActionLeadingDefinitionIntro(Action):
             msg5 = "하지만, 세상은 홀로 살아갈 수 없기에 사람들과 어떻게 관계하면 좋을지에 대해서는 다른 사람들로부터 지혜를 배우려고 노력하면 좋습니다."
             tag = "혼자서도 잘해요,조용하면 집중력 UP,홀로 공부할 것"
         elif metadata["d"] == 2:
-            h_type = "두 묶음 흐름"
+            h_type = "두 묶음 에너지 흐름"
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_2.png"
             msg = "당신의 에너지는 두 부분으로 나뉘어 흐르고 있습니다. 따라서 당신은 혼자 자기만의 공간에서 일이나 공부를 하기보다는 다양한 사람들의 에너지가 있는 카페나 도서관, 사무실 등에서 더욱 집중이 잘되고 효율적일 수 있습니다."
             msg2 = "당신은 다른 사람들에 대한 관심이 많기 때문에 인간관계가 무엇인가, 인간관계는 어떻게 하는 것인가에 대한 지혜를 갖고 있습니다."
@@ -85,7 +85,7 @@ class ActionLeadingDefinitionIntro(Action):
             msg3 = "하지만, 어느 특정한 사람과 지속적으로 깊은 관계를 이어갈 경우에는 뭔가 메여 있는 느낌을 받을 수도 있습니다."
             tag = "갈대같은 사람,한 곳에서 집중이 힘듦,자리를 바꿔 공부할 것"
         elif metadata["d"] == 4:
-            h_type = "네 묶음 흐름"
+            h_type = "네 묶음 에너지 흐름"
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_4.png"
             msg = "모든 사람들은 한 묶음부터 네 묶음까지 자신만의 에너지 흐름을 갖고 있습니다. 당신을 구성하고 있는 디자인 차트의 9개 센터들이 몇 개의 묶음으로 이루어졌는지를 말하는 것입니다. "
             msg2 = "당신은 인류의 1%에 해당하는 네 묶음 에너지 흐름을 갖고 태어난 아주 특별한 사람입니다. "
@@ -110,7 +110,7 @@ class ActionLeadingDefinitionIntro(Action):
         #                         "type": "arrContents", "content": [[msg, msg2], [msg3, msg4], [msg5]], "tags": f'{tag}'})
 
 
-        dispatcher.utter_message(f'자, {h_type}에 대해 이해가 되셨나요?')
+        dispatcher.utter_message(f'자, {h_type}에 대해 설명해 보았어요.')
 
         if leading_priority[0] == 2:
             return [SlotSet('step', 1), FollowupAction(name='action_question_intro')]
@@ -194,18 +194,13 @@ class ActionLeadingDefinition(Action):
         #                         "type": "arrContents", "content": [[msg, msg2], [msg3, msg4], [msg5]], "tags": f'{tag}'})
 
         #마지막 센터에 밑에 주석 제거
-        buttons = []
-        buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"True\"}"})
-        buttons.append({"title": f'아뇨 질문 없어요', "payload": "/leading_more"})
 
-        dispatcher.utter_message(
-             f'{h_type}에 대해 질문 있으신가요?', buttons=buttons)
         
         if leading_priority[0]==2:
-            return [SlotSet('step', 1)]
+            return [SlotSet('step', 1), FollowupAction(name='action_question_intro')]
         elif leading_priority[1]==2:
-            return [SlotSet('step', 2)]
+            return [SlotSet('step', 2), FollowupAction(name='action_question_intro')]
         elif leading_priority[2]==2:
-            return [SlotSet('step', 3)]
+            return [SlotSet('step', 3), FollowupAction(name='action_question_intro')]
         elif leading_priority[3]==2:
-            return [SlotSet('step', 4)]
+            return [SlotSet('step', 4), FollowupAction(name='action_question_intro')]

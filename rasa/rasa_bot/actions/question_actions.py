@@ -271,11 +271,12 @@ class ActionDefaultFallback(Action):
 
                     # 자아인 경우(중립, 부정)
                     if sentiment_result <= 0:
-                        dispatcher.utter_message("주의! 나다움을 잃고 있어요!")
+                        dispatcher.utter_message("좋아요! 나 답게 잘 살고 있어요!!")
                         answer = unego_question[1]
                     # 비자아인 경우(긍정)
                     else:
-                        dispatcher.utter_message("좋아요! 나 답게 잘 살고 있어요!!")
+
+                        dispatcher.utter_message("주의! 나다움을 잃고 있어요!")
                         answer = unego_question[2]
 
                     dispatcher.utter_message(answer)
@@ -343,17 +344,17 @@ class ActionQuestionIntro(Action):
 
         buttons = []
         if is_type:
-            buttons.append({"title": f'네. 질문 있어요', "payload": "/leading_type_question"})
+            buttons.append({"title": f'질문 있어요', "payload": "/leading_type_question"})
         else:
-            buttons.append({"title": f'네. 질문 있어요', "payload": "/question{\"is_question\":\"1\"}"})
+            buttons.append({"title": f'질문 있어요', "payload": "/question{\"is_question\":\"1\"}"})
 
         if is_center:
             if center_step == 9:
-                buttons.append({"title": f'아뇨. 질문 없어요', "payload": "/leading_centers_question"})
+                buttons.append({"title": f'질문 없어요', "payload": "/leading_centers_question"})
             else:
-                buttons.append({"title": f'아뇨. 질문 없어요', "payload": "/center_unego_question"})
+                buttons.append({"title": f'질문 없어요', "payload": "/center_unego_question"})
         else:
-            buttons.append({"title": f'아뇨. 질문 없어요', "payload": "/leading_more"})
+            buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
 
         dispatcher.utter_message("질문이 있나요?", buttons=buttons)
 
@@ -391,7 +392,7 @@ class ActionCenterUnegoQuestion(Action):
 
             # 조건화 질문 시작시 멘트
             if unego_count == 1:
-                dispatcher.utter_message(f"자, 다음의 질문에 답해보세요. 당신의 {human_center[center_type]}가 어떤 상태인지 알려드릴께요.")
+                dispatcher.utter_message(f"자, 다음의 질문에 답해보세요. 당신의 {human_center[center_type]}가 어떤 상태인지 알려줄께요.")
             # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아
             dispatcher.utter_message(unego_question[0])
 

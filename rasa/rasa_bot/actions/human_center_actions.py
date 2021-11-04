@@ -24,8 +24,8 @@ class ActionLeadingCentersIntro(Action):
         definedCnt = 0
 
         # metadata = extract_metadata_from_tracker(tracker)
-        #select_metadata = tracker.get_slot('select_metadata')
-        #metadata = extract_metadata_from_data(select_metadata)
+        # select_metadata = tracker.get_slot('select_metadata')
+        # metadata = extract_metadata_from_data(select_metadata)
         metadata = extract_metadata_from_data(tracker)
 
         print("MetaData: ", metadata)
@@ -43,84 +43,81 @@ class ActionLeadingCentersIntro(Action):
                 dispatcher.utter_message(
                     f'그럼 센터에 대해 다시 알려드릴게요!'
                 )
+        # 연료센터
+        if center_type == 0:
 
-        else:
-            if center_type == 0:
-                # 연료센터
-                if metadata['ct'][0] == 0:
-                    dispatcher.utter_message(
-                        f'당신은 그동안 주변환경이 주는 불편한 육체적 압박감을 느끼며 그것으로 인해 바쁘고 뭔가에 쫓기듯 살아오지는 않았나요?')
-                elif metadata['ct'][0] == 1:
-                    dispatcher.utter_message(
-                        f'당신은 자신만의 특별한 방식으로 스트레스를 컨트롤하고 오히려 그것을 원동력 삼아 세상으로 나아갈 수 있는 능력을 갖고 태어난 사람입니다. ')
-            elif center_type == 1:
-                # 활력센터
-                if metadata['ct'][1] == 0:
-                    dispatcher.utter_message(
-                        f'당신은 인류의 34%에 속하는 비교적 활력 에너지가 부족한 사람입니다.')
-                elif metadata['ct'][1] == 1:
-                    dispatcher.utter_message(
-                        f'당신은 항상 몸에 활력 에너지가 존재하고, 다른 사람들의 지속적인 에너지 사용에 영향을 주는 사람입니다.')
-            # 직관센터
-            elif center_type == 2:
-                if metadata['ct'][2] == 0:
-                    dispatcher.utter_message(
-                        f'당신은 생존에 대한 불안감으로부터 자유로운 특별한 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 이 설명을 잘 들어보시기 바랍니다.')
-                elif metadata['ct'][2] == 1:
-                    dispatcher.utter_message(
-                        f'당신은 직관적으로 무엇이 나의 생존에 도움이 되는지 알아차릴 수 있는 능력을 갖고 태어난 사람입니다.')
-            # 감정센터
-            elif center_type == 3:
+            if metadata['ct'][0] == 0:
+                dispatcher.utter_message(
+                    f'당신은 그동안 주변환경이 주는 불편한 압박감으로 인해 늘 뭔 가에 쫓기듯 바쁘게 살아오지 않았나요?')
+            elif metadata['ct'][0] == 1:
+                dispatcher.utter_message(
+                    f'당신은 자신만의 특별한 방식으로 스트레스를 컨트롤하고 오히려 그것을 원동력 삼아 세상으로 나아갈 수 있는 능력을 갖고 태어난 사람입니다. ')
+        # 활력센터
+        elif center_type == 1:
+
+            if metadata['ct'][1] == 0:
+                dispatcher.utter_message(
+                    f'당신은 인류의 34%에 속하는 비교적 활력 에너지가 부족한 사람입니다.')
+            elif metadata['ct'][1] == 1:
+                dispatcher.utter_message(
+                    f'당신은 항상 몸에 활력 에너지가 존재하고, 다른 사람들의 지속적인 에너지 사용에 영향을 주는 사람입니다.')
+        # 직관센터
+        elif center_type == 2:
+            if metadata['ct'][2] == 0:
+                dispatcher.utter_message(
+                    f'당신은 생존에 대한 불안감으로부터 자유로울 수 있는 특별한 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 마스터봇의 설명을 잘 들어보기 바랍니다.')
+            elif metadata['ct'][2] == 1:
+                dispatcher.utter_message(
+                    f'당신은 직관적으로 무엇이 나의 생존에 도움이 되는지 알아차릴 수 있는 능력을 갖고 태어난 사람입니다.')
+        # 감정센터
+        elif center_type == 3:
                 if metadata['ct'][3] == 0:
                     dispatcher.utter_message(
-                        f'당신은 다른 사람들의 감정 에너지에 영향을 받아 때론 다열질이라는 얘기까지 들으며 살아가고 있습니다만, 사실 당신 자신의 감정 에너지는 매우 평온한 사람입니다.')
+                        f'당신은 다른 사람들의 감정 에너지에 영향을 받아 때론 억울하게도 다혈질이라는 얘기를 들을 수도 있습니다. 하지만 당신의 온전한 감정 에너지는 매우 평온한 사람입니다.')
                 elif metadata['ct'][3] == 1:
                     dispatcher.utter_message(
-                        f'당신은 자신만의 감정 에너지를 갖고 있으며 당신이 발신하는 에너지는 다른 사람들의 감정에 영향을 미치도록 디자인되어 있는 사람입니다. 평소에 당신의 감정으로 인해 어려움이 있었다면 제 설명에 집중해주기 바랍니다.')
-            # 에고센터
-            elif center_type == 4:
-                if metadata['ct'][4] == 0:
-                    dispatcher.utter_message(
-                        f'당신은 자신을 증명하거나 자신의 존재를 드러내기 위해 애쓸 필요가 없는 인류의 63%에 해당하는 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 이 설명을 잘 들어 보시기 바랍니다.')
-                elif metadata['ct'][4] == 1:
-                    dispatcher.utter_message(
-                        f'당신은 다른 사람들과 약속을 하고 그 약속을 지키는 과정에서 별다른 스트레스를 받지 않고, 당신의 의지력을 잘 활용할 줄 아는 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 이 설명을 잘 들어보시기 바랍니다. ')
-            # 방향센터
-            elif center_type == 5:
-                if metadata['ct'][5] == 0:
-                    dispatcher.utter_message(
-                        f'당신은 자유로운 정체성을 갖는 특별한 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 이 설명을 잘 들어보시기 바랍니다.')
-                elif metadata['ct'][5] == 1:
-                    dispatcher.utter_message(
-                        f'당신은 자신의 정체성에 대한 안정된 확신을 갖고 있는 사람입니다.')
+                        f'당신은 자신만의 감정 에너지를 갖고 있으며 당신이 발신하는 에너지는 다른 사람들의 감정에 영향을 미치도록 디자인되어 있는 사람입니다. 평소에 당신의 감정으로 인해 어려움이 있었다면 마스터봇의 설명에 집중해주기 바랍니다.')
+        # 에고센터
+        elif center_type == 4:
+            if metadata['ct'][4] == 0:
+                dispatcher.utter_message(
+                    f'당신은 자신을 증명하거나 자신의 존재를 드러내기 위해 애쓸 필요가 없는 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 마스터봇의 설명을 잘 들어 보기 바랍니다.')
+            elif metadata['ct'][4] == 1:
+                dispatcher.utter_message(
+                    f'당신은 다른 사람들과 약속을 하고 그것을 지키는 과정에서 별다른 스트레스를 받지 않고, 당신의 의지력을 잘 활용할 줄 아는 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 마스터봇의 설명을 잘 들어보기 바랍니다. ')
+        # 방향센터
+        elif center_type == 5:
+            if metadata['ct'][5] == 0:
+                dispatcher.utter_message(
+                    f'당신은 자유로운 정체성을 갖을 수 있는 특별한 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 마스터봇의 설명을 잘 들어보기 바랍니다.')
+            elif metadata['ct'][5] == 1:
+                dispatcher.utter_message(
+                    f'당신은 자신의 정체성에 대한 안정된 확신을 갖고 있는 사람입니다.')
 
-            # 표현센터
-            elif center_type == 6:
-                if metadata['ct'][6] == 0:
-                    dispatcher.utter_message(
-                        f'당신은 자신의 의견을 말하거나 표현하기 위해 애쓰지 않아도 다른 사람들의 주의를 자연스럽게 끌게 되는 특별한 능력을 지닌 사람입니다.')
-                elif metadata['ct'][6] == 1:
-                    dispatcher.utter_message(
-                        f'당신은 자신만의 고유한 표현방식이 있고, 언제 표현해야 할 지를 알고 있는 사람입니다. 당신이 이러한 점에서 어려움을 겪고 있다면 이제 부터의 설명을 잘 들어보세요.')
-            # 생각센터
-            elif center_type == 7:
-                if metadata['ct'][7] == 0:
-                    dispatcher.utter_message(
-                        f'당신은 다른 사람이나 다른 무언가로부터 오는 다양한 사고방식에 열려 있고 스폰지처럼 정보를 흡수할 수 있는 사람입니다.')
-                elif metadata['ct'][7] == 1:
-                    dispatcher.utter_message(
-                        f'당신은 생각하고 의견을 내는 데에 있어서 자신만의 일정한 방식을 갖고 있고, 자기 신념이 확고한 편입니다. ')
-            # 영감센터
-            elif center_type == 8:
-                if metadata['ct'][8] == 0:
-                    dispatcher.utter_message(
-                        f'당신은 다른 사람이나 다른 무언가로부터 늘 영감을 받는 사람입니다. 또한, ‘누가 나에게 혼란을 주고, 누가 나에게 영감을 주는지 구별할 수 있는 사람이기도 합니다.')
-                elif metadata['ct'][8] == 1:
-                    dispatcher.utter_message(
-                        f'당신은 다른 사람들이 무언가에 대해 생각하도록 영감을 주는 사람입니다. 항상 머릿속에 떠오르는 의문에 대한 답을 찾는 사람이기도 합니다.')
-
-
-
+        # 표현센터
+        elif center_type == 6:
+            if metadata['ct'][6] == 0:
+                dispatcher.utter_message(
+                    f'당신은 자신의 의견을 말하거나 표현하기 위해 애쓰지 않아도 다른 사람들의 주의를 자연스럽게 끌 수도 있는 특별한 능력을 지닌 사람입니다.')
+            elif metadata['ct'][6] == 1:
+                dispatcher.utter_message(
+                    f'당신은 자신만의 고유한 표현방식이 있고, 언제 표현해야 할 지를 알고 있는 사람입니다. 당신이 이러한 점에서 어려움을 겪고 있다면 마스터봇의 설명을 잘 들어보세요.')
+        # 생각센터
+        elif center_type == 7:
+            if metadata['ct'][7] == 0:
+                dispatcher.utter_message(
+                    f'당신은 다른 사람이나 다른 무언가로부터 오는 다양한 사고방식에 열려 있고 스폰지처럼 정보를 흡수할 수 있는 사람입니다.')
+            elif metadata['ct'][7] == 1:
+                dispatcher.utter_message(
+                    f'당신은 생각하고 의견을 내는 데에 있어서 자신만의 일정한 방식을 갖고 있고, 자기 신념이 확고한 편입니다. ')
+        # 영감센터
+        elif center_type == 8:
+            if metadata['ct'][8] == 0:
+                dispatcher.utter_message(
+                    f'당신은 다른 사람이나 다른 무언가로부터 늘 영감을 받는 사람입니다. 또한, ‘누가 나에게 혼란을 주고, 누가 나에게 영감을 주는지 구별할 수 있는 사람이기도 합니다.')
+            elif metadata['ct'][8] == 1:
+                dispatcher.utter_message(
+                    f'당신은 다른 사람들이 무언가에 대해 생각하도록 영감을 주는 사람입니다. 항상 머릿속에 떠오르는 의문에 대한 답을 찾는 사람이기도 합니다.')
 
         for i in metadata['ct']:
             definedCnt += i
@@ -190,7 +187,7 @@ class ActionLeadingCentersIntro(Action):
             h_type = "방향 센터 ( 정의 )"
             center_name = "방향센터"
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_5.gif"
-            msg = "당신은 당신의 방향센터에서 에너지를 발신하는 사람입니다. 이것을 방향센터 정의라고 부릅니다. 이러한 부류의 사람들은 사랑받는다는 게 어떤 느낌인지, 사랑을 주는 게 어떤 것인지 자신만의 감각을 가지고 있습니다. "
+            msg = "당신은 자신의 방향센터에서 에너지를 발신하는 사람입니다. 이것을 방향센터 정의라고 부릅니다. 이러한 부류의 사람들은 사랑받는다는 게 어떤 느낌인지, 사랑을 주는 게 어떤 것인지 자신만의 감각을 가지고 있습니다. "
             msg2 = "자기자신을 아끼고 스스로를 사랑하며 그와 같이 다른 사람들에게도 사랑을 전합니다."
             msg3 = "삶에서 나의 길이 어디를 향하는지 내가 가야 할 방향을 알고 새로운 길을 개척하는 것도 어려움이 없습니다. "
             msg4 = "어디로 가야 하는지 길을 잃은 듯한 다른 사람들에게 안정감을 줄 수도 있고, 더 나아가 인류가 어느 방향을 향해야 하는지 진화하기 위한 길이 무엇인지 전하는 역할을 할 수도 있습니다."
@@ -301,7 +298,7 @@ class ActionLeadingCentersIntro(Action):
             dispatcher.utter_message(msg5)
 
         if h_center == 1 or h_center == 7 or h_center == 8:
-            dispatcher.utter_message(f'당신의 {center_name}에 대해 이해가 되었나요?')
+            dispatcher.utter_message(f'당신의 {center_name}에 대해 설명해 보았어요.')
             return [SlotSet('center_step', center_step), SlotSet('center_type', h_center),
                     SlotSet('step', step), FollowupAction(name='action_question_intro')]
 
@@ -319,8 +316,8 @@ class ActionLeadingCenters(Action):
         definedCnt = 0
 
         # metadata = extract_metadata_from_tracker(tracker)
-        #select_metadata = tracker.get_slot('select_metadata')
-        #metadata = extract_metadata_from_data(select_metadata)
+        # select_metadata = tracker.get_slot('select_metadata')
+        # metadata = extract_metadata_from_data(select_metadata)
         metadata = extract_metadata_from_data(tracker)
 
         print("MetaData: ", metadata)
@@ -461,7 +458,7 @@ class ActionLeadingCenters(Action):
         if msg5 != "":
             dispatcher.utter_message(msg5)
 
-        dispatcher.utter_message(f'당신의 {center_name}에 대해 이해가 되었나요?')
+        dispatcher.utter_message(f'당신의 {center_name}에 대해 설명해 보았어요.')
         return [SlotSet("is_question", 0), SlotSet("center_type", h_center), SlotSet("center_step", center_step),
                 SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True),
                 FollowupAction(name="action_question_intro")]
@@ -475,8 +472,8 @@ class ActionLeadingCentersQuestion(Action):
         print('action_leading_centers_question')
 
         # metadata = extract_metadata_from_tracker(tracker)
-        #select_metadata = tracker.get_slot('select_metadata')
-        #metadata = extract_metadata_from_data(select_metadata)
+        # select_metadata = tracker.get_slot('select_metadata')
+        # metadata = extract_metadata_from_data(select_metadata)
         metadata = extract_metadata_from_data(tracker)
 
         print("MetaData: ", metadata)
@@ -493,8 +490,8 @@ class ActionCenterDetailIntro(Action):
         print('action_center_detail_intro')
         # 자세히 설명하기 위한 인트로 (센터별로 다르기때문에 새로 구현)
         # metadata = extract_metadata_from_tracker(tracker)
-        #select_metadata = tracker.get_slot('select_metadata')
-        #metadata = extract_metadata_from_data(select_metadata)
+        # select_metadata = tracker.get_slot('select_metadata')
+        # metadata = extract_metadata_from_data(select_metadata)
         metadata = extract_metadata_from_data(tracker)
 
         center_step = tracker.get_slot("center_step")
@@ -542,13 +539,13 @@ class ActionCenterDetailIntro(Action):
             dispatcher.utter_message("자, 에고센터 미정인 사람들이 빠지기 쉬운 함정에 대해 좀더 설명해줄까요?", buttons=buttons)
         elif h_center == 5 and metadata['ct'][5] == 0:
             h_type = "방향 센터 ( 미정의 )"
-            dispatcher.utter_message("자, 당신의 정체성과 방향성에 대해 이해가 되셨나요? 당신에 대해 흥미로운 조언을 좀더 해드릴까요?", buttons=buttons)
+            dispatcher.utter_message("자, 당신의 정체성과 방향성에 대해 이해가 되었나요? 당신에 대해 흥미로운 조언을 좀더 해드릴까요?", buttons=buttons)
         elif h_center == 6 and metadata['ct'][6] == 0:
             h_type = "표현 센터 ( 미정의 )"
             dispatcher.utter_message("당신의 좋은 모습을 이해할 수 있겠죠? 좋지 않은 모습에 대해서도 알려줄까요?", buttons=buttons)
 
         return []
-#class ActionCenterMore(Action):
+# class ActionCenterMore(Action):
 #    def name(self) -> Text:
 #        return "action_center_more"
 

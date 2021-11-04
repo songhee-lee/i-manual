@@ -133,7 +133,7 @@ def unego_get_question(ct, unego_count, defined=False):
             "다른 사람의 감정 변화를 잘 캐치하고 눈치껏 침묵하며 기다려주는 편인가요?"
         ]
         question = qlist_3[unego_count]
-        ego_comment = "타인의 감정에도 잘 동요해주는 당신은 정말 스윗하고 따뜻한 사람이예요"
+        ego_comment = "타인의 감정에도 잘 공감해주는 당신은 정말 스윗하고 따뜻한 사람이예요."
         unego_comment = "혼자 있을 때에는 평온하지만 누구를 만났을 때 그 사람의 감정에 쉽게 동요되거나, 말 한마디에도 순간 욱- 한다거나, 혹은 감정적으로 부딪히는 것이 두려워지는 등 감정이 들쑥날쑥 해진다면 나의 감정이 아니라는 것을 의식하고 휘둘리지 않는 연습이 필요해요."
 
     elif ct == 3 and defined:
@@ -206,7 +206,7 @@ def unego_get_question(ct, unego_count, defined=False):
         ]
         question = qlist_6[unego_count]
         ego_comment = "당신이 잘 알고 준비된 맨트들을 하게 될때 사람들은 당신의 매력에 빠지게 될거예요"
-        unego_comment = "지금이 내가 말을 꺼내도 되는 타이밍인지, 이 말을 해도 되는 상황인지 잘 구별할 줄 알고 기다릴 줄 안다면 사람들도 경계심 없이 경청하고 말하는 당신도 편안함을 느낄 거예요."
+        unego_comment = "지금 내가 말을 꺼내도 되는 타이밍인지, 이 말을 해도 되는 상황인지  잘 구별할 줄 알고 기다릴 줄 안다면 사람들도 경계심 없이 경청하고 말하는 당신도 편안함을 느낄 거예요."
 
     # 생각센터
     elif ct == 7 and not defined:
@@ -226,7 +226,7 @@ def unego_get_question(ct, unego_count, defined=False):
             "나는 주변에 의해 생각이 자주 바뀌는 편인가요?"
         ]
         question = qlist_7[unego_count]
-        ego_comment = "당신은 때론 조사관처럼 그 생각들을 즐겨도 좋아요."
+        ego_comment = "당신은 떠오르는 생각들을 따지듯 분석하며 즐겨도 괜찮아요"
         unego_comment = "나의 생각과 취향이 자주 바뀜을 느꼈다면 다른 사람으로 인해 영향을 받았을 확률이 높아요. 늘 생각과 의견을 어필할 때 나의 확고한 생각인지 다른 사람에게 휘둘린 건지 확인해 볼 필요가 있어요."
 
     # 영감센터
