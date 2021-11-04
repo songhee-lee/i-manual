@@ -199,7 +199,13 @@ class ActionDefaultFallback(Action):
         sentiment_result = tracker.get_slot("sentiment_result")
         print("step", step)
         answer = ""
-
+        opposite_question = ["다른 사람의 감정 변화를 잘 캐치하고 눈치껏 침묵하며 기다려주는 편인가요?", "기분에 따라 충동적으로 의사결정을 하기보다 충분한 시간을 갖고 생각하는 편인가요?",
+                             "결과를 깊게 생각하기 보다 즉각적인 '촉'을 따르는 경우가 많나요?","나에게 좋지 못한 관계나 일에 엮이면 단호하게 끊어내는 편인가요?",
+                             "아무리 바빠도 내가 사랑하는 일이라면 즐겁고 행복한가요?","지키지 못할 약속은 하지 않는 편인가요?",
+                             "운명의 짝이라면 엄청난 노력을 쏟아붓지 않아도 나타날 것이라 생각하는 편인가요?","내가 하고 싶은 것, 원하는 것이 뚜렷한 편인가요?",
+                             "나는 취향이 확고한 편인가요?","흥미로운 정보를 발견하면 시간 가는 줄 모르고 빠져드는 편인가요?"]
+        yes_list = ["네", "네 맞아요", "네맞아요", "맞아요", "그런 것 같아요", "맞아", "응", "응맞아", "응 맞아", "그치", "그래요", "그래"]
+        no_list = ["아니요", "아뇨", "아니에요", "아녜요", "아닙니다", "아니", "안그래", "전혀 아니야", "전혀아님", "아님", "아니 그렇진 않아", "전혀", "아니!", "아니요.", "아니."]
         # 설명 완료한 개수-> step
         # 방금 설명한 파트는 step - 1의 인덱스를 가짐
         if is_question:
@@ -215,15 +221,29 @@ class ActionDefaultFallback(Action):
         else:
             if is_sentiment:
                 # 0:중립, 1:비자아, 2:자아
-                user_reponse_type = sentiment_predict(question, user_text)
+                if user_text in yes_list:
+                    user_reponse_type=1
+                elif user_text in no_list:
+                    user_reponse_type=2
+                else:
+                    user_reponse_type = sentiment_predict(question, user_text)
+                    
                 if user_reponse_type == 0:
                     print("중립")
                 elif user_reponse_type == 1:
-                    print("비자아")
-                    sentiment_result -= 1
+                    if question not in opposite_question:
+                        print("비자아")
+                        sentiment_result -= 1
+                    else:
+                        print("자아")
+                        sentiment_result +=1
                 elif user_reponse_type == 2:
-                    print("자아")
-                    sentiment_result += 1
+                    if question not in opposite_question:
+                        print("자아")
+                        sentiment_result += 1
+                    else:
+                        print("비자아")
+                        sentiment_result -=1
 
 
         # 올바른 질문이 아닌경우
