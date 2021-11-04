@@ -220,18 +220,7 @@ class ActionDefaultFallback(Action):
             print(answer)
 
             qa_step=""
-            if q_type==0:
-                if metadata["t"]==0:
-                    qa_step = "종족(에너자이저)"
-                elif metadata["t"]==1:
-                    qa_step = "종족(스피드 에너자이저)"
-                elif metadata["t"]==2:
-                    qa_step = "종족(혁신주도가)"
-                elif metadata["t"]==3:
-                    qa_step = "종족(가이드)"
-                elif metadata["t"]==4:
-                    qa_step = "종족(거울)"
-            elif q_type==1:
+            if q_type==1:
                 if metadata["p"]==13:
                     qa_step = "프로파일(1/3)"
                 elif metadata["p"]==14:
