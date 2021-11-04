@@ -11,7 +11,7 @@ device = torch.device("cpu")
 model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-v2-discriminator", num_labels = 3)
 #model = nn.DataParallel(model) # use multi-gpu
 model.to(device)
-saved_checkpoint = torch.load("./data/model_ego_survey2.pt", map_location=torch.device('cpu'))
+saved_checkpoint = torch.load("./data/model_ego_survey3.pt", map_location=torch.device('cpu'))
 model.load_state_dict(saved_checkpoint, strict=False)
 tokenizer = AutoTokenizer.from_pretrained("monologg/koelectra-small-v2-discriminator")
 
