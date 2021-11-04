@@ -145,10 +145,16 @@ class ActionQuestion(Action):
         print("is_question", is_question)
         step = tracker.get_slot("step")
         print(step)
+        center_question = tracker.get_slot("center_question")
         if is_question:
             if q_type == 0:
                 return [FollowupAction(name="action_leading_type_question")]
             else:
+                buttons = []
+                if center_question == 1:
+                    buttons.append({"title": f'잘못 눌렀어요', "payload": "/center_unego_question{\"is_question\":0, \"center_question\":0}"})
+                else:
+                    buttons.append({"title": f'잘못 눌렀어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
                 dispatcher.utter_message('무엇이 궁금하신가요?')
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
@@ -230,10 +236,11 @@ class ActionDefaultFallback(Action):
             if center_question == 1:
                 buttons.append(
                     {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
+                buttons.append({"title": f'질문 없어요', "payload": "/center_unego_question"})
             else:
                 buttons.append(
                     {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
-            buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
+                buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
             dispatcher.utter_message("질문이 있나요?", buttons=buttons)
             return [SlotSet("step", step)]
 
