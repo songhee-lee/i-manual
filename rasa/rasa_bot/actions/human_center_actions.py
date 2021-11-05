@@ -34,13 +34,14 @@ class ActionLeadingCentersIntro(Action):
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
-        center_type = center_priority[center_step]
         is_finished = tracker.get_slot('is_finished')
         if center_step == 9:
             if is_finished==0:
                 return [SlotSet("center_step", 0), FollowupAction(name="action_more")]
             else:
                 center_step=0
+        
+        center_type = center_priority[center_step]
         if is_finished == 1:
             if center_step == 0:
                 dispatcher.utter_message(
