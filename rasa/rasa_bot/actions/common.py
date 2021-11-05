@@ -60,17 +60,18 @@ def extract_metadata_from_tracker(tracker):
     return user_events[-1]['metadata']
 
 
-def koelectra_qa_getanswer(context, question, metadata=None):
+def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
     # Mongo DB 
-    if metadata != None:
-        # check a user if he is new user
-        x = mycol.find_one({"displayName": metadata["pn"]})
-        if not x:
-            x = mycol.insert_one({"displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
-                                  "definition": metadata["d"], "centers": metadata["ct"], "questions": []})
+    if qa_step:    # '종족' QA는 저장 안함
+        if metadata != None:
+            # check a user if he is new user
+            x = mycol.find_one({"displayName": metadata["pn"]})
+            if not x:
+                x = mycol.insert_one({"displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
+                                      "definition": metadata["d"], "centers": metadata["ct"], "questions": []})
 
-        # add user question
-        mycol.update({"displayName": metadata["pn"]}, {"$addToSet": {"questions": question}})
+            # add user question
+            mycol.update({"displayName": metadata["pn"]}, {"$addToSet": { "question": {question:qa_step} }})
 
     inputs = tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
     input_ids = inputs["input_ids"].tolist()[0]
