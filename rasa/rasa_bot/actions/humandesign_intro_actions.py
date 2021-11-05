@@ -227,14 +227,15 @@ class ActionDropCenter(Action):
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
-        # if step==4:
-        #     return[FollowupAction(name='action_last_message'), SlotSet('center_step', 0), SlotSet('is_finished', 1)]
-        # else:
-        #     if leading_priority[step] == 0:
-        #         return [FollowupAction(name='action_leading_type_intro'), SlotSet('center_step', 0)]
-        #     elif leading_priority[step] == 1:
-        #         return [FollowupAction(name='action_leading_profile_intro'), SlotSet('center_step', 0)]
-        #     elif leading_priority[step] == 2:
-        #         return [FollowupAction(name='action_leading_definition_intro'), SlotSet('center_step', 0)]
+        if step==4:
+            return[FollowupAction(name='action_last_message'), SlotSet('center_step', 0)]
+        else:
+            dispatcher.utter_message("자, 이제 다른 특징에 대해 알아봅시다")
+            if leading_priority[step] == 0:
+                return [FollowupAction(name='action_leading_type_intro'), SlotSet('center_step', 0)]
+            elif leading_priority[step] == 1:
+                return [FollowupAction(name='action_leading_profile_intro'), SlotSet('center_step', 0)]
+            elif leading_priority[step] == 2:
+                return [FollowupAction(name='action_leading_definition_intro'), SlotSet('center_step', 0)]
 
-        return [SlotSet('step', step+1), SlotSet('center_step', 0), FollowupAction(name='action_step')]
+        return []
