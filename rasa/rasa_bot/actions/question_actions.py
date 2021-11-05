@@ -212,13 +212,6 @@ class ActionDefaultFallback(Action):
         if is_question:
             q_type = leading_priority[step - 1]
 
-            answer = ""
-            # 내담자의 정보에 해당하는 context를 가져옴
-            context = retrieve_context(q_type, ct_index=ct_index, metadata=metadata)
-            # QA 모듈
-            answer = koelectra_qa_getanswer(context, user_text)
-            print(answer)
-
             qa_step=""
             if q_type==1:
                 if metadata["p"]==13:
@@ -304,6 +297,14 @@ class ActionDefaultFallback(Action):
                     qa_step = "영감센터(정의)"
 
             print("qa_step = ", qa_step)
+            
+            
+            answer = ""
+            # 내담자의 정보에 해당하는 context를 가져옴
+            context = retrieve_context(q_type, ct_index=ct_index, metadata=metadata)
+            # QA 모듈
+            answer = koelectra_qa_getanswer(context, user_text, metadata=metadata, qa_step)
+            print(answer)
 
         else:
             if is_sentiment:
