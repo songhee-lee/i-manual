@@ -175,13 +175,15 @@ class ActionMore(Action):
 
         #이 밑부터 다 지우기
         if center_step==0 or center_step==9:
-            if step == 4:
+            if step == 4 and is_finished == 0:
                 return [SlotSet('is_finished', 1), FollowupAction(name='action_last_message')]
             else:
                 buttons = []
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
                 dispatcher.utter_message(f'계속 할까요?', buttons=buttons)
+                if center_step == 9:
+                    return [SlotSet("center_step", 0)]
         else:
             if metadata["se"][0] in center_priority[0:center_step] and metadata["se"][1] in center_priority[0:center_step] and \
                     metadata["se"][2] in center_priority[0:center_step] and metadata["se"][3] in center_priority[0:center_step] and is_finished==0:
