@@ -159,7 +159,7 @@ class ActionMore(Action):
         #metadata = extract_metadata_from_data(select_metadata)
 
         metadata = extract_metadata_from_data(tracker)
-
+        is_finished = tracker.get_slot("is_finished")
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
@@ -184,7 +184,7 @@ class ActionMore(Action):
                 dispatcher.utter_message(f'계속 할까요?', buttons=buttons)
         else:
             if metadata["se"][0] in center_priority[0:center_step] and metadata["se"][1] in center_priority[0:center_step] and \
-                    metadata["se"][2] in center_priority[0:center_step] and metadata["se"][3] in center_priority[0:center_step]:
+                    metadata["se"][2] in center_priority[0:center_step] and metadata["se"][3] in center_priority[0:center_step] and is_finished==0:
                 buttons = []
                 buttons.append({"title": f'센터 건너뛰기', "payload": "/leading_drop_center"})
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
