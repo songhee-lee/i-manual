@@ -139,7 +139,8 @@ class ActionStep(Action):
                 if leading_priority[step] == 2 and metadata["d"] == 0:
                     return [SlotSet('step', step+1), FollowupAction(name='action_step')]
                 if step == 4:
-                    return [SlotSet('is_finished', 1), FollowupAction(name='action_last_message')]
+                    # is_finished = 1 은 last_message 나오고 set
+                    return [FollowupAction(name='action_last_message')]
                 else:
                     dispatcher.utter_message("자, 이제 다른 특징에 대해 알아봅시다")
                     if leading_priority[step]==0:
@@ -184,7 +185,8 @@ class ActionMore(Action):
         #이 밑부터 다 지우기
         if center_step==0 or center_step==9:
             if step == 4:
-                return [SlotSet('is_finished', 1), FollowupAction(name='action_last_message')]
+                # is_finished = 1 은 last_message 나오고 set
+                return [FollowupAction(name='action_last_message')]
             else:
                 buttons = []
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
