@@ -35,10 +35,13 @@ class ActionLeadingCentersIntro(Action):
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
         center_type = center_priority[center_step]
-        if center_step == 9:
-            return [FollowupAction(name="action_more"), SlotSet("center_step", 0)]
         is_finished = tracker.get_slot('is_finished')
-        if is_finished == True:
+        if center_step == 9:
+            if is_finished==0:
+                return [SlotSet("center_step", 0), FollowupAction(name="action_more")]
+            else:
+                center_step=0
+        if is_finished == 1:
             if center_step == 0:
                 dispatcher.utter_message(
                     f'그럼 센터에 대해 다시 알려드릴게요!'
