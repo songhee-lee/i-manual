@@ -122,6 +122,11 @@ class ActionStep(Action):
         is_finished = tracker.get_slot("is_finished")
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
+        # metadata = extract_metadata_from_tracker(tracker)
+
+        # select_metadata = tracker.get_slot('select_metadata')
+        # metadata = extract_metadata_from_data(select_metadata)
+        metadata = extract_metadata_from_data(tracker)
         if is_finished==1:
             return [FollowupAction(name='action_masterbot')] #masterbot에서 처리할 수 있게
         # is_finished 상태로 계속하면 끝내버리고, 끝났다고 알려줌
@@ -130,6 +135,9 @@ class ActionStep(Action):
             if leading_priority[step-1]==3 and center_step < 9:
                 return [FollowupAction(name='action_leading_centers_intro')]
             else:
+                # 절전모드일때 step 건너뛰기
+                if leading_priority[step] == 2 and metadata["d"] == 0:
+                    return [SlotSet('step', step+1), FollowupAction(name='action_step')]
                 if step == 4:
                     return [SlotSet('is_finished', 1), FollowupAction(name='action_last_message')]
                 else:

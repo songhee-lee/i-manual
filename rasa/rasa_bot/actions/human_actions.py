@@ -75,10 +75,12 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
                 f'안녕하세요 {metadata["pn"]}님, 저를 부르셨나요~? :) 다시 찾아주셔서 감사해요~')
         #다시 들어왔을 때 판단
         if is_finished==1:
+
             buttons = []
             buttons.append({"title": "종족", "payload": "/leading_type_intro"})
             buttons.append({"title": "사회적 성향", "payload": "/leading_profile_intro"})
-            buttons.append({"title": "에너지 흐름", "payload": "/leading_definition_intro"})
+            if metadata["d"] != 0:
+                buttons.append({"title": "에너지 흐름", "payload": "/leading_definition_intro"})
             buttons.append({"title": "센터", "payload": "/leading_centers_intro"})
         
             dispatcher.utter_message("다시 듣고 싶은 항목을 선택해 주세요", buttons=buttons)

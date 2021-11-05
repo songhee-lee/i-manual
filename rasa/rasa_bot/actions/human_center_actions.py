@@ -48,15 +48,16 @@ class ActionLeadingCentersIntro(Action):
                     f'그럼 센터에 대해 다시 알려드릴게요!'
                 )
         else:
-            dispatcher.utter_message(
-                f'지금부터 당신이 갖고 있는 9개의 센터에 대해 설명하려고해요.'
-            )
-            dispatcher.utter_message(
-                f'모든 사람은 9개의 센터를 갖고 있고 자신이 갖고 있는 각 센터가 에너지를 발신(정의, 컬러)하는지 수신(미정, 흑백)하는지에 따라 다른 삶을 살게 됩니다.'
-            )
-            dispatcher.utter_message(
-                f'자, 시작해볼까요~'
-            )
+            if center_step == 0:
+                dispatcher.utter_message(
+                    f'지금부터 당신이 갖고 있는 9개의 센터에 대해 설명하려고해요.'
+                )
+                dispatcher.utter_message(
+                    f'모든 사람은 9개의 센터를 갖고 있고 자신이 갖고 있는 각 센터가 에너지를 발신(정의, 컬러)하는지 수신(미정, 흑백)하는지에 따라 다른 삶을 살게 됩니다.'
+                )
+                dispatcher.utter_message(
+                    f'자, 시작해볼까요~'
+                )
         # 연료센터
         if center_type == 0:
 
