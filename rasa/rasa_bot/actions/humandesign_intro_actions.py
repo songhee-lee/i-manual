@@ -186,9 +186,9 @@ class ActionMore(Action):
             if metadata["se"][0] in center_priority[0:center_step] and metadata["se"][1] in center_priority[0:center_step] and \
                     metadata["se"][2] in center_priority[0:center_step] and metadata["se"][3] in center_priority[0:center_step] and is_finished==0:
                 buttons = []
-                buttons.append({"title": f'센터 건너뛰기', "payload": "/leading_drop_center"})
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
+                buttons.append({"title": f'센터 건너뛰기', "payload": "/leading_drop_center"})
                 dispatcher.utter_message(f'센터에 대한 설명을 이어서 들으시겠어요?', buttons=buttons)
             else:
                 buttons = []
