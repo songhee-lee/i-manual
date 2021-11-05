@@ -214,41 +214,9 @@ class ActionDefaultFallback(Action):
 
             qa_step=""
             if q_type==1:
-                if metadata["p"]==13:
-                    qa_step = "프로파일(1/3)"
-                elif metadata["p"]==14:
-                    qa_step = "프로파일(1/4)"
-                elif metadata["p"]==24:
-                    qa_step = "프로파일(2/4)"
-                elif metadata["p"]==25:
-                    qa_step = "프로파일(2/5)"
-                elif metadata["p"]==35:
-                    qa_step = "프로파일(3/5)"
-                elif metadata["p"]==36:
-                    qa_step = "프로파일(3/6)"
-                elif metadata["p"]==41:
-                    qa_step = "프로파일(4/1)"
-                elif metadata["p"]==46:
-                    qa_step = "프로파일(4/6)"
-                elif metadata["p"]==51:
-                    qa_step = "프로파일(5/1)"
-                elif metadata["p"]==52:
-                    qa_step = "프로파일(5/2)"
-                elif metadata["p"]==62:
-                    qa_step = "프로파일(6/2)"
-                elif metadata["p"]==63:
-                    qa_step = "프로파일(6/3)"
+                qa_step = "프로파일"
             elif q_type==2:
-                if metadata["d"]==0:
-                    qa_step = "에너지 흐름(절전모드)"
-                elif metadata["d"]==1:
-                    qa_step = "에너지 흐름(한묶음 흐름)"
-                elif metadata["d"]==2:
-                    qa_step = "에너지 흐름(두묶음 흐름)"
-                elif metadata["d"]==3:
-                    qa_step = "에너지 흐름(세묶음 흐름)"
-                elif metadata["d"]==4:
-                    qa_step = "에너지 흐름(네묶음 흐름)"
+                qa_step = "에너지 흐름"
 
             elif q_type==3:
                 if center_priority[center_step]==0 and metadata["ct"][0] == 0:
