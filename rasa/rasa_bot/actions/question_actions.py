@@ -155,7 +155,7 @@ class ActionQuestion(Action):
                     buttons.append({"title": f'잘못 눌렀어요', "payload": "/center_unego_question{\"is_question\":0, \"center_question\":0}"})
                 else:
                     buttons.append({"title": f'잘못 눌렀어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
-                dispatcher.utter_message('무엇이 궁금하신가요?')
+                dispatcher.utter_message('무엇이 궁금하신가요?', buttons=buttons)
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
         h_type = ''
@@ -540,8 +540,8 @@ class ActionTypeQuestion(Action):
         dispatcher.utter_message(answer)
 
         buttons = []
-        buttons.append({"title": f'괜찮아요', "payload": "/leading_more"})
-        buttons.append({"title": f'다른 질문도 할래요!', "payload": "/leading_type_question"})
+        buttons.append({"title": f'질문 있어요', "payload": "/leading_type_question"})
+        buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
         dispatcher.utter_message(f'다른 질문있나요?', buttons=buttons)
 
 class ActionStrategyQuestion(Action):
@@ -569,6 +569,6 @@ class ActionStrategyQuestion(Action):
         dispatcher.utter_message(answer)
 
         buttons = []
-        buttons.append({"title": f'괜찮아요', "payload": "/leading_more"})
-        buttons.append({"title": f'다른 질문도 할래요!', "payload": "/leading_type_question"})
+        buttons.append({"title": f'질문 있어요', "payload": "/leading_type_question"})
+        buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
         dispatcher.utter_message(f'다른 질문있나요?', buttons=buttons)
