@@ -266,7 +266,7 @@ class ActionDefaultFallback(Action):
             # 내담자의 정보에 해당하는 context를 가져옴
             context = retrieve_context(q_type, ct_index=ct_index, metadata=metadata)
             # QA 모듈
-            answer = koelectra_qa_getanswer(context, user_text, metadata=metadata, qa_step)
+            answer = koelectra_qa_getanswer(context, user_text, metadata=metadata, qa_step=qa_step)
             print(answer)
             qa_step = ""
             
