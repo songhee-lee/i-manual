@@ -132,6 +132,8 @@ class ActionStep(Action):
         # is_finished 상태로 계속하면 끝내버리고, 끝났다고 알려줌
 
         else:
+            if center_step==9: #DB자아 비자아
+                ego_or_unego = tracker.get_slot("ego_or_unego")
             if leading_priority[step-1]==3 and center_step < 9:
                 return [FollowupAction(name='action_leading_centers_intro')]
             else:
@@ -173,6 +175,7 @@ class ActionMore(Action):
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
+        ego_or_unego = tracker.get_slot('ego_or_unego') #db자아 비자아
         #최종버전은 이부분으로!
         #if center_step == 0 or center_step == 9:
         #    if step == 4:

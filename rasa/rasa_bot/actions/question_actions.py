@@ -347,6 +347,7 @@ class ActionDefaultFallback(Action):
                 dispatcher.utter_message(answer)
                 # 비자아 질문 3개 다한 경우
                 if unego_count == 3:
+                    ego_or_unego = tracker.get_slot('ego_or_unego')
                     if metadata['ct'][center_type] == 0:
                         unego_question = unego_get_question(center_type, unego_count-1, defined=False)
                     else:
@@ -356,10 +357,13 @@ class ActionDefaultFallback(Action):
                     if sentiment_result > 0:
                         dispatcher.utter_message("좋아요! 나 답게 잘 살고 있어요!!")
                         answer = unego_question[1]
+                        ego_or_unego[center_priority[center_step]]=1 #자아
+
                     # 비자아 혹은 중립인 경우
                     else:
                         dispatcher.utter_message("주의! 나다움을 잃고 있어요!")
                         answer = unego_question[2]
+                        ego_or_unego[center_priority[center_step]]=-1 #비자아
 
                     dispatcher.utter_message(answer)
                     return [SlotSet("sentiment_result", 0), FollowupAction(name='action_center_unego_question')]
