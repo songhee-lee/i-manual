@@ -273,7 +273,8 @@ class ActionDefaultFallback(Action):
             # QA 모듈
             answer = koelectra_qa_getanswer(context, user_text, metadata=metadata, qa_step)
             print(answer)
-
+            qa_step = ""
+            
         else:
             if is_sentiment:
                 # 0:중립, 1:비자아, 2:자아
