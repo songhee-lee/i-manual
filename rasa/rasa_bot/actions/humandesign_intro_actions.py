@@ -237,4 +237,4 @@ class ActionDropCenter(Action):
         #     elif leading_priority[step] == 2:
         #         return [FollowupAction(name='action_leading_definition_intro'), SlotSet('center_step', 0)]
 
-        return [SlotSet('center_step', 0), FollowupAction(name='action_step')]
+        return [SlotSet('step', step+1), SlotSet('center_step', 0), FollowupAction(name='action_step')]
