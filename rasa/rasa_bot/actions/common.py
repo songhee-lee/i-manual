@@ -60,7 +60,7 @@ def extract_metadata_from_tracker(tracker):
     return user_events[-1]['metadata']
 
 
-def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
+def koelectra_qa_getanswer(context, question, metadata=None, qa_step=qa_step=''):
     # Mongo DB 
     if qa_step:    # '종족' QA는 저장 안함
         if metadata != None:
