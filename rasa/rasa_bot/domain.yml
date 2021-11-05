@@ -126,6 +126,11 @@ slots:
 #    initial_value: 1
 #    auto_fill: true
 #    influence_conversation: false
+  ego_or_unego:
+    type: list
+    initial_value: null
+    auto_fill: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    influence_conversation: true
   center_priority:
     type: list
     initial_value: null
@@ -206,6 +211,7 @@ slots:
     initial_value: 0
     auto_fill: true
     influence_conversation: false
+#메타데이터부분 추후 삭제
   pn:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
