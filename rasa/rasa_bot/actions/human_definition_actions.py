@@ -30,19 +30,19 @@ class ActionLeadingDefinitionIntro(Action):
                 f'그럼 에너지 흐름에 대해 다시 알려드릴게요!'
             )
 
-        if (metadata["t"] == 0):
+        if (metadata["d"] == 0):
             dispatcher.utter_message(
                 f'절전모드 인트로')
-        elif (metadata["t"] == 1):
+        elif (metadata["d"] == 1):
             dispatcher.utter_message(
                 f'당신은 조화를 이루며 흐르는 내면의 에너지 덕분에 혼자서도 잘 지낼 수 있는 사람입니다.')
-        elif (metadata["t"] == 2):
+        elif (metadata["d"] == 2):
             dispatcher.utter_message(
                 f'당신은 혼자 있을 때 보다는여러 사람이 있는 곳에서 편안함과 만족감을 느낄 수 있는 사람입니다.')
-        elif (metadata["t"] == 3):
+        elif (metadata["d"] == 3):
             dispatcher.utter_message(
                 f'당신은 여러 사람들과 있을 때 편안함과 만족감을 느낄 수 있는 에너지 흐름을 지닌 특별한 사람입니다.')
-        elif (metadata["t"] == 4):
+        elif (metadata["d"] == 4):
             dispatcher.utter_message(
                 f'당신은 인류의 1%에 해당하는 아주 특별한 에너지 흐름을 지닌 사람입니다.')
 
@@ -55,8 +55,8 @@ class ActionLeadingDefinitionIntro(Action):
         if metadata["d"] == 0:
             h_type = "절전모드"
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_0.png"
-            msg = "절전모드 간단한 설명입니다."
-            msg2 = "앞 부분 설명"
+            #msg = "절전모드 간단한 설명입니다."
+            #msg2 = "앞 부분 설명"
             msg3 = "나와 함께 있는 다른 사람의 에너지, 혹은 오늘의 나를 통해 나에게 연결되는 에너지처럼 외부 요인에 의해 크게 영향을 받습니다. 활발한 사람과 있을 때에는 힘이 넘쳐 신나게 움직이고 놀고 활동적이다가도, 그 사람과의 연결이 끊어져 혼자 남으면 고요한 상태, 그야말로 잠잠한 절전모드가 됩니다."
             msg4 = "꼭 사람과의 연결이 아니어도 오늘 내가 연결되는 에너지가 무엇이냐에 따라 하루 종일 활발할 수도 있습니다.당신이 어떤 활발한 에너지에 연결되었을 때 그 영향으로 너무 무리하는 것보다는 적절하게 틈틈히 휴식을 챙기는게 더 건강에 도움이 될 수 있습니다."
             msg5 = "이 에너지 흐름을 가진 사람들은 인류의 1% 분포에 해당됩니다."
