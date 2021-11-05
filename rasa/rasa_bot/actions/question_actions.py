@@ -150,7 +150,7 @@ class ActionQuestion(Action):
             if q_type == 0:
                 return [FollowupAction(name="action_leading_type_question")]
             else:
-                dispatcher.utter_message('무엇이 궁금하신가요?', buttons=buttons)
+                dispatcher.utter_message('무엇이 궁금하신가요?')
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
         h_type = ''
