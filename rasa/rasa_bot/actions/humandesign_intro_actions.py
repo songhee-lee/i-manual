@@ -136,8 +136,9 @@ class ActionStep(Action):
                 return [FollowupAction(name='action_leading_centers_intro')]
             else:
                 # 절전모드일때 step 건너뛰기
-                if leading_priority[step] == 2 and metadata["d"] == 0:
-                    return [SlotSet('step', step+1), FollowupAction(name='action_step')]
+                if step < 4:
+                    if leading_priority[step] == 2 and metadata["d"] == 0:
+                        return [SlotSet('step', step+1), FollowupAction(name='action_step')]
                 if step == 4:
                     return [SlotSet('is_finished', 1), FollowupAction(name='action_last_message')]
                 else:
