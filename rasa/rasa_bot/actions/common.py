@@ -174,7 +174,7 @@ def unego_get_question(ct, unego_count, defined=False):
         qlist_4 = [
             "지갑 사정에 비해 충동적으로 큰돈을 쓰고 후회하는 편인가요?",
             "지키지 못할 약속은 하지 않는 편인가요?",
-            "자존감이 높은 것 처럼 행동하지만 사실은 연기일 뿐인가요?"
+            "자존감이 높은 것 처럼 행동하지만 사실은 그렇지 않은가요?"
         ]
         question = qlist_4[unego_count]
         ego_comment = "당신은 굳이 세상에 자신을 입증하려고 애쓰지 않아도 된답니다."
