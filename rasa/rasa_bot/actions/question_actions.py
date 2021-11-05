@@ -150,11 +150,6 @@ class ActionQuestion(Action):
             if q_type == 0:
                 return [FollowupAction(name="action_leading_type_question")]
             else:
-                buttons = []
-                if center_question == 1:
-                    buttons.append({"title": f'잘못 눌렀어요', "payload": "/center_unego_question{\"is_question\":0, \"center_question\":0}"})
-                else:
-                    buttons.append({"title": f'잘못 눌렀어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
                 dispatcher.utter_message('무엇이 궁금하신가요?', buttons=buttons)
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
