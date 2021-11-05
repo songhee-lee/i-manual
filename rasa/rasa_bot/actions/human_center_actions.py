@@ -8,7 +8,7 @@ from actions.common import extract_metadata_from_tracker, unego_get_question, ex
 from rasa_sdk.events import FollowupAction
 
 center_leading_step = None
-unego_question_intro = "제가 질문 한가지 할게요! 질문을 보시고 솔직하게 답변해주시면 됍니다 :)"
+unego_question_intro = "제가 질문 한가지 할게요! 질문을 보시고 솔직하게 답변해주시면 됩니다 :)"
 
 logger = logging.getLogger(__name__)
 
