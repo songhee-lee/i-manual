@@ -119,7 +119,7 @@ entities:
   - context_index # 무현 추가
   - unego_count # 무현 추가
   - sentiment_result # 무현 추가
-
+  - ego_or_unego
 slots:
 #  select_metadata:
 #    type: rasa.shared.core.slots.TextSlot
@@ -206,6 +206,12 @@ slots:
     initial_value: 0
     auto_fill: true
     influence_conversation: false
+  ego_or_unego:
+    type: list
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+#메타데이터부분 추후 삭제
   pn:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
@@ -236,6 +242,7 @@ slots:
     initial_value: null
     auto_fill: true
     influence_conversation: false
+
 responses:
   utter_default:
     - text: 잘 못 알아들었어요! 다시 말씀해주실 수 있을까요?
