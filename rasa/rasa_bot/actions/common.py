@@ -65,9 +65,12 @@ def sentiment_get_ego_or_unego(metadata=None, ego_or_unego=[0,0,0,0,0,0,0,0,0]):
     if metadata != None:
         ego_or_unego = list(map(convert_ego_or_unego, ego_or_unego))
         x = mycol.find_one({"displayName": metadata["pn"]})
+        
         if not x:
+            x = mycol.insert_one({"displayName":metadata["pn"], "type": metadata["t"], "profile":metadata["p"], "definition":metadata["d"], "centers":metadata["ct"],"questions":[], "ego_or_unego": []})
+        else:
             mycol.update({"displayName": metadata["pn"]}, {"$set": {"ego_or_unego": ego_or_unego}})
-
+            
 def extract_metadata_from_tracker(tracker):
     events = tracker.current_state()['events']
     user_events = []
