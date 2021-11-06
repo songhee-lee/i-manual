@@ -368,7 +368,7 @@ class ActionDefaultFallback(Action):
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
 
                     dispatcher.utter_message(answer)
-                    return [SlotSet("sentiment_result", 0), FollowupAction(name='action_center_unego_question')]
+                    return [SlotSet("sentiment_result", 0), SlotSet("ego_or_unego", ego_or_unego), FollowupAction(name='action_center_unego_question')]
                 else:
                     return [SlotSet("sentiment_result", sentiment_result), FollowupAction(name='action_center_unego_question')]
             else:
