@@ -49,6 +49,19 @@ def extract_metadata_from_data(tracker):  # 추후 삭제이후 각 파일의 im
     metadata = {"pn": f"{pn}", "t": t, "p": p, "d": d, "ct": ct, "se": se}
     return metadata
 
+def convert_ego_or_unego(i):
+  if i == 1:
+    return "자아"
+  elif i == -1:
+    return "비자아"
+  else:
+    return "중립"
+
+def sentiment_getEgoUnego(metadata=None, ego_or_unego=[0,0,0,0,0,0,0,0,0]):
+    # Mongo DB
+    if metadata != None:
+        ego_or_unego = list(map(convert_ego_or_unego, ego_or_unego))
+        mycol.save({"displayName": metadata["pn"]}, {"$set": { "ego_or_unego": {ego_or_unego} }})
 
 def extract_metadata_from_tracker(tracker):
     events = tracker.current_state()['events']
