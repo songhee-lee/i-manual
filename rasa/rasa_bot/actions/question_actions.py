@@ -193,6 +193,7 @@ class ActionDefaultFallback(Action):
         step = tracker.get_slot("step")
         unego_count = tracker.get_slot("unego_count")
         sentiment_result = tracker.get_slot("sentiment_result")
+        ego_or_unego = tracker.get_slot("ego_or_unego")
         print("step", step)
         answer = ""
         opposite_question = ["다른 사람의 감정 변화를 잘 캐치하고 눈치껏 침묵하며 기다려주는 편인가요?", "기분에 따라 충동적으로 의사결정을 하기보다 충분한 시간을 갖고 생각하는 편인가요?",
@@ -351,7 +352,6 @@ class ActionDefaultFallback(Action):
                         unego_question = unego_get_question(center_type, unego_count-1, defined=False)
                     else:
                         unego_question = unego_get_question(center_type, unego_count-1, defined=True)
-                    ego_or_unego = tracker.get_slot("ego_or_unego")
 
                     # 자아인 경우
                     if sentiment_result > 0:
@@ -387,7 +387,7 @@ class ActionDefaultFallback(Action):
 
 
 
-        return [SlotSet("step", step),SlotSet("is_sentiment", 0)]
+        return [SlotSet("step", step),SlotSet("is_sentiment", 0),SlotSet("ego_or_unego", ego_or_unego)]
 
 class ActionQuestionIntro(Action):
     def name(self):
@@ -472,6 +472,7 @@ class ActionCenterUnegoQuestion(Action):
         step = tracker.get_slot("step")
         print(step)
         unego_question = ''
+        print("unego_count : ", unego_count)
         if unego_count < 4:
             if metadata['ct'][center_type] == 0:
                 unego_question = unego_get_question(center_type, unego_count-1, defined=False)
