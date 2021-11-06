@@ -49,6 +49,24 @@ def extract_metadata_from_data(tracker):  # 추후 삭제이후 각 파일의 im
     metadata = {"pn": f"{pn}", "t": t, "p": p, "d": d, "ct": ct, "se": se}
     return metadata
 
+def convert_ego_or_unego(i):
+    if i==1:
+        print("자아")
+        return "자아"
+    elif i==-1:
+        return "비자아"
+        print("비자아")
+    else:
+        print("중립")
+        return "중립"
+
+def sentiment_get_ego_or_unego(metadata=None, ego_or_unego=[0,0,0,0,0,0,0,0,0]):
+    # Mongo DB
+    if metadata != None:
+        ego_or_unego = list(map(convert_ego_or_unego, ego_or_unego))
+        x = mycol.find_one({"displayName": metadata["pn"]})
+        if not x:
+            mycol.update({"displayName": metadata["pn"]}, {"$set": {"ego_or_unego": ego_or_unego}})
 
 def extract_metadata_from_tracker(tracker):
     events = tracker.current_state()['events']
@@ -68,7 +86,7 @@ def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
             x = mycol.find_one({"displayName": metadata["pn"]})
             if not x:
                 x = mycol.insert_one({"displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
-                                      "definition": metadata["d"], "centers": metadata["ct"], "questions": []})
+                                      "definition": metadata["d"], "centers": metadata["ct"], "questions": [], "ego_or_unego": []})
 
             # add user question
             mycol.update({"displayName": metadata["pn"]}, {"$addToSet": { "question": {question:qa_step} }})

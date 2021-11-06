@@ -4,7 +4,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
-from actions.common import extract_metadata_from_tracker, koelectra_qa_getanswer, extract_metadata_from_data, unego_get_question
+from actions.common import extract_metadata_from_tracker, koelectra_qa_getanswer, extract_metadata_from_data, unego_get_question, sentiment_get_ego_or_unego
 from actions.sentiment_analysis import sentiment_predict
 from rasa_sdk.events import FollowupAction
 
@@ -351,15 +351,21 @@ class ActionDefaultFallback(Action):
                         unego_question = unego_get_question(center_type, unego_count-1, defined=False)
                     else:
                         unego_question = unego_get_question(center_type, unego_count-1, defined=True)
+                    ego_or_unego = tracker.get_slot("ego_or_unego")
 
                     # 자아인 경우
                     if sentiment_result > 0:
                         dispatcher.utter_message("좋아요! 나 답게 잘 살고 있어요!!")
                         answer = unego_question[1]
+                        ego_or_unego[center_priority[center_step]] = 1
+                        print("ego_or_unego : ", ego_or_unego)
+                        sentiment_get_ego_or_unego(metadata, ego_or_unego)
                     # 비자아 혹은 중립인 경우
                     else:
                         dispatcher.utter_message("주의! 나다움을 잃고 있어요!")
                         answer = unego_question[2]
+                        ego_or_unego[center_priority[center_step]] = -1
+                        sentiment_get_ego_or_unego(metadata, ego_or_unego)
 
                     dispatcher.utter_message(answer)
                     return [SlotSet("sentiment_result", 0), FollowupAction(name='action_center_unego_question')]
