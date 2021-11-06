@@ -68,7 +68,7 @@ def sentiment_get_ego_or_unego(ego_or_unego, metadata=None):
     # Mongo DB
     if metadata != None:
         ego_or_unego = list(map(convert_ego_or_unego, ego_or_unego))
-        mycol.update({"displayName": metadata["pn"]}, {"$set": {"ego_or_unego": ego_or_unego}})
+        mycol.update({"displayName": metadata["pn"]}, {"$addToSet": {"ego_or_unego": ego_or_unego}})
 
 def extract_metadata_from_tracker(tracker):
     events = tracker.current_state()['events']
