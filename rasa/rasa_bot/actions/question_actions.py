@@ -4,7 +4,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
-from actions.common import extract_metadata_from_tracker, koelectra_qa_getanswer, extract_metadata_from_data, unego_get_question
+from actions.common import extract_metadata_from_tracker, koelectra_qa_getanswer, extract_metadata_from_data, unego_get_question, sentiment_getEgoUnego
 from actions.sentiment_analysis import sentiment_predict
 from rasa_sdk.events import FollowupAction
 
@@ -348,6 +348,7 @@ class ActionDefaultFallback(Action):
                 # 비자아 질문 3개 다한 경우
                 if unego_count == 3:
                     ego_or_unego = tracker.get_slot('ego_or_unego')
+                    sentiment_getEgoUnego(metadata, ego_or_unego)
                     if metadata['ct'][center_type] == 0:
                         unego_question = unego_get_question(center_type, unego_count-1, defined=False)
                     else:
