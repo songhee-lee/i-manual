@@ -359,13 +359,13 @@ class ActionDefaultFallback(Action):
                         answer = unego_question[1]
                         ego_or_unego[center_priority[center_step]] = 1
                         print("ego_or_unego : ", ego_or_unego)
-                        sentiment_get_ego_or_unego(metadata, ego_or_unego)
+                        sentiment_get_ego_or_unego(ego_or_unego, metadata)
                     # 비자아 혹은 중립인 경우
                     else:
                         dispatcher.utter_message("주의! 나다움을 잃고 있어요!")
                         answer = unego_question[2]
                         ego_or_unego[center_priority[center_step]] = -1
-                        sentiment_get_ego_or_unego(metadata, ego_or_unego)
+                        sentiment_get_ego_or_unego(ego_or_unego, metadata)
 
                     dispatcher.utter_message(answer)
                     return [SlotSet("sentiment_result", 0), FollowupAction(name='action_center_unego_question')]
