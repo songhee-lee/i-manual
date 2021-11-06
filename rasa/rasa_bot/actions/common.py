@@ -53,7 +53,6 @@ def extract_metadata_from_data(tracker):  # 추후 삭제이후 각 파일의 im
     if not x:
         mycol.insert_one({"displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
                                       "definition": metadata["d"], "centers": metadata["ct"], "questions": [], "ego_or_unego": []})
-
     return metadata
 
 def convert_ego_or_unego(i):
@@ -68,7 +67,7 @@ def sentiment_get_ego_or_unego(ego_or_unego, metadata=None):
     # Mongo DB
     if metadata != None:
         ego_or_unego = list(map(convert_ego_or_unego, ego_or_unego))
-        mycol.update({"displayName": metadata["pn"]}, {"$addToSet": {"ego_or_unego": ego_or_unego}})
+        mycol.update_one({"displayName": metadata["pn"]}, {"$addToSet": {"ego_or_unego": ego_or_unego}})
 
 def extract_metadata_from_tracker(tracker):
     events = tracker.current_state()['events']
@@ -85,7 +84,7 @@ def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
     if qa_step:    # '종족' QA는 저장 안함
         if metadata != None:
             # add user question
-            mycol.update({"displayName": metadata["pn"]}, {"$addToSet": { "question": {question:qa_step} }})
+            mycol.update_one({"displayName": metadata["pn"]}, {"$addToSet": { "question": {question:qa_step} }})
 
     inputs = tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
     input_ids = inputs["input_ids"].tolist()[0]
