@@ -47,6 +47,13 @@ def extract_metadata_from_data(tracker):  # 추후 삭제이후 각 파일의 im
     ct = tracker.get_slot("ct")
     se = tracker.get_slot("se")
     metadata = {"pn": f"{pn}", "t": t, "p": p, "d": d, "ct": ct, "se": se}
+    
+    # check a user if he is new user
+    x = mycol.find_one({"displayName": metadata["pn"]})
+    if not x:
+        mycol.insert_one({"displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
+                                      "definition": metadata["d"], "centers": metadata["ct"], "questions": [], "ego_or_unego": []})
+
     return metadata
 
 def convert_ego_or_unego(i):
@@ -61,11 +68,7 @@ def sentiment_get_ego_or_unego(ego_or_unego, metadata=None):
     # Mongo DB
     if metadata != None:
         ego_or_unego = list(map(convert_ego_or_unego, ego_or_unego))
-        x = mycol.find_one({"displayName": metadata["pn"]})
-        if not x:
-            x = mycol.insert_one({"displayName":metadata["pn"], "type": metadata["t"], "profile":metadata["p"], "definition":metadata["d"], "centers":metadata["ct"],"questions":[], "ego_or_unego": ego_or_unego})
-        else:
-            mycol.update({"displayName": metadata["pn"]}, {"$set": {"ego_or_unego": ego_or_unego}})
+        mycol.update({"displayName": metadata["pn"]}, {"$set": {"ego_or_unego": ego_or_unego}})
 
 def extract_metadata_from_tracker(tracker):
     events = tracker.current_state()['events']
@@ -81,12 +84,6 @@ def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
     # Mongo DB 
     if qa_step:    # '종족' QA는 저장 안함
         if metadata != None:
-            # check a user if he is new user
-            x = mycol.find_one({"displayName": metadata["pn"]})
-            if not x:
-                x = mycol.insert_one({"displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
-                                      "definition": metadata["d"], "centers": metadata["ct"], "questions": [], "ego_or_unego": []})
-
             # add user question
             mycol.update({"displayName": metadata["pn"]}, {"$addToSet": { "question": {question:qa_step} }})
 
