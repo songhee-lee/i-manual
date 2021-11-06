@@ -128,8 +128,8 @@ slots:
 #    influence_conversation: false
   ego_or_unego:
     type: list
-    initial_value: null
-    auto_fill: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    initial_value: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    auto_fill: true
     influence_conversation: true
   center_priority:
     type: list
