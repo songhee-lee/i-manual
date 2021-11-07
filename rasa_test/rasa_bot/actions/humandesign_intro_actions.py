@@ -6,7 +6,13 @@ from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
 from actions.common import extract_metadata_from_tracker, extract_metadata_from_data
 from rasa_sdk.events import FollowupAction
-import 
+from pymongo import MongoClient
+
+# MongoDB setting
+my_client = MongoClient("mongodb://localhost:27017/")
+mydb = my_client['i-Manual']  # i-Manaul database 생성
+mycol = mydb['users']  # users Collection 생성
+
 
 logger = logging.getLogger(__name__)
 #추후 삭제
