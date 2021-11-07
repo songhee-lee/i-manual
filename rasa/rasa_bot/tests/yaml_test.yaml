@@ -1,0 +1,9 @@
+users: 
+  user1 : 
+    name : nino
+    uid : 8759
+    shell : /bin/ksh
+  user2 : 
+    name : vivo
+    uid : 9650
+    shell : /bin/sh
