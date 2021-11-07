@@ -43,6 +43,8 @@ class ActionSetPriority(Action): #맨 처음
     def run(self, dispatcher, tracker, domain):
         print('action_set_priority')
         metadata = extract_metadata_from_tracker(tracker)
+        print("metadata 출력")
+        print(metadata)
         gt = metadata["gt"]
         se = change_gate_to_center(gt)
         dispatcher.utter_message(
