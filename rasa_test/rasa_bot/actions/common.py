@@ -47,7 +47,7 @@ def extract_metadata_from_data(tracker):  # 추후 삭제이후 각 파일의 im
     ct = tracker.get_slot("ct")
     se = tracker.get_slot("se")
     metadata = {"pn": f"{pn}", "t": t, "p": p, "d": d, "ct": ct, "se": se}
-
+    return metadata
 
 def convert_ego_or_unego(i):
     if i==1:
