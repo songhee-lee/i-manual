@@ -120,6 +120,7 @@ entities:
   - unego_count
   - sentiment_result
   - ego_or_unego
+  - se
 slots:
   center_priority:
     type: list
@@ -202,6 +203,11 @@ slots:
     auto_fill: true
     influence_conversation: false
   ego_or_unego:
+    type: list
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  se:
     type: list
     initial_value: null
     auto_fill: true
