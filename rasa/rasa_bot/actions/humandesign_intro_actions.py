@@ -15,6 +15,22 @@ mycol = mydb['users']  # users Collection 생성
 
 logger = logging.getLogger(__name__)
 
+def change_gate_to_center(gate):
+    center = {"연료센터": [53, 60, 52, 19, 39, 41, 54, 38, 58],
+              "활력센터": [5, 14, 29, 34, 27, 42, 3, 9, 59],
+              "직관센터": [48, 57, 44, 50, 32, 28, 18],
+              "감정센터": [37, 22, 36, 6, 49, 55, 30],
+              "에고센터": [21, 51, 26, 40],
+              "방향센터": [7, 1, 13, 25, 46, 2, 15, 10],
+              "표현센터": [62, 23, 56, 35, 12, 45, 33, 8, 31, 20, 16],
+              "생각센터": [47, 24, 4, 17, 43, 11],
+              "영감센터": [64, 61, 63]          
+    }
+    
+    for i in range(0, 9):
+        if gate in center.keys()[i]:
+            return i
+    
 class ActionSetPriority(Action): #맨 처음
     def name(self):
         return "action_set_priority"
@@ -38,7 +54,15 @@ class ActionSetPriority(Action): #맨 처음
         for i in range(3):
             if i not in leading_priority:
                 leading_priority.append(i)
-
+        
+        #### gt -> se
+        se = []
+        se.append( change_gate_to_center( metadata["gt"][0]) )
+        se.append( change_gate_to_center( metadata["gt"][1]) )
+        se.append( change_gate_to_center( metadata["gt"][13]) )
+        se.append( change_gate_to_center( metadata["gt"][14]) )
+        SlotSet('se', se)
+        
         #센터 우선순위 정하는 부분 미정의 부터로 수정
         center_priority = []
         #미정의 먼저
