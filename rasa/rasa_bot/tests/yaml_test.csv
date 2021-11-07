@@ -1,7 +1,0 @@
-﻿users,name,uid,shell
-user1,nino,8759,/bin/ksh
-user2,vivo,9650,/bin/sh
-
-stories,user,intent,action
-story
-step,hello there!,greet,utter_greet
