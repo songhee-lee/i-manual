@@ -185,7 +185,7 @@ stories:
   - story: Say reset anytime the user says reset
     steps:
       - intent: reset
-      - action: utter_reset
+      - action: action_initialized
 
   - story: Say step
     steps:
