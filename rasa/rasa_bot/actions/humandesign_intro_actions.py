@@ -57,7 +57,7 @@ class ActionSetPriority(Action): #맨 처음
         # check a user if he is new user
         x = mycol.find_one({"displayName": metadata["pn"]})
         if not x:
-            mycol.insert_one({"displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
+            mycol.insert_one({"displayID": metadata["uID"], "displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
                               "definition": metadata["d"], "centers": metadata["ct"], "questions": [],
                               "ego_or_unego": []})
 
