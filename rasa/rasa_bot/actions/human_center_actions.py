@@ -34,7 +34,7 @@ class ActionLeadingCentersIntro(Action):
         is_finished = tracker.get_slot('is_finished')
         if center_step == 9:
             if is_finished==0:
-                return [SlotSet("center_step", 0), FollowupAction(name="action_more")]
+                return [FollowupAction(name="action_more")]
             else:
                 center_step=0
         

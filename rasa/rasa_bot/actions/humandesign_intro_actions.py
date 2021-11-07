@@ -164,9 +164,9 @@ class ActionMore(Action):
         se = tracker.get_slot('se')
 
         if center_step==0 or center_step==9:
-            if step == 4:
+            if step == 4 and is_finished == 0:
                 # is_finished = 1 은 last_message 나오고 set
-                return [FollowupAction(name='action_last_message')]
+                return [SlotSet('center_step', 0), FollowupAction(name='action_last_message')]
             else:
                 buttons = []
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
