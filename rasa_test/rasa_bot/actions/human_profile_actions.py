@@ -172,7 +172,7 @@ class ActionLeadingProfileIntro(Action):
             tag = "방해 극혐 ,혼자가 더 재밌어 ,인파에서 벗어나 휴식할 것"
         elif metadata["p"] == 63:
             h_type = "6/3"
-            img = "https://asset.i-manual.co.kr/static/images/profile/profiles/62.gif"
+            img = "https://asset.i-manual.co.kr/static/images/profile/profiles/63.gif"
             msg = "모든 사람은 사회적 성향으로 두개의 숫자를 갖습니다. 당신은 6번과 3번을 갖고 있어 6/3으로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
             msg2 = "6번은 관조자 3번은 도전가로, 의식적으로는 관조자이지만, 무의식에서는 끊임없이 도전하게 만드는 성향을 가진 사람입니다. "
             msg3 = "삶에서 완벽한 것은 무엇일까? 라는 질문의 답을 찾는 성향의 사람입니다. 왜냐하면 당신의 삶은 잠재적으로 혼란과 불안정함을 늘 가지고 있을 수 있거든요. "
