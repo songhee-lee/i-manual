@@ -75,14 +75,14 @@ def extract_metadata_from_tracker(tracker):
     for e in events:
         if e['event'] == 'user':
             user_events.append(e)
-
+    """
     metadata = {"pn": f"{tracker.get_slot("pn")}", "t": tracker.get_slot("t"), "p": tracker.get_slot("p"), "d": tracker.get_slot("d"), "ct": tracker.get_slot("ct"), "se": tracker.get_slot("se")} 
     # check a user if he is new user
     x = mycol.find_one({"displayName": metadata["pn"]})
     if not x:
         mycol.insert_one({"displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
                                       "definition": metadata["d"], "centers": metadata["ct"], "questions": [], "ego_or_unego": []})
-
+    """
     return user_events[-1]['metadata']
 
 
