@@ -16,20 +16,25 @@ mycol = mydb['users']  # users Collection 생성
 logger = logging.getLogger(__name__)
 
 def change_gate_to_center(gate):
-    center = {"연료센터": [53, 60, 52, 19, 39, 41, 54, 38, 58],
-              "활력센터": [5, 14, 29, 34, 27, 42, 3, 9, 59],
-              "직관센터": [48, 57, 44, 50, 32, 28, 18],
-              "감정센터": [37, 22, 36, 6, 49, 55, 30],
-              "에고센터": [21, 51, 26, 40],
-              "방향센터": [7, 1, 13, 25, 46, 2, 15, 10],
-              "표현센터": [62, 23, 56, 35, 12, 45, 33, 8, 31, 20, 16],
-              "생각센터": [47, 24, 4, 17, 43, 11],
-              "영감센터": [64, 61, 63]          
-    }
-    
-    for i in range(0, 9):
-        if gate in center.keys()[i]:
-            return i
+    se_gates = [gate[13], gate[14], gate[0], gate[1]]
+    center = {0: [53, 60, 52, 19, 39, 41, 54, 38, 58],
+              1: [5, 14, 29, 34, 27, 42, 3, 9, 59],
+              2: [48, 57, 44, 50, 32, 28, 18],
+              3: [37, 22, 36, 6, 49, 55, 30],
+              4: [21, 51, 26, 40],
+              5: [7, 1, 13, 25, 46, 2, 15, 10],
+              6: [62, 23, 56, 35, 12, 45, 33, 8, 31, 20, 16],
+              7: [47, 24, 4, 17, 43, 11],
+              8: [64, 61, 63]
+              }
+    se = []
+    for gt in se_gates:
+        for i in range(0, 9):
+            center_gates = center[i]
+            if gt in center_gates:
+                se.append(i)
+                break
+    return se
     
 class ActionSetPriority(Action): #맨 처음
     def name(self):
@@ -38,7 +43,8 @@ class ActionSetPriority(Action): #맨 처음
     def run(self, dispatcher, tracker, domain):
         print('action_set_priority')
         metadata = extract_metadata_from_tracker(tracker)
-
+        gt = metadata["gt"]
+        se = change_gate_to_center(gt)
         dispatcher.utter_message(
             f'{metadata["pn"]}님, 안녕하세요, 저는 당신이 어떤 사람인지 알려줄 마스터 봇 입니다. 자, 이제 당신에 대해 알아봅시다.')
 
@@ -55,22 +61,15 @@ class ActionSetPriority(Action): #맨 처음
             if i not in leading_priority:
                 leading_priority.append(i)
         
-        #### gt -> se
-        se = []
-        se.append( change_gate_to_center( metadata["gt"][0]) )
-        se.append( change_gate_to_center( metadata["gt"][1]) )
-        se.append( change_gate_to_center( metadata["gt"][13]) )
-        se.append( change_gate_to_center( metadata["gt"][14]) )
-        SlotSet('se', se)
-        
+
         #센터 우선순위 정하는 부분 미정의 부터로 수정
         center_priority = []
         #미정의 먼저
-        for i in metadata['se']:
+        for i in se:
             if metadata['ct'][i]==0 and (i not in center_priority):
                 center_priority.append(i)
         #그다음 정의
-        for i in metadata['se']:
+        for i in se:
             if metadata['ct'][i]==1 and (i not in center_priority):
                 center_priority.append(i)
 
@@ -85,7 +84,9 @@ class ActionSetPriority(Action): #맨 처음
                               "definition": metadata["d"], "centers": metadata["ct"], "questions": [],
                               "ego_or_unego": []})
 
-        return [FollowupAction(name='action_start'), SlotSet('leading_priority', leading_priority), SlotSet('center_priority', center_priority), SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0), SlotSet('center_type',center_priority[0]), SlotSet('center_question', 0), SlotSet('is_sentiment', 0), SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0])] #slot추가 필요
+        return [FollowupAction(name='action_start'), SlotSet('leading_priority', leading_priority), SlotSet('center_priority', center_priority),
+                SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0), SlotSet('center_type',center_priority[0]),
+                SlotSet('center_question', 0), SlotSet('is_sentiment', 0), SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se)] #slot추가 필요
 
 class ActionStart(Action):
     def name(self):
@@ -158,6 +159,7 @@ class ActionMore(Action):
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
+        se = tracker.get_slot('se')
 
         if center_step==0 or center_step==9:
             if step == 4:
@@ -169,8 +171,8 @@ class ActionMore(Action):
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
                 dispatcher.utter_message(f'계속 할까요?', buttons=buttons)
         else:
-            if metadata["se"][0] in center_priority[0:center_step] and metadata["se"][1] in center_priority[0:center_step] and \
-                    metadata["se"][2] in center_priority[0:center_step] and metadata["se"][3] in center_priority[0:center_step] and is_finished==0:
+            if se[0] in center_priority[0:center_step] and se[1] in center_priority[0:center_step] and \
+                    se[2] in center_priority[0:center_step] and se[3] in center_priority[0:center_step] and is_finished==0:
                 buttons = []
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
