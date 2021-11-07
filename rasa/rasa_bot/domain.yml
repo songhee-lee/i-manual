@@ -100,6 +100,7 @@ intents:
   - leading_drop_center:
       use_entities: false
 
+
 entities:
   - id
   - type

@@ -36,7 +36,7 @@ stories:
   - story: Say initial
     steps:
       - intent: initialized
-      - action: action_set_priority
+      - action: action_initialized
 
   - story: Say question
     steps:
@@ -201,3 +201,4 @@ stories:
     steps:
       - intent: leading_drop_center
       - action: action_drop_center
+

@@ -9,6 +9,19 @@ from rasa_sdk.events import FollowupAction
 
 logger = logging.getLogger(__name__)
 
+
+class ActionInitialized(Action):
+    def name(self) -> Text:
+        return "action_initialized"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print('action_initialized')
+        print(tracker.latest_message)
+        # dispatcher.utter_message("로케이션 세팅 완료!")
+        metadata = extract_metadata_from_tracker(tracker)
+
+        return [FollowupAction(name='action_set_priority')]
+
 class ActionLastMessage(Action):
     def name(self) -> Text:
         return "action_last_message"
