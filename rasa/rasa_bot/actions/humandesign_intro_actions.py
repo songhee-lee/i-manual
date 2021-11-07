@@ -6,6 +6,8 @@ from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
 from actions.common import extract_metadata_from_tracker, extract_metadata_from_data
 from rasa_sdk.events import FollowupAction
+import 
+
 logger = logging.getLogger(__name__)
 #추후 삭제
 class ActionSetMetadata(Action):
@@ -92,6 +94,13 @@ class ActionSetPriority(Action): #맨 처음
         for i in [8, 7, 6, 5, 2, 4, 3, 1, 0]:
             if i not in center_priority:
                 center_priority.append(i)
+                
+        # check a user if he is new user
+        x = mycol.find_one({"displayName": metadata["pn"]})
+        if not x:
+            mycol.insert_one({"displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
+                                      "definition": metadata["d"], "centers": metadata["ct"], "questions": [], "ego_or_unego": []})
+
         return [FollowupAction(name='action_start'), SlotSet('leading_priority', leading_priority), SlotSet('center_priority', center_priority), SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0), SlotSet('center_type',center_priority[0]), SlotSet('center_question', 0), SlotSet('is_sentiment', 0), SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0])] #slot추가 필요
 
 class ActionStart(Action):
