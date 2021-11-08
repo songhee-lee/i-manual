@@ -16,7 +16,7 @@ mycol = mydb['users']  # users Collection 생성
 logger = logging.getLogger(__name__)
 
 def change_gate_to_center(gate):
-    se_gates = [gate[13], gate[14], gate[0], gate[1]]
+    se_gates = [gate[0], gate[1], gate[13], gate[14]]
     center = {0: [53, 60, 52, 19, 39, 41, 54, 38, 58],
               1: [5, 14, 29, 34, 27, 42, 3, 9, 59],
               2: [48, 57, 44, 50, 32, 28, 18],
