@@ -36,7 +36,7 @@ def sentiment_get_ego_or_unego(ego_or_unego, metadata=None):
     # Mongo DB
     if metadata != None:
         ego_or_unego = list(map(convert_ego_or_unego, ego_or_unego))
-        mycol.update({"displayID": metadata["uID"]}, { "$set" :{"ego_or_unego": ego_or_unego}})
+        mycol.update({"displayID": metadata["uID"]}, { "$set" :{"self_notSelf": ego_or_unego}})
 
 
 def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
