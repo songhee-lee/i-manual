@@ -38,7 +38,7 @@ class ActionLeadingTypeIntro(Action):
         elif (metadata["t"] == 2):
             # 혁신주도가
             dispatcher.utter_message(
-                f'당신은 새로운 일들이 시작될 수 있도록 현시할 수 있는 인류의 10%에 해당하는 특별한 사람입니다.')
+                f'당신은 새로운 일들이 시작될 수 있도록 현시할 수 있는 인류의 9%에 해당하는 특별한 사람입니다.')
         elif (metadata["t"] == 3):
             # 가이드
             dispatcher.utter_message(
