@@ -160,7 +160,8 @@ class ActionLeadingCentersIntro(Action):
             h_type = "연료 센터 ( 정의 )"
             center_name = "연료센터"
             #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_0.gif"
-            img = "~/masterbot/rasa/rasa_bot/data/center_image/마스터봇_센터_연료.png"
+            #img = "~/masterbot/rasa/rasa_bot/data/center_image/마스터봇_센터_연료.png"
+            img = "https://drive.google.com/file/d/1oUdaSsfD4kDNI7MGsRJNCUB1Uty_4Abt/view?usp=sharing"
             msg = "인류의 60%는 연료센터에서 자신만의 에너지를 발신하며 다른 사람들이 내뿜는 압력에 좌우되지 않고 자신의 고유한 페이스대로 나아갈 수 있는 능력을 갖고 있습니다. "
             msg2 = "당신은 바로 이러한 능력을 가진 사람입니다. 즉, 자신만의 스트레스를 원동력 삼아 세상에 없는 새로운 무엇인가를 만들러 온 사람들이라고 할 수 있습니다."
             msg3 = "연료센터는 3개의 다른 센터와 연결되어 있습니다. 직관센터와 연결되어 있다면 자신만의 정해진 방식으로 스트레스를 사용하여 삶의 잘못된 것들을 고치기 위해 애씁니다. "
@@ -169,7 +170,7 @@ class ActionLeadingCentersIntro(Action):
             h_type = "활력 센터 ( 정의 )"
             center_name = "활력센터"
             #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_1.gif"
-            img = "~/masterbot/rasa/rasa_bot/data/center_image/마스터봇_센터_활력.png"
+            img = "~/masterbot/rasa/rasa_bot/data/center_image/sacral_de.png"
             msg = "당신은 자신이 좋아하는 일을 위해서는 며칠 밤을 새우더라도 괜찮을 수 있는 에너지를 지니고 있습니다. 하지만 이 에너지는 당신이 정말 좋아하는 일을 위해서 사용할 때만 활성화될 수 있습니다. 그렇지 않다면 당신은 만성피로에 시달리는 활력 없는 사람이 되고 말 것입니다. "
             msg2 = "에너지를 활성화시킬 수 있는지 알기 위해서는 주변 사람들에게 “Yes” or “No”로 답이 가능한 형태의 질문을 받아야 합니다. 질문 받은 당신의 몸에서 바로 ‘Yes’라는 반응이 일어나는 일이라면 당신은 늘 활기찰 수 있습니다."
         elif h_center == 2 and metadata['ct'][2] == 1:
