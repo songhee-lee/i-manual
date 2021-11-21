@@ -3,7 +3,7 @@ import torch
 import pandas as pd
 import random
 from pymongo import MongoClient
-from qa import remove_white_space
+import qa
 
 # MongoDB setting
 my_client = MongoClient("mongodb://localhost:27017/")
@@ -57,7 +57,7 @@ def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
         answer_end_scores) + 1  # Get the most likely end of answer with the argmax of the score
     answer = tokenizer.convert_tokens_to_string(
         tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
-    answer = remove_white_sapce(answer)
+    answer = qa.remove_white_sapce(answer)
     
     return answer
 
