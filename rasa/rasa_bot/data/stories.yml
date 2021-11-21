@@ -182,11 +182,6 @@ stories:
       - intent: masterbot
       - action: action_masterbot
 
-  - story: Say reset anytime the user says reset
-    steps:
-      - intent: reset
-      - action: action_initialized
-
   - story: Say step
     steps:
       - intent: leading_step

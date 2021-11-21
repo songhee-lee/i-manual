@@ -16,17 +16,13 @@ nlu:
       - 하이 마스터 봇
       - ㅎㅇ 마스터봇
       - ㅎㄴ 마스터 봇
-  - intent: reset
-    examples: |
-      - 리셋
-      - 재시작
-      - reset
-      - restart
   - intent: initialized
     examples: |
       - initialized
       - 초기화
       - 처음 실행
+      - 리셋
+      - reset
   - intent: explain
     examples: |
       - 설명
