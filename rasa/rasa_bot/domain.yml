@@ -217,11 +217,9 @@ slots:
 responses:
   utter_default:
     - text: 잘 못 알아들었어요! 다시 말씀해주실 수 있을까요?
-  utter_reset:
-    - text: 정말 리셋하시겠어요? 한 번 실행하면 되돌릴 수 없어요.
+
 actions:
   - action_default_fallback
-  - utter_reset
   - utter_default
   - action_initialized
   - action_goodbye
