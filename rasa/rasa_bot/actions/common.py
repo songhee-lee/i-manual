@@ -56,7 +56,7 @@ def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
         answer_end_scores) + 1  # Get the most likely end of answer with the argmax of the score
     answer = tokenizer.convert_tokens_to_string(
         tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
-    answer = remove_white_sapce(answer)
+    answer = remove_white_space(answer)
     
     return answer
 
