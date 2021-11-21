@@ -3,7 +3,7 @@ import torch
 import pandas as pd
 import random
 from pymongo import MongoClient
-from qa_modules import remove_white_space
+from qa import remove_white_space
 
 # MongoDB setting
 my_client = MongoClient("mongodb://localhost:27017/")
