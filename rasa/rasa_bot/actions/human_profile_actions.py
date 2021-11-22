@@ -298,7 +298,7 @@ class ActionLeadingProfile(Action):
         if msg7 != "":
             dispatcher.utter_message(msg7)
 
-        dispatcher.utter_message(f"자, {h_type} 성향에 대해 설명해 보았어요.")
+        dispatcher.utter_message(f"자, {h_type} 역할에 대해 설명해 보았어요.")
         buttons = []
         buttons.append({"title": f'질문 있어요', "payload": "/question{\"is_question\":\"1\", \"center_question\":\"0\"}"})
         buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
