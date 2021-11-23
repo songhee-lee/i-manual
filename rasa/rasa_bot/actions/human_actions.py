@@ -51,9 +51,9 @@ class ActionLastMessage(Action):
         
         # Save user's slot data in DB
         mycol2.update({"displayName": metadata["pn"]}, {"displayID": metadata["uID"], "displayName": metadata["pn"], 
-                              "leading_priority" : metadata["leading_priority"], "center_priority" : metadata["center_priority"],
-                              "step" : metadata["step"], "is_finished":metadata["is_finished"], "center_step":metadata["center_step"], 
-                              "center_type":metadata["center_type"]
+                              "leading_priority" : tracker.get_slot("leading_priority"), "center_priority" : tracker.get_slot("center_priority"),
+                              "step" : tracker.get_slot("step"), "is_finished":tracker.get_slot("is_finished"), "center_step":tracker.get_slot("center_step"), 
+                              "center_type":tracker.get_slot("center_type")
                              }, upsert=True)
 
         
