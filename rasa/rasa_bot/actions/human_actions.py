@@ -71,15 +71,16 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         # Update user's slot data
         x = list(mycol2.find_one({"displayName": metadata["pn"]}))[0]
         
-        metadata["leading_priority"] = x["leading_priority"]
+        if not x :
+            metadata["leading_priority"] = x["leading_priority"]
         
-        """
-        {"displayID": metadata["uID"], "displayName": metadata["pn"], 
-                              "leading_priority" : metadata["leading_priority"], "center_priority" : metadata["center_priority"],
-                              "step" : metadata["step"], "is_finished":metadata["is_finished"], "center_step":metadata["center_step"], 
-                              "center_type":metadata["center_type"]
-                             }
-        """
+            """
+            {"displayID": metadata["uID"], "displayName": metadata["pn"], 
+                                  "leading_priority" : metadata["leading_priority"], "center_priority" : metadata["center_priority"],
+                                  "step" : metadata["step"], "is_finished":metadata["is_finished"], "center_step":metadata["center_step"], 
+                                  "center_type":metadata["center_type"]
+                                 }
+            """
         
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
