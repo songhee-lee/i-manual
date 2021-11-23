@@ -71,18 +71,6 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
 
         # Update user's slot data
         x = mycol2.find_one({"displayID": metadata["uID"]})
-        if x :
-            #x = list(x)[0]
-            #print(x)
-            print(x["leading_priority"])
-            
-            """
-            {"displayID": metadata["uID"], "displayName": metadata["pn"], 
-                                  "leading_priority" : metadata["leading_priority"], "center_priority" : metadata["center_priority"],
-                                  "step" : metadata["step"], "is_finished":metadata["is_finished"], "center_step":metadata["center_step"], 
-                                  "center_type":metadata["center_type"]
-                                 }
-            """
         
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
@@ -109,7 +97,15 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
             buttons.append({"title": "아뇨! 처음부터 들을래요", "payload": "/initialized"})
 
             dispatcher.utter_message("지난번에 이어서 들으시겠어요?", buttons=buttons)
-        return []
+        
+        if not x:
+            return []
+        else:
+            return [SlotSet('leading_priority', x['leading_priority']), SlotSet('center_priority', x['center_priority']),
+                SlotSet('step', x['step']), SlotSet('is_finished', x['is_finished']), SlotSet('center_step', x['center_step']), SlotSet('is_question', 0), SlotSet('center_type',center_priority[0]),
+                SlotSet('center_question', 0), SlotSet('is_sentiment', 0), SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se)] #slot추가 필요
+
+            
         # dispatcher.utter_message("로케이션 세팅 완료!")
 
 
