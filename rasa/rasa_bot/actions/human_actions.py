@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 # MongoDB setting
 my_client = MongoClient("mongodb://localhost:27017/")
 mydb = my_client['i-Manual']  # i-Manaul database 생성
-mycol = mydb2['user_slot'] # user_slot Collection 
+mycol2 = mydb['user_slot'] # user_slot Collection 
 
 
 class ActionInitialized(Action):
