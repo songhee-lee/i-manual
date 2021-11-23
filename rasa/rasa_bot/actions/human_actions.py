@@ -68,12 +68,17 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         entities = tracker.latest_message['entities']
         
         metadata = extract_metadata_from_tracker(tracker)
-        
+        x = mycol2.find_one({"displayID": metadata["uID"]})
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
         is_finished = tracker.get_slot("is_finished")
         user_text = tracker.latest_message['text']
         center_step = tracker.get_slot('center_step')
+        new_user = tracker.get_slot('new_user')
+        # 처음들어온 user 가 마스터봇 호출할 경우
+        if leading_priority is None:
+            if not x:
+                return [FollowupAction(name='action_set_priority')]
         if(user_text == "마스터 봇" or user_text == "마스터봇"):
             dispatcher.utter_message(
                 f'안녕하세요 {metadata["pn"]}님, 저를 부르셨나요~? :) 다시 찾아주셔서 감사해요~')
