@@ -68,9 +68,6 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         entities = tracker.latest_message['entities']
         
         metadata = extract_metadata_from_tracker(tracker)
-
-        # Update user's slot data
-        x = mycol2.find_one({"displayID": metadata["uID"]})
         
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
@@ -98,12 +95,14 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
 
             dispatcher.utter_message("지난번에 이어서 들으시겠어요?", buttons=buttons)
         
-        if not x:
+        # Update user's slot data
+        x = mycol2.find_one({"displayID": metadata["uID"]})
+        if not x:        # 마스터봇 최초 사용자
             return []
-        else:
+        else:            
             return [SlotSet('leading_priority', x['leading_priority']), SlotSet('center_priority', x['center_priority']),
                 SlotSet('step', x['step']), SlotSet('is_finished', x['is_finished']), SlotSet('center_step', x['center_step']), SlotSet('is_question', 0),
-                ] #slot추가 필요
+                ] #slot 저장
 
             
         # dispatcher.utter_message("로케이션 세팅 완료!")
