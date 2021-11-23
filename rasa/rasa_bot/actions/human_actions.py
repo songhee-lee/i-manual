@@ -9,6 +9,11 @@ from rasa_sdk.events import FollowupAction
 
 logger = logging.getLogger(__name__)
 
+# MongoDB setting
+my_client = MongoClient("mongodb://localhost:27017/")
+mydb = my_client['i-Manual']  # i-Manaul database 생성
+mycol2 = mydb['user_slot'] # user_slot Collection 
+
 
 class ActionInitialized(Action):
     def name(self) -> Text:
@@ -42,7 +47,15 @@ class ActionLastMessage(Action):
             dispatcher.utter_message("궁금한 점이 있다면 언제든 다시 마스터봇을 불러주세요")
             dispatcher.utter_message("당신이 타고난 디자인대로 행복하게 살 수 있기를 응원합니다. 다시 만나요~")
             return [SlotSet('is_finished', 1)]
+        
+        # Update user's slot data in DB
+        mycol2.update({"displayName": metadata["pn"]}, {"displayID": metadata["uID"], "displayName": metadata["pn"], 
+                              "leading_priority" : metadata["leading_priority"], "center_priority" : metadata["center_priority"],
+                              "step" : metadata["step"], "is_finished":metadata["is_finished"], "center_step":metadata["center_step"], 
+                              "center_type":metadata["center_type"]
+                             }, upsert=True)
 
+        
         return []
 
 class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터 설명할지
