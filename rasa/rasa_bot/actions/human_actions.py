@@ -40,6 +40,14 @@ class ActionLastMessage(Action):
         metadata = extract_metadata_from_tracker(tracker)
 
         is_finished = tracker.get_slot('is_finished')
+        
+        # Save user's slot data in DB
+        mycol2.update({"displayName": metadata["pn"]}, {"displayID": metadata["uID"], "displayName": metadata["pn"], 
+                              "leading_priority" : tracker.get_slot("leading_priority"), "center_priority" : tracker.get_slot("center_priority"),
+                              "step" : tracker.get_slot("step"), "is_finished":tracker.get_slot("is_finished"), "center_step":tracker.get_slot("center_step"), 
+                              "center_type":tracker.get_slot("center_type")
+                             }, upsert=True)
+        
         if is_finished == 1:
             dispatcher.utter_message("마스터봇의 설명이 도움이 되고 있나요? 언제든 다시 불러주세요~")
         else:
@@ -48,13 +56,6 @@ class ActionLastMessage(Action):
             dispatcher.utter_message("궁금한 점이 있다면 언제든 다시 마스터봇을 불러주세요")
             dispatcher.utter_message("당신이 타고난 디자인대로 행복하게 살 수 있기를 응원합니다. 다시 만나요~")
             return [SlotSet('is_finished', 1)]
-        
-        # Save user's slot data in DB
-        mycol2.update({"displayName": metadata["pn"]}, {"displayID": metadata["uID"], "displayName": metadata["pn"], 
-                              "leading_priority" : tracker.get_slot("leading_priority"), "center_priority" : tracker.get_slot("center_priority"),
-                              "step" : tracker.get_slot("step"), "is_finished":tracker.get_slot("is_finished"), "center_step":tracker.get_slot("center_step"), 
-                              "center_type":tracker.get_slot("center_type")
-                             }, upsert=True)
 
         
         return []
