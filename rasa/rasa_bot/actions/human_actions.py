@@ -69,7 +69,7 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         metadata = extract_metadata_from_tracker(tracker)
 
         # Update user's slot data
-        x = mycol2.find_one({"displayName": metadata["pn"]})
+        x = list(mycol2.find_one({"displayName": metadata["pn"]}))[0]
         
         metadata["leading_priority"] = x["leading_priority"]
         
