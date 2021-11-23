@@ -72,8 +72,8 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         # Update user's slot data
         x = mycol2.find_one({"displayID": metadata["uID"]})
         if x :
-            x = list(x)[0]
-            print(x)
+            #x = list(x)[0]
+            #print(x)
             print(x["leading_priority"])
             
             """
