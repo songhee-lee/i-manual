@@ -48,7 +48,7 @@ class ActionLastMessage(Action):
             dispatcher.utter_message("당신이 타고난 디자인대로 행복하게 살 수 있기를 응원합니다. 다시 만나요~")
             return [SlotSet('is_finished', 1)]
         
-        # Update user's slot data in DB
+        # Save user's slot data in DB
         mycol2.update({"displayName": metadata["pn"]}, {"displayID": metadata["uID"], "displayName": metadata["pn"], 
                               "leading_priority" : metadata["leading_priority"], "center_priority" : metadata["center_priority"],
                               "step" : metadata["step"], "is_finished":metadata["is_finished"], "center_step":metadata["center_step"], 
@@ -67,7 +67,19 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         
         metadata = extract_metadata_from_tracker(tracker)
 
-
+        # Update user's slot data
+        x = mycol.find_one({"displayName": metadata["pn"]})
+        
+        metadata["leading_priority"] = x["leading_priority"]
+        
+        """
+        {"displayID": metadata["uID"], "displayName": metadata["pn"], 
+                              "leading_priority" : metadata["leading_priority"], "center_priority" : metadata["center_priority"],
+                              "step" : metadata["step"], "is_finished":metadata["is_finished"], "center_step":metadata["center_step"], 
+                              "center_type":metadata["center_type"]
+                             }
+        """
+        
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
         is_finished = tracker.get_slot("is_finished")
