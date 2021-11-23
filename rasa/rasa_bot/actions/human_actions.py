@@ -102,8 +102,8 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
             return []
         else:
             return [SlotSet('leading_priority', x['leading_priority']), SlotSet('center_priority', x['center_priority']),
-                SlotSet('step', x['step']), SlotSet('is_finished', x['is_finished']), SlotSet('center_step', x['center_step']), SlotSet('is_question', 0), SlotSet('center_type',center_priority[0]),
-                SlotSet('center_question', 0), SlotSet('is_sentiment', 0), SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se)] #slot추가 필요
+                SlotSet('step', x['step']), SlotSet('is_finished', x['is_finished']), SlotSet('center_step', x['center_step']), SlotSet('is_question', 0),
+                ] #slot추가 필요
 
             
         # dispatcher.utter_message("로케이션 세팅 완료!")
