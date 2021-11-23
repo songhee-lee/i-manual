@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 # MongoDB setting
 my_client = MongoClient("mongodb://localhost:27017/")
 mydb = my_client['i-Manual']  # i-Manaul database 생성
-mycol2 = mydb['user_slot'] # user_slot Collection 
+mycol = mydb2['user_slot'] # user_slot Collection 
 
 
 class ActionInitialized(Action):
@@ -69,9 +69,8 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         metadata = extract_metadata_from_tracker(tracker)
 
         # Update user's slot data
-        x = mycol2.find_one({"displayName": metadata["pn"]})
-        
-        if not x :
+        x = mycol2.find_one({"displayID": metadata["uID"]})
+        if x :
             x = list(x)[0]
             metadata["leading_priority"] = x["leading_priority"]
         
