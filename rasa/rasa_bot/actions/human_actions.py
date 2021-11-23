@@ -6,6 +6,7 @@ from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
 from actions.common import extract_metadata_from_tracker
 from rasa_sdk.events import FollowupAction
+from pymongo import MongoClient
 
 logger = logging.getLogger(__name__)
 
