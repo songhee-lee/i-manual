@@ -374,7 +374,7 @@ class ActionDefaultFallback(Action):
 
                 notice_buttons.append({"title": f'질문 없어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
-                notice = '''지금은 채팅하실 수 없습니다. 혹시 질문이 있나요?'''
+                notice = '''지금은 채팅하실 수 없습니다. \n질문이 있으시면 질문 버튼을 클릭해주세요!\n문제가 생겼다면 마스터봇을 입력해주세요!'''
                 dispatcher.utter_message(f'{notice}', buttons=notice_buttons)
 
 
