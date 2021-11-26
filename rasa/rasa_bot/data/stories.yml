@@ -197,3 +197,8 @@ stories:
       - intent: leading_drop_center
       - action: action_drop_center
 
+  - story: set_priority_again
+    steps:
+      - intent: set_priority_again
+      - action: action_set_priority_again
+
