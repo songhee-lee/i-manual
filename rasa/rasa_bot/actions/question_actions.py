@@ -135,13 +135,17 @@ class ActionQuestion(Action):
         metadata = extract_metadata_from_tracker(tracker)
 
         leading_priority = tracker.get_slot('leading_priority')
-        step = tracker.get_slot('step')
-        q_type = leading_priority[step - 1]
         is_question = tracker.get_slot('is_question')
         print("is_question", is_question)
         step = tracker.get_slot("step")
         print(step)
         center_question = tracker.get_slot("center_question")
+
+        if leading_priority is None or step is None or is_question is None or center_question is None:
+            return [FollowupAction(name='action_set_priority_again')]
+
+
+        q_type = leading_priority[step - 1]
         if is_question:
             if q_type == 0:
                 return [FollowupAction(name="action_leading_type_question")]
@@ -149,7 +153,7 @@ class ActionQuestion(Action):
                 dispatcher.utter_message('무엇이 궁금하신가요?')
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
-        h_type = ''
+
 
         return [SlotSet("step", step), SlotSet("is_question", 1)]
 
@@ -186,6 +190,8 @@ class ActionDefaultFallback(Action):
         unego_count = tracker.get_slot("unego_count")
         sentiment_result = tracker.get_slot("sentiment_result")
         ego_or_unego = tracker.get_slot("ego_or_unego")
+        if is_question is None or is_sentiment is None or center_question is None or leading_priority is None or center_priority is None or step is None or ego_or_unego is None:
+            return [FollowupAction(name='action_set_priority_again')]
         print("step", step)
         answer = ""
         opposite_question = ["다른 사람의 감정 변화를 잘 캐치하고 눈치껏 침묵하며 기다려주는 편인가요?", "기분에 따라 충동적으로 의사결정을 하기보다 충분한 시간을 갖고 생각하는 편인가요?",
@@ -407,6 +413,8 @@ class ActionQuestionIntro(Action):
         center_step = tracker.get_slot("center_step")
         # tracker 에서 필요한 변수 load
         leading_priority = tracker.get_slot('leading_priority')
+        if step is None or center_step is None or leading_priority is None:
+            return [FollowupAction(name='action_set_priority_again')]
         q_type = leading_priority[step - 1]
 
         is_center = 0
@@ -459,6 +467,8 @@ class ActionCenterUnegoQuestion(Action):
         unego_count += 1
         step = tracker.get_slot("step")
         print(step)
+        if center_type is None or center_step is None or unego_count is None or step is None:
+            return [FollowupAction(name='action_set_priority_again')]
         unego_question = ''
         print("unego_count : ", unego_count)
         if unego_count < 4:
@@ -492,6 +502,8 @@ class ActionTypeQuestion(Action):
         question = tracker.get_slot("bot_question")
         context_index = tracker.get_slot("context_index")
         step = tracker.get_slot("step")
+        if step is None or question is None or context_index is None:
+            return [FollowupAction(name='action_set_priority_again')]
         print(step)
 
         context = type_retrieve_context(type_index, context_index=context_index)
@@ -515,6 +527,8 @@ class ActionStrategyQuestion(Action):
         question = tracker.get_slot("bot_question")
         context_index = tracker.get_slot("context_index")
         step = tracker.get_slot("step")
+        if question is None or context_index is None or step is None:
+            return [FollowupAction(name='action_set_priority_again')]
         print(step)
 
         context = strategy_retrieve_context(type_index, context_index=context_index)

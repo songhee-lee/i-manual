@@ -99,6 +99,8 @@ intents:
       use_entities: false
   - leading_drop_center:
       use_entities: false
+  - set_priority_again:
+      use_entities: true
 
 
 entities:
@@ -251,6 +253,7 @@ actions:
   - action_center_detail_intro
   - action_masterbot_more
   - action_drop_center
+  - action_set_priority_again
 
 forms: {}
 e2e_actions: []

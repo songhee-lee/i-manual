@@ -22,6 +22,10 @@ class ActionLeadingTypeIntro(Action):
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
         is_finished = tracker.get_slot('is_finished')
+
+        if leading_priority is None or step is None or is_finished is None:
+            return [FollowupAction(name='action_set_priority_again')]
+
         if is_finished == 1:
             dispatcher.utter_message(
                 f'그럼 종족에 대해 다시 알려드릴게요!'
@@ -130,6 +134,8 @@ class ActionLeadingType(Action):
         metadata = extract_metadata_from_tracker(tracker)
 
         leading_priority = tracker.get_slot('leading_priority')
+        if leading_priority is None:
+            return [FollowupAction(name='action_set_priority_again')]
 
         h_type = ''
         msg_1 = ""

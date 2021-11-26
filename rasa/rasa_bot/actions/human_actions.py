@@ -40,6 +40,8 @@ class ActionLastMessage(Action):
         metadata = extract_metadata_from_tracker(tracker)
 
         is_finished = tracker.get_slot('is_finished')
+        if is_finished is None:
+            return [FollowupAction(name='action_set_priority_again')]
         
         # Save user's slot data in DB
         mycol2.update({"displayName": metadata["pn"]}, {"displayID": metadata["uID"], "displayName": metadata["pn"], 
@@ -76,12 +78,14 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         center_step = tracker.get_slot('center_step')
         new_user = tracker.get_slot('new_user')
         # 처음들어온 user 가 마스터봇 호출할 경우
-        if leading_priority is None:
-            if not x:
-                return [FollowupAction(name='action_set_priority')]
+
         if(user_text == "마스터 봇" or user_text == "마스터봇"):
             dispatcher.utter_message(
                 f'안녕하세요 {metadata["pn"]}님, 저를 부르셨나요~? :) 다시 찾아주셔서 감사해요~')
+        if leading_priority is None or step is None:
+            if not x:
+                return [FollowupAction(name='action_set_priority_again')]
+
         #다시 들어왔을 때 판단
         if is_finished==1:
 
@@ -125,6 +129,9 @@ class ActionMasterbotMore(Action):  # 수정필요 entity를 통해 어디부분
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
         center_step = tracker.get_slot('center_step')
+        if leading_priority is None or step is None or center_step is None:
+            return [FollowupAction(name='action_set_priority_again')]
+
         if leading_priority[step - 1] == 3 and center_step < 9:
             return [FollowupAction(name='action_leading_centers_intro')]
         else:

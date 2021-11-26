@@ -32,6 +32,8 @@ class ActionLeadingCentersIntro(Action):
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
         is_finished = tracker.get_slot('is_finished')
+        if leading_priority is None or step is None or center_step is None or center_priority is None or is_finished is None:
+            return [FollowupAction(name='action_set_priority_again')]
         if center_step == 9:
             if is_finished==0:
                 return [FollowupAction(name="action_more")]
@@ -351,6 +353,9 @@ class ActionLeadingCenters(Action):
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
+        if leading_priority is None or step is None or center_step is None:
+            return [FollowupAction(name='action_set_priority_again')]
+
         if center_step == 9:
             return [FollowupAction(name="action_more")]
         center_priority = tracker.get_slot('center_priority')
@@ -501,6 +506,8 @@ class ActionLeadingCentersQuestion(Action):
 
         print("MetaData: ", metadata)
         step = tracker.get_slot('step')
+        if step is None:
+            return [FollowupAction(name='action_set_priority_again')]
 
         return [SlotSet('step', step), SlotSet("center_question", False), FollowupAction(name='action_more')]
 
@@ -516,6 +523,10 @@ class ActionCenterDetailIntro(Action):
 
         center_step = tracker.get_slot("center_step")
         center_priority = tracker.get_slot('center_priority')
+
+        if center_step is None or center_priority is None:
+            return [FollowupAction(name='action_set_priority_again')]
+
         h_center = center_priority[center_step]
 
         buttons = []
