@@ -105,13 +105,13 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
             dispatcher.utter_message("지난번에 이어서 들으시겠어요?", buttons=buttons)
         
         # Update user's slot data
-        x = mycol2.find_one({"displayID": metadata["uID"]})
-        if not x:        # 마스터봇 최초 사용자
-            return []
-        else:            
-            return [SlotSet('leading_priority', x['leading_priority']), SlotSet('center_priority', x['center_priority']),
-                SlotSet('step', x['step']), SlotSet('is_finished', x['is_finished']), SlotSet('center_step', x['center_step']), SlotSet('is_question', 0),
-                ] #slot 저장
+        # x = mycol2.find_one({"displayID": metadata["uID"]})
+        # if not x:        # 마스터봇 최초 사용자
+        #     return []
+        # else:
+        #     return [SlotSet('leading_priority', x['leading_priority']), SlotSet('center_priority', x['center_priority']),
+        #         SlotSet('step', x['step']), SlotSet('is_finished', x['is_finished']), SlotSet('center_step', x['center_step']), SlotSet('is_question', 0),
+        #         ] #slot 저장
 
             
         # dispatcher.utter_message("로케이션 세팅 완료!")
