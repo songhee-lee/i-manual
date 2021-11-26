@@ -52,7 +52,7 @@ strategy3_paragraph = strategy3_csv['paragraph'].values.tolist()
 strategy4_paragraph = strategy4_csv['paragraph'].values.tolist()
 
 center_index = [0, 2, 3, 4, 5, 6]
-center_info = ["연료센터", "활력센터", "직관센터", "감정센터", "에고센터", "방향센터", "표현센터", "생각센터", "영감센터"]
+center_info = ["연료 센터", "활력 센터", "직관 센터", "감정 센터", "에고 센터", "방향 센터", "표현 센터", "생각 센터", "영감 센터"]
 
 def type_retrieve_context(i, context_index):
     type_context = ''
@@ -354,7 +354,7 @@ class ActionDefaultFallback(Action):
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
                     # 비자아 혹은 중립인 경우
                     else:
-                        dispatcher.utter_message(f"주의! 나다움을 잃고 있어요!")
+                        dispatcher.utter_message(f"{center_info[center_type]}에 대한 나다움을 잃고 있어요!")
                         answer = unego_question[2]
                         ego_or_unego[center_priority[center_step]] = -1
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
@@ -374,8 +374,10 @@ class ActionDefaultFallback(Action):
 
                 notice_buttons.append({"title": f'질문 없어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
-                notice = '''지금은 채팅하실 수 없습니다. \n질문이 있으시면 질문 버튼을 클릭해주세요!\n문제가 생겼다면 마스터봇을 입력해주세요!'''
-                dispatcher.utter_message(f'{notice}', buttons=notice_buttons)
+                notice = '''지금은 채팅하실 수 없습니다. 질문이 있으시면 질문 버튼을 클릭해주세요!'''
+                notice2 = '''문제가 생겼다면 마스터봇을 입력해주세요!'''
+                dispatcher.utter_message(f'{notice}')
+                dispatcher.utter_message(f'{notice2}', buttons=notice_buttons)
 
 
 
