@@ -55,7 +55,7 @@ class ActionLastMessage(Action):
         else:
             dispatcher.utter_message("당신이 타고난 디자인에 대한 마스터봇의 설명이 이해가 잘 되셨나요?")
             dispatcher.utter_message('아이매뉴얼에서 준비한 당신의 설명서를 꼼꼼히 읽어보시길 바랍니다."더불어 행복설명서와 관계사용 설명서도 꼭 읽어보세요~"')
-            dispatcher.utter_message("궁금한 점이 있다면 언제든 다시 마스터봇을 불러주세요")
+            dispatcher.utter_message("궁금한 점이 있다면 채팅창에 "마스터봇"이라고 입력해주세요.")
             dispatcher.utter_message("당신이 타고난 디자인대로 행복하게 살 수 있기를 응원합니다. 다시 만나요~")
             return [SlotSet('is_finished', 1)]
 
