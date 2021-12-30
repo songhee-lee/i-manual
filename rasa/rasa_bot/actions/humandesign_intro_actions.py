@@ -158,13 +158,13 @@ class ActionSetPriorityAgain(Action): #맨 처음
             ego_or_unego = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 
-        # # check a user if he is new user
-        # x = mycol.find_one({"displayName": metadata["pn"]})
-        # if not x:
-        #     mycol.insert_one({"displayID": metadata["uID"], "displayName": metadata["pn"], "type": metadata["t"],
-        #                       "profile": metadata["p"],
-        #                       "definition": metadata["d"], "centers": metadata["ct"], "questions": [],
-        #                       "self_notSelf": []})
+        # check a user if he is new user
+        x = mycol.find_one({"displayName": metadata["pn"]})
+        if not x:
+             mycol.insert_one({"displayID": metadata["uID"], "displayName": metadata["pn"], "type": metadata["t"],
+                               "profile": metadata["p"],
+                               "definition": metadata["d"], "centers": metadata["ct"], "questions": [],
+                               "self_notSelf": []})
 
         return [FollowupAction(name='action_step'), SlotSet('leading_priority', leading_priority),
                 SlotSet('center_priority', center_priority),
