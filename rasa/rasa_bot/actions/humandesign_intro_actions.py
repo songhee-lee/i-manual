@@ -163,7 +163,7 @@ class ActionSetPriorityAgain(Action): #맨 처음
         if not x:
              mycol.insert_one({"displayID": metadata["uID"], "displayName": metadata["pn"], "type": metadata["t"],
                                "profile": metadata["p"],
-                               "definition": metadata["d"], "centers": metadata["ct"], "questions": [],
+                               "definition": metadata["d"], "centers": metadata["ct"], "question": [],
                                "self_notSelf": []})
 
         return [FollowupAction(name='action_step'), SlotSet('leading_priority', leading_priority),
