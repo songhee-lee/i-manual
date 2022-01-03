@@ -36,78 +36,71 @@ stories:
   - story: Say initial
     steps:
       - intent: initialized
-      - action: action_set_priority
-      - action: action_start
+      - action: action_initialized
 
-  - story: Say goodbye
-    steps:
-      - intent: goodbye
-      - action: action_goodbye
-
-  - story: Say question ###추가
+  - story: Say question
     steps:
       - intent: question
       - action: action_question
       - intent: masterbot
       - action: action_default_fallback
 
-  - story: Say question ###추가
+  - story: Say question
     steps:
       - intent: question
       - action: action_question
       - intent: reset
       - action: action_default_fallback
 
-  - story: Say question ###추가
+  - story: Say question
     steps:
       - intent: question
       - action: action_question
       - intent: initialized
       - action: action_default_fallback
 
-  - story: Say question ###추가
+  - story: Say question
     steps:
       - intent: question
       - action: action_question
       - intent: explain
       - action: action_default_fallback
 
-  - story: Say question ###추가
+  - story: Say question
     steps:
       - intent: question
       - action: action_question
       - intent: question
       - action: action_default_fallback
 
-  - story: Say question ###추가
+  - story: Say question
     steps:
       - intent: question
       - action: action_question
       - intent: have_question
       - action: action_default_fallback
 
-  - story: Say question ###추가
+  - story: Say question
     steps:
       - intent: question
       - action: action_question
       - intent: start
       - action: action_default_fallback
 
-  - story: Say question_intro # 무현추가
+  - story: Say question_intro
     steps:
       - intent: question_intro
       - action: action_question_intro
 
-  - story: Say type_question # 무현추가
+  - story: Say type_question
     steps:
       - intent: type_question
       - action: action_type_question
 
-  - story: Say strategy_question # 무현추가
+  - story: Say strategy_question
     steps:
       - intent: strategy_question
       - action: action_strategy_question
-
         
   - story: Say leading_more
     steps:
@@ -119,12 +112,12 @@ stories:
       - intent: leading_type
       - action: action_leading_type
 
-  - story: Say leading_type_intro # 무현추가
+  - story: Say leading_type_intro
     steps:
       - intent: leading_type_intro
       - action: action_leading_type_intro
 
-  - story: Say leading_type_question # 무현추가
+  - story: Say leading_type_question
     steps:
       - intent: leading_type_question
       - action: action_leading_type_question
@@ -134,12 +127,12 @@ stories:
       - intent: leading_profile
       - action: action_leading_profile
 
-  - story: Say leading_profile_intro # 무현추가
+  - story: Say leading_profile_intro
     steps:
       - intent: leading_profile_intro
       - action: action_leading_profile_intro
 
-  - story: Say leading_definition_intro # 무현추가
+  - story: Say leading_definition_intro
     steps:
       - intent: leading_definition_intro
       - action: action_leading_definition_intro
@@ -189,35 +182,31 @@ stories:
       - intent: masterbot
       - action: action_masterbot
 
-  - story: Say reset anytime the user says reset
-    steps:
-      - intent: reset
-      - action: utter_reset
-
   - story: Say step
     steps:
       - intent: leading_step
       - action: action_step
 
-#action_set_metadata action'만' 추후 삭제
-  - story: Say start
-    steps:
-      - intent: start
-      - action: action_set_metadata
-#      - action: action_set_metadata2
-#      - action: action_set_priority
-
-# 추후 삭제
   - story: masterbot_more
     steps:
       - intent: leading_masterbot_more
       - action: action_masterbot_more
-# 추후 삭제
+
   - story: center_drop
     steps:
       - intent: leading_drop_center
       - action: action_drop_center
-# 추후 삭제
+
+  - story: set_priority_again
+    steps:
+      - intent: set_priority_again
+      - action: action_set_priority_again
+
+  - story: Say start
+    steps:
+      - intent: start
+      - action: action_set_metadata
+
   - story: get_user
     steps:
       - intent: get_user
