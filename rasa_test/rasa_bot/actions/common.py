@@ -14,40 +14,42 @@ config = AutoConfig.from_pretrained(model_path)
 tokenizer = BertTokenizer.from_pretrained(model_path)
 model = BertForQuestionAnswering.from_pretrained(model_path, config=config)
 
+def extract_metadata_from_tracker(tracker):  # 추후 삭제이후 각 파일의 import부분도 삭제
+    num = tracker.get_slot("num")
+    if num==1:
+       metadata = {"pn": "001", "ct": [1, 0, 1, 0, 0, 1, 1, 0, 0], "se": [1, 2, 0, 6], "t": 3, "p": 14, "d": 2}
+    elif num==2:
+       metadata = {"pn": "002", "ct": [0, 0, 1, 0, 0, 1, 1, 1, 1], "se": [0, 6, 2, 1], "t": 3, "p": 13, "d": 2}
+    elif num==3:
+       metadata = {"pn": "003", "ct": [1, 0, 1, 1, 1, 0, 1, 0, 0], "se": [6, 1, 3, 7], "t": 2, "p": 41, "d": 1}
+    elif num==4:
+       metadata = {"pn": "004", "ct": [0, 0, 0, 1, 0, 0, 1, 0, 0], "se": [3, 3, 7, 6], "t": 2, "p": 24, "d": 1}
+    elif num==5:
+       metadata = {"pn": "005", "ct": [0, 0, 0, 0, 0, 0, 0, 0, 0], "se": [1, 3, 6, 1], "t": 4, "p": 51, "d": 0}
+    elif num==6:
+       metadata = {"pn": "006", "ct": [0, 0, 0, 0, 0, 0, 0, 0, 0], "se": [5, 5, 5, 5], "t": 4, "p": 24, "d": 0}
+    elif num==7:
+       metadata = {"pn": "007", "ct": [0, 1, 1, 1, 0, 1, 1, 0, 0], "se": [1, 6, 1, 3], "t": 0, "p": 52, "d": 2}
+    elif num==8:
+       metadata = {"pn": "008", "ct": [1, 1, 0, 1, 1, 0, 0, 0, 0], "se": [4, 3, 6, 1], "t": 0, "p": 62, "d": 2}
+    elif num==9:
+       metadata = {"pn": "009", "ct": [1, 1, 1, 1, 1, 1, 1, 1, 1], "se": [3, 1, 1, 6], "t": 1, "p": 36, "d": 3}
+    elif num==10:
+       metadata = {"pn": "001", "ct": [1, 1, 1, 0, 0, 1, 1, 1, 0], "se": [2, 1, 6, 0], "t": 1, "p": 35, "d": 1}
+    else:
+       metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "se": [1, 2, 0, 6], "t": 3, "p": 52, "d": 3}
 
-def extract_metadata_from_data(tracker):  # 추후 삭제이후 각 파일의 import부분도 삭제
-    # if num==1:
-    #    metadata = {"pn": "001", "ct": [1, 0, 1, 0, 0, 1, 1, 0, 0], "se": [1, 2, 0, 6], "t": 3, "p": 14, "d": 2}
-    # elif num==2:
-    #    metadata = {"pn": "002", "ct": [0, 0, 1, 0, 0, 1, 1, 1, 1], "se": [0, 6, 2, 1], "t": 3, "p": 13, "d": 2}
-    # elif num==3:
-    #    metadata = {"pn": "003", "ct": [1, 0, 1, 1, 1, 0, 1, 0, 0], "se": [6, 1, 3, 7], "t": 2, "p": 41, "d": 1}
-    # elif num==4:
-    #    metadata = {"pn": "004", "ct": [0, 0, 0, 1, 0, 0, 1, 0, 0], "se": [3, 3, 7, 6], "t": 2, "p": 24, "d": 1}
-    # elif num==5:
-    #    metadata = {"pn": "005", "ct": [0, 0, 0, 0, 0, 0, 0, 0, 0], "se": [1, 3, 6, 1], "t": 4, "p": 51, "d": 0}
-    # elif num==6:
-    #    metadata = {"pn": "006", "ct": [0, 0, 0, 0, 0, 0, 0, 0, 0], "se": [5, 5, 5, 5], "t": 4, "p": 24, "d": 0}
-    # elif num==7:
-    #    metadata = {"pn": "007", "ct": [0, 1, 1, 1, 0, 1, 1, 0, 0], "se": [1, 6, 1, 3], "t": 0, "p": 52, "d": 2}
-    # elif num==8:
-    #    metadata = {"pn": "008", "ct": [1, 1, 0, 1, 1, 0, 0, 0, 0], "se": [4, 3, 6, 1], "t": 0, "p": 62, "d": 2}
-    # elif num==9:
-    #    metadata = {"pn": "009", "ct": [1, 1, 1, 1, 1, 1, 1, 1, 1], "se": [3, 1, 1, 6], "t": 1, "p": 36, "d": 3}
-    # elif num==10:
-    #    metadata = {"pn": "001", "ct": [1, 1, 1, 0, 0, 1, 1, 1, 0], "se": [2, 1, 6, 0], "t": 1, "p": 35, "d": 1}
-    # else:
-    #    metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "se": [1, 2, 0, 6], "t": 3, "p": 52, "d": 3}
-    # uId = tracker.get_slot("displayId")
-    # dt = tracker.get_slot("birthdayUtc")
-    pn = tracker.get_slot("pn")
-    t = tracker.get_slot("t")
-    p = tracker.get_slot("p")
-    d = tracker.get_slot("d")
-    ct = tracker.get_slot("ct")
-    se = tracker.get_slot("se")
-    metadata = {"pn": f"{pn}", "t": t, "p": p, "d": d, "ct": ct, "se": se}
     return metadata
+
+'''def extract_metadata_from_tracker(tracker):
+    events = tracker.current_state()['events']
+    user_events = []
+    for e in events:
+        if e['event'] == 'user':
+            user_events.append(e)
+
+    return user_events[-1]['metadata']'''
+
 
 def convert_ego_or_unego(i):
     if i==1:
@@ -61,16 +63,7 @@ def sentiment_get_ego_or_unego(ego_or_unego, metadata=None):
     # Mongo DB
     if metadata != None:
         ego_or_unego = list(map(convert_ego_or_unego, ego_or_unego))
-        mycol.update({"displayName": metadata["pn"]}, { "$set" :{"ego_or_unego": ego_or_unego}})
-
-def extract_metadata_from_tracker(tracker):
-    events = tracker.current_state()['events']
-    user_events = []
-    for e in events:
-        if e['event'] == 'user':
-            user_events.append(e)
-
-    return user_events[-1]['metadata']
+        mycol.update({"displayID": metadata["uID"]}, { "$set" :{"self_notSelf": ego_or_unego}})
 
 
 def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
@@ -78,7 +71,7 @@ def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
     if qa_step:    # '종족' QA는 저장 안함
         if metadata != None:
             # add user question
-            mycol.update({"displayName": metadata["pn"]}, {"$addToSet": { "question": {question:qa_step} }})
+            mycol.update({"displayID": metadata["uID"]}, {"$addToSet": { "question": {question:qa_step} }})
 
     inputs = tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
     input_ids = inputs["input_ids"].tolist()[0]
@@ -90,6 +83,8 @@ def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
         answer_end_scores) + 1  # Get the most likely end of answer with the argmax of the score
     answer = tokenizer.convert_tokens_to_string(
         tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
+    answer = remove_white_space(answer)
+    
     return answer
 
 
@@ -282,3 +277,68 @@ def unego_get_question(ct, unego_count, defined=False):
         unego_comment = "인내심을 가지고 정보가 흡수되는 과정을 즐기면 자연스럽게 알게 될 테니 조급해 하지 마세요."
 
     return [question, ego_comment, unego_comment]
+
+def remove_white_space(answer):
+
+    if not answer:
+        return answer
+
+    # 작은 따옴표의 개수에 따라 시작 위치 변경
+    toggle_c = answer.count("'")
+    
+    if toggle_c and toggle_c % 2 == 0 :  #짝수개일 경우 시작부분부터 시작  카운트
+        toggle = True
+    else :
+        toggle = False      #홀수개일 경우 끝부분부터 시작 카운트
+   
+    tokens = answer.split()
+    l_space = ["‘"]  # 다음 토큰에 붙어야 하는 토큰
+    r_space = [",", ".","!","?",")", "~","%"] # 이전 토큰에 붙어야하는 토큰
+    numbers = ["0", "1","2","3","4","5","6","7","8","9"]
+    n_space = ["(","/","’"] # 앞뒤 토큰 모두 붙어야 하는 토큰
+    length = len(tokens)
+
+    result = []
+    result.append(tokens[0])
+    l_s = False
+    for i in range(1, length):
+         
+        # 앞 뒤로 다 붙어야 하는 경우
+        if tokens[i] in n_space:
+            result[-1] = result[-1] + tokens[i]
+            l_s = True
+            continue
+        
+        if (tokens[i-1] =="~" or tokens[i-1]==".") and tokens[i][0] in numbers:
+            result[-1] = result[-1] + tokens[i]
+            continue
+
+        if (tokens[i-1] == "'" and toggle) or (tokens[i-1]==")" and len(tokens[i])==1):
+            result[-1] = result[-1] + tokens[i]
+            continue
+        
+        # 다음 토큰에 붙어야 하는 경우
+        if tokens[i] in l_space or (tokens[i] == "'" and toggle):
+            l_s = True
+            
+            result.append(tokens[i])
+            
+            if tokens[i] == "'":
+                toggle = False
+
+            continue
+        
+        # 앞 토큰에 붙어야 하는 경우
+        if (tokens[i] in r_space) or l_s or (tokens[i] == "'" and toggle==False):
+            result[-1] = result[-1] + tokens[i]
+            l_s = False
+
+            if tokens[i] == "'":
+                toggle = True
+            
+            continue
+        
+        result.append(tokens[i])
+        
+
+    return " ".join(result)
