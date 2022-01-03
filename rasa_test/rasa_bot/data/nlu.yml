@@ -16,18 +16,13 @@ nlu:
       - 하이 마스터 봇
       - ㅎㅇ 마스터봇
       - ㅎㄴ 마스터 봇
-  - intent: reset
-    examples: |
-      - 리셋
-      - 재시작
-      - reset
-      - restart
   - intent: initialized
     examples: |
       - initialized
       - 초기화
       - 처음 실행
-  #밑에 두개 추가
+      - 리셋
+      - reset
   - intent: explain
     examples: |
       - 설명
@@ -52,4 +47,13 @@ nlu:
       - 시작이 필요해요
   - intent: get_user
     examples: |
-      - 김재헌/가이드/52/3/[1, 0, 0, 1, 1, 1, 1, 0, 0]/[1, 2, 0, 6]
+      - num1
+      - num2
+      - num3
+      - num4
+      - num5
+      - num6
+      - num7
+      - num8
+      - num9
+      - num10
