@@ -31,17 +31,17 @@ intents:
      use_entities: false
   - leading_type:
      use_entities: false
-  - leading_type_intro: # 무현추가
+  - leading_type_intro:
      use_entities: false
-  - leading_type_question: # 무현추가
+  - leading_type_question:
      use_entities: true
   - leading_more:
      use_entities: false
   - leading_profile:
      use_entities: false
-  - leading_profile_intro: # 무현추가
+  - leading_profile_intro:
      use_entities: false
-  - leading_definition_intro: # 무현추가
+  - leading_definition_intro:
      use_entities: false
   - leading_definition:
      use_entities: false  
@@ -73,7 +73,7 @@ intents:
      use_entities: false
   - last_message_response:
      use_entities: true
-  - question: ###추
+  - question:
       use_entities: true
   - have_question:
       use_entities: true
@@ -85,19 +85,23 @@ intents:
       use_entities: true
   - leading_step:
       use_entities: true
-  - question_intro: # 무현추가
+  - question_intro:
       use_entities: true
-  - type_question: # 무현추가
+  - type_question:
       use_entities: true
-  - strategy_question: # 무현추가
+  - strategy_question:
       use_entities: true
-  - center_unego_question: # 무현추가
+  - center_unego_question:
       use_entities: false
-  - center_detail_intro: # 무현추가
+  - center_detail_intro:
       use_entities: false
   - leading_masterbot_more:
       use_entities: false
   - leading_drop_center:
+      use_entities: false
+  - set_priority_again:
+      use_entities: true
+  - get_user:
       use_entities: false
 
 entities:
@@ -112,20 +116,17 @@ entities:
   - center_priority
   - step
   - center_step
-  - is_question #무현 추가
-  - bot_question #무현 추가
-  - center_type #무현 추가
-  - center_question #무현 추가
-  - context_index # 무현 추가
-  - unego_count # 무현 추가
-  - sentiment_result # 무현 추가
+  - is_question
+  - bot_question
+  - center_type
+  - center_question
+  - context_index
+  - unego_count
+  - sentiment_result
   - ego_or_unego
+  - se
+  - num
 slots:
-#  select_metadata:
-#    type: rasa.shared.core.slots.TextSlot
-#    initial_value: 1
-#    auto_fill: true
-#    influence_conversation: false
   center_priority:
     type: list
     initial_value: null
@@ -161,17 +162,17 @@ slots:
     initial_value: null
     auto_fill: true
     influence_conversation: true
-  is_question: #무현 추가 (0이면 감정분석, 1이면 질문)
+  is_question: #(0이면 감정분석, 1이면 질문)
     type: rasa.shared.core.slots.TextSlot
     initial_value: 0
     auto_fill: true
     influence_conversation: false
-  bot_question: #무현 추가 (봇이 던지는 비자아 질문 감정분석위해서 필요)
+  bot_question: #(봇이 던지는 비자아 질문 감정분석위해서 필요)
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
     influence_conversation: false
-  center_type: #무현 추가 (진행중인 센터 정보)
+  center_type: #(진행중인 센터 정보)
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
@@ -181,7 +182,7 @@ slots:
     initial_value: 0
     auto_fill: true
     influence_conversation: false
-  context_index: #무현 추가 (종족, 결정방식 질문의 context index)
+  context_index: #(종족, 결정방식 질문의 context index)
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
@@ -211,70 +212,45 @@ slots:
     initial_value: null
     auto_fill: true
     influence_conversation: false
-#메타데이터부분 추후 삭제
-  pn:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: false
-  t:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: false
-  p:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: false
-  d:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
-    influence_conversation: false
-  ct:
-    type: list
-    initial_value: null
-    auto_fill: true
-    influence_conversation: false
   se:
     type: list
     initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  num:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
     auto_fill: true
     influence_conversation: false
 
 responses:
   utter_default:
     - text: 잘 못 알아들었어요! 다시 말씀해주실 수 있을까요?
-  utter_reset:
-    - text: 정말 리셋하시겠어요? 한 번 실행하면 되돌릴 수 없어요.
+
 actions:
   - action_default_fallback
-  - utter_reset
   - utter_default
   - action_initialized
-  - action_set_metadata #추후 삭제
-  - action_set_metadata2 #추후 삭제
   - action_goodbye
-  - action_leading_more #선택시 필요?
+  - action_leading_more
   - action_last_message
   - action_masterbot
   - action_default_fallback #qa나 감정분석으로 넘어감
   - action_question
   - action_have_question
-  - action_question_intro # 무현 추가(자세히 버튼 전 질문시 넘어가는 분기)
-  - action_type_question # 무현 추가
-  - action_strategy_question # 무현 추가
+  - action_question_intro #(자세히 버튼 전 질문시 넘어가는 분기)
+  - action_type_question
+  - action_strategy_question
   - action_set_priority
   - action_leading_centers_intro
   - action_leading_centers
   - action_leading_centers_question
-  - action_center_unego_question # 무현 추가
+  - action_center_unego_question
   - action_leading_type
-  - action_leading_type_intro # 무현 추가
-  - action_leading_type_question # 무현 추가
+  - action_leading_type_intro
+  - action_leading_type_question
   - action_leading_profile
-  - action_leading_profile_intro # 무현 추가
+  - action_leading_profile_intro
   - action_leading_definition
   - action_leading_definition_intro
   - action_leading_authority
@@ -282,9 +258,10 @@ actions:
   - action_step
   - action_more
   - action_center_detail_intro
-  - action_masterbot_more # 추후 삭제
-  - action_drop_center #추후 삭제
-###위에2추가
-
+  - action_masterbot_more
+  - action_drop_center
+  - action_set_priority_again
+  - action_set_metadata
+  - action_set_metadata2
 forms: {}
 e2e_actions: []
