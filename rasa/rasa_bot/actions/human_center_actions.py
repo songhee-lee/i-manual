@@ -256,7 +256,7 @@ class ActionLeadingCentersIntro(Action):
             msg3 = "당신은 활력 에너지를 통해 생산적인 일을 하는데 적합한 사람이 아니므로 절대 무리하지 말고 되도록 많이 쉬어줄 수 있기를 바랍니다. "
         elif h_center == 2 and metadata['ct'][2] == 0:
             h_type = "직관 센터 ( 미정의 )"
-            center_name = "활력센터"
+            center_name = "센터"
             #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_2_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/spleen_off.png"
             msg = "인류의 45%는 생존에 대한 두려움이나 불안감에 대한 감각이 거의 없습니다. 반면 나머지 55%는 본능적으로 생존에 대한 위협에 대한 자신만의 감각을 지니고 있습니다. "
