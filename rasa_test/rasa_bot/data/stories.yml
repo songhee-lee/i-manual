@@ -166,6 +166,15 @@ stories:
     steps:
       - intent: center_unego_question
       - action: action_center_unego_question
+      - intent: masterbot
+      - action: action_default_fallback
+
+  - story: Say center_unego_question
+    steps:
+      - intent: center_unego_question
+      - action: action_center_unego_question
+      - intent: initialized
+      - action: action_default_fallback
 
   - story: Say center_detail_intro
     steps:
