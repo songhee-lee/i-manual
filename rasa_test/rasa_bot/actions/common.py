@@ -41,14 +41,14 @@ def extract_metadata_from_data(tracker):  # 추후 삭제이후 각 파일의 im
 
     return metadata
 
-'''def extract_metadata_from_tracker(tracker):
+def extract_metadata_from_tracker(tracker):
     events = tracker.current_state()['events']
     user_events = []
     for e in events:
         if e['event'] == 'user':
             user_events.append(e)
 
-    return user_events[-1]['metadata']'''
+    return user_events[-1]['metadata']
 
 
 def convert_ego_or_unego(i):
