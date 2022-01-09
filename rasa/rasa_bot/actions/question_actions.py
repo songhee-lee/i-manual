@@ -268,7 +268,6 @@ class ActionDefaultFallback(Action):
             # QA 모듈
 
             answer = koelectra_qa_getanswer(context, user_text, metadata=metadata, qa_step=qa_step)
-            answer = koelectra_qa_getanswer(context, user_text, metadata=metadata,qa_step= qa_step)
         
             print(answer)
             qa_step = ""
