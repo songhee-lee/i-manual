@@ -4,7 +4,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
-from actions.common import extract_metadata_from_tracker, extract_metadata_from_data
+from actions.common import extract_metadata_from_tracker
 from rasa_sdk.events import FollowupAction
 
 logger = logging.getLogger(__name__)
@@ -17,14 +17,14 @@ class ActionLeadingDefinitionIntro(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_leading_definition_intro')
 
-        # metadata = extract_metadata_from_tracker(tracker)
-        #select_metadata = tracker.get_slot('select_metadata')
-        #metadata = extract_metadata_from_data(select_metadata)
-        metadata = extract_metadata_from_data(tracker)
+        metadata = extract_metadata_from_tracker(tracker)
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
-
         is_finished = tracker.get_slot('is_finished')
+
+        if leading_priority is None or step is None or is_finished is None:
+            return [FollowupAction(name='action_set_priority_again')]
+
         if is_finished == 1:
             dispatcher.utter_message(
                 f'그럼 에너지 흐름에 대해 다시 알려드릴게요!'
@@ -128,15 +128,12 @@ class ActionLeadingDefinition(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_leading_definition')
 
-        # metadata = extract_metadata_from_tracker(tracker)
-
-        #select_metadata = tracker.get_slot('select_metadata')
-        #metadata = extract_metadata_from_data(select_metadata)
-        metadata = extract_metadata_from_data(tracker)
+        metadata = extract_metadata_from_tracker(tracker)
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
-
+        if leading_priority is None or step is None:
+            return [FollowupAction(name='action_set_priority_again')]
         h_type = ''
         if metadata["d"] == 0:
             h_type = "절전모드"

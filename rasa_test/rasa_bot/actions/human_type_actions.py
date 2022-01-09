@@ -4,7 +4,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
-from actions.common import extract_metadata_from_tracker, extract_metadata_from_data
+from actions.common import extract_metadata_from_tracker
 from rasa_sdk.events import FollowupAction
 import time
 
@@ -17,15 +17,15 @@ class ActionLeadingTypeIntro(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_leading_type_intro')
 
-        #metadata = extract_metadata_from_tracker(tracker)
-
-        #select_metadata = tracker.get_slot('select_metadata')
-        #metadata = extract_metadata_from_data(select_metadata)
-        metadata = extract_metadata_from_data(tracker)
+        metadata = extract_metadata_from_tracker(tracker)
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
         is_finished = tracker.get_slot('is_finished')
+
+        if leading_priority is None or step is None or is_finished is None:
+            return [FollowupAction(name='action_set_priority_again')]
+
         if is_finished == 1:
             dispatcher.utter_message(
                 f'그럼 종족에 대해 다시 알려드릴게요!'
@@ -42,7 +42,7 @@ class ActionLeadingTypeIntro(Action):
         elif (metadata["t"] == 2):
             # 혁신주도가
             dispatcher.utter_message(
-                f'당신은 새로운 일들이 시작될 수 있도록 현시할 수 있는 인류의 10%에 해당하는 특별한 사람입니다.')
+                f'당신은 새로운 일들이 시작될 수 있도록 현시할 수 있는 인류의 9%에 해당하는 특별한 사람입니다.')
         elif (metadata["t"] == 3):
             # 가이드
             dispatcher.utter_message(
@@ -131,13 +131,11 @@ class ActionLeadingType(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_leading_type')
 
-        #metadata = extract_metadata_from_tracker(tracker)
-
-        #select_metadata = tracker.get_slot('select_metadata')
-        #metadata = extract_metadata_from_data(select_metadata)
-        metadata = extract_metadata_from_data(tracker)
+        metadata = extract_metadata_from_tracker(tracker)
 
         leading_priority = tracker.get_slot('leading_priority')
+        if leading_priority is None:
+            return [FollowupAction(name='action_set_priority_again')]
 
         h_type = ''
         msg_1 = ""
@@ -191,11 +189,7 @@ class ActionLeadingTypeQuestion(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_leading_type_question')
-        # metadata = extract_metadata_from_tracker(tracker)
-
-        #select_metadata = tracker.get_slot('select_metadata')
-        #metadata = extract_metadata_from_data(select_metadata)
-        metadata = extract_metadata_from_data(tracker)
+        metadata = extract_metadata_from_tracker(tracker)
 
         leading_priority = tracker.get_slot('leading_priority')
 

@@ -14,7 +14,7 @@ config = AutoConfig.from_pretrained(model_path)
 tokenizer = BertTokenizer.from_pretrained(model_path)
 model = BertForQuestionAnswering.from_pretrained(model_path, config=config)
 
-def extract_metadata_from_data(tracker):  # 추후 삭제이후 각 파일의 import부분도 삭제
+def extract_metadata_from_tracker(tracker):  # 추후 삭제이후 각 파일의 import부분도 삭제
     num = tracker.get_slot("num")
     if num==1:
        metadata = {"pn": "001", "ct": [1, 0, 1, 0, 0, 1, 1, 0, 0], "se": [1, 2, 0, 6], "t": 3, "p": 14, "d": 2}
@@ -41,14 +41,14 @@ def extract_metadata_from_data(tracker):  # 추후 삭제이후 각 파일의 im
 
     return metadata
 
-def extract_metadata_from_tracker(tracker):
+'''def extract_metadata_from_tracker(tracker):
     events = tracker.current_state()['events']
     user_events = []
     for e in events:
         if e['event'] == 'user':
             user_events.append(e)
 
-    return user_events[-1]['metadata']
+    return user_events[-1]['metadata']'''
 
 
 def convert_ego_or_unego(i):
