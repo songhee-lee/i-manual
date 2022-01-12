@@ -65,14 +65,9 @@ def sentiment_get_ego_or_unego(ego_or_unego, metadata=None):
         ego_or_unego = list(map(convert_ego_or_unego, ego_or_unego))
         mycol.update({"displayID": metadata["pn"]}, { "$set" :{"self_notSelf": ego_or_unego}})
 
-def ego_or_unego_question(ego_unego_question, user_text, metadata=None):
+def unego_answer(question, user_text, metadata=None):
   if metadata != None:
-    mycol.update({"displayID": metadata["pn"]}, {"$addToSet":{"unego_question" : ego_unego_question}})
-
-
-def ego_or_unego_answer(user_text, metadata=None):
-  if metadata != None:
-    mycol.update({"displayID": metadata["pn"]}, { "$addToSet" :{"unego_answer" : user_text}})
+    mycol.update({"displayID": metadata["pn"]}, { "$addToSet" :{"unego_answer" : {question :user_text}}})
 
 def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
     # Mongo DB 
