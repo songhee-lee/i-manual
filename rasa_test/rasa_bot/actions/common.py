@@ -63,15 +63,23 @@ def sentiment_get_ego_or_unego(ego_or_unego, metadata=None):
     # Mongo DB
     if metadata != None:
         ego_or_unego = list(map(convert_ego_or_unego, ego_or_unego))
-        mycol.update({"displayID": metadata["uID"]}, { "$set" :{"self_notSelf": ego_or_unego}})
+        mycol.update({"displayID": metadata["pn"]}, { "$set" :{"self_notSelf": ego_or_unego}})
 
+def ego_or_unego_question(ego_unego_question, user_text, metadata=None):
+  if metadata != None:
+    mycol.update({"displayID": metadata["pn"]}, {"$set":{"unego_question" : ego_unego_question}})
+
+
+def ego_or_unego_answer(user_text, metadata=None):
+  if metadata != None:
+    mycol.update({"displayID": metadata["pn"]}, { "$addToSet" :{"answer" : user_text}})
 
 def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
     # Mongo DB 
     if qa_step:    # '종족' QA는 저장 안함
         if metadata != None:
             # add user question
-            mycol.update({"displayID": metadata["uID"]}, {"$addToSet": { "question": {question:qa_step} }})
+            mycol.update({"displayID": metadata["pn"]}, {"$addToSet": { "question": {question:qa_step} }})
 
     inputs = tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
     input_ids = inputs["input_ids"].tolist()[0]

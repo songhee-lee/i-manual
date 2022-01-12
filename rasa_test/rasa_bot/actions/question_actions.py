@@ -5,7 +5,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
 from actions.common import extract_metadata_from_tracker, koelectra_qa_getanswer, unego_get_question, \
-    sentiment_get_ego_or_unego
+    sentiment_get_ego_or_unego, ego_or_unego_question, ego_or_unego_answer
 from actions.sentiment_analysis import sentiment_predict
 from rasa_sdk.events import FollowupAction
 
@@ -365,12 +365,14 @@ class ActionDefaultFallback(Action):
                         ego_or_unego[center_priority[center_step]] = 1
                         print("ego_or_unego : ", ego_or_unego)
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
+                        ego_or_unego_answer(user_text, metadata)
                     # 비자아 혹은 중립인 경우
                     else:
                         dispatcher.utter_message(f"{center_info[center_type]}에 대한 나다움을 잃고 있어요!")
                         answer = unego_question[2]
                         ego_or_unego[center_priority[center_step]] = -1
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
+                        ego_or_unego_answer(user_text, metadata)
 
                     dispatcher.utter_message(answer)
                     return [SlotSet("sentiment_result", 0), SlotSet("ego_or_unego", ego_or_unego),
@@ -490,6 +492,12 @@ class ActionCenterUnegoQuestion(Action):
                 dispatcher.utter_message(f"자, 다음의 질문에 답해보세요. 당신의 {human_center[center_type]}가 어떤 상태인지 알려줄께요.")
             # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아
             dispatcher.utter_message(unego_question[0])
+
+            ego_unego_question = unego_question[0]
+
+            ego_or_unego_question(ego_unego_question, metadata)
+
+            
 
             return [SlotSet('bot_question', unego_question[0]), SlotSet("is_question", 0),
                     SlotSet("center_question", 1), SlotSet("is_sentiment", 1), SlotSet("unego_count", unego_count)]
