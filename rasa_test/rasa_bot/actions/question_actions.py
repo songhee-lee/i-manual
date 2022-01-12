@@ -469,6 +469,8 @@ class ActionCenterUnegoQuestion(Action):
         human_center = ["연료센터", "활력센터", "직관센터", "감정센터", "에고센터", "방향센터", "표현센터", "생각센터", "영감센터"]
         metadata = extract_metadata_from_tracker(tracker)
 
+        user_text = tracker.latest_message['text']
+
         center_type = tracker.get_slot("center_type")
         center_step = tracker.get_slot("center_step")
         # 비자아 질문 개수 확인
@@ -490,12 +492,17 @@ class ActionCenterUnegoQuestion(Action):
             # 조건화 질문 시작시 멘트
             if unego_count == 1:
                 dispatcher.utter_message(f"자, 다음의 질문에 답해보세요. 당신의 {human_center[center_type]}가 어떤 상태인지 알려줄께요.")
+                
             # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아
             dispatcher.utter_message(unego_question[0])
 
-            ego_unego_question = unego_question[0]
+            if unego_count>1:
 
-            ego_or_unego_question(ego_unego_question, metadata)
+                ego_or_unego_answer(user_text, metadata)
+
+            #ego_unego_question = unego_question[0]
+
+            #ego_or_unego_question(ego_unego_question, metadata)
 
             
 
