@@ -15,6 +15,12 @@ my_client = MongoClient("mongodb://localhost:27017/")
 mydb = my_client['i-Manual']  # i-Manaul database 생성
 mycol2 = mydb['user_slot'] # user_slot Collection 
 
+import pandas as pd
+
+etc_description_csv = pd.read_csv("./data/기타.csv")
+etc_description = []
+for i in range(0, 18):
+    etc_description.append(etc_description_csv.iloc[i,1])
 
 class ActionInitialized(Action):
     def name(self) -> Text:
@@ -51,12 +57,12 @@ class ActionLastMessage(Action):
                              }, upsert=True)
         
         if is_finished == 1:
-            dispatcher.utter_message("마스터봇의 설명이 도움이 되고 있나요? 언제든 다시 불러주세요~")
+            dispatcher.utter_message(etc_description[10])
         else:
-            dispatcher.utter_message("당신이 타고난 디자인에 대한 마스터봇의 설명이 이해가 잘 되셨나요?")
-            dispatcher.utter_message('아이매뉴얼에서 준비한 당신의 설명서를 꼼꼼히 읽어보시길 바랍니다."더불어 행복설명서와 관계사용 설명서도 꼭 읽어보세요~"')
-            dispatcher.utter_message("궁금한 점이 있다면 채팅창에 '마스터봇'이라고 입력해주세요.")
-            dispatcher.utter_message("당신이 타고난 디자인대로 행복하게 살 수 있기를 응원합니다. 다시 만나요~")
+            dispatcher.utter_message(etc_description[11])
+            dispatcher.utter_message(etc_description[12])
+            dispatcher.utter_message(etc_description[13])
+            dispatcher.utter_message(etc_description[14])
             return [SlotSet('is_finished', 1)]
 
         
@@ -96,13 +102,13 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
                 buttons.append({"title": "에너지 흐름", "payload": "/leading_definition_intro"})
             buttons.append({"title": "센터", "payload": "/leading_centers_intro"})
         
-            dispatcher.utter_message("다시 듣고 싶은 항목을 선택해 주세요", buttons=buttons)
+            dispatcher.utter_message(etc_description[16], buttons=buttons)
         else:
             buttons = []
             buttons.append({"title": "네 이어서 들을래요", "payload": "/leading_masterbot_more"})
             buttons.append({"title": "아뇨! 처음부터 들을래요", "payload": "/initialized"})
 
-            dispatcher.utter_message("지난번에 이어서 들으시겠어요?", buttons=buttons)
+            dispatcher.utter_message(etc_description[17], buttons=buttons)
         
         # Update user's slot data
         # x = mycol2.find_one({"displayID": metadata["uID"]})

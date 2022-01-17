@@ -14,6 +14,12 @@ mydb = my_client['i-Manual']  # i-Manaul database 생성
 mycol = mydb['users']  # users Collection 생성
 
 logger = logging.getLogger(__name__)
+import pandas as pd
+
+etc_description_csv = pd.read_csv("./data/기타.csv")
+etc_description = []
+for i in range(0, 18):
+    etc_description.append(etc_description_csv.iloc[i,1])
 
 def change_gate_to_center(gate):
     se_gates = [gate[0], gate[1], gate[13], gate[14]]
@@ -266,7 +272,7 @@ class ActionStep(Action):
                     # is_finished = 1 은 last_message 나오고 set
                     return [FollowupAction(name='action_last_message')]
                 else:
-                    dispatcher.utter_message("자, 이제 다른 특징에 대해 알아봅시다")
+                    dispatcher.utter_message(etc_description[3])
                     if leading_priority[step]==0:
                         return [FollowupAction(name='action_leading_type_intro')]
                     elif leading_priority[step]==1:
@@ -304,7 +310,7 @@ class ActionMore(Action):
                 buttons = []
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
-                dispatcher.utter_message(f'계속 할까요?', buttons=buttons)
+                dispatcher.utter_message(etc_description[1], buttons=buttons)
         else:
             if se[0] in center_priority[0:center_step] and se[1] in center_priority[0:center_step] and \
                     se[2] in center_priority[0:center_step] and se[3] in center_priority[0:center_step] and is_finished==0:
@@ -312,12 +318,12 @@ class ActionMore(Action):
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
                 buttons.append({"title": f'센터 건너뛰기', "payload": "/leading_drop_center"})
-                dispatcher.utter_message(f'센터에 대한 설명을 이어서 들으시겠어요?', buttons=buttons)
+                dispatcher.utter_message(etc_description[2], buttons=buttons)
             else:
                 buttons = []
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
-                dispatcher.utter_message(f'계속 할까요?', buttons=buttons)
+                dispatcher.utter_message(etc_description[1], buttons=buttons)
 
         return []
 
@@ -339,7 +345,7 @@ class ActionDropCenter(Action):
         if step==4:
             return[FollowupAction(name='action_last_message'), SlotSet('center_step', 0)]
         else:
-            dispatcher.utter_message("자, 이제 다른 특징에 대해 알아봅시다")
+            dispatcher.utter_message(etc_description[3])
             if leading_priority[step] == 0:
                 return [FollowupAction(name='action_leading_type_intro'), SlotSet('center_step', 0)]
             elif leading_priority[step] == 1:

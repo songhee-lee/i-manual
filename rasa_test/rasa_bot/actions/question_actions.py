@@ -11,6 +11,15 @@ from rasa_sdk.events import FollowupAction
 
 import pandas as pd
 
+unego_description_csv = pd.read_csv("./data/자아_비자아 question.csv")
+unego_description = []
+for i in range(0, 93):
+    unego_description.append(unego_description_csv.iloc[i,1])
+
+etc_description_csv = pd.read_csv("./data/기타.csv")
+etc_description = []
+for i in range(0, 18):
+    etc_description.append(etc_description_csv.iloc[i,1])
 logger = logging.getLogger(__name__)
 
 center_defined_csv = pd.read_csv("./data/center(defined).csv")
@@ -152,7 +161,7 @@ class ActionQuestion(Action):
             if q_type == 0:
                 return [FollowupAction(name="action_leading_type_question")]
             else:
-                dispatcher.utter_message('무엇이 궁금하신가요?')
+                dispatcher.utter_message(etc_description[5])
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
 
@@ -311,7 +320,7 @@ class ActionDefaultFallback(Action):
         # 올바른 질문이 아닌경우
         if is_question and answer == "":
             # 다시 action_default_fallback으로 넘어오는 분기 필요!!
-            answer = "잘 이해할 수 없습니다. 궁금한 게 있으시면 아이매뉴얼을 읽어보세요!"
+            answer = etc_description[7]
 
             dispatcher.utter_message(answer)
             buttons = []
@@ -323,7 +332,7 @@ class ActionDefaultFallback(Action):
                 buttons.append(
                     {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
                 buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
-            dispatcher.utter_message("질문이 있나요?", buttons=buttons)
+            dispatcher.utter_message(etc_description[4], buttons=buttons)
             return [SlotSet("step", step)]
 
         # QA이면
@@ -344,7 +353,7 @@ class ActionDefaultFallback(Action):
                     {"title": f'질문 없어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
             dispatcher.utter_message(f'{answer}')
-            dispatcher.utter_message(f'다른 질문있나요?', buttons=qa_buttons)
+            dispatcher.utter_message(etc_description[6], buttons=qa_buttons)
 
         # 감정분석이면
         else:
@@ -360,7 +369,7 @@ class ActionDefaultFallback(Action):
 
                     # 자아인 경우
                     if sentiment_result > 0:
-                        dispatcher.utter_message("좋아요! 나 답게 잘 살고 있어요!!")
+                        dispatcher.utter_message(unego_description[91])
                         answer = unego_question[1]
                         ego_or_unego[center_priority[center_step]] = 1
                         print("ego_or_unego : ", ego_or_unego)
@@ -392,8 +401,8 @@ class ActionDefaultFallback(Action):
                 notice_buttons.append(
                     {"title": f'질문 없어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
-                notice = '''지금은 채팅하실 수 없습니다. 질문이 있으시면 질문 버튼을 클릭해주세요!'''
-                notice2 = '''문제가 생겼다면 마스터봇을 입력해주세요!'''
+                notice = etc_description[8]
+                notice2 = etc_description[9]
                 dispatcher.utter_message(f'{notice}')
                 dispatcher.utter_message(f'{notice2}', buttons=notice_buttons)
 
@@ -452,7 +461,7 @@ class ActionQuestionIntro(Action):
         else:
             buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
 
-        dispatcher.utter_message("질문이 있나요?", buttons=buttons)
+        dispatcher.utter_message(etc_description[4], buttons=buttons)
 
         if is_center:
             return [SlotSet("center_question", 1)]
@@ -533,7 +542,7 @@ class ActionTypeQuestion(Action):
         buttons = []
         buttons.append({"title": f'질문 있어요', "payload": "/leading_type_question"})
         buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
-        dispatcher.utter_message(f'다른 질문있나요?', buttons=buttons)
+        dispatcher.utter_message(etc_description[6], buttons=buttons)
 
 
 class ActionStrategyQuestion(Action):
@@ -561,4 +570,4 @@ class ActionStrategyQuestion(Action):
         buttons = []
         buttons.append({"title": f'질문 있어요', "payload": "/leading_type_question"})
         buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
-        dispatcher.utter_message(f'다른 질문있나요?', buttons=buttons)
+        dispatcher.utter_message(etc_description[6], buttons=buttons)

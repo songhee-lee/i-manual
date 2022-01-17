@@ -10,6 +10,12 @@ import time
 
 logger = logging.getLogger(__name__)
 
+import pandas as pd
+type_description_csv = pd.read_csv("./data/type_description.csv")
+type_description = []
+for i in range(0, 60):
+    type_description.append(type_description_csv.iloc[i,1])
+
 class ActionLeadingTypeIntro(Action):
     def name(self) -> Text:
         return "action_leading_type_intro"
@@ -28,29 +34,29 @@ class ActionLeadingTypeIntro(Action):
 
         if is_finished == 1:
             dispatcher.utter_message(
-                f'그럼 종족에 대해 다시 알려드릴게요!'
+                type_description[0]
             )
 
         if (metadata["t"] == 0):
             # 에너자이저
             dispatcher.utter_message(
-                f'당신은 근면하고 성실하며 늘 꾸준한 사람입니다.')
+                type_description[1])
         elif (metadata["t"] == 1):
             # 스피드 에너자이저
             dispatcher.utter_message(
-                f'당신은 너무 급하다는 얘기를 들을 정도로 행동이 빠르고 당신의 에너지를 실천으로 바로 옮기는 사람입니다.')
+                type_description[2])
         elif (metadata["t"] == 2):
             # 혁신주도가
             dispatcher.utter_message(
-                f'당신은 새로운 일들이 시작될 수 있도록 현시할 수 있는 인류의 9%에 해당하는 특별한 사람입니다.')
+                type_description[3])
         elif (metadata["t"] == 3):
             # 가이드
             dispatcher.utter_message(
-                f'당신은 다른 사람들의 마음을 자기도 모르게 꿰뚫어 볼 수 있는 능력을 갖고 있는 특별한 사람입니다.')
+                type_description[4])
         elif (metadata["t"] == 4):
             # 거울
             dispatcher.utter_message(
-                f'당신은 인류의 1%에 해당하는 정말 정말 특별한 사람입니다. ')
+                type_description[5])
 
         h_type = ''
         msg_1 = ""
@@ -61,9 +67,9 @@ class ActionLeadingTypeIntro(Action):
         if metadata["t"] == 0:
             h_type = "에너자이저 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_0.png"
-            msg_1 = "당신은 자신이 사랑하는 것이나 관심있는 일에 에너지를 사용하는 사람입니다. 이러한 사람들을 에너자이저 종족, 또는 제너레이터(Generator) 종족이라고 부릅니다. 이 세상은 당신과 같은 종족의 사람들이 건설하는 곳입니다."
-            msg_2 = "모든 상황을 꾸준히 차분히 단계를 밟아가고 중간에 문제가 생기면 잠시 정지했다가 다시 꾸준히 단계를 밟아가는 사람들입니다. 이런 성향 때문에 주변에서는 좀 느리다 답답하다 생각할 수도 있습니다."
-            msg_3 = "당신이 꼭 기억해야 할 것은 어떤 정체의 순간이 오더라도 꾸준히 계속하게 된다면 성공할 수 있지만 그 답답함을 못 이겨 포기한다면 힘을 쓸 곳을 잃기 때문에 좌절하고 포기하게 된다는 점입니다."
+            msg_1 = type_description[6]
+            msg_2 = type_description[7]
+            msg_3 = type_description[8]
         elif metadata["t"] == 1:
             h_type = "스피드 에너자이저 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_1.png"
