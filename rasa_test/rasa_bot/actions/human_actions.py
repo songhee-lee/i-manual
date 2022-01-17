@@ -86,8 +86,9 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         # 처음들어온 user 가 마스터봇 호출할 경우
 
         if(user_text == "마스터 봇" or user_text == "마스터봇"):
+            message = etc_description[15].format(metadata["pn"])
             dispatcher.utter_message(
-                f'안녕하세요 {metadata["pn"]}님, 저를 부르셨나요~? :) 다시 찾아주셔서 감사해요~')
+                message)
         if leading_priority is None or step is None:
             if not x:
                 return [FollowupAction(name='action_set_priority_again')]

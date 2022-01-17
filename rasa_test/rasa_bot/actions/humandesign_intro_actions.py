@@ -93,8 +93,8 @@ class ActionSetPriority(Action): #맨 처음
         #gt = metadata["gt"]
         #se = change_gate_to_center(gt)
         se = metadata["se"]
-        dispatcher.utter_message(
-            f'{metadata["pn"]}님, 안녕하세요, 저는 당신이 어떤 사람인지 알려줄 마스터 봇 입니다. 자, 이제 당신에 대해 알아봅시다.')
+        message = etc_description[0].format(metadata["pn"])
+        dispatcher.utter_message(message)
 
         #리딩 우선순위 정하는 부분
         leading_priority=[]

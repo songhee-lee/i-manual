@@ -17,9 +17,9 @@ model = BertForQuestionAnswering.from_pretrained(model_path, config=config)
 import pandas as pd
 
 unego_description_csv = pd.read_csv("./data/자아_비자아 question.csv")
-description = []
+unego_description = []
 for i in range(0, 93):
-    description.append(unego_description_csv.iloc[i,1])
+    unego_description.append(unego_description_csv.iloc[i, 1])
 
 def extract_metadata_from_tracker(tracker):  # 추후 삭제이후 각 파일의 import부분도 삭제
     num = tracker.get_slot("num")
@@ -104,187 +104,187 @@ def unego_get_question(ct, unego_count, defined=False):
     # 연료센터
     if ct == 0 and not defined:
         qlist_0 = [
-            description[0],
-            description[1],
-            description[2]
+            unego_description[0],
+            unego_description[1],
+            unego_description[2]
         ]
         question = qlist_0[unego_count]
-        ego_comment = description[3]
-        unego_comment = description[4]
+        ego_comment = unego_description[3]
+        unego_comment = unego_description[4]
 
     elif ct == 0 and defined:
         qlist_0 = [
-            description[5],
-            description[6],
-            description[7]
+            unego_description[5],
+            unego_description[6],
+            unego_description[7]
         ]
         question = qlist_0[unego_count]
-        ego_comment = description[8]
-        unego_comment = description[9]
+        ego_comment = unego_description[8]
+        unego_comment = unego_description[9]
     # 활력센터
     elif ct == 1 and not defined:
         qlist_1 = [
-            description[10],
-            description[11],
-            description[12]
+            unego_description[10],
+            unego_description[11],
+            unego_description[12]
         ]
         question = qlist_1[unego_count]
-        ego_comment = description[13]
-        unego_comment = description[14]
+        ego_comment = unego_description[13]
+        unego_comment = unego_description[14]
     elif ct == 1 and defined:
         qlist_1 = [
-            description[15],
-            description[16],
-            description[17]
+            unego_description[15],
+            unego_description[16],
+            unego_description[17]
         ]
         question = qlist_1[unego_count]
-        ego_comment = description[18]
-        unego_comment = description[19]
+        ego_comment = unego_description[18]
+        unego_comment = unego_description[19]
     # 직관센터
     elif ct == 2 and not defined:
         qlist_2 = [
-            description[20],
-            description[21],
-            description[22]
+            unego_description[20],
+            unego_description[21],
+            unego_description[22]
         ]
         question = qlist_2[unego_count]
-        ego_comment = description[23]
-        unego_comment = description[24]
+        ego_comment = unego_description[23]
+        unego_comment = unego_description[24]
 
     elif ct == 2 and defined:
         qlist_2 = [
-            description[25],
-            description[26],
-            description[27]
+            unego_description[25],
+            unego_description[26],
+            unego_description[27]
         ]
         question = qlist_2[unego_count]
-        ego_comment = description[28]
-        unego_comment = description[29]
+        ego_comment = unego_description[28]
+        unego_comment = unego_description[29]
 
     # 감정센터
     elif ct == 3 and not defined:
         qlist_3 = [
-            description[30],
-            description[31],
-            description[32]
+            unego_description[30],
+            unego_description[31],
+            unego_description[32]
         ]
         question = qlist_3[unego_count]
-        ego_comment = description[33]
-        unego_comment = description[34]
+        ego_comment = unego_description[33]
+        unego_comment = unego_description[34]
 
     elif ct == 3 and defined:
         qlist_3 = [
-            description[35],
-            description[36],
-            description[37]
+            unego_description[35],
+            unego_description[36],
+            unego_description[37]
         ]
         question = qlist_3[unego_count]
-        ego_comment = description[38]
-        unego_comment = description[39]
+        ego_comment = unego_description[38]
+        unego_comment = unego_description[39]
     # 에고센터
     elif ct == 4 and not defined:
         qlist_4 = [
-            description[40],
-            description[41],
-            description[42]
+            unego_description[40],
+            unego_description[41],
+            unego_description[42]
         ]
         question = qlist_4[unego_count]
-        ego_comment = description[43]
-        unego_comment = description[44]
+        ego_comment = unego_description[43]
+        unego_comment = unego_description[44]
 
     elif ct == 4 and defined:
         qlist_4 = [
-            description[45],
-            description[46],
-            description[47]
+            unego_description[45],
+            unego_description[46],
+            unego_description[47]
         ]
         question = qlist_4[unego_count]
-        ego_comment = description[48]
-        unego_comment = description[49]
+        ego_comment = unego_description[48]
+        unego_comment = unego_description[49]
 
     # 방향센터
     elif ct == 5 and not defined:
         qlist_5 = [
-            description[50],
-            description[51],
-            description[52]
+            unego_description[50],
+            unego_description[51],
+            unego_description[52]
         ]
         question = qlist_5[unego_count]
-        ego_comment = description[53]
-        unego_comment = description[54]
+        ego_comment = unego_description[53]
+        unego_comment = unego_description[54]
 
     elif ct == 5 and defined:
         qlist_5 = [
-            description[55],
-            description[56],
-            description[57]
+            unego_description[55],
+            unego_description[56],
+            unego_description[57]
         ]
         question = qlist_5[unego_count]
-        ego_comment = description[58]
-        unego_comment = description[59]
+        ego_comment = unego_description[58]
+        unego_comment = unego_description[59]
 
     # 표현센터
     elif ct == 6 and not defined:
         qlist_6 = [
-            description[60],
-            description[61],
-            description[62]
+            unego_description[60],
+            unego_description[61],
+            unego_description[62]
         ]
         question = qlist_6[unego_count]
-        ego_comment = description[63]
-        unego_comment = description[64]
+        ego_comment = unego_description[63]
+        unego_comment = unego_description[64]
 
     elif ct == 6 and defined:
         qlist_6 = [
-            description[65],
-            description[66],
-            description[67]
+            unego_description[65],
+            unego_description[66],
+            unego_description[67]
         ]
         question = qlist_6[unego_count]
-        ego_comment = description[68]
-        unego_comment = description[69]
+        ego_comment = unego_description[68]
+        unego_comment = unego_description[69]
 
     # 생각센터
     elif ct == 7 and not defined:
         qlist_7 = [
-            description[70],
-            description[71],
-            description[72]
+            unego_description[70],
+            unego_description[71],
+            unego_description[72]
         ]
         question = qlist_7[unego_count]
-        ego_comment = description[73]
-        unego_comment = description[74]
+        ego_comment = unego_description[73]
+        unego_comment = unego_description[74]
 
     elif ct == 7 and defined:
         qlist_7 = [
-            description[75],
-            description[76],
-            description[77]
+            unego_description[75],
+            unego_description[76],
+            unego_description[77]
         ]
         question = qlist_7[unego_count]
-        ego_comment = description[78]
-        unego_comment = description[79]
+        ego_comment = unego_description[78]
+        unego_comment = unego_description[79]
 
     # 영감센터
     elif ct == 8 and not defined:
         qlist_8 = [
-            description[80],
-            description[81],
-            description[82]
+            unego_description[80],
+            unego_description[81],
+            unego_description[82]
         ]
         question = qlist_8[unego_count]
-        ego_comment = description[83]
-        unego_comment = description[84]
+        ego_comment = unego_description[83]
+        unego_comment = unego_description[84]
 
     elif ct == 8 and defined:
         qlist_8 = [
-            description[85],
-            description[86],
-            description[87]
+            unego_description[85],
+            unego_description[86],
+            unego_description[87]
         ]
         question = qlist_8[unego_count]
-        ego_comment = description[88]
-        unego_comment = description[89]
+        ego_comment = unego_description[88]
+        unego_comment = unego_description[89]
 
     return [question, ego_comment, unego_comment]
 

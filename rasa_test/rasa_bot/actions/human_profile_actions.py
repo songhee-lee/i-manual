@@ -217,7 +217,8 @@ class ActionLeadingProfileIntro(Action):
             step = 4
 
         if metadata["p"] == 25 or metadata["p"] == 41 or metadata["p"] == 51 or metadata["p"] == 63:
-            dispatcher.utter_message(f'자, {h_type} 역할에 대해 설명해 보았어요.')
+            message = profile_description[96].format(h_type)
+            dispatcher.utter_message(message)
             return [SlotSet('step', step), FollowupAction(name='action_question_intro')]
 
         buttons = []

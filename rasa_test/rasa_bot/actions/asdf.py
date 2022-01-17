@@ -1,4 +1,4 @@
-import pandas as pd
+'''import pandas as pd
 center_leading_step = None
 
 center_description = pd.read_csv("../data/center_description.csv")
@@ -9,3 +9,4 @@ for i in range(0, 138):
 print(description[0])
 print(description[136]+center_name+description[137])
 
+'''

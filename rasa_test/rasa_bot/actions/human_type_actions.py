@@ -122,10 +122,11 @@ class ActionLeadingTypeIntro(Action):
         buttons.append({"title": f'예', "payload": "/leading_type"})
         buttons.append({"title": f'아니요', "payload": "/leading_type_question"})
         if metadata["t"] == 2 or metadata["t"] == 3 or metadata["t"] == 4:
-            dispatcher.utter_message(f'어때요? 중요한 얘기들이 아직 남아 있는데, 당신의 종족에 대해 좀더 알아볼까요?', buttons=buttons)
+            dispatcher.utter_message(type_description[34], buttons=buttons)
             return [SlotSet('step', step)]
         else:
-            dispatcher.utter_message(f'자, {h_type}에 대해 이해가 되셨나요?')
+            message = type_description[35].format(h_type)
+            dispatcher.utter_message(message)
             return [SlotSet('step', step), FollowupAction(name='action_leading_type_question')]
 
 
@@ -177,7 +178,8 @@ class ActionLeadingType(Action):
         if msg_5 != "":
             dispatcher.utter_message(msg_5)
 
-        dispatcher.utter_message(f'자, {h_type}에 대해 이해가 되셨나요?')
+        message = type_description[35].format(h_type)
+        dispatcher.utter_message(message)
 
         if leading_priority[0]==0:
             return [SlotSet('step', 1), FollowupAction(name='action_leading_type_question')]
@@ -256,6 +258,6 @@ class ActionLeadingTypeQuestion(Action):
             buttons.append({"title": f'거울 종족 아이는 어떻게 키워야 하나요?',
                             "payload": "/strategy_question{\"bot_question\":\"거울 종족 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
         buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
-        dispatcher.utter_message(f'질문이 있다면 다음 중에서 선택해보세요', buttons=buttons)
+        dispatcher.utter_message(type_description[36], buttons=buttons)
 
         return []

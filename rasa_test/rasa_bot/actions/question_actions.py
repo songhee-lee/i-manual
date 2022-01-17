@@ -377,7 +377,8 @@ class ActionDefaultFallback(Action):
                         unego_answer(question, user_text, metadata)
                     # 비자아 혹은 중립인 경우
                     else:
-                        dispatcher.utter_message(f"{center_info[center_type]}에 대한 나다움을 잃고 있어요!")
+                        message = unego_description[92].format(center_info[center_type])
+                        dispatcher.utter_message(message)
                         answer = unego_question[2]
                         ego_or_unego[center_priority[center_step]] = -1
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
@@ -501,7 +502,8 @@ class ActionCenterUnegoQuestion(Action):
 
             # 조건화 질문 시작시 멘트
             if unego_count == 1:
-                dispatcher.utter_message(f"자, 다음의 질문에 답해보세요. 당신의 {human_center[center_type]}가 어떤 상태인지 알려줄께요.")
+                message = unego_description[90].format(human_center[center_type])
+                dispatcher.utter_message(message)
                 
             # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아
             dispatcher.utter_message(unego_question[0])

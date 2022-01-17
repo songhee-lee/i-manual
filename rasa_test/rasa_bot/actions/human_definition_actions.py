@@ -114,8 +114,8 @@ class ActionLeadingDefinitionIntro(Action):
         # dispatcher.utter_message(json_message = {
         #                         "type": "arrContents", "content": [[msg, msg2], [msg3, msg4], [msg5]], "tags": f'{tag}'})
 
-
-        dispatcher.utter_message(f'자, {h_type}에 대해 설명해 보았어요.')
+        message = definition_description[21].format(h_type)
+        dispatcher.utter_message(message)
 
         if leading_priority[0] == 2:
             return [SlotSet('step', 1), FollowupAction(name='action_question_intro')]
