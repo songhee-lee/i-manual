@@ -211,12 +211,3 @@ stories:
       - intent: set_priority_again
       - action: action_set_priority_again
 
-  - story: Say start
-    steps:
-      - intent: start
-      - action: action_set_metadata
-
-  - story: get_user
-    steps:
-      - intent: get_user
-      - action: action_set_metadata2

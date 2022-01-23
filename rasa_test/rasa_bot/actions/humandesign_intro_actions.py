@@ -42,44 +42,6 @@ def change_gate_to_center(gate):
                 break
     return se
 
-class ActionSetMetadata(Action):
-    def name(self):
-        return "action_set_metadata"
-
-    def run(self, dispatcher, tracker, domain):
-        print('action_set_metadata')
-        dispatcher.utter_message(f'내담자님의 정보를 입력해주세요 (ex: num1)')
-        return [FollowupAction(name='action_listen')]
-
-class ActionSetMetadata2(Action):
-    def name(self):
-        return "action_set_metadata2"
-
-    def run(self, dispatcher, tracker, domain):
-        print('action_set_metadata2')
-        user_text = tracker.latest_message['text']
-        if user_text=="num1":
-            return [FollowupAction(name='action_set_priority'), SlotSet("num", 1)]
-        elif user_text=="num2":
-            return [FollowupAction(name='action_set_priority'), SlotSet("num", 2)]
-        elif user_text=="num3":
-            return [FollowupAction(name='action_set_priority'), SlotSet("num", 3)]
-        elif user_text=="num4":
-            return [FollowupAction(name='action_set_priority'), SlotSet("num", 4)]
-        elif user_text=="num5":
-            return [FollowupAction(name='action_set_priority'), SlotSet("num", 5)]
-        elif user_text=="num6":
-            return [FollowupAction(name='action_set_priority'), SlotSet("num", 6)]
-        elif user_text=="num7":
-            return [FollowupAction(name='action_set_priority'), SlotSet("num", 7)]
-        elif user_text=="num8":
-            return [FollowupAction(name='action_set_priority'), SlotSet("num", 8)]
-        elif user_text=="num9":
-            return [FollowupAction(name='action_set_priority'), SlotSet("num", 9)]
-        elif user_text=="num10":
-            return [FollowupAction(name='action_set_priority'), SlotSet("num", 10)]
-
-        return [FollowupAction(name='action_set_priority')]
 
 class ActionSetPriority(Action): #맨 처음
     def name(self):
@@ -90,8 +52,8 @@ class ActionSetPriority(Action): #맨 처음
         metadata = extract_metadata_from_tracker(tracker)
         print("metadata 출력")
         print(metadata)
-        #gt = metadata["gt"]
-        #se = change_gate_to_center(gt)
+        gt = metadata["gt"]
+        se = change_gate_to_center(gt)
         se = metadata["se"]
         message = etc_description[0].format(metadata["pn"])
         dispatcher.utter_message(message)
@@ -127,10 +89,8 @@ class ActionSetPriority(Action): #맨 처음
 
         # check a user if he is new user
         x = mycol.find_one({"displayName": metadata["pn"]})
-
-        # 테스트에선 "displayID": metadata["uID"]를 "displayID": metadata["pn:]으로 대체
         if not x: 
-             mycol.insert_one({"displayID": metadata["pn"], "displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
+             mycol.insert_one({"displayID": metadata["uID"], "displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
                                "definition": metadata["d"], "centers": metadata["ct"], "question": [],
                                "self_notSelf": []})
 
@@ -146,9 +106,8 @@ class ActionSetPriorityAgain(Action): #맨 처음
         metadata = extract_metadata_from_tracker(tracker)
         print("metadata 출력")
         print(metadata)
-        #gt = metadata["gt"]
-        #se = change_gate_to_center(gt)
-        se = metadata["se"]
+        gt = metadata["gt"]
+        se = change_gate_to_center(gt)
 
         step = tracker.get_slot("step")
         is_finished = tracker.get_slot("is_finished")
@@ -210,7 +169,7 @@ class ActionSetPriorityAgain(Action): #맨 처음
         # check a user if he is new user
         x = mycol.find_one({"displayName": metadata["pn"]})
         if not x:
-             mycol.insert_one({"displayID": metadata["pn"], "displayName": metadata["pn"], "type": metadata["t"],
+             mycol.insert_one({"displayID": metadata["uID"], "displayName": metadata["pn"], "type": metadata["t"],
                                "profile": metadata["p"],
                                "definition": metadata["d"], "centers": metadata["ct"], "question": [],
                                "self_notSelf": []})
@@ -327,7 +286,6 @@ class ActionMore(Action):
 
         return []
 
-#실제로는 지우기!
 class ActionDropCenter(Action):
     def name(self):
         return "action_drop_center"

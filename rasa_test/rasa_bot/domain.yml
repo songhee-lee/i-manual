@@ -101,8 +101,6 @@ intents:
       use_entities: false
   - set_priority_again:
       use_entities: true
-  - get_user:
-      use_entities: false
 
 entities:
   - id
@@ -125,7 +123,6 @@ entities:
   - sentiment_result
   - ego_or_unego
   - se
-  - num
 slots:
   center_priority:
     type: list
@@ -217,11 +214,6 @@ slots:
     initial_value: null
     auto_fill: true
     influence_conversation: false
-  num:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: 0
-    auto_fill: true
-    influence_conversation: false
 
 responses:
   utter_default:
@@ -261,7 +253,6 @@ actions:
   - action_masterbot_more
   - action_drop_center
   - action_set_priority_again
-  - action_set_metadata
-  - action_set_metadata2
+
 forms: {}
 e2e_actions: []

@@ -76,7 +76,7 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         entities = tracker.latest_message['entities']
         
         metadata = extract_metadata_from_tracker(tracker)
-        x = mycol2.find_one({"displayID": metadata["pn"]})
+        x = mycol2.find_one({"displayID": metadata["uID"]})
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
         is_finished = tracker.get_slot("is_finished")

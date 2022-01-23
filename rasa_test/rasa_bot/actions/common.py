@@ -21,41 +21,14 @@ unego_description = []
 for i in range(0, 93):
     unego_description.append(unego_description_csv.iloc[i, 1])
 
-def extract_metadata_from_tracker(tracker):  # 추후 삭제이후 각 파일의 import부분도 삭제
-    num = tracker.get_slot("num")
-    if num==1:
-       metadata = {"pn": "001", "ct": [1, 0, 1, 0, 0, 1, 1, 0, 0], "se": [1, 2, 0, 6], "t": 3, "p": 14, "d": 2}
-    elif num==2:
-       metadata = {"pn": "002", "ct": [0, 0, 1, 0, 0, 1, 1, 1, 1], "se": [0, 6, 2, 1], "t": 3, "p": 13, "d": 2}
-    elif num==3:
-       metadata = {"pn": "003", "ct": [1, 0, 1, 1, 1, 0, 1, 0, 0], "se": [6, 1, 3, 7], "t": 2, "p": 41, "d": 1}
-    elif num==4:
-       metadata = {"pn": "004", "ct": [0, 0, 0, 1, 0, 0, 1, 0, 0], "se": [3, 3, 7, 6], "t": 2, "p": 24, "d": 1}
-    elif num==5:
-       metadata = {"pn": "005", "ct": [0, 0, 0, 0, 0, 0, 0, 0, 0], "se": [1, 3, 6, 1], "t": 4, "p": 51, "d": 0}
-    elif num==6:
-       metadata = {"pn": "006", "ct": [0, 0, 0, 0, 0, 0, 0, 0, 0], "se": [5, 5, 5, 5], "t": 4, "p": 24, "d": 0}
-    elif num==7:
-       metadata = {"pn": "007", "ct": [0, 1, 1, 1, 0, 1, 1, 0, 0], "se": [1, 6, 1, 3], "t": 0, "p": 52, "d": 2}
-    elif num==8:
-       metadata = {"pn": "008", "ct": [1, 1, 0, 1, 1, 0, 0, 0, 0], "se": [4, 3, 6, 1], "t": 0, "p": 62, "d": 2}
-    elif num==9:
-       metadata = {"pn": "009", "ct": [1, 1, 1, 1, 1, 1, 1, 1, 1], "se": [3, 1, 1, 6], "t": 1, "p": 36, "d": 3}
-    elif num==10:
-       metadata = {"pn": "001", "ct": [1, 1, 1, 0, 0, 1, 1, 1, 0], "se": [2, 1, 6, 0], "t": 1, "p": 35, "d": 1}
-    else:
-       metadata = {"pn": "김재헌", "ct": [1, 0, 0, 1, 1, 1, 1, 0, 0], "se": [1, 2, 0, 6], "t": 3, "p": 52, "d": 3}
-
-    return metadata
-
-'''def extract_metadata_from_tracker(tracker):
+def extract_metadata_from_tracker(tracker):
     events = tracker.current_state()['events']
     user_events = []
     for e in events:
         if e['event'] == 'user':
             user_events.append(e)
 
-    return user_events[-1]['metadata']'''
+    return user_events[-1]['metadata']
 
 
 def convert_ego_or_unego(i):
@@ -70,18 +43,18 @@ def sentiment_get_ego_or_unego(ego_or_unego, metadata=None):
     # Mongo DB
     if metadata != None:
         ego_or_unego = list(map(convert_ego_or_unego, ego_or_unego))
-        mycol.update({"displayID": metadata["pn"]}, { "$set" :{"self_notSelf": ego_or_unego}})
+        mycol.update({"displayID": metadata["uID"]}, { "$set" :{"self_notSelf": ego_or_unego}})
 
 def unego_answer(question, user_text, metadata=None):
   if metadata != None:
-    mycol.update({"displayID": metadata["pn"]}, { "$addToSet" :{"unego_answer" : {question :user_text}}})
+    mycol.update({"displayID": metadata["uID"]}, { "$addToSet" :{"unego_answer" : {question :user_text}}})
 
 def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
     # Mongo DB 
     if qa_step:    # '종족' QA는 저장 안함
         if metadata != None:
             # add user question
-            mycol.update({"displayID": metadata["pn"]}, {"$addToSet": { "question": {question:qa_step} }})
+            mycol.update({"displayID": metadata["uID"]}, {"$addToSet": { "question": {question:qa_step} }})
 
     inputs = tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
     input_ids = inputs["input_ids"].tolist()[0]
