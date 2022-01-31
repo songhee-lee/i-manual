@@ -50,7 +50,7 @@ class ActionLastMessage(Action):
             return [FollowupAction(name='action_set_priority_again')]
         
         # Save user's slot data in DB
-        mycol2.update({"displayName": metadata["pn"]}, {"displayID": metadata["pn"], "displayName": metadata["pn"], 
+        mycol2.update({"displayName": metadata["pn"]}, {"displayID": metadata["uID"], "displayName": metadata["pn"], 
                               "leading_priority" : tracker.get_slot("leading_priority"), "center_priority" : tracker.get_slot("center_priority"),
                               "step" : tracker.get_slot("step"), "is_finished":tracker.get_slot("is_finished"), "center_step":tracker.get_slot("center_step"), 
                               "center_type":tracker.get_slot("center_type")
@@ -76,7 +76,7 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         entities = tracker.latest_message['entities']
         
         metadata = extract_metadata_from_tracker(tracker)
-        x = mycol2.find_one({"displayID": metadata["pn"]})
+        x = mycol2.find_one({"displayID": metadata["uID"]})
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
         is_finished = tracker.get_slot("is_finished")
