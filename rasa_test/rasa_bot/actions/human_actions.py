@@ -50,7 +50,7 @@ class ActionLastMessage(Action):
             return [FollowupAction(name='action_set_priority_again')]
         
         # Save user's slot data in DB
-        mycol2.update({"displayName": metadata["pn"]}, {"displayID": metadata["pn"], "displayName": metadata["pn"], 
+        mycol2.update({"displayName": metadata["pn"]}, {"displayID": metadata["uID"], "displayName": metadata["pn"], 
                               "leading_priority" : tracker.get_slot("leading_priority"), "center_priority" : tracker.get_slot("center_priority"),
                               "step" : tracker.get_slot("step"), "is_finished":tracker.get_slot("is_finished"), "center_step":tracker.get_slot("center_step"), 
                               "center_type":tracker.get_slot("center_type")
