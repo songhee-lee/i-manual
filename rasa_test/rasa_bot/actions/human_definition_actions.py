@@ -11,9 +11,7 @@ logger = logging.getLogger(__name__)
 import pandas as pd
 
 definition_description_csv = pd.read_csv("./data/definition_description.csv")
-definition_description = []
-for i in range(0, 22):
-    definition_description.append(definition_description_csv.iloc[i,1])
+definition_description = definition_description_csv['paragraph'].values.tolist()
 
 class ActionLeadingDefinitionIntro(Action):
     def name(self) -> Text:

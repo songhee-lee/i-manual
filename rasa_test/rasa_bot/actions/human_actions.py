@@ -18,9 +18,7 @@ mycol2 = mydb['user_slot'] # user_slot Collection
 import pandas as pd
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
-etc_description = []
-for i in range(0, 18):
-    etc_description.append(etc_description_csv.iloc[i,1])
+etc_description = etc_description_csv['paragraph'].values.tolist()
 
 class ActionInitialized(Action):
     def name(self) -> Text:

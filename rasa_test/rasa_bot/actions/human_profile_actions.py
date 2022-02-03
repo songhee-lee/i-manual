@@ -10,14 +10,10 @@ import pandas as pd
 logger = logging.getLogger(__name__)
 
 profile_description_csv = pd.read_csv("./data/profile_description.csv")
-profile_description = []
-for i in range(0, 97):
-    profile_description.append(profile_description_csv.iloc[i,1])
+profile_description = profile_description_csv['paragraph'].values.tolist()
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
-etc_description = []
-for i in range(0, 18):
-    etc_description.append(etc_description_csv.iloc[i,1])
+etc_description = etc_description_csv['paragraph'].values.tolist()
 
 class ActionLeadingProfileIntro(Action):
     def name(self) -> Text:

@@ -17,9 +17,7 @@ logger = logging.getLogger(__name__)
 import pandas as pd
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
-etc_description = []
-for i in range(0, 18):
-    etc_description.append(etc_description_csv.iloc[i,1])
+etc_description = etc_description_csv['paragraph'].values.tolist()
 
 def change_gate_to_center(gate):
     se_gates = [gate[0], gate[1], gate[13], gate[14]]

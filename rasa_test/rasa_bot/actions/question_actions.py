@@ -12,14 +12,10 @@ from rasa_sdk.events import FollowupAction
 import pandas as pd
 
 unego_description_csv = pd.read_csv("./data/자아_비자아 question.csv")
-unego_description = []
-for i in range(0, 93):
-    unego_description.append(unego_description_csv.iloc[i,1])
+unego_description = unego_description_csv['paragraph'].values.tolist()
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
-etc_description = []
-for i in range(0, 18):
-    etc_description.append(etc_description_csv.iloc[i,1])
+etc_description = etc_description_csv['paragraph'].values.tolist()
 logger = logging.getLogger(__name__)
 
 center_defined_csv = pd.read_csv("./data/center(defined).csv")

@@ -10,9 +10,7 @@ center_leading_step = None
 import pandas as pd
 
 center_description_csv = pd.read_csv("./data/center_description.csv")
-center_description = []
-for i in range(0, 137):
-    center_description.append(center_description_csv.iloc[i, 1])
+center_description = center_description_csv['paragraph'].values.tolist()
 
 
 logger = logging.getLogger(__name__)

@@ -12,9 +12,7 @@ logger = logging.getLogger(__name__)
 
 import pandas as pd
 type_description_csv = pd.read_csv("./data/type_description.csv")
-type_description = []
-for i in range(0, 60):
-    type_description.append(type_description_csv.iloc[i,1])
+type_description = type_description_csv['paragraph'].values.tolist()
 
 class ActionLeadingTypeIntro(Action):
     def name(self) -> Text:

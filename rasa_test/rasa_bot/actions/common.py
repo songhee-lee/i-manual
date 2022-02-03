@@ -17,9 +17,7 @@ model = BertForQuestionAnswering.from_pretrained(model_path, config=config)
 import pandas as pd
 
 unego_description_csv = pd.read_csv("./data/자아_비자아 question.csv")
-unego_description = []
-for i in range(0, 93):
-    unego_description.append(unego_description_csv.iloc[i, 1])
+unego_description = unego_description_csv['paragraph'].values.tolist()
 
 def extract_metadata_from_tracker(tracker):
     events = tracker.current_state()['events']
