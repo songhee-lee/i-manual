@@ -68,53 +68,23 @@ class ActionLeadingTypeIntro(Action):
             msg_1 = type_description[6]
             msg_2 = type_description[7]
             msg_3 = type_description[8]
-            # 인트로 다음 이미지
-            dispatcher.utter_message(image=img)
-
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2)
-            dispatcher.utter_message(msg_3, json_message = {
-                        "type": "voiceID", 'sender':metadata['uID'], "content": "out_긴문장/0.wav"
-                    })
-
         elif metadata["t"] == 1:
             h_type = "스피드 에너자이저 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_1.png"
             msg_1 = type_description[9]
             msg_2 = type_description[10]
             msg_3 = type_description[11]
-            # 인트로 다음 이미지
-            dispatcher.utter_message(image=img)
-
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2)
-            dispatcher.utter_message(msg_3)
-
         elif metadata["t"] == 2:
             h_type = "혁신주도가 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_2.png"
             msg_1 = type_description[12]
             msg_2 = type_description[13]
             msg_3 = type_description[14]
-            # 인트로 다음 이미지
-            dispatcher.utter_message(image=img)
-
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2)
-            dispatcher.utter_message(msg_3)
-
         elif metadata["t"] == 3:
             h_type = "가이드 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_3M.png"
             msg_1 = type_description[19]
             msg_2 = type_description[20]
-            # 인트로 다음 이미지
-            dispatcher.utter_message(image=img)
-
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2, json_message = {
-                        "type": "voiceID", 'sender':metadata['uID'], "content": "out_긴문장/2.wav"
-                    })
 
         elif metadata["t"] == 4:
             h_type = "거울 종족"
@@ -125,13 +95,16 @@ class ActionLeadingTypeIntro(Action):
             msg_4 = type_description[29]
             msg_5 = type_description[30]
 
-            # 인트로 다음 이미지
-            dispatcher.utter_message(image=img)
+        # 인트로 다음 이미지
+        dispatcher.utter_message(image=img)
 
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2)
+        dispatcher.utter_message(msg_1)
+        dispatcher.utter_message(msg_2)
+        if msg_3 != "":
             dispatcher.utter_message(msg_3)
+        if msg_4 != "":
             dispatcher.utter_message(msg_4)
+        if msg_5 != "":
             dispatcher.utter_message(msg_5)
 
         if leading_priority[0]==0:
@@ -181,12 +154,6 @@ class ActionLeadingType(Action):
             msg_2 = type_description[16]
             msg_3 = type_description[17]
             msg_4 = type_description[18]
-            dispatcher.utter_message(msg_1, json_message = {
-                        "type": "voiceID", 'sender':metadata['uID'], "content": "out_긴문장/1.wav"
-                    })
-            dispatcher.utter_message(msg_2)
-            dispatcher.utter_message(msg_3)
-            dispatcher.utter_message(msg_4)
         elif metadata["t"] == 3:
             h_type = "가이드 종족"
             msg_1 = type_description[21]
@@ -194,21 +161,20 @@ class ActionLeadingType(Action):
             msg_3 = type_description[23]
             msg_4 = type_description[24]
             msg_5 = type_description[25]
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2)
-            dispatcher.utter_message(msg_3)
-            dispatcher.utter_message(msg_4)
-            dispatcher.utter_message(msg_5)
         elif metadata["t"] == 4:
             h_type = "거울 종족"
             msg_1 = type_description[31]
             msg_2 = type_description[32]
             msg_3 = type_description[33]
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2)
+
+        dispatcher.utter_message(msg_1)
+        dispatcher.utter_message(msg_2)
+        if msg_3 != "":
             dispatcher.utter_message(msg_3)
-
-
+        if msg_4 != "":
+            dispatcher.utter_message(msg_4)
+        if msg_5 != "":
+            dispatcher.utter_message(msg_5)
 
         message = type_description[35].format(h_type)
         dispatcher.utter_message(message)
