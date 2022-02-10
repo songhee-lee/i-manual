@@ -6,12 +6,12 @@ from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
 from actions.common import extract_metadata_from_tracker, unego_get_question
 from rasa_sdk.events import FollowupAction
+
 center_leading_step = None
 import pandas as pd
 
 center_description_csv = pd.read_csv("./data/center_description.csv")
 center_description = center_description_csv['paragraph'].values.tolist()
-
 
 logger = logging.getLogger(__name__)
 
@@ -38,27 +38,35 @@ class ActionLeadingCentersIntro(Action):
         if leading_priority is None or step is None or center_step is None or center_priority is None or is_finished is None:
             return [FollowupAction(name='action_set_priority_again')]
         if center_step == 9:
-            if is_finished==0:
+            if is_finished == 0:
                 return [FollowupAction(name="action_more")]
             else:
-                center_step=0
-        
+                center_step = 0
+
         center_type = center_priority[center_step]
         if is_finished == 1:
             if center_step == 0:
                 dispatcher.utter_message(
-                    center_description[0]
+                    center_description[0], json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/5-1.wav"
+                    }
                 )
         else:
             if center_step == 0:
                 dispatcher.utter_message(
-                    center_description[1]
+                    center_description[1], json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/5-2.wav"
+                    }
                 )
                 dispatcher.utter_message(
-                    center_description[2]
+                    center_description[2], json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/5-3.wav"
+                    }
                 )
                 dispatcher.utter_message(
-                    center_description[3]
+                    center_description[3], json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/5-4.wav"
+                    }
                 )
         # 연료센터
         if center_type == 0:
@@ -88,12 +96,12 @@ class ActionLeadingCentersIntro(Action):
                     center_description[9])
         # 감정센터
         elif center_type == 3:
-                if metadata['ct'][3] == 0:
-                    dispatcher.utter_message(
-                        center_description[10])
-                elif metadata['ct'][3] == 1:
-                    dispatcher.utter_message(
-                        center_description[11])
+            if metadata['ct'][3] == 0:
+                dispatcher.utter_message(
+                    center_description[10])
+            elif metadata['ct'][3] == 1:
+                dispatcher.utter_message(
+                    center_description[11])
         # 에고센터
         elif center_type == 4:
             if metadata['ct'][4] == 0:
@@ -164,8 +172,8 @@ class ActionLeadingCentersIntro(Action):
         if h_center == 0 and metadata['ct'][0] == 1:
             h_type = "연료 센터 ( 정의 )"
             center_name = "연료센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_0.gif"
-            img =  "https://asset.i-manual.co.kr/static/images/chat/center/root.png"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_0.gif"
+            img = "https://asset.i-manual.co.kr/static/images/chat/center/root.png"
             msg = center_description[22]
             msg2 = center_description[23]
             msg3 = center_description[24]
@@ -173,14 +181,14 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 1 and metadata["ct"][1] == 1:
             h_type = "활력 센터 ( 정의 )"
             center_name = "활력센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_1.gif"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_1.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/sacral.png"
             msg = center_description[29]
             msg2 = center_description[30]
         elif h_center == 2 and metadata['ct'][2] == 1:
             h_type = "직관 센터 ( 정의 )"
             center_name = "직관센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_2.gif"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_2.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/spleen.png"
             msg = center_description[31]
             msg2 = center_description[32]
@@ -190,7 +198,7 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 3 and metadata['ct'][3] == 1:
             h_type = "감정 센터 ( 정의 )"
             center_name = "감정센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_3.gif"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_3.gif"
             img = " https://asset.i-manual.co.kr/static/images/chat/center/solar.png"
             msg = center_description[40]
             msg2 = center_description[41]
@@ -200,7 +208,7 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 4 and metadata['ct'][4] == 1:
             h_type = "에고 센터 ( 정의 )"
             center_name = "에고센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_4.gif"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_4.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/heart.png"
             msg = center_description[49]
             msg2 = center_description[50]
@@ -208,7 +216,7 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 5 and metadata['ct'][5] == 1:
             h_type = "방향 센터 ( 정의 )"
             center_name = "방향센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_5.gif"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_5.gif"
             img = " https://asset.i-manual.co.kr/static/images/chat/center/g.png"
             msg = center_description[56]
             msg2 = center_description[57]
@@ -219,7 +227,7 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 6 and metadata['ct'][6] == 1:
             h_type = "표현 센터 ( 정의 )"
             center_name = "표현센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_6.gif"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_6.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/throat.png"
             msg = center_description[66]
             msg2 = center_description[67]
@@ -228,21 +236,21 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 7 and metadata["ct"][7] == 1:
             h_type = "생각 센터 ( 정의 )"
             center_name = "생각센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_7.gif"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_7.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/ajna.png"
             msg = center_description[75]
             msg2 = center_description[76]
         elif h_center == 8 and metadata["ct"][8] == 1:
             h_type = "영감 센터 ( 정의 )"
             center_name = "영감센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_8.gif"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_8.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/head.png"
             msg = center_description[77]
             msg2 = center_description[78]
         elif h_center == 0 and metadata['ct'][0] == 0:
             h_type = "연료 센터 ( 미정의 )"
             center_name = "연료센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_0_off.png"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_0_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/root.png"
             msg = center_description[79]
             msg2 = center_description[80]
@@ -252,7 +260,7 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 1 and metadata['ct'][1] == 0:
             h_type = "활력 센터 ( 미정의 )"
             center_name = "활력센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_1_off.png"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_1_off.png"
             img = " https://asset.i-manual.co.kr/static/images/chat/center/sacral_off.png"
             msg = center_description[89]
             msg2 = center_description[90]
@@ -260,7 +268,7 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 2 and metadata['ct'][2] == 0:
             h_type = "직관 센터 ( 미정의 )"
             center_name = "센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_2_off.png"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_2_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/spleen_off.png"
             msg = center_description[92]
             msg2 = center_description[93]
@@ -271,7 +279,7 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 3 and metadata['ct'][3] == 0:
             h_type = "감정 센터 ( 미정의 )"
             center_name = "감정센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_3_off.png"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_3_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/solar_off.png"
             msg = center_description[101]
             msg2 = center_description[102]
@@ -281,7 +289,7 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 4 and metadata['ct'][4] == 0:
             h_type = "에고 센터 ( 미정의 )"
             center_name = "에고센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_4_off.png"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_4_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/heart_off.png"
             msg = center_description[110]
             msg2 = center_description[111]
@@ -291,7 +299,7 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 5 and metadata['ct'][5] == 0:
             h_type = "방향 센터 ( 미정의 )"
             center_name = "방향센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_5_off.png"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_5_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/g_off.png"
             msg = center_description[119]
             msg2 = center_description[120]
@@ -300,14 +308,14 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 6 and metadata['ct'][6] == 0:
             h_type = "표현 센터 ( 미정의 )"
             center_name = "표현센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_6_off.png"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_6_off.png"
             img = " https://asset.i-manual.co.kr/static/images/chat/center/throat_off.png"
             msg = center_description[126]
             msg2 = center_description[127]
         elif h_center == 7 and metadata['ct'][7] == 0:
             h_type = "생각 센터 ( 미정의 )"
             center_name = "생각센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_7_off.png"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_7_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/ajna_off.png"
             msg = center_description[131]
             msg2 = center_description[132]
@@ -315,7 +323,7 @@ class ActionLeadingCentersIntro(Action):
         elif h_center == 8 and metadata['ct'][8] == 0:
             h_type = "영감 센터 ( 미정의 )"
             center_name = "영감센터"
-            #img = "https://asset.i-manual.co.kr/static/images/centerCard/card_8_off.png"
+            # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_8_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/head_off.png"
             msg = center_description[134]
             msg2 = center_description[135]
@@ -392,6 +400,9 @@ class ActionLeadingCenters(Action):
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_0.gif"
             msg = center_description[27]
             msg2 = center_description[28]
+            dispatcher.utter_message(msg)
+            dispatcher.utter_message(msg2)
+
 
         elif h_center == 2 and metadata['ct'][2] == 1:
             h_type = "직관 센터 ( 정의 )"
@@ -401,6 +412,10 @@ class ActionLeadingCenters(Action):
             msg2 = center_description[37]
             msg3 = center_description[38]
             msg4 = center_description[39]
+            dispatcher.utter_message(msg)
+            dispatcher.utter_message(msg2)
+            dispatcher.utter_message(msg3)
+            dispatcher.utter_message(msg4)
         elif h_center == 3 and metadata['ct'][3] == 1:
             h_type = "감정 센터 ( 정의 )"
             center_name = "감정센터"
@@ -409,6 +424,12 @@ class ActionLeadingCenters(Action):
             msg2 = center_description[46]
             msg3 = center_description[47]
             msg4 = center_description[48]
+            dispatcher.utter_message(msg)
+            dispatcher.utter_message(msg2)
+            dispatcher.utter_message(msg3)
+            dispatcher.utter_message(msg4, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_긴문장/3.wav"
+            })
 
         elif h_center == 4 and metadata['ct'][4] == 1:
             h_type = "에고 센터 ( 정의 )"
@@ -418,6 +439,10 @@ class ActionLeadingCenters(Action):
             msg2 = center_description[53]
             msg3 = center_description[54]
             msg4 = center_description[55]
+            dispatcher.utter_message(msg)
+            dispatcher.utter_message(msg2)
+            dispatcher.utter_message(msg3)
+            dispatcher.utter_message(msg4)
         elif h_center == 5 and metadata['ct'][5] == 1:
             h_type = "방향 센터 ( 정의 )"
             center_name = "방향센터"
@@ -427,6 +452,11 @@ class ActionLeadingCenters(Action):
             msg3 = center_description[63]
             msg4 = center_description[64]
             msg5 = center_description[65]
+            dispatcher.utter_message(msg)
+            dispatcher.utter_message(msg2)
+            dispatcher.utter_message(msg3)
+            dispatcher.utter_message(msg4)
+            dispatcher.utter_message(msg5)
         elif h_center == 6 and metadata['ct'][6] == 1:
             h_type = "표현 센터 ( 정의 )"
             center_name = "표현센터"
@@ -435,6 +465,12 @@ class ActionLeadingCenters(Action):
             msg2 = center_description[72]
             msg3 = center_description[73]
             msg4 = center_description[74]
+            dispatcher.utter_message(msg)
+            dispatcher.utter_message(msg2)
+            dispatcher.utter_message(msg3)
+            dispatcher.utter_message(msg4, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_긴문장/4.wav"
+            })
         elif h_center == 0 and metadata['ct'][0] == 0:
             h_type = "연료 센터 ( 미정의 )"
             center_name = "연료센터"
@@ -443,6 +479,11 @@ class ActionLeadingCenters(Action):
             msg2 = center_description[86]
             msg3 = center_description[87]
             msg4 = center_description[88]
+            dispatcher.utter_message(msg)
+            dispatcher.utter_message(msg2)
+            dispatcher.utter_message(msg3)
+            dispatcher.utter_message(msg4)
+
         elif h_center == 2 and metadata['ct'][2] == 0:
             h_type = "직관 센터 ( 미정의 )"
             center_name = "직관센터"
@@ -450,6 +491,10 @@ class ActionLeadingCenters(Action):
             msg = center_description[98]
             msg2 = center_description[99]
             msg3 = center_description[100]
+            dispatcher.utter_message(msg)
+            dispatcher.utter_message(msg2)
+            dispatcher.utter_message(msg3)
+
 
         elif h_center == 3 and metadata['ct'][3] == 0:
             h_type = "감정 센터 ( 미정의 )"
@@ -459,6 +504,10 @@ class ActionLeadingCenters(Action):
             msg2 = center_description[107]
             msg3 = center_description[108]
             msg4 = center_description[109]
+            dispatcher.utter_message(msg)
+            dispatcher.utter_message(msg2)
+            dispatcher.utter_message(msg3)
+            dispatcher.utter_message(msg4)
         elif h_center == 4 and metadata['ct'][4] == 0:
             h_type = "에고 센터 ( 미정의 )"
             center_name = "에고센터"
@@ -468,6 +517,11 @@ class ActionLeadingCenters(Action):
             msg3 = center_description[116]
             msg4 = center_description[117]
             msg5 = center_description[118]
+            dispatcher.utter_message(msg)
+            dispatcher.utter_message(msg2)
+            dispatcher.utter_message(msg3)
+            dispatcher.utter_message(msg4)
+            dispatcher.utter_message(msg5)
         elif h_center == 5 and metadata['ct'][5] == 0:
             h_type = "방향 센터 ( 미정의 )"
             center_name = "방향센터"
@@ -475,6 +529,10 @@ class ActionLeadingCenters(Action):
             msg = center_description[123]
             msg2 = center_description[124]
             msg3 = center_description[125]
+            dispatcher.utter_message(msg)
+            dispatcher.utter_message(msg2)
+            dispatcher.utter_message(msg3)
+
         elif h_center == 6 and metadata['ct'][6] == 0:
             h_type = "표현 센터 ( 미정의 )"
             center_name = "표현센터"
@@ -482,16 +540,9 @@ class ActionLeadingCenters(Action):
             msg = center_description[129]
             msg2 = center_description[130]
 
-        if msg != "":
             dispatcher.utter_message(msg)
-        if msg2 != "":
             dispatcher.utter_message(msg2)
-        if msg3 != "":
-            dispatcher.utter_message(msg3)
-        if msg4 != "":
-            dispatcher.utter_message(msg4)
-        if msg5 != "":
-            dispatcher.utter_message(msg5)
+
         message = center_description[136].format(center_name)
         dispatcher.utter_message(message)
         return [SlotSet("is_question", 0), SlotSet("center_type", h_center), SlotSet("center_step", center_step),
