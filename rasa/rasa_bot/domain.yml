@@ -102,7 +102,6 @@ intents:
   - set_priority_again:
       use_entities: true
 
-
 entities:
   - id
   - type

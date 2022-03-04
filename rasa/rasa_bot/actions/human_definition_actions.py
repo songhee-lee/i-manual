@@ -8,7 +8,10 @@ from actions.common import extract_metadata_from_tracker
 from rasa_sdk.events import FollowupAction
 
 logger = logging.getLogger(__name__)
+import pandas as pd
 
+definition_description_csv = pd.read_csv("./data/definition_description.csv")
+definition_description = definition_description_csv['paragraph'].values.tolist()
 
 class ActionLeadingDefinitionIntro(Action):
     def name(self) -> Text:
@@ -27,7 +30,7 @@ class ActionLeadingDefinitionIntro(Action):
 
         if is_finished == 1:
             dispatcher.utter_message(
-                f'그럼 에너지 흐름에 대해 다시 알려드릴게요!'
+                definition_description[0]
             )
 
         if (metadata["d"] == 0):
@@ -35,16 +38,16 @@ class ActionLeadingDefinitionIntro(Action):
                 f'절전모드 인트로')
         elif (metadata["d"] == 1):
             dispatcher.utter_message(
-                f'당신은 조화를 이루며 흐르는 내면의 에너지 덕분에 혼자서도 잘 지낼 수 있는 사람입니다.')
+                definition_description[1])
         elif (metadata["d"] == 2):
             dispatcher.utter_message(
-                f'당신은 혼자 있을 때 보다는여러 사람이 있는 곳에서 편안함과 만족감을 느낄 수 있는 사람입니다.')
+                definition_description[2])
         elif (metadata["d"] == 3):
             dispatcher.utter_message(
-                f'당신은 여러 사람들과 있을 때 편안함과 만족감을 느낄 수 있는 에너지 흐름을 지닌 특별한 사람입니다.')
+                definition_description[3])
         elif (metadata["d"] == 4):
             dispatcher.utter_message(
-                f'당신은 인류의 1%에 해당하는 아주 특별한 에너지 흐름을 지닌 사람입니다.')
+                definition_description[4])
 
         msg = ""
         msg2 = ""
@@ -64,34 +67,34 @@ class ActionLeadingDefinitionIntro(Action):
         elif metadata["d"] == 1:
             h_type = "한 묶음 에너지 흐름"
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_1.png"
-            msg = "당신은 다른 누구의 도움이 없이 혼자서도 잘 조화를 이루어 흐르는 에너지를 지니고 있습니다. "
-            msg2 = "정의된 여러 개의 센터가 한 묶음으로 연결 되어있어 다른 사람을 통한 센터 연결이 필요 없습니다. "
-            msg3 = "따라서, 당신은 혼자서도 자기만의 공간에서 일이나 공부에 잘 집중할 수 있고, 다른 에너지 흐름을 가진 사람들보다 이해나 행동이 빠르고 수월합니다."
-            msg4 = "당신은 혼자서도 집중하는데 어려움이 없음으로 혼자서 작업을 하거나 혼자 있는 시간과 공간에 대해서 불편함을 느끼지 않습니다. "
-            msg5 = "하지만, 세상은 홀로 살아갈 수 없기에 사람들과 어떻게 관계하면 좋을지에 대해서는 다른 사람들로부터 지혜를 배우려고 노력하면 좋습니다."
+            msg = definition_description[5]
+            msg2 = definition_description[6]
+            msg3 = definition_description[7]
+            msg4 = definition_description[8]
+            msg5 = definition_description[9]
             tag = "혼자서도 잘해요,조용하면 집중력 UP,홀로 공부할 것"
         elif metadata["d"] == 2:
             h_type = "두 묶음 에너지 흐름"
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_2.png"
-            msg = "당신의 에너지는 두 부분으로 나뉘어 흐르고 있습니다. 따라서 당신은 혼자 자기만의 공간에서 일이나 공부를 하기보다는 다양한 사람들의 에너지가 있는 카페나 도서관, 사무실 등에서 더욱 집중이 잘되고 효율적일 수 있습니다."
-            msg2 = "당신은 다른 사람들에 대한 관심이 많기 때문에 인간관계가 무엇인가, 인간관계는 어떻게 하는 것인가에 대한 지혜를 갖고 있습니다."
-            msg3 = "아주 친한 친구나 가족이나 배우자만을 의지한다면 한계가 있는 일정한 영향력을 받을 수 있으므로 혼자 할 수 있는 공공장소를 많이 활용할 것을 추천합니다."
+            msg = definition_description[10]
+            msg2 = definition_description[11]
+            msg3 = definition_description[12]
             tag = "카페에서도 공부 잘함,사람에 관심이 많아요,사람 많으면 아이디어 UP"
         elif metadata["d"] == 3:
             h_type = "세 묶음 에너지 흐름"
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_3.png"
-            msg = "모든 사람들은 한 묶음부터 네 묶음까지 자신만의 에너지 흐름을 갖고 있습니다. 당신을 구성하고 있는 디자인 차트의 9개 센터들이 몇 개의 묶음으로 이루어졌는지를 말하는 것입니다. "
-            msg2 = "에너지가 세 묶음으로 나뉘어진 당신은 여러 명의 사람들과 함께 있을수록 좋습니다. 그 중 한명이라도 당신의 에너지 흐름을 연결해주어 만족감을 줄 수 있기 때문입니다. "
-            msg3 = "하지만, 어느 특정한 사람과 지속적으로 깊은 관계를 이어갈 경우에는 뭔가 메여 있는 느낌을 받을 수도 있습니다."
+            msg = definition_description[13]
+            msg2 = definition_description[14]
+            msg3 = definition_description[15]
             tag = "갈대같은 사람,한 곳에서 집중이 힘듦,자리를 바꿔 공부할 것"
         elif metadata["d"] == 4:
             h_type = "네 묶음 에너지 흐름"
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_4.png"
-            msg = "모든 사람들은 한 묶음부터 네 묶음까지 자신만의 에너지 흐름을 갖고 있습니다. 당신을 구성하고 있는 디자인 차트의 9개 센터들이 몇 개의 묶음으로 이루어졌는지를 말하는 것입니다. "
-            msg2 = "당신은 인류의 1%에 해당하는 네 묶음 에너지 흐름을 갖고 태어난 아주 특별한 사람입니다. "
-            msg3 = "네 묶음 에너지 흐름을 가진 당신은 얼핏 보기에는 느리고 더딘 것처럼 보일 수 있습니다. "
-            msg4 = "네 묶음 흐름에게 빨리 답을 결정하라고 재촉할 경우 그들은 스스로에게 파괴적인 성향을 가지게 되고, 삶의 모든 단계별로 자기자신을 부정하고 혐오하게 될 수 있습니다. "
-            msg5 = "각각 따로 놀고 있는 에너지를 정돈하고 뜻을 모을 충분한 시간을 필요로 합니다. 약간의 시간과 여유만 제공된다면 자신이 가진 모든 센터들의 힘을 모아 독특한 색채를 발현할 수 있습니다. "
+            msg = definition_description[16]
+            msg2 = definition_description[17]
+            msg3 = definition_description[18]
+            msg4 = definition_description[19]
+            msg5 = definition_description[20]
             tag = "우유부단,새로운게 필요해,친구들과 공부할 것"
 
         dispatcher.utter_message(image=img)
@@ -109,8 +112,8 @@ class ActionLeadingDefinitionIntro(Action):
         # dispatcher.utter_message(json_message = {
         #                         "type": "arrContents", "content": [[msg, msg2], [msg3, msg4], [msg5]], "tags": f'{tag}'})
 
-
-        dispatcher.utter_message(f'자, {h_type}에 대해 설명해 보았어요.')
+        message = definition_description[21].format(h_type)
+        dispatcher.utter_message(message)
 
         if leading_priority[0] == 2:
             return [SlotSet('step', 1), FollowupAction(name='action_question_intro')]

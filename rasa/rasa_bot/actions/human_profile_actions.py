@@ -6,9 +6,14 @@ from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
 from actions.common import extract_metadata_from_tracker
 from rasa_sdk.events import FollowupAction
-
+import pandas as pd
 logger = logging.getLogger(__name__)
 
+profile_description_csv = pd.read_csv("./data/profile_description.csv")
+profile_description = profile_description_csv['paragraph'].values.tolist()
+
+etc_description_csv = pd.read_csv("./data/기타.csv")
+etc_description = etc_description_csv['paragraph'].values.tolist()
 
 class ActionLeadingProfileIntro(Action):
     def name(self) -> Text:
@@ -28,45 +33,45 @@ class ActionLeadingProfileIntro(Action):
 
         if is_finished == 1:
             dispatcher.utter_message(
-                f'그럼 프로파일에 대해 다시 알려드릴게요!'
+                profile_description[0]
             )
 
         if (metadata["p"] == 13):
             dispatcher.utter_message(
-                f'당신은 자기자신에게 관심이 많고, 이 세상의 이치를 알고 싶어하는 사람입니다.')
+                profile_description[1])
         elif (metadata["p"] == 14):
             dispatcher.utter_message(
-                f'당신은 새로운 것을 발견하기 위해 애쓰며 가까운 사람들과 만나 즐기려 하는 성향을 지닌 인류의 2%에 해당하는 특별한 사람입니다. ')
+                profile_description[2])
         elif (metadata["p"] == 24):
             dispatcher.utter_message(
-                f'당신은 세상살이에 천재지만 그런 줄 모른 채 혼자있기를 즐기는 사람입니다.')
+                profile_description[3])
         elif (metadata["p"] == 25):
             dispatcher.utter_message(
-                f'당신은 자신도 모르게 사람들의 기대와 관심을 끌어내는 능력을 지닌 인류의 2%에 해당하는 특별한 사람입니다. ')
+                profile_description[4])
         elif (metadata["p"] == 35):
             dispatcher.utter_message(
-                f'당신은 끊임없이 도전하며 자신의 길을 가려 하지만 사람들은 매력적인 당신을 그냥 두지 않습니다.')
+                profile_description[5])
         elif (metadata["p"] == 36):
             dispatcher.utter_message(
-                f'당신은 무엇이든 우선 실행하고 보지만 한편으론 지켜 보고만 싶은 갈등속에 살아가는 인류의 2%에 해당하는 특별한 사람입니다. ')
+                profile_description[6])
         elif (metadata["p"] == 41):
             dispatcher.utter_message(
-                f'당신은 사교적이지만 무의식에선 늘 자신이 완벽한지 점검하는 성향을 지닌 인류의 2%에 해당하는 특별한 사람입니다. ')
+                profile_description[7])
         elif (metadata["p"] == 46):
             dispatcher.utter_message(
-                f'당신은 사람들과의 관계를 즐기고픈 마음과 세상을 그저 관조하고픈 마음의 갈등을 지니고 사는 사람입니다.')
+                profile_description[8])
         elif (metadata["p"] == 51):
             dispatcher.utter_message(
-                f'당신은 한 손엔 법전, 한 손엔 칼을 들고 말 위에 올라 적군을 무찌르러 달려가는 장군과 같습니다.')
+                profile_description[9])
         elif (metadata["p"] == 52):
             dispatcher.utter_message(
-                f'당신은 순수함으로 사람들을 이끌어내는 매력을 지닌 인류의 2%에 해당하는 특별한 사람입니다. ')
+                profile_description[10])
         elif (metadata["p"] == 62):
             dispatcher.utter_message(
-                f'당신은 홀로 조용히 세상을 관조하고 삶을 즐기며 살아가는 사람입니다.')
+                profile_description[11])
         elif (metadata["p"] == 63):
             dispatcher.utter_message(
-                f'당신은 끊임없는 도전으로 고달프지만 끈기와 회복력을 타고난 인류의 3%에 해당하는 특별한 사람입니다. ')
+                profile_description[12])
 
         msg = ""
         msg2 = ""
@@ -78,107 +83,107 @@ class ActionLeadingProfileIntro(Action):
         if metadata["p"] == 13:
             h_type = "1/3"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/13.gif"
-            msg = "모든 사람은 사회적 역할로 두개의 숫자를 갖습니다. 당신은 1번과 3번을 갖고 있어 1/3으로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
-            msg2 = "1번은 연구자, 3번은 도전가로, 연구자는 연구자인데 도전하는 연구자에요. 1/3 은 모든 사회적 역할 중에서 첫번째 단추나 다름없습니다. "
-            msg3 = "1번부터 6번까지의 성향 중에서 1~3은 내향적인 편이고 4~6은 외향적인 편입니다. 1/3은 둘 모두 내향이기에 자기자신에게 관심이 많고, 자신이 살아가는 이 세상의 이치에 대해 알고 싶어 합니다. "
-            msg4 = "자신이 모르는 것에 대해 주저하고 불안감을 느끼는 1번 성향은 그러한 불안감을 해소하기 위해 기초부터 찬찬히 토대를 닦아 진리를 찾습니다. 연구를 마치고 성취를 이루면 더 이상 불안을 느끼지 않고 나의 무기가 되어 사람들과 소통하죠."
-            msg5 = "3번은 도전가의 성향으로 무수한 시행착오, 실패는 성공의 어머니 라는 말이 무엇인지 보여줍니다. 아무리 넘어져도 오뚜기처럼 일어나는 회복력을 가지고 있고, 실패하더라도 그 실패가 무겁거나 괴로운 것이 아닌 신나는 일처럼 즐깁니다. "
-            msg6 = '"실패했다"에서 멈추지 않고 "또 새로운 발견을 했어! 신난다!", "이건 아니네! 좋아 그럼 다시 한 번 더!"에 가깝습니다. 그 모든 과정을 결과를 즐깁니다.'
+            msg = profile_description[13]
+            msg2 = profile_description[14]
+            msg3 = profile_description[15]
+            msg4 = profile_description[16]
+            msg5 = profile_description[17]
+            msg6 = profile_description[18]
             tag = "원리원칙 지킴이,내성적인 타입,실패를 두려워 말 것"
         elif metadata["p"] == 14:
             h_type = "1/4"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/14.gif"
-            msg = "모든 사람은 사회적 역할로 두개의 숫자를 갖습니다. 당신은 1번과 4번을 갖고 있어 1/4로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
-            msg2 = "1번은 연구자, 4번은 사교가로 연구자는 연구자인데 무의식엔 사교적인 성향을 갖고 있는 연구자입니다. 새로운 것을 발견하기 위해 애쓰며, 그 결과를 당신과 가까운 사람들에게 알려주고 싶어하는 욕구를 가지고 있습니다."
-            msg3 = "사교적이라고는 하지만 외향적인 것과는 달라요. 자그마하게 당신과 가까운 사람들과 교류하는 것을 즐기는 것이지 완전 처음보는 사람들을 만나는 걸 즐기는 편은 아닙니다. 당신의 지인을 통해 건너 건너 네트워크를 만들어요. "
-            msg4 = "이 네트워크야 말로 당신이 발견한 것을 전달받을 사람들이죠. 만약 누군가가 그다지 협조적이지 않다면 당신은 그 사람을 굳이 당신의 네트워크에 포함시키지 않을거에요. "
+            msg = profile_description[21]
+            msg2 = profile_description[22]
+            msg3 = profile_description[23]
+            msg4 = profile_description[24]
             tag = "원리원칙 지킴이,메신저 역할,모임에 많이 나갈 것"
         elif metadata["p"] == 24:
             h_type = "2/4"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/24.gif"
-            msg = "모든 사람은 사회적 역할로 두개의 숫자를 갖습니다. 당신은 2번과 4번을 갖고 있어 2/4 로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
-            msg2 = "2번은 은둔자, 4번은 사교가로, 은둔자는 은둔자인데 사교성도 있는 은둔자에요. 2번은 따로 공부하거나 배우지 않아도 이미 세상살이에 천재성을 가지고 있어요. 자신이 그런 천재성을 가지고 있는 줄은 잘 모른 채 혼자서 잘 놀아요. "
-            msg3 = "주변에서는 그런 천재성을 보며 불러내려 하지만 함께하기 보다는 혼자 있는 걸 더 편하게 느낍니다. 모순적인 것은 4번은 사교가이기 때문에 자신의 가까운 사람들과 네트워크를 형성한다는 점이에요."
+            msg = profile_description[27]
+            msg2 = profile_description[28]
+            msg3 = profile_description[29]
             tag = "숨길 수 없는 재능,관심 신경 안씀,내 팀을 구상할 것"
         elif metadata["p"] == 25:
             h_type = "2/5"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/25.gif"
-            msg = "모든 사람은 사회적 역할로 두개의 숫자를 갖습니다. 당신은 2번과 5번을 갖고 있어 2/5로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
-            msg2 = "2번은 은둔자, 5번은 해결사입니다. 나서기 보다는 은둔하기를 원하지만 무의식에서는 나서서 해결하기를 원한다는 것입니다. "
-            msg3 = "세상이 어떻게 되는지, 사람들이 어떻게 사는지, 다른 것에는 관심 없고 그냥 자신의 할 일을 하는 은둔자 성향이 강하지만 자신도 모르게 다른 사람들을 끌어당기는 매력이 있고 무슨 일이든 해결해줄 듯한 기대감을 주는 해결사 성향이 함께 섞여 있습니다."
-            msg4 = "사람들이 모여 있는 방에 당신이 문을 열고 들어가는 순간, 이미 그 방에 있는 모두로부터 기대와 관심을 끌게 됩니다. 저 사람이 날 구원해줄 거야 하는 기대를 받게 되는 거죠. "
-            msg5 = "여러 사람들의 투사 중에서 무엇이 내가 만족시켜줄 수 있는 것인지, 확실하게 판단하지 못한다면 불구덩이에 스스로 들어가는 셈이에요. "
-            msg6 = "안타깝지만 다른 사람들의 기대와 투사를 피할 수는 없습니다. 당신의 존재 자체가 그들을 매혹하니까요. 다만 그 기대들 중에서 무엇이 내가 해결 가능한 것인지 분별할 수 있어야 합니다."
+            msg = profile_description[35]
+            msg2 = profile_description[36]
+            msg3 = profile_description[37]
+            msg4 = profile_description[38]
+            msg5 = profile_description[39]
+            msg6 = profile_description[40]
             tag = "기대를 한몸에 ,혼자가 편해요 ,츤데레 컨셉 유지할 것"
         elif metadata["p"] == 35:
             h_type = "3/5"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/35.gif"
-            msg = "모든 사람은 사회적 역할로 두개의 숫자를 갖습니다. 당신은 3번과 5번을 갖고 있어 3/5 로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
-            msg2 = "3번은 도전가, 5번은 해결사로, 도전가는 도전가인데 해결하는 도전가에요. 3번과 5번 모두 변화를 향해 나아가는 성향입니다. 3번은 무수한 시행착오와 도전을 통해 여러 번 실패하더라도 한번의 새로운 성공을 찾아내는 역할을 하고, 5번은 사람들로부터 그들의 구세주, 해결사 라는 기대심을 받습니다. "
-            msg3 = "잘못된 것을 고치고 싶어하고 올바르지 않은 것을 지나치지 못합니다. "
+            msg = profile_description[41]
+            msg2 = profile_description[42]
+            msg3 = profile_description[43]
             tag = "의심이 많음 ,시행착오는 나의 힘 ,꼬리를 무는 생각은 그만"
         elif metadata["p"] == 36:
             h_type = "3/6"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/36.gif"
-            msg = "모든 사람은 사회적 역할로 두개의 숫자를 갖습니다. 당신은 3번과 6번을 갖고 있어 3/6로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
-            msg2 = "3번은 도전가, 6번은 관조자로, 도전가는 도전가인데 관조하는 도전가에요. 삶에서 정말로 믿어도 되는 것은 무엇일까? 끝없이 도전하고 지켜보는 사람입니다. 시행착오를 통해서 진정한 지혜를 얻게 돼요."
-            msg3 = "믿음이야 말로 당신에게는 가장 어려운 영역일 수 있어요. 대인관계 속에서 사람들은 언제나 당신의 기대에 미치지 못하고 당신이 생각하는 기본만큼도 해주지 못하니까요. 그렇게 늘 사람들과의 관계를 만들었다 깨트렸다 하면서 수없이 많이 무너지게 됩니다. 이러한 시간을 통해 진정한 당신의 소울메이트를 찾고 정착하여 완벽한 삶을 이루고 싶어해요."
+            msg = profile_description[48]
+            msg2 = profile_description[49]
+            msg3 = profile_description[50]
             tag = "아프니까 청춘이다,인생은 3막부터 ,고비를 기회로 생각할 것"
         elif metadata["p"] == 41:
             h_type = "4/1"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/41.gif"
-            msg = "모든 사람은 사회적 역할로 두개의 숫자를 갖습니다. 당신은 4번과 1번을 갖고 있어 4/1로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
-            msg2 = "4번은 사교가, 1번은 연구자로, 사교가는 사교가인데 연구하는 사교가에요. 4번 사교가 성향은 기본적으로 사람들에게 친절하고, 마음이 열려 있는 편이고, 1번 연구자 성향은 기본적으로 좀 불안해하며, 그 불안감을 해소하기 위해서 자신의 토대, 기반을 갈고 닦고자 연구에 몰두하는 편이에요. "
-            msg3 = "즉, 의식적으로는 사교적이지만 당신의 무의식은 완벽한 상태인가를 계속 점검하게 만들기 때문에 불안감이 깔려 있게 됩니다. "
-            msg4 = "두가지 성향이 만나, 자신의 토대를 늘 갈고 닦으며 단단히 하는 동시에 사람들과 교류하며 관계도 키워 나가는 모습이에요. "
-            msg5 = "삶에서 당신을 매혹하는 뭔가를 찾으면 그것에 완전히 빠져드는 편이에요. 그 분야를 파고들어 기초를 닦아 토대를 이루면 당신이 쌓은 지식을 통해 사람들에게 전하고 영향력을 발휘합니다. "
-            msg6 = "당신이 어떤 분야의 전문가가 된다면 1번 연구자 성향에서 오는 불안감은 사라지고 당신의 힘이 되어주는 권위과 명예만 남습니다. 그 힘을 가지고 4번 사교가의 힘을 발휘해 사람들과 교류하고 당신의 지혜를 전달하게 되죠. "
-            msg7 = "4번 사교가 성향 덕에 당신은 이미 어떻게 하면 가장 적절하게 의사소통을 나누며 교류하는지 알고 있습니다. "
+            msg = profile_description[54]
+            msg2 = profile_description[55]
+            msg3 = profile_description[56]
+            msg4 = profile_description[57]
+            msg5 = profile_description[58]
+            msg6 = profile_description[59]
+            msg7 = profile_description[60]
             tag = "안정감 추구 ,끝없는 연구,고집은 잠시 내려놓을 것"
         elif metadata["p"] == 46:
             h_type = "4/6"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/46.gif"
-            msg = "모든 사람은 사회적 역할로 두개의 숫자를 갖습니다. 당신은 4번과 6번을 갖고 있어 4/6으로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
-            msg2 = "4번은 사교가, 6번은 관조자로, 사교가는 사교가인제 관조하는 사교가에요. 4번은 영향력에 관심이 많습니다. 자신의 네트워크를 만들고, 그 네트워크 안에서 소통하며 성장해 나가죠. "
-            msg3 = "그에 비해 6번은 인생을 3단계로 나뉘어 경험합니다. 첫번째 30년까지는 도전가의 성향으로 무수한 시행착오를, 두번째 30년까지의 시간 동안 세상의 흐름에 대해 말그대로 관조자로, 마지막 세번째 30년의 시간이 되면, 그들은 다시 세상 속으로 뛰어들어 롤모델의 역할로 다음 세대의 성장을 위해 길잡이가 됩니다."
+            msg = profile_description[61]
+            msg2 = profile_description[62]
+            msg3 = profile_description[63]
             tag = "기회는 인맥에서 ,친근함이 무기 ,언행일치로 신뢰를 얻을 것"
         elif metadata["p"] == 51:
             h_type = "5/1"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/51.gif"
-            msg = "모든 사람은 사회적 역할로 두개의 숫자를 갖습니다. 당신은 5번과 1번을 갖고 있어 5/1으로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
-            msg2 = "5번은 해결사, 1번은 연구자로, 해결사는 해결사인데 연구하는 해결사에요. 5번은 마치 반투명한 커튼 위로 자신의 그림자를 아른아른 띄워 놓은 사람처럼 신비주의, 매혹적인 느낌을 줍니다. 사람들은 그 실체가 무엇일까 혹시 자신의 구원자, 해결사가 나타나진 않을까 기대심을 투사합니다. "
-            msg3 = "실제로 당신이 어떤 의도를 가졌든지 상관없이 그들의 기대심을 끌어당기고, 만약 그 기대를 충족하지 못할 경우 비난의 대상이 됩니다. "
-            msg4 = "11번은 연구자 성향이기에 세상이 어떻게 돌아가는지는 큰 관심없이 오직 나의 관심사, 나의 불안감을 해소시켜줄 진리를 찾아 끝없이 파고듭니다. 기본적으로 불안감이 많은 1번은 그것을 해소하기 위해 나를 단단하게 지지해줄 기본 토대를 만들고자 연구와 연구에 몰두하죠. "
-            msg5 = "1번을 통해 탄탄해진 기본기를 5번으로 활용하여 사람들에게 실질적인 해결책을 제시하며 자연스럽게 권위/영향력을 얻게 됩니다."
+            msg = profile_description[67]
+            msg2 = profile_description[68]
+            msg3 = profile_description[69]
+            msg4 = profile_description[70]
+            msg5 = profile_description[71]
             tag = "준비된 해결사,위기의 영웅 ,새로운 정보를 흡수할 것"
         elif metadata["p"] == 52:
             h_type = "5/2"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/52.gif"
-            msg = "모든 사람은 사회적 역할로 두개의 숫자를 갖습니다. 당신은 5번과 2번을 갖고 있어 5/2로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
-            msg2 = "5번은 해결사, 2번은 은둔자로, 해결사는 해결사인데 무의식적으로 나서고 싶어하지 않는 은둔하는 해결사입니다."
-            msg3 = "당신은 평범함과는 거리가 먼 사람입니다. 새로운 방식으로 세상과 소통하고 혁신적인 무언가를 찾아내 사람들에게 전달합니다. "
-            msg4 = "타고난 재능으로 자신의 일에 몰두하며, 꼭 공부하지 않더라도 감으로 이미 뭔가를 아는 경우가 많을 수 있습니다. "
-            msg5 = "누군가가 도움을 요청할 경우 기꺼이 나서서 해결을 해주는 해결사인 당신은, 동시에 은둔자의 성향이 있으므로 자신만의 시간이 꼭 있어야해요. "
-            msg6 = "이러한 과정에서 사람들은 당신이 언제나 곁에 있어주겠지 하는 기대심을 투사하게 되고 그 기대심을 충족시키지 못할 경우에는 원망과 비난의 대상이 되기도 합니다. "
-            msg7 = "그러한 엉뚱한 대가를 치루지 않기 위해서는 당신이 가진 천재성의 불확실함을 미리 늘 알려 주는 게 도움이 될 수 있어요. 해결사라고 꼭 모든 일을 다 잘할 수는 없다는 점이죠. "
+            msg = profile_description[72]
+            msg2 = profile_description[73]
+            msg3 = profile_description[74]
+            msg4 = profile_description[75]
+            msg5 = profile_description[76]
+            msg6 = profile_description[77]
+            msg7 = profile_description[78]
             tag = "동기부여가 중요해 ,부담되는 기대감 ,적재적소에 해결사가 될 것"
         elif metadata["p"] == 62:
             h_type = "6/2"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/62.gif"
-            msg = "모든 사람은 사회적 역할로 두개의 숫자를 갖습니다. 당신은 6번과 2번을 갖고 있어 6/2 로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
-            msg2 = "6번은 관조자, 2번은 은둔자로, 관조자는 관조자인데 은둔하는 관조자에요. 6번은 인생을 3단계로 나뉘어 경험합니다. 첫번째 30년까지는 도전가의 성향으로 무수한 시행착오를, 두번째 30년까지의 시간 동안 세상의 흐름에 대해 말그대로 관조자로, 마지막 세번째 30년의 시간이 되면, 그들은 다시 세상 속으로 뛰어들어 롤모델의 역할로 다음 세대의 성장을 위해 길잡이가 됩니다. "
-            msg3 = "2번 라인은 혼자서 노는 걸 좋아하는 은둔자입니다. 기본적으로 재능이 있고 뭔가를 배우지 않더라도 척척 알아내는 편입니다. 그럼에도 스스로는 자신이 재능이 있는지 잘 모르고 그냥 재밌어서 놀고 있었을 뿐이라 생각합니다. "
-            msg4 = "사람들은 그런 당신의 재능을 보고자 초대를 하고, 별거 아니라는 듯이 자신의 능력으로 사람들을 놀라게 하기도 합니다."
+            msg = profile_description[83]
+            msg2 = profile_description[84]
+            msg3 = profile_description[85]
+            msg4 = profile_description[86]
             tag = "방해 극혐 ,혼자가 더 재밌어 ,인파에서 벗어나 휴식할 것"
         elif metadata["p"] == 63:
             h_type = "6/3"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/63.gif"
-            msg = "모든 사람은 사회적 역할로 두개의 숫자를 갖습니다. 당신은 6번과 3번을 갖고 있어 6/3으로 표현합니다. 앞의 숫자는 의식, 뒤의 숫자는 무의식의 성향입니다. "
-            msg2 = "6번은 관조자 3번은 도전가로, 의식적으로는 관조자이지만, 무의식에서는 끊임없이 도전하게 만드는 성향을 가진 사람입니다. "
-            msg3 = "삶에서 완벽한 것은 무엇일까? 라는 질문의 답을 찾는 성향의 사람입니다. 왜냐하면 당신의 삶은 잠재적으로 혼란과 불안정함을 늘 가지고 있을 수 있거든요. "
-            msg4 = "오뚝이처럼 넘어지고 넘어져도 다시 일어나서 또 도전하는 시행착오 그 자체의 삶입니다. 이것은 무척 어렵고 고달플 수도 있지만, 그 시간이 지나고 나면 그동안의 고난을 보상해주듯 누구도 얻지 못하는 귀한 지혜를 깨닫게 될 거예요. "
-            msg5 = "당신은 끈기와 회복력을 타고났어요. ‘신은 견딜 수 있을 만큼의 시련을 준다’ 라는 말이 어쩌면 당신에게 딱 맞는 말일수도 있어요. "
-            msg6 = "당신이 견딜 수 있는 만큼의 혼란과 놀라움을 겪게 될 것입니다. 그 모든 경험들을 지나고 나면 이 세상을 사는데 꼭 필요한 지혜를 많은 사람들에게 전하게 됩니다. 각자가 지닌 자신만의 개성을 꽃피우고 진정한 자기 자신의 모습으로 깨어나도록 돕게 됩니다."
+            msg = profile_description[89]
+            msg2 = profile_description[90]
+            msg3 = profile_description[91]
+            msg4 = profile_description[92]
+            msg5 = profile_description[93]
+            msg6 = profile_description[94]
             tag = "몸으로 부딪히기 ,경험으로 인한 성장,주변에 소홀하지 말 것"
 
         dispatcher.utter_message(image=img)
@@ -208,13 +213,14 @@ class ActionLeadingProfileIntro(Action):
             step = 4
 
         if metadata["p"] == 25 or metadata["p"] == 41 or metadata["p"] == 51 or metadata["p"] == 63:
-            dispatcher.utter_message(f'자, {h_type} 역할에 대해 설명해 보았어요.')
+            message = profile_description[96].format(h_type)
+            dispatcher.utter_message(message)
             return [SlotSet('step', step), FollowupAction(name='action_question_intro')]
 
         buttons = []
         buttons.append({"title": f'예', "payload": "/leading_profile"})
         buttons.append({"title": f'아니요', "payload": "/question_intro"})
-        dispatcher.utter_message(f'자, 당신의 사회적 역할 대해 좀더 알아볼까요?', buttons=buttons)
+        dispatcher.utter_message(profile_description[95], buttons=buttons)
         # 마지막 센터에 밑에 주석 제거
         return [SlotSet('step', step)]
 
@@ -246,53 +252,53 @@ class ActionLeadingProfile(Action):
         h_type = ''
         if metadata["p"] == 13:
             h_type = "1/3"
-            msg4 = "주의할 점은 그러한 과정 속에서 아무리 회복력이 좋다고 해도, 가끔은 “난 왜 안되는 걸까”하는 회의에 빠지거나, “아무리 해도해도 실패 뿐이라니!!” 하면서 분노하여 세상을 비관적으로 바라보게 될 수도 있다는 점입니다."
-            msg5 = "불안감, 혹은 실패를 두려워하지 말고 무한한 발견의 기회로 나아간다면 훨씬 삶이 즐거워질 겁니다."
+            msg4 = profile_description[19]
+            msg5 = profile_description[20]
             tag = "원리원칙 지킴이,내성적인 타입,실패를 두려워 말 것"
         elif metadata["p"] == 14:
             h_type = "1/4"
-            msg4 = "사교적인 연구가 성향의 당신은 기본적으로 권위자와 친해지길 원하는 편이에요. 권위자라 함은 당신에게 무언가를 가르쳐줄 수 있는 사람, 당신을 준비시켜줄 수 있는 사람을 의미하며 그를 통해 궁극적으로는 당신 또한 누군가에게 권위자가 되어 당신의 관심사를 다른 이에게 전하고 싶어합니다. "
-            msg5 = "그 근본적인 이유는 당신이 느끼는 불안감 때문인데요. 1번 연구자 성향은 기초와 논리를 중시하며 그것을 터득하기 전까지는 끊임없이 안전을 추구하며 불안함을 해소하고 싶어한답니다. 한 번 토대가 준비되고 나면, 그 분야에서 사람들과 소통하며 꾸준히 자신의 기반을 갈고 닦으며 나아가게 됩니다."
+            msg4 = profile_description[25]
+            msg5 = profile_description[26]
             tag = "원리원칙 지킴이,메신저 역할,모임에 많이 나갈 것"
         elif metadata["p"] == 24:
             h_type = "2/4"
-            msg4 = "2번 은둔자 성향은 기본적으로 투명인간이 되고 싶어합니다. “아무도 나를 신경 쓰지 않고 내버려뒀으면 좋겠는데…”라고 생각하죠. "
-            msg5 = "실제로도 사람들의 주목을 끌기보다는 혼자서 놀려고 하는 편이에요. 물론 사람들은 당신을 보며 재능을 부러워하고 함께하자고 초대하죠. "
-            msg6 = "만약 당신이 건강한 초대를 받는다면, 자연스럽게 4번으로 이어져서 사람들에게 당신의 재능을 발휘하고 네트워크를 형성합니다. "
-            msg7 = "이 네트워크를 통해 당신은 자신이 가진 재능/천재성에 대해 더욱 알아갈 수 있고 든든한 서포트를 받을 수도 있습니다. "
-            msg8 = "하지만 당신을 부르는 모든 초대에 응답해 주다 가는 자신만의 시간도 빼앗기고 기본적으로 혼자 있기를 좋아하는 2번 성향과 반대되어 스트레스가 점점 쌓일 수 있으니 주의하기 바랍니다."
+            msg4 = profile_description[30]
+            msg5 = profile_description[31]
+            msg6 = profile_description[32]
+            msg7 = profile_description[33]
+            msg8 = profile_description[34]
             tag = "숨길 수 없는 재능,관심 신경 안씀,내 팀을 구상할 것"
         elif metadata["p"] == 35:
             h_type = "3/5"
-            msg4 = "잘못된 것을 고치고 변화를 향해 나아가는 흐름은 비슷할 수 있으나, 3번은 기본적으로 다른 이들에게는 관심이 없습니다. 자신의 길, 세상이 돌아가는 모습 따위에 더 관심이 있습니다. "
-            msg5 = "남들에게 관심 없는 3번과는 다르게 5번은 사람들로부터 벗어날 수 없습니다. 이들은 기본적으로 사람들을 매혹하는 매력쟁이들입니다. "
-            msg6 = "사람들은 5번을 바라보며 자신을 구원해 주리라, 해결책을 주리라 기대심을 투사하게 되는데, 그들의 기대심에 애매모호하게 호응해 주다 가는 마녀사냥의 제물이 되기 쉽습니다. "
-            msg7 = "그러한 딜레마를 해결하기 위해서는, 적당한 거리감을 유지하는 것이 필수입니다. 안 그래도 매력적으로 느껴지고, 마치 해결사 같은 분위기를 자아내는 5번인데, 거기에 조금이라도 애매모호하게 여지를 남겨두게 되면 분명히 희생양이 되고 말 겁니다."
+            msg4 = profile_description[44]
+            msg5 = profile_description[45]
+            msg6 = profile_description[46]
+            msg7 = profile_description[47]
             tag = "의심이 많음 ,시행착오는 나의 힘 ,꼬리를 무는 생각은 그만"
         elif metadata["p"] == 36:
             h_type = "3/6"
-            msg4 = "3번 도전가 성향은 삶에 뛰어들어 천방지축 이것저것 많은 것을 경험하고 싶어하는데, 6번 관조자 역할은 뛰어들기보다는 그저 지켜보며 과연 내 기대가 충족될지 조마조마 걱정만 하다가 실망하고 말죠. "
-            msg5 = "직접 경험하기보다는 이미 약간은 비관적인 생각을 자주 하는 자신의 모습이 있진 않나요? 하지만 뭔가를 직접 하고 부딪혀보는게 생각만 하고 아무것도 하지 않는 것보다 훨씬 나을거에요. "
-            msg6 = "아무리 실망스럽더라도 그 실망감을 생각으로만 경험하는 것과 직접 경험하는 것은 완전히 다른 일이니까요. 아무리 관조자의 성향을 가졌더라도 삶은 역시 직접 경험해야 의미가 있는거니까 조금은 더 경험치를 쌓아보는 것도 좋을거에요. "
+            msg4 = profile_description[51]
+            msg5 = profile_description[52]
+            msg6 = profile_description[53]
             tag = "아프니까 청춘이다,인생은 3막부터 ,고비를 기회로 생각할 것"
         elif metadata["p"] == 46:
             h_type = "4/6"
-            msg4 = "사람들과 네트워크를 만들어 연결하고 싶은 4번의 마음과 세상에서 떨어져 멀리서 지켜보고 싶은 6번의 마음이 서로 대치하며 약간의 긴장감을 항상 가지고 있습니다. 마치 줄타기를 하는 서커스처럼 위태위태 해 보이지만 결코 그 위에서 떨어지지는 않는 정도의 긴장감이죠. "
-            msg5 = "4번에게는 삶의 만족도와 자신의 네트워크가 큰 연결고리가 되는데, 처음 30년을 사람들과의 관계에서도 많은 시행착오와 마찰을 경험할 수 있습니다. "
-            msg6 = "그 초기의 마찰이나 어려움을 극복하지 못하고 인간관계를 아예 놓아버리거나 혼자서 하는 것에 익숙해진다면 나중에 정작 정말 필요할 때는 당신을 지원해주는 인간관계가 없음에 크게 아쉬울 수도 있습니다. "
+            msg4 = profile_description[64]
+            msg5 = profile_description[65]
+            msg6 = profile_description[66]
             tag = "기회는 인맥에서 ,친근함이 무기 ,언행일치로 신뢰를 얻을 것"
         elif metadata["p"] == 52:
             h_type = "5/2"
-            msg4 = '당신은 혼자서도 충분히 행복함을 느끼는 사람이지만, 5번 해결사 역할로 인해 사람들의 기대심리를 계속해서 부추기게 됩니다. 그 과정에서 때로는 "난 아무 잘못도 없는데 나한테 왜 그러는거야?" 라고 말하고 싶을 만큼 억울하게 희생되는 순간도 있을 수 있어요. '
-            msg5 = "이런 억울함은 그만큼 당신이 순수하기 때문이고 바로 그 순수함이 사람들을 이끄는 매혹 장치랍니다. 그렇게 희생양이 되지 않기 위해서는 어떤 투사에 응답할 것인지, 어디에 나서서 해결책을 보여줄 건지 분별할 수 있어야 해요. "
-            msg6 = "5번 해결사 역할은 사람들을 끌어당기는 매혹을 가진 동시에 2번 은둔자 성향은 사람들에게 벽을 세우고 숨는 수줍음을 가지고 있어서 당신은 사람들과 결코 허물없이 완전히 친해지지는 않는 편이에요. 그리고 그렇게 하는 것이 당신에게도 더 유리합니다. "
-            msg7 = "왜냐하면 아무런 안전장치 없이 당신을 완전히 노출하게 될 경우에는, 그만큼 기대심리를 충족하지 못했을 때 당하게 되는 보복 또한 더 커질 수 있으니까요. 사람들과 약간의 신비주의 같은 한 겹의 비칠 듯 말 듯한 커튼을 남겨두는 것이 좋습니다. "
+            msg4 = profile_description[79]
+            msg5 = profile_description[80]
+            msg6 = profile_description[81]
+            msg7 = profile_description[82]
 
             tag = "동기부여가 중요해 ,부담되는 기대감 ,적재적소에 해결사가 될 것"
         elif metadata["p"] == 62:
             h_type = "6/2"
-            msg4 = "처음 3번처럼 살아가는 30년이 중요합니다. 새로운 걸 경험하는 과정은 꼭 순탄치만은 않을 수도 있겠으나, 넘어지고 무릎이 깨지더라도 그 경험들은 결국 당신의 삶을 더욱 윤택하게 해주는 양분이 될 수 있습니다. "
-            msg5 = "다행인 점은 2번의 천재성이 어느 정도 발휘되기 때문에, 아주 무차별하게 코가 깨지진 않을 수 있다는 점입니다. 2번은 딱히 뭔가를 해보지 않더라도 이미 그 이치를 어느정도 흐름을 알아차릴 수 있기 때문입니다."
+            msg4 = profile_description[87]
+            msg5 = profile_description[88]
             tag = "방해 극혐 ,혼자가 더 재밌어 ,인파에서 벗어나 휴식할 것"
 
         if msg4 != "":
@@ -308,7 +314,7 @@ class ActionLeadingProfile(Action):
         buttons = []
         buttons.append({"title": f'질문 있어요', "payload": "/question{\"is_question\":\"1\", \"center_question\":\"0\"}"})
         buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
-        dispatcher.utter_message(f"질문이 있나요?", buttons=buttons)
+        dispatcher.utter_message(etc_description[4], buttons=buttons)
 
 
         if leading_priority[0] == 1:
