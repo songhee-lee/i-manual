@@ -55,7 +55,7 @@ class ActionSetPriority(Action): #맨 처음
         message = etc_description[0].format(metadata["pn"])
         dispatcher.utter_message(
             message, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/5-2.wav"
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/0.wav"
             }
         )
 
@@ -232,7 +232,9 @@ class ActionStep(Action):
                     # is_finished = 1 은 last_message 나오고 set
                     return [FollowupAction(name='action_last_message')]
                 else:
-                    dispatcher.utter_message(etc_description[3])
+                    dispatcher.utter_message(etc_description[3], json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/8.wav"
+                    })
                     if leading_priority[step]==0:
                         return [FollowupAction(name='action_leading_type_intro')]
                     elif leading_priority[step]==1:
@@ -283,7 +285,9 @@ class ActionMore(Action):
                 buttons = []
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
-                dispatcher.utter_message(etc_description[1], buttons=buttons)
+                dispatcher.utter_message(etc_description[1], buttons=buttons, json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/7.wav"
+                    })
 
         return []
 
@@ -295,7 +299,7 @@ class ActionDropCenter(Action):
     def run(self, dispatcher, tracker, domain):
         print('action_drop_center')
         leading_priority = tracker.get_slot('leading_priority')
-
+        metadata = extract_metadata_from_tracker(tracker)
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
@@ -304,7 +308,9 @@ class ActionDropCenter(Action):
         if step==4:
             return[FollowupAction(name='action_last_message'), SlotSet('center_step', 0)]
         else:
-            dispatcher.utter_message(etc_description[3])
+            dispatcher.utter_message(etc_description[3], json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/8.wav"
+                    })
             if leading_priority[step] == 0:
                 return [FollowupAction(name='action_leading_type_intro'), SlotSet('center_step', 0)]
             elif leading_priority[step] == 1:

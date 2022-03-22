@@ -44,7 +44,9 @@ class ActionLeadingDefinitionIntro(Action):
                 definition_description[2])
         elif (metadata["d"] == 3):
             dispatcher.utter_message(
-                definition_description[3])
+                definition_description[3], json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/1.wav"
+                    })
         elif (metadata["d"] == 4):
             dispatcher.utter_message(
                 definition_description[4])
@@ -97,13 +99,19 @@ class ActionLeadingDefinitionIntro(Action):
             msg5 = definition_description[20]
             tag = "우유부단,새로운게 필요해,친구들과 공부할 것"
 
-        dispatcher.utter_message(image=img)
+        dispatcher.utter_message(image=img) #일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
         if msg != "":
-            dispatcher.utter_message(msg)
+            dispatcher.utter_message(msg, json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/2.wav"
+                    })
         if msg2 != "":
-            dispatcher.utter_message(msg2)
+            dispatcher.utter_message(msg2, json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/3.wav"
+                    })
         if msg3 != "":
-            dispatcher.utter_message(msg3)
+            dispatcher.utter_message(msg3, json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/4.wav"
+                    })
         if msg4 != "":
             dispatcher.utter_message(msg4)
         if msg5 != "":
@@ -113,7 +121,9 @@ class ActionLeadingDefinitionIntro(Action):
         #                         "type": "arrContents", "content": [[msg, msg2], [msg3, msg4], [msg5]], "tags": f'{tag}'})
 
         message = definition_description[21].format(h_type)
-        dispatcher.utter_message(message)
+        dispatcher.utter_message(message, json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/5.wav"
+                    })
 
         if leading_priority[0] == 2:
             return [SlotSet('step', 1), FollowupAction(name='action_question_intro')]
