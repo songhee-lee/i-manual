@@ -48,7 +48,7 @@ class ActionLeadingCentersIntro(Action):
             if center_step == 0:
                 dispatcher.utter_message(
                     center_description[0], json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/5-1.wav"
+                        "type": "voice", 'sender': metadata['uID'], "voiceid": "12", "voiceDuration": "123"
                     }
                 )
         else:
