@@ -458,9 +458,10 @@ class ActionQuestionIntro(Action):
         else:
             buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
 
-        dispatcher.utter_message(etc_description[4], buttons=buttons, json_message={
+        dispatcher.utter_message(etc_description[4], json_message={
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/6.wav"
                     })
+        dispatcher.utter_message(buttons = buttons)
 
         if is_center:
             return [SlotSet("center_question", 1)]
