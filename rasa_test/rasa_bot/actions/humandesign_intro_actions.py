@@ -272,7 +272,9 @@ class ActionMore(Action):
                 buttons = []
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
-                dispatcher.utter_message(etc_description[1], buttons=buttons)
+                dispatcher.utter_message(etc_description[1], buttons=buttons, json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/7.wav"
+                    })
         else:
             if se[0] in center_priority[0:center_step] and se[1] in center_priority[0:center_step] and \
                     se[2] in center_priority[0:center_step] and se[3] in center_priority[0:center_step] and is_finished==0:
