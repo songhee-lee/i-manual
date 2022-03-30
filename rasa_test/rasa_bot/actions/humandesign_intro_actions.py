@@ -275,7 +275,7 @@ class ActionMore(Action):
                 dispatcher.utter_message(etc_description[1], json_message={
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/7.wav"
                     })
-                dispatcher.utter_message("버튼을 선택해 주세요", buttons=buttons)
+                dispatcher.utter_message(buttons=buttons)#
         else:
             if se[0] in center_priority[0:center_step] and se[1] in center_priority[0:center_step] and \
                     se[2] in center_priority[0:center_step] and se[3] in center_priority[0:center_step] and is_finished==0:
@@ -291,7 +291,7 @@ class ActionMore(Action):
                 dispatcher.utter_message(etc_description[1], json_message={
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/7.wav"
                     })
-                dispatcher.utter_message("버튼을 선택해 주세요", buttons=buttons)
+                dispatcher.utter_message(buttons=buttons)#
 
 
         return []
