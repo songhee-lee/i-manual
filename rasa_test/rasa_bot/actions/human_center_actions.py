@@ -66,6 +66,7 @@ class ActionLeadingCentersIntro(Action):
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11.wav"
                     }
                 )
+
         # 연료센터
         if center_type == 0:
 
@@ -162,6 +163,27 @@ class ActionLeadingCentersIntro(Action):
         print(tracker.get_slot('step'))
         print("center step", tracker.get_slot('center_step'))
         print("get Step end")
+
+        return [SlotSet('center_step', center_step), SlotSet("step", step), FollowupAction(name='action_leading_centers_first')]
+
+class ActionLeadingCentersFirst(Action):
+    def name(self) -> Text:
+        return "action_leading_centers_first"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[
+        Dict[Text, Any]]:
+        print('action_leading_centers_first')
+
+        metadata = extract_metadata_from_tracker(tracker)
+
+        print("MetaData: ", metadata)
+
+        leading_priority = tracker.get_slot('leading_priority')
+        step = tracker.get_slot('step')
+        center_step = tracker.get_slot('center_step')
+        center_priority = tracker.get_slot('center_priority')
+        is_finished = tracker.get_slot('is_finished')
+
         msg = ""
         msg2 = ""
         msg3 = ""
@@ -356,6 +378,7 @@ class ActionLeadingCentersIntro(Action):
 
         return [SlotSet('center_step', center_step), SlotSet('center_type', h_center),
                 SlotSet("step", step), FollowupAction(name='action_center_detail_intro')]
+
 
 
 class ActionLeadingCenters(Action):
