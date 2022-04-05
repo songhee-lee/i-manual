@@ -131,13 +131,16 @@ class ActionLeadingDefinitionIntro(Action):
                 dispatcher.utter_message(msg2, json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
                 })
+        dispatcher.utter_message(json_message={
+            "type": "extraText", 'sender': metadata['uID'], "content": "/leading_definition"
+        })
 
 
 
         # dispatcher.utter_message(json_message = {
         #                         "type": "arrContents", "content": [[msg, msg2], [msg3, msg4], [msg5]], "tags": f'{tag}'})
 
-        return [ FollowupAction(name='action_leading_definition')]
+        return [ FollowupAction(name='action_listen')]
 
 
 class ActionLeadingDefinition(Action):

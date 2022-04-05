@@ -480,9 +480,12 @@ class ActionLeadingCentersFirst(Action):
                 "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
             })
 
+        dispatcher.utter_message(json_message={
+            "type": "extraText", 'sender': metadata['uID'], "content": "/leading_centers_second"
+        })
 
         return [SlotSet('center_step', center_step), SlotSet('center_type', h_center),
-                SlotSet("step", step), FollowupAction(name='action_leading_centers_second')]
+                SlotSet("step", step), FollowupAction(name='action_listen')]
 
 
 class ActionLeadingCentersSecond(Action):
