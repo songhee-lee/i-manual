@@ -254,5 +254,7 @@ actions:
   - action_drop_center
   - action_set_priority_again
   - action_leading_centers_first
+  - action_leading_centers_second
+  - action_leading_definition
 forms: {}
 e2e_actions: []
