@@ -163,8 +163,10 @@ class ActionLeadingCentersIntro(Action):
         print(tracker.get_slot('step'))
         print("center step", tracker.get_slot('center_step'))
         print("get Step end")
-
-        return [SlotSet('center_step', center_step), SlotSet("step", step), FollowupAction(name='action_leading_centers_first')]
+        dispatcher.utter_message(json_message={
+                "type": "extraText", 'sender': metadata['uID'], "content": "leading_centers_first"
+            })
+        return [SlotSet('center_step', center_step), SlotSet("step", step), FollowupAction(name='action_listen')]
 
 class ActionLeadingCentersFirst(Action):
     def name(self) -> Text:

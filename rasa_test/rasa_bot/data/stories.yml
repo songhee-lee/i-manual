@@ -211,3 +211,12 @@ stories:
       - intent: set_priority_again
       - action: action_set_priority_again
 
+  - story: leading_center_first
+    steps:
+      - intent: leading_centers_first
+      - action: action_leading_centers_first
+
+  - story: leading_center_second
+    steps:
+      - intent: leading_centers_second
+      - action: action_leading_centers_second
