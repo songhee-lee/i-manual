@@ -13,12 +13,13 @@ logger = logging.getLogger(__name__)
 # MongoDB setting
 my_client = MongoClient("mongodb://localhost:27017/")
 mydb = my_client['i-Manual']  # i-Manaul database 생성
-mycol2 = mydb['user_slot'] # user_slot Collection 
+mycol2 = mydb['user_slot']  # user_slot Collection
 
 import pandas as pd
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
 etc_description = etc_description_csv['paragraph'].values.tolist()
+
 
 class ActionInitialized(Action):
     def name(self) -> Text:
@@ -31,6 +32,7 @@ class ActionInitialized(Action):
         metadata = extract_metadata_from_tracker(tracker)
 
         return [FollowupAction(name='action_set_priority')]
+
 
 class ActionLastMessage(Action):
     def name(self) -> Text:
@@ -46,14 +48,17 @@ class ActionLastMessage(Action):
         is_finished = tracker.get_slot('is_finished')
         if is_finished is None:
             return [FollowupAction(name='action_set_priority_again')]
-        
+
         # Save user's slot data in DB
         mycol2.update({"displayName": metadata["pn"]}, {"displayID": metadata["uID"], "displayName": metadata["pn"],
-                              "leading_priority" : tracker.get_slot("leading_priority"), "center_priority" : tracker.get_slot("center_priority"),
-                              "step" : tracker.get_slot("step"), "is_finished":tracker.get_slot("is_finished"), "center_step":tracker.get_slot("center_step"), 
-                              "center_type":tracker.get_slot("center_type")
-                             }, upsert=True)
-        
+                                                        "leading_priority": tracker.get_slot("leading_priority"),
+                                                        "center_priority": tracker.get_slot("center_priority"),
+                                                        "step": tracker.get_slot("step"),
+                                                        "is_finished": tracker.get_slot("is_finished"),
+                                                        "center_step": tracker.get_slot("center_step"),
+                                                        "center_type": tracker.get_slot("center_type")
+                                                        }, upsert=True)
+
         if is_finished == 1:
             dispatcher.utter_message(etc_description[10])
         else:
@@ -63,16 +68,16 @@ class ActionLastMessage(Action):
             dispatcher.utter_message(etc_description[14])
             return [SlotSet('is_finished', 1)]
 
-        
         return []
 
-class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터 설명할지
+
+class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부터 설명할지
     def name(self) -> Text:
         return "action_masterbot"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         entities = tracker.latest_message['entities']
-        
+
         metadata = extract_metadata_from_tracker(tracker)
         x = mycol2.find_one({"displayID": metadata["uID"]})
         leading_priority = tracker.get_slot("leading_priority")
@@ -83,7 +88,7 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         new_user = tracker.get_slot('new_user')
         # 처음들어온 user 가 마스터봇 호출할 경우
 
-        if(user_text == "마스터 봇" or user_text == "마스터봇"):
+        if (user_text == "마스터 봇" or user_text == "마스터봇"):
             message = etc_description[15].format(metadata["pn"])
             dispatcher.utter_message(
                 message)
@@ -91,8 +96,8 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
             if not x:
                 return [FollowupAction(name='action_set_priority_again')]
 
-        #다시 들어왔을 때 판단
-        if is_finished==1:
+        # 다시 들어왔을 때 판단
+        if is_finished == 1:
 
             buttons = []
             buttons.append({"title": "종족", "payload": "/leading_type_intro"})
@@ -100,7 +105,7 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
             if metadata["d"] != 0:
                 buttons.append({"title": "에너지 흐름", "payload": "/leading_definition_intro"})
             buttons.append({"title": "센터", "payload": "/leading_centers_intro"})
-        
+
             dispatcher.utter_message(etc_description[16], buttons=buttons)
         else:
             buttons = []
@@ -108,7 +113,7 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
             buttons.append({"title": "아뇨! 처음부터 들을래요", "payload": "/initialized"})
 
             dispatcher.utter_message(etc_description[17], buttons=buttons)
-        
+
         # Update user's slot data
         # x = mycol2.find_one({"displayID": metadata["uID"]})
         # if not x:        # 마스터봇 최초 사용자
@@ -118,7 +123,6 @@ class ActionMasterbot(Action): #수정필요 entity를 통해 어디부분부터
         #         SlotSet('step', x['step']), SlotSet('is_finished', x['is_finished']), SlotSet('center_step', x['center_step']), SlotSet('is_question', 0),
         #         ] #slot 저장
 
-            
         # dispatcher.utter_message("로케이션 세팅 완료!")
 
 

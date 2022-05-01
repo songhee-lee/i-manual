@@ -72,4 +72,3 @@ def sentiment_predict(question, answer):
 
 
 
-

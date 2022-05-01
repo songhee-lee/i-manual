@@ -19,6 +19,7 @@ import pandas as pd
 etc_description_csv = pd.read_csv("./data/기타.csv")
 etc_description = etc_description_csv['paragraph'].values.tolist()
 
+
 def change_gate_to_center(gate):
     se_gates = [gate[0], gate[1], gate[13], gate[14]]
     center = {0: [53, 60, 52, 19, 39, 41, 54, 38, 58],
@@ -41,7 +42,7 @@ def change_gate_to_center(gate):
     return se
 
 
-class ActionSetPriority(Action): #맨 처음
+class ActionSetPriority(Action):  # 맨 처음
     def name(self):
         return "action_set_priority"
 
@@ -55,13 +56,13 @@ class ActionSetPriority(Action): #맨 처음
         message = etc_description[0].format(metadata["pn"])
         dispatcher.utter_message(
             message, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/0.wav"
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10101.wav"
             }
         )
 
-        #리딩 우선순위 정하는 부분
-        leading_priority=[]
-        if metadata["t"] in [2,3,4]:
+        # 리딩 우선순위 정하는 부분
+        leading_priority = []
+        if metadata["t"] in [2, 3, 4]:
             leading_priority.append(0)
         if metadata["p"] in [14, 25, 36, 41, 52, 63]:
             leading_priority.append(1)
@@ -71,17 +72,16 @@ class ActionSetPriority(Action): #맨 처음
         for i in range(3):
             if i not in leading_priority:
                 leading_priority.append(i)
-        
 
-        #센터 우선순위 정하는 부분 미정의 부터로 수정
+        # 센터 우선순위 정하는 부분 미정의 부터로 수정
         center_priority = []
-        #미정의 먼저
+        # 미정의 먼저
         for i in se:
-            if metadata['ct'][i]==0 and (i not in center_priority):
+            if metadata['ct'][i] == 0 and (i not in center_priority):
                 center_priority.append(i)
-        #그다음 정의
+        # 그다음 정의
         for i in se:
-            if metadata['ct'][i]==1 and (i not in center_priority):
+            if metadata['ct'][i] == 1 and (i not in center_priority):
                 center_priority.append(i)
 
         for i in [8, 7, 6, 5, 2, 4, 3, 1, 0]:
@@ -90,18 +90,24 @@ class ActionSetPriority(Action): #맨 처음
 
         # check a user if he is new user
         x = mycol.find_one({"displayName": metadata["pn"]})
-        if not x: 
-             mycol.insert_one({"displayID": metadata["uID"], "displayName": metadata["pn"], "type": metadata["t"], "profile": metadata["p"],
-                               "definition": metadata["d"], "centers": metadata["ct"], "question": [],
-                               "self_notSelf": []})
+        if not x:
+            mycol.insert_one({"displayID": metadata["uID"], "displayName": metadata["pn"], "type": metadata["t"],
+                              "profile": metadata["p"],
+                              "definition": metadata["d"], "centers": metadata["ct"], "question": [],
+                              "self_notSelf": []})
 
-        return [FollowupAction(name='action_start'), SlotSet('leading_priority', leading_priority), SlotSet('center_priority', center_priority),
-                SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0), SlotSet('center_type',center_priority[0]),
-                SlotSet('center_question', 0), SlotSet('is_sentiment', 0), SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se)] #slot추가 필요
+        return [FollowupAction(name='action_start'), SlotSet('leading_priority', leading_priority),
+                SlotSet('center_priority', center_priority),
+                SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0),
+                SlotSet('center_type', center_priority[0]),
+                SlotSet('center_question', 0), SlotSet('is_sentiment', 0),
+                SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se)]  # slot추가 필요
 
-class ActionSetPriorityAgain(Action): #맨 처음
+
+class ActionSetPriorityAgain(Action):  # 맨 처음
     def name(self):
         return "action_set_priority_again"
+
     def run(self, dispatcher, tracker, domain):
         print('action_set_priority_again')
         metadata = extract_metadata_from_tracker(tracker)
@@ -118,8 +124,6 @@ class ActionSetPriorityAgain(Action): #맨 처음
         center_question = tracker.get_slot("center_question")
         is_sentiment = tracker.get_slot("is_sentiment")
         ego_or_unego = tracker.get_slot("ego_or_unego")
-
-
 
         # 리딩 우선순위 정하는 부분
         leading_priority = []
@@ -166,14 +170,13 @@ class ActionSetPriorityAgain(Action): #맨 처음
         if ego_or_unego is None:
             ego_or_unego = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-
         # check a user if he is new user
         x = mycol.find_one({"displayName": metadata["pn"]})
         if not x:
-             mycol.insert_one({"displayID": metadata["uID"], "displayName": metadata["pn"], "type": metadata["t"],
-                               "profile": metadata["p"],
-                               "definition": metadata["d"], "centers": metadata["ct"], "question": [],
-                               "self_notSelf": []})
+            mycol.insert_one({"displayID": metadata["uID"], "displayName": metadata["pn"], "type": metadata["t"],
+                              "profile": metadata["p"],
+                              "definition": metadata["d"], "centers": metadata["ct"], "question": [],
+                              "self_notSelf": []})
 
         return [FollowupAction(name='action_step'), SlotSet('leading_priority', leading_priority),
                 SlotSet('center_priority', center_priority),
@@ -192,16 +195,17 @@ class ActionStart(Action):
         leading_priority = tracker.get_slot('leading_priority')
         if leading_priority is None:
             return [FollowupAction(name='action_set_priority_again')]
-        if leading_priority[0]==0:
+        if leading_priority[0] == 0:
             return [FollowupAction(name='action_leading_type_intro')]
-        elif leading_priority[0]==1:
+        elif leading_priority[0] == 1:
             return [FollowupAction(name='action_leading_profile_intro')]
-        elif leading_priority[0]==2:
+        elif leading_priority[0] == 2:
             return [FollowupAction(name='action_leading_definition_intro')]
-        elif leading_priority[0]==3:
+        elif leading_priority[0] == 3:
             return [FollowupAction(name='action_leading_centers_intro')]
 
         return []
+
 
 class ActionStep(Action):
     def name(self):
@@ -216,18 +220,18 @@ class ActionStep(Action):
         metadata = extract_metadata_from_tracker(tracker)
         if leading_priority is None or is_finished is None or step is None or center_step is None:
             return [FollowupAction(name='action_set_priority_again')]
-        if is_finished==1:
-            return [FollowupAction(name='action_masterbot')] #masterbot에서 처리할 수 있게
+        if is_finished == 1:
+            return [FollowupAction(name='action_masterbot')]  # masterbot에서 처리할 수 있게
         # is_finished 상태로 계속하면 끝내버리고, 끝났다고 알려줌
 
         else:
-            if leading_priority[step-1]==3 and center_step < 9:
+            if leading_priority[step - 1] == 3 and center_step < 9:
                 return [FollowupAction(name='action_leading_centers_intro')]
             else:
                 # 절전모드일때 step 건너뛰기
                 if step < 4:
                     if leading_priority[step] == 2 and metadata["d"] == 0:
-                        return [SlotSet('step', step+1), FollowupAction(name='action_step')]
+                        return [SlotSet('step', step + 1), FollowupAction(name='action_step')]
                 if step == 4:
                     # is_finished = 1 은 last_message 나오고 set
                     return [FollowupAction(name='action_last_message')]
@@ -235,21 +239,22 @@ class ActionStep(Action):
                     dispatcher.utter_message(etc_description[3], json_message={
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/8.wav"
                     })
-                    if leading_priority[step]==0:
+                    if leading_priority[step] == 0:
                         return [FollowupAction(name='action_leading_type_intro')]
-                    elif leading_priority[step]==1:
+                    elif leading_priority[step] == 1:
                         return [FollowupAction(name='action_leading_profile_intro')]
-                    elif leading_priority[step]==2:
+                    elif leading_priority[step] == 2:
                         return [FollowupAction(name='action_leading_definition_intro')]
-                    elif leading_priority[step]==3:
+                    elif leading_priority[step] == 3:
                         return [FollowupAction(name='action_leading_centers_intro')]
 
         return []
 
+
 class ActionMore(Action):
     def name(self):
         return "action_more"
-        #leading_more -> action_more
+        # leading_more -> action_more
 
     def run(self, dispatcher, tracker, domain):
         print('action_more')
@@ -264,7 +269,7 @@ class ActionMore(Action):
         if is_finished is None or step is None or center_step is None or center_priority is None or se is None:
             return [FollowupAction(name='action_set_priority_again')]
 
-        if center_step==0 or center_step==9:
+        if center_step == 0 or center_step == 9:
             if step == 4 and is_finished == 0:
                 # is_finished = 1 은 last_message 나오고 set
                 return [SlotSet('center_step', 0), FollowupAction(name='action_last_message')]
@@ -273,12 +278,13 @@ class ActionMore(Action):
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
                 dispatcher.utter_message(etc_description[1], json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/7.wav"
-                    })
-                dispatcher.utter_message(buttons=buttons)#
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10201.wav"
+                })
+                dispatcher.utter_message(buttons=buttons)  #
         else:
             if se[0] in center_priority[0:center_step] and se[1] in center_priority[0:center_step] and \
-                    se[2] in center_priority[0:center_step] and se[3] in center_priority[0:center_step] and is_finished==0:
+                    se[2] in center_priority[0:center_step] and se[3] in center_priority[
+                                                                         0:center_step] and is_finished == 0:
                 buttons = []
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
@@ -289,17 +295,17 @@ class ActionMore(Action):
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
                 dispatcher.utter_message(etc_description[1], json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/7.wav"
-                    })
-                dispatcher.utter_message(buttons=buttons)#
-
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10201.wav"
+                })
+                dispatcher.utter_message(buttons=buttons)  #
 
         return []
+
 
 class ActionDropCenter(Action):
     def name(self):
         return "action_drop_center"
-        #leading_more -> action_more
+        # leading_more -> action_more
 
     def run(self, dispatcher, tracker, domain):
         print('action_drop_center')
@@ -310,12 +316,12 @@ class ActionDropCenter(Action):
         center_priority = tracker.get_slot('center_priority')
         if leading_priority is None or step is None:
             return [FollowupAction(name='action_set_priority_again')]
-        if step==4:
-            return[FollowupAction(name='action_last_message'), SlotSet('center_step', 0)]
+        if step == 4:
+            return [FollowupAction(name='action_last_message'), SlotSet('center_step', 0)]
         else:
             dispatcher.utter_message(etc_description[3], json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/8.wav"
-                    })
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10401.wav"
+            })
             if leading_priority[step] == 0:
                 return [FollowupAction(name='action_leading_type_intro'), SlotSet('center_step', 0)]
             elif leading_priority[step] == 1:

@@ -157,11 +157,6 @@ stories:
       - intent: leading_centers
       - action: action_leading_centers
 
-  - story: Say leading_centers2
-    steps:
-      - intent: leading_centers2
-      - action: action_leading_centers2
-
   - story: Say leading_centers_question
     steps:
       - intent: leading_centers_question
@@ -186,7 +181,7 @@ stories:
       - intent: center_detail_intro
       - action: action_center_detail_intro
 
-  - story: Say Last Message 
+  - story: Say Last Message
     steps:
       - intent: last_message
       - action: action_last_message
@@ -215,13 +210,3 @@ stories:
     steps:
       - intent: set_priority_again
       - action: action_set_priority_again
-
-  - story: leading_center_first
-    steps:
-      - intent: leading_centers_first
-      - action: action_leading_centers_first
-
-  - story: leading_center_second
-    steps:
-      - intent: leading_centers_second
-      - action: action_leading_centers_second

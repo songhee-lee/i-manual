@@ -90,6 +90,22 @@ class ActionLeadingProfileIntro(Action):
             msg5 = profile_description[17]
             msg6 = profile_description[18]
             tag = "원리원칙 지킴이,내성적인 타입,실패를 두려워 말 것"
+            dispatcher.utter_message(image=img)
+
+            if msg != "":
+                dispatcher.utter_message(msg)
+            if msg2 != "":
+                dispatcher.utter_message(msg2)
+            if msg3 != "":
+                dispatcher.utter_message(msg3)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 14:
             h_type = "1/4"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/14.gif"
@@ -98,6 +114,22 @@ class ActionLeadingProfileIntro(Action):
             msg3 = profile_description[23]
             msg4 = profile_description[24]
             tag = "원리원칙 지킴이,메신저 역할,모임에 많이 나갈 것"
+            dispatcher.utter_message(image=img)
+
+            if msg != "":
+                dispatcher.utter_message(msg)
+            if msg2 != "":
+                dispatcher.utter_message(msg2)
+            if msg3 != "":
+                dispatcher.utter_message(msg3)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 24:
             h_type = "2/4"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/24.gif"
@@ -105,6 +137,22 @@ class ActionLeadingProfileIntro(Action):
             msg2 = profile_description[28]
             msg3 = profile_description[29]
             tag = "숨길 수 없는 재능,관심 신경 안씀,내 팀을 구상할 것"
+            dispatcher.utter_message(image=img)
+
+            if msg != "":
+                dispatcher.utter_message(msg)
+            if msg2 != "":
+                dispatcher.utter_message(msg2)
+            if msg3 != "":
+                dispatcher.utter_message(msg3)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 25:
             h_type = "2/5"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/25.gif"
@@ -115,6 +163,22 @@ class ActionLeadingProfileIntro(Action):
             msg5 = profile_description[39]
             msg6 = profile_description[40]
             tag = "기대를 한몸에 ,혼자가 편해요 ,츤데레 컨셉 유지할 것"
+            dispatcher.utter_message(image=img)
+
+            if msg != "":
+                dispatcher.utter_message(msg)
+            if msg2 != "":
+                dispatcher.utter_message(msg2)
+            if msg3 != "":
+                dispatcher.utter_message(msg3)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 35:
             h_type = "3/5"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/35.gif"
@@ -122,6 +186,22 @@ class ActionLeadingProfileIntro(Action):
             msg2 = profile_description[42]
             msg3 = profile_description[43]
             tag = "의심이 많음 ,시행착오는 나의 힘 ,꼬리를 무는 생각은 그만"
+            dispatcher.utter_message(image=img)
+
+            if msg != "":
+                dispatcher.utter_message(msg)
+            if msg2 != "":
+                dispatcher.utter_message(msg2)
+            if msg3 != "":
+                dispatcher.utter_message(msg3)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 36:
             h_type = "3/6"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/36.gif"
@@ -129,6 +209,22 @@ class ActionLeadingProfileIntro(Action):
             msg2 = profile_description[49]
             msg3 = profile_description[50]
             tag = "아프니까 청춘이다,인생은 3막부터 ,고비를 기회로 생각할 것"
+            dispatcher.utter_message(image=img)
+
+            if msg != "":
+                dispatcher.utter_message(msg)
+            if msg2 != "":
+                dispatcher.utter_message(msg2)
+            if msg3 != "":
+                dispatcher.utter_message(msg3)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 41:
             h_type = "4/1"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/41.gif"
@@ -140,6 +236,22 @@ class ActionLeadingProfileIntro(Action):
             msg6 = profile_description[59]
             msg7 = profile_description[60]
             tag = "안정감 추구 ,끝없는 연구,고집은 잠시 내려놓을 것"
+            dispatcher.utter_message(image=img)
+
+            if msg != "":
+                dispatcher.utter_message(msg)
+            if msg2 != "":
+                dispatcher.utter_message(msg2)
+            if msg3 != "":
+                dispatcher.utter_message(msg3)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 46:
             h_type = "4/6"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/46.gif"
@@ -147,6 +259,22 @@ class ActionLeadingProfileIntro(Action):
             msg2 = profile_description[62]
             msg3 = profile_description[63]
             tag = "기회는 인맥에서 ,친근함이 무기 ,언행일치로 신뢰를 얻을 것"
+            dispatcher.utter_message(image=img)
+
+            if msg != "":
+                dispatcher.utter_message(msg)
+            if msg2 != "":
+                dispatcher.utter_message(msg2)
+            if msg3 != "":
+                dispatcher.utter_message(msg3)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 51:
             h_type = "5/1"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/51.gif"
@@ -156,6 +284,22 @@ class ActionLeadingProfileIntro(Action):
             msg4 = profile_description[70]
             msg5 = profile_description[71]
             tag = "준비된 해결사,위기의 영웅 ,새로운 정보를 흡수할 것"
+            dispatcher.utter_message(image=img)
+
+            if msg != "":
+                dispatcher.utter_message(msg)
+            if msg2 != "":
+                dispatcher.utter_message(msg2)
+            if msg3 != "":
+                dispatcher.utter_message(msg3)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 52:
             h_type = "5/2"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/52.gif"
@@ -167,6 +311,22 @@ class ActionLeadingProfileIntro(Action):
             msg6 = profile_description[77]
             msg7 = profile_description[78]
             tag = "동기부여가 중요해 ,부담되는 기대감 ,적재적소에 해결사가 될 것"
+            dispatcher.utter_message(image=img)
+
+            if msg != "":
+                dispatcher.utter_message(msg)
+            if msg2 != "":
+                dispatcher.utter_message(msg2)
+            if msg3 != "":
+                dispatcher.utter_message(msg3)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 62:
             h_type = "6/2"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/62.gif"
@@ -175,6 +335,22 @@ class ActionLeadingProfileIntro(Action):
             msg3 = profile_description[85]
             msg4 = profile_description[86]
             tag = "방해 극혐 ,혼자가 더 재밌어 ,인파에서 벗어나 휴식할 것"
+            dispatcher.utter_message(image=img)
+
+            if msg != "":
+                dispatcher.utter_message(msg)
+            if msg2 != "":
+                dispatcher.utter_message(msg2)
+            if msg3 != "":
+                dispatcher.utter_message(msg3)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 63:
             h_type = "6/3"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/63.gif"
@@ -186,22 +362,22 @@ class ActionLeadingProfileIntro(Action):
             msg6 = profile_description[94]
             tag = "몸으로 부딪히기 ,경험으로 인한 성장,주변에 소홀하지 말 것"
 
-        dispatcher.utter_message(image=img)
+            dispatcher.utter_message(image=img)
 
-        if msg != "":
-            dispatcher.utter_message(msg)
-        if msg2 != "":
-            dispatcher.utter_message(msg2)
-        if msg3 != "":
-            dispatcher.utter_message(msg3)
-        if msg4 != "":
-            dispatcher.utter_message(msg4)
-        if msg5 != "":
-            dispatcher.utter_message(msg5)
-        if msg6 != "":
-            dispatcher.utter_message(msg6)
-        if msg7 != "":
-            dispatcher.utter_message(msg7)
+            if msg != "":
+                dispatcher.utter_message(msg)
+            if msg2 != "":
+                dispatcher.utter_message(msg2)
+            if msg3 != "":
+                dispatcher.utter_message(msg3)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
 
         if leading_priority[0] == 1:
             step = 1
@@ -255,11 +431,27 @@ class ActionLeadingProfile(Action):
             msg4 = profile_description[19]
             msg5 = profile_description[20]
             tag = "원리원칙 지킴이,내성적인 타입,실패를 두려워 말 것"
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 14:
             h_type = "1/4"
             msg4 = profile_description[25]
             msg5 = profile_description[26]
             tag = "원리원칙 지킴이,메신저 역할,모임에 많이 나갈 것"
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 24:
             h_type = "2/4"
             msg4 = profile_description[30]
@@ -268,6 +460,14 @@ class ActionLeadingProfile(Action):
             msg7 = profile_description[33]
             msg8 = profile_description[34]
             tag = "숨길 수 없는 재능,관심 신경 안씀,내 팀을 구상할 것"
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 35:
             h_type = "3/5"
             msg4 = profile_description[44]
@@ -275,18 +475,42 @@ class ActionLeadingProfile(Action):
             msg6 = profile_description[46]
             msg7 = profile_description[47]
             tag = "의심이 많음 ,시행착오는 나의 힘 ,꼬리를 무는 생각은 그만"
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 36:
             h_type = "3/6"
             msg4 = profile_description[51]
             msg5 = profile_description[52]
             msg6 = profile_description[53]
             tag = "아프니까 청춘이다,인생은 3막부터 ,고비를 기회로 생각할 것"
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 46:
             h_type = "4/6"
             msg4 = profile_description[64]
             msg5 = profile_description[65]
             msg6 = profile_description[66]
             tag = "기회는 인맥에서 ,친근함이 무기 ,언행일치로 신뢰를 얻을 것"
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 52:
             h_type = "5/2"
             msg4 = profile_description[79]
@@ -295,20 +519,28 @@ class ActionLeadingProfile(Action):
             msg7 = profile_description[82]
 
             tag = "동기부여가 중요해 ,부담되는 기대감 ,적재적소에 해결사가 될 것"
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
         elif metadata["p"] == 62:
             h_type = "6/2"
             msg4 = profile_description[87]
             msg5 = profile_description[88]
             tag = "방해 극혐 ,혼자가 더 재밌어 ,인파에서 벗어나 휴식할 것"
 
-        if msg4 != "":
-            dispatcher.utter_message(msg4)
-        if msg5 != "":
-            dispatcher.utter_message(msg5)
-        if msg6 != "":
-            dispatcher.utter_message(msg6)
-        if msg7 != "":
-            dispatcher.utter_message(msg7)
+            if msg4 != "":
+                dispatcher.utter_message(msg4)
+            if msg5 != "":
+                dispatcher.utter_message(msg5)
+            if msg6 != "":
+                dispatcher.utter_message(msg6)
+            if msg7 != "":
+                dispatcher.utter_message(msg7)
 
         dispatcher.utter_message(f"자, {h_type} 역할에 대해 설명해 보았어요.")
         buttons = []
