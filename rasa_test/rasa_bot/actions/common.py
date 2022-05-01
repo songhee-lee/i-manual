@@ -77,6 +77,7 @@ def unego_get_question(ct, unego_count, defined=False):
     question = ""
     # 0: 연료, 1: 활력, 2: 직관, 3: 감정, 4: 에고, 5: 방향, 6: 표현, 7: 생각, 8: 영감
     # 연료센터
+    vlist=[]
     if ct == 0 and not defined:
         qlist_0 = [
             unego_description[0],
@@ -86,6 +87,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_0[unego_count]
         ego_comment = unego_description[3]
         unego_comment = unego_description[4]
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
 
     elif ct == 0 and defined:
         qlist_0 = [
@@ -96,6 +105,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_0[unego_count]
         ego_comment = unego_description[8]
         unego_comment = unego_description[9]
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     # 활력센터
     elif ct == 1 and not defined:
         qlist_1 = [
@@ -106,6 +123,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_1[unego_count]
         ego_comment = unego_description[13]
         unego_comment = unego_description[14]
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     elif ct == 1 and defined:
         qlist_1 = [
             unego_description[15],
@@ -115,6 +140,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_1[unego_count]
         ego_comment = unego_description[18]
         unego_comment = unego_description[19]
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     # 직관센터
     elif ct == 2 and not defined:
         qlist_2 = [
@@ -125,7 +158,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_2[unego_count]
         ego_comment = unego_description[23]
         unego_comment = unego_description[24]
-
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     elif ct == 2 and defined:
         qlist_2 = [
             unego_description[25],
@@ -135,7 +175,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_2[unego_count]
         ego_comment = unego_description[28]
         unego_comment = unego_description[29]
-
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     # 감정센터
     elif ct == 3 and not defined:
         qlist_3 = [
@@ -146,7 +193,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_3[unego_count]
         ego_comment = unego_description[33]
         unego_comment = unego_description[34]
-
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     elif ct == 3 and defined:
         qlist_3 = [
             unego_description[35],
@@ -156,6 +210,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_3[unego_count]
         ego_comment = unego_description[38]
         unego_comment = unego_description[39]
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     # 에고센터
     elif ct == 4 and not defined:
         qlist_4 = [
@@ -166,7 +228,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_4[unego_count]
         ego_comment = unego_description[43]
         unego_comment = unego_description[44]
-
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     elif ct == 4 and defined:
         qlist_4 = [
             unego_description[45],
@@ -176,7 +245,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_4[unego_count]
         ego_comment = unego_description[48]
         unego_comment = unego_description[49]
-
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     # 방향센터
     elif ct == 5 and not defined:
         qlist_5 = [
@@ -187,7 +263,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_5[unego_count]
         ego_comment = unego_description[53]
         unego_comment = unego_description[54]
-
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     elif ct == 5 and defined:
         qlist_5 = [
             unego_description[55],
@@ -197,7 +280,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_5[unego_count]
         ego_comment = unego_description[58]
         unego_comment = unego_description[59]
-
+        vlist = [
+            "out_5/65601.wav",
+            "out_5/65701.wav",
+            "out_5/65801.wav"
+        ]
+        unego_voice = "out_5/66004.wav"
+        unego_comment_voice = "out_5/66001.wav"
+        ego_comment_voice = "out_5/65901.wav"
     # 표현센터
     elif ct == 6 and not defined:
         qlist_6 = [
@@ -208,7 +298,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_6[unego_count]
         ego_comment = unego_description[63]
         unego_comment = unego_description[64]
-
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     elif ct == 6 and defined:
         qlist_6 = [
             unego_description[65],
@@ -218,7 +315,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_6[unego_count]
         ego_comment = unego_description[68]
         unego_comment = unego_description[69]
-
+        vlist = [
+            "out_5/66601.wav",
+            "out_5/66701.wav",
+            "out_5/66801.wav"
+        ]
+        unego_voice = "out_5/67004.wav"
+        unego_comment_voice = "out_5/67001.wav"
+        ego_comment_voice = "out_5/66901.wav"
     # 생각센터
     elif ct == 7 and not defined:
         qlist_7 = [
@@ -229,7 +333,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_7[unego_count]
         ego_comment = unego_description[73]
         unego_comment = unego_description[74]
-
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     elif ct == 7 and defined:
         qlist_7 = [
             unego_description[75],
@@ -239,7 +350,14 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_7[unego_count]
         ego_comment = unego_description[78]
         unego_comment = unego_description[79]
-
+        vlist = [
+            "out_5/67601.wav",
+            "out_5/67701.wav",
+            "out_5/67801.wav"
+        ]
+        unego_voice = "out_5/68004.wav"
+        unego_comment_voice = "out_5/68001.wav"
+        ego_comment_voice = "out_5/67901.wav"
     # 영감센터
     elif ct == 8 and not defined:
         qlist_8 = [
@@ -250,18 +368,34 @@ def unego_get_question(ct, unego_count, defined=False):
         question = qlist_8[unego_count]
         ego_comment = unego_description[83]
         unego_comment = unego_description[84]
-
+        vlist = [
+            "out_5/.wav",
+            "out_5/.wav",
+            "out_5/.wav"
+        ]
+        unego_voice = "out_5/.wav"
+        unego_comment_voice = "out_5/.wav"
+        ego_comment_voice = "out_5/.wav"
     elif ct == 8 and defined:
         qlist_8 = [
             unego_description[85],
             unego_description[86],
             unego_description[87]
         ]
+        vlist = [
+            "out_5/68601.wav",
+            "out_5/68701.wav",
+            "out_5/68801.wav"
+        ]
+        unego_voice = "out_5/69004.wav"
+        unego_comment_voice = "out_5/69001.wav"
+        ego_comment_voice = "out_5/68901.wav"
         question = qlist_8[unego_count]
         ego_comment = unego_description[88]
         unego_comment = unego_description[89]
+    voice = vlist[unego_count]
 
-    return [question, ego_comment, unego_comment]
+    return [question, ego_comment, unego_comment, voice, unego_voice, unego_comment_voice, ego_comment_voice]
 
 
 def remove_white_space(answer):

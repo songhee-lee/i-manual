@@ -289,7 +289,10 @@ class ActionMore(Action):
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
                 buttons.append({"title": f'센터 건너뛰기', "payload": "/leading_drop_center"})
-                dispatcher.utter_message(etc_description[2], buttons=buttons)
+                dispatcher.utter_message(etc_description[2], json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10301.wav"
+                })
+                dispatcher.utter_message(buttons=buttons)
             else:
                 buttons = []
                 buttons.append({"title": f'계속', "payload": "/leading_step"})

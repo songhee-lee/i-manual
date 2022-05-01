@@ -128,7 +128,9 @@ class ActionLeadingCentersIntro(Action):
                     center_description[16])
             elif metadata['ct'][6] == 1:
                 dispatcher.utter_message(
-                    center_description[17])
+                    center_description[17], json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/51801.wav"
+                    })
         # 생각센터
         elif center_type == 7:
             if metadata['ct'][7] == 0:
@@ -136,7 +138,9 @@ class ActionLeadingCentersIntro(Action):
                     center_description[18])
             elif metadata['ct'][7] == 1:
                 dispatcher.utter_message(
-                    center_description[19])
+                    center_description[19], json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/52001.wav"
+                    })
         # 영감센터
         elif center_type == 8:
             if metadata['ct'][8] == 0:
@@ -144,7 +148,9 @@ class ActionLeadingCentersIntro(Action):
                     center_description[20])
             elif metadata['ct'][8] == 1:
                 dispatcher.utter_message(
-                    center_description[21])
+                    center_description[21], json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/52201.wav"
+                    })
 
         for i in metadata['ct']:
             definedCnt += i
@@ -340,19 +346,19 @@ class ActionLeadingCentersIntro(Action):
             dispatcher.utter_message(image=img)
             if msg != "":
                 dispatcher.utter_message(msg, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56701.wav"
                 })
             if msg2 != "":
                 dispatcher.utter_message(msg2, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56801.wav"
                 })
             if msg3 != "":
                 dispatcher.utter_message(msg3, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56901.wav"
                 })
             if msg4 != "":
                 dispatcher.utter_message(msg4, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57001.wav"
                 })
 
 
@@ -366,15 +372,17 @@ class ActionLeadingCentersIntro(Action):
             dispatcher.utter_message(image=img)
             if msg != "":
                 dispatcher.utter_message(msg, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57601.wav"
                 })
             if msg2 != "":
                 dispatcher.utter_message(msg2, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57701.wav"
                 })
             if h_center == 1 or h_center == 7 or h_center == 8:
                 message = center_description[136].format(center_name)
-                dispatcher.utter_message(message)
+                dispatcher.utter_message(message, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57702.wav"
+                })
                 return [SlotSet('center_step', center_step), SlotSet('center_type', h_center),
                         SlotSet('step', step), FollowupAction(name='action_question_intro')]
 
@@ -388,15 +396,17 @@ class ActionLeadingCentersIntro(Action):
             dispatcher.utter_message(image=img)
             if msg != "":
                 dispatcher.utter_message(msg, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57801.wav"
                 })
             if msg2 != "":
                 dispatcher.utter_message(msg2, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57901.wav"
                 })
             if h_center == 1 or h_center == 7 or h_center == 8:
                 message = center_description[136].format(center_name)
-                dispatcher.utter_message(message)
+                dispatcher.utter_message(message, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57902.wav"
+                })
                 return [SlotSet('center_step', center_step), SlotSet('center_type', h_center),
                         SlotSet('step', step), FollowupAction(name='action_question_intro')]
 
@@ -739,13 +749,26 @@ class ActionLeadingCenters(Action):
             msg3 = center_description[63]
             msg4 = center_description[64]
             msg5 = center_description[65]
-            dispatcher.utter_message(msg)
-            dispatcher.utter_message(msg2)
-            dispatcher.utter_message(msg3)
-            dispatcher.utter_message(msg4)
-            dispatcher.utter_message(msg5)
+            dispatcher.utter_message(msg, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56201.wav"
+                })
+            dispatcher.utter_message(msg2, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56301.wav"
+            })
+            dispatcher.utter_message(msg3, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56401.wav"
+            })
+            dispatcher.utter_message(msg4, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56501.wav"
+            })
+            dispatcher.utter_message(msg5, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56601.wav"
+            })
+
             message = center_description[136].format(center_name)
-            dispatcher.utter_message(message)
+            dispatcher.utter_message(message, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56602.wav"
+                })
         elif h_center == 6 and metadata['ct'][6] == 1:
             h_type = "표현 센터 ( 정의 )"
             center_name = "표현센터"
@@ -754,12 +777,23 @@ class ActionLeadingCenters(Action):
             msg2 = center_description[72]
             msg3 = center_description[73]
             msg4 = center_description[74]
-            dispatcher.utter_message(msg)
-            dispatcher.utter_message(msg2)
-            dispatcher.utter_message(msg3)
-            dispatcher.utter_message(msg4)
+            dispatcher.utter_message(msg, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57201.wav"
+                })
+            dispatcher.utter_message(msg2, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57301.wav"
+            })
+            dispatcher.utter_message(msg3, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57401.wav"
+            })
+            dispatcher.utter_message(msg4, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57501.wav"
+            })
+
             message = center_description[136].format(center_name)
-            dispatcher.utter_message(message)
+            dispatcher.utter_message(message, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57502.wav"
+                })
         elif h_center == 0 and metadata['ct'][0] == 0:
             h_type = "연료 센터 ( 미정의 )"
             center_name = "연료센터"
@@ -843,7 +877,9 @@ class ActionLeadingCenters(Action):
             dispatcher.utter_message(msg2)
 
             message = center_description[136].format(center_name)
-            dispatcher.utter_message(message)
+            dispatcher.utter_message(message, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56602.wav"
+            })
 
         return [SlotSet("is_question", 0), SlotSet("center_type", h_center), SlotSet("center_step", center_step),
                 SlotSet("center_question", True), SlotSet("step", step), SlotSet("is_sentiment", True),
@@ -905,12 +941,16 @@ class ActionCenterDetailIntro(Action):
         elif h_center == 5 and metadata['ct'][5] == 1:
             h_type = "방향 센터 ( 정의 )"
             dispatcher.utter_message(center_description[60], json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56101.wav"
-                    })
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56101.wav"
+            })
             dispatcher.utter_message(buttons=buttons)
+
         elif h_center == 6 and metadata['ct'][6] == 1:
             h_type = "표현 센터 ( 정의 )"
-            dispatcher.utter_message(center_description[70], buttons=buttons)
+            dispatcher.utter_message(center_description[70], json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/57101.wav"
+            })
+            dispatcher.utter_message(buttons=buttons)
 
 
 
