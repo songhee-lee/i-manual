@@ -105,6 +105,8 @@ intents:
       use_entities: true
   - leading_centers_first:
       use_entities: true
+  - leading_centers2:
+      use_entities: true
 
 entities:
   - id
@@ -127,6 +129,7 @@ entities:
   - sentiment_result
   - ego_or_unego
   - se
+  - leading_centers2
 slots:
   center_priority:
     type: list
@@ -259,5 +262,6 @@ actions:
   - action_set_priority_again
   - action_leading_centers_first
   - action_leading_centers_second
+  - action_leading_centers2
 forms: {}
 e2e_actions: []

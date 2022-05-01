@@ -157,6 +157,11 @@ stories:
       - intent: leading_centers
       - action: action_leading_centers
 
+  - story: Say leading_centers2
+    steps:
+      - intent: leading_centers2
+      - action: action_leading_centers2
+
   - story: Say leading_centers_question
     steps:
       - intent: leading_centers_question
