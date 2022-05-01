@@ -12,6 +12,7 @@ import pandas as pd
 
 definition_description_csv = pd.read_csv("./data/definition_description.csv")
 definition_description = definition_description_csv['paragraph'].values.tolist()
+import time
 
 class ActionLeadingDefinitionIntro(Action):
     def name(self) -> Text:
@@ -132,7 +133,7 @@ class ActionLeadingDefinitionIntro(Action):
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
                 })
         dispatcher.utter_message(json_message={
-            "type": "extraText", 'sender': metadata['uID'], "content": "/leading_definition"
+            "type": "extraText", 'sender': metadata['uID'], "content": "/leading_definition",  "time": int(time.time()*1000)
         })
 
 

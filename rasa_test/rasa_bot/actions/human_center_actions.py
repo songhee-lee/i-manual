@@ -14,7 +14,7 @@ center_description_csv = pd.read_csv("./data/center_description.csv")
 center_description = center_description_csv['paragraph'].values.tolist()
 
 logger = logging.getLogger(__name__)
-
+import time
 
 # 추후 밑에 클래스 복사해서 사용
 class ActionLeadingCentersIntro(Action):
@@ -53,17 +53,17 @@ class ActionLeadingCentersIntro(Action):
             if center_step == 0:
                 dispatcher.utter_message(
                     center_description[1], json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/9.wav"
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/50201.wav"
                     }
                 )
                 dispatcher.utter_message(
                     center_description[2], json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10.wav"
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/50301.wav"
                     }
                 )
                 dispatcher.utter_message(
                     center_description[3], json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11.wav"
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/50401.wav"
                     }
                 )
 
@@ -117,7 +117,7 @@ class ActionLeadingCentersIntro(Action):
             elif metadata['ct'][5] == 1:
                 dispatcher.utter_message(
                     center_description[15], json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/12.wav"
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/51601.wav"
                     })
 
         # 표현센터
@@ -164,7 +164,7 @@ class ActionLeadingCentersIntro(Action):
         print("center step", tracker.get_slot('center_step'))
         print("get Step end")
         dispatcher.utter_message(json_message={
-                "type": "extraText", 'sender': metadata['uID'], "content": "/leading_centers_first"
+                "type": "extraText", 'sender': metadata['uID'], "content": "/leading_centers_first",  "time": int(time.time()*1000)
             })
         return [SlotSet('center_step', center_step), SlotSet("step", step), FollowupAction(name='action_listen')]
 
@@ -279,10 +279,10 @@ class ActionLeadingCentersFirst(Action):
 
             dispatcher.utter_message(image=img)
             dispatcher.utter_message(msg, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/13.wav"
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/55701.wav"
             })
             dispatcher.utter_message(msg2, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/14.wav"
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/55801.wav"
             })
 
 
@@ -481,7 +481,7 @@ class ActionLeadingCentersFirst(Action):
             })
 
         dispatcher.utter_message(json_message={
-            "type": "extraText", 'sender': metadata['uID'], "content": "/leading_centers_second"
+            "type": "extraText", 'sender': metadata['uID'], "content": "/leading_centers_second", "time": now
         })
 
         return [SlotSet('center_step', center_step), SlotSet('center_type', h_center),
@@ -580,10 +580,10 @@ class ActionLeadingCentersSecond(Action):
             msg4 = center_description[59]
 
             dispatcher.utter_message(msg3, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/15.wav"
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/55901.wav"
             })
             dispatcher.utter_message(msg4, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/16.wav"
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56001.wav"
             })
 
         elif h_center == 6 and metadata['ct'][6] == 1:
@@ -982,9 +982,9 @@ class ActionCenterDetailIntro(Action):
             h_type = "에고 센터 ( 정의 )"
             dispatcher.utter_message(center_description[51], buttons=buttons)
         elif h_center == 5 and metadata['ct'][5] == 1:
-            h_type = "방향 센터 ( 정의 )"
+            h_type = "방향 센터 ( 정의 )" # 자 당신의 방향센터에 대해 이해가 되셨나요?
             dispatcher.utter_message(center_description[60], json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/17.wav"
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56101.wav"
                     })
             dispatcher.utter_message(buttons = buttons)
         elif h_center == 6 and metadata['ct'][6] == 1:
