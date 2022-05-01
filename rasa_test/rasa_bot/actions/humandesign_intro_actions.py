@@ -237,7 +237,7 @@ class ActionStep(Action):
                     return [FollowupAction(name='action_last_message')]
                 else:
                     dispatcher.utter_message(etc_description[3], json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/8.wav"
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10401.wav"
                     })
                     if leading_priority[step] == 0:
                         return [FollowupAction(name='action_leading_type_intro')]
