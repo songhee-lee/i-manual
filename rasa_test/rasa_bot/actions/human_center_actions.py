@@ -627,9 +627,6 @@ class ActionLeadingCentersIntro(Action):
                         SlotSet('step', step), FollowupAction(name='action_question_intro')]
 
 
-
-
-
         return [SlotSet('center_step', center_step), SlotSet('center_type', h_center),
                 SlotSet("step", step), FollowupAction(name='action_center_detail_intro')]
 
@@ -910,7 +907,7 @@ class ActionCenterDetailIntro(Action):
             dispatcher.utter_message(center_description[60], json_message={
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56101.wav"
                     })
-            dispatcher.utter_message(buttons = buttons)
+            dispatcher.utter_message(buttons=buttons)
         elif h_center == 6 and metadata['ct'][6] == 1:
             h_type = "표현 센터 ( 정의 )"
             dispatcher.utter_message(center_description[70], buttons=buttons)
