@@ -44,7 +44,9 @@ class ActionLeadingProfileIntro(Action):
                 profile_description[2])
         elif (metadata["p"] == 24):
             dispatcher.utter_message(
-                profile_description[3])
+                profile_description[3], json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/30401.wav"
+        })
         elif (metadata["p"] == 25):
             dispatcher.utter_message(
                 profile_description[4])
@@ -140,19 +142,18 @@ class ActionLeadingProfileIntro(Action):
             dispatcher.utter_message(image=img)
 
             if msg != "":
-                dispatcher.utter_message(msg)
+                dispatcher.utter_message(msg, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/32801.wav"
+                })
             if msg2 != "":
-                dispatcher.utter_message(msg2)
+                dispatcher.utter_message(msg2, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/32901.wav"
+                })
             if msg3 != "":
-                dispatcher.utter_message(msg3)
-            if msg4 != "":
-                dispatcher.utter_message(msg4)
-            if msg5 != "":
-                dispatcher.utter_message(msg5)
-            if msg6 != "":
-                dispatcher.utter_message(msg6)
-            if msg7 != "":
-                dispatcher.utter_message(msg7)
+                dispatcher.utter_message(msg3, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33001.wav"
+                })
+
         elif metadata["p"] == 25:
             h_type = "2/5"
             img = "https://asset.i-manual.co.kr/static/images/profile/profiles/25.gif"
@@ -390,13 +391,19 @@ class ActionLeadingProfileIntro(Action):
 
         if metadata["p"] == 25 or metadata["p"] == 41 or metadata["p"] == 51 or metadata["p"] == 63:
             message = profile_description[96].format(h_type)
-            dispatcher.utter_message(message)
+            dispatcher.utter_message(message, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+            })
             return [SlotSet('step', step), FollowupAction(name='action_question_intro')]
 
         buttons = []
         buttons.append({"title": f'예', "payload": "/leading_profile"})
         buttons.append({"title": f'아니요', "payload": "/question_intro"})
-        dispatcher.utter_message(profile_description[95], buttons=buttons)
+        dispatcher.utter_message(profile_description[95], json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/32801.wav"
+        })
+
+        dispatcher.utter_message(buttons=buttons)
         # 마지막 센터에 밑에 주석 제거
         return [SlotSet('step', step)]
 
@@ -461,13 +468,25 @@ class ActionLeadingProfile(Action):
             msg8 = profile_description[34]
             tag = "숨길 수 없는 재능,관심 신경 안씀,내 팀을 구상할 것"
             if msg4 != "":
-                dispatcher.utter_message(msg4)
+                dispatcher.utter_message(msg4, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33101.wav"
+                })
             if msg5 != "":
-                dispatcher.utter_message(msg5)
+                dispatcher.utter_message(msg5, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33201.wav"
+                })
             if msg6 != "":
-                dispatcher.utter_message(msg6)
+                dispatcher.utter_message(msg6, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33301.wav"
+                })
             if msg7 != "":
-                dispatcher.utter_message(msg7)
+                dispatcher.utter_message(msg7, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33401.wav"
+                })
+            if msg8 != "":
+                dispatcher.utter_message(msg7, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33501.wav"
+                })
         elif metadata["p"] == 35:
             h_type = "3/5"
             msg4 = profile_description[44]
@@ -546,7 +565,10 @@ class ActionLeadingProfile(Action):
         buttons = []
         buttons.append({"title": f'질문 있어요', "payload": "/question{\"is_question\":\"1\", \"center_question\":\"0\"}"})
         buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
-        dispatcher.utter_message(etc_description[4], buttons=buttons)
+        dispatcher.utter_message(etc_description[4], json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33501.wav"
+        })
+        dispatcher.utter_message(buttons=buttons)
 
 
         if leading_priority[0] == 1:

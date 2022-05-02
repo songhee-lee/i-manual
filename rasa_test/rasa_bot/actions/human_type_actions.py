@@ -38,7 +38,9 @@ class ActionLeadingTypeIntro(Action):
         if (metadata["t"] == 0):
             # 에너자이저
             dispatcher.utter_message(
-                type_description[1])
+                type_description[1], json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20201.wav"
+            })
         elif (metadata["t"] == 1):
             # 스피드 에너자이저
             dispatcher.utter_message(
@@ -71,11 +73,15 @@ class ActionLeadingTypeIntro(Action):
             # 인트로 다음 이미지
             dispatcher.utter_message(image=img)
 
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2)
+            dispatcher.utter_message(msg_1, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20701.wav"
+            })
+            dispatcher.utter_message(msg_2, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20801.wav"
+            })
             dispatcher.utter_message(msg_3, json_message = {
-                        "type": "voiceID", 'sender':metadata['uID'], "content": "out_긴문장/0.wav"
-                    })
+                "type": "voiceID", 'sender':metadata['uID'], "content": "out_5/20901.wav"
+            })
 
         elif metadata["t"] == 1:
             h_type = "스피드 에너자이저 종족"
@@ -151,7 +157,9 @@ class ActionLeadingTypeIntro(Action):
             return [SlotSet('step', step)]
         else:
             message = type_description[35].format(h_type)
-            dispatcher.utter_message(message)
+            dispatcher.utter_message(message, json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20903.wav"
+            })
             return [SlotSet('step', step), FollowupAction(name='action_leading_type_question')]
 
 
@@ -290,6 +298,9 @@ class ActionLeadingTypeQuestion(Action):
             buttons.append({"title": f'거울 종족 아이는 어떻게 키워야 하나요?',
                             "payload": "/strategy_question{\"bot_question\":\"거울 종족 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
         buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
-        dispatcher.utter_message(type_description[36], buttons=buttons)
+        dispatcher.utter_message(type_description[36], json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/23701.wav"
+        })
+        dispatcher.utter_message(buttons=buttons)
 
         return []

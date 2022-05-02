@@ -62,10 +62,18 @@ class ActionLastMessage(Action):
         if is_finished == 1:
             dispatcher.utter_message(etc_description[10])
         else:
-            dispatcher.utter_message(etc_description[11])
-            dispatcher.utter_message(etc_description[12])
-            dispatcher.utter_message(etc_description[13])
-            dispatcher.utter_message(etc_description[14])
+            dispatcher.utter_message(etc_description[11], json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11201.wav"
+        })
+            dispatcher.utter_message(etc_description[12], json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11301.wav"
+        })
+            dispatcher.utter_message(etc_description[13], json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11401.wav"
+        })
+            dispatcher.utter_message(etc_description[14], json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11501.wav"
+        })
             return [SlotSet('is_finished', 1)]
 
         return []
@@ -91,7 +99,9 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
         if (user_text == "마스터 봇" or user_text == "마스터봇"):
             message = etc_description[15].format(metadata["pn"])
             dispatcher.utter_message(
-                message)
+                message, json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11601.wav"
+                })
         if leading_priority is None or step is None:
             if not x:
                 return [FollowupAction(name='action_set_priority_again')]
@@ -106,7 +116,12 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
                 buttons.append({"title": "에너지 흐름", "payload": "/leading_definition_intro"})
             buttons.append({"title": "센터", "payload": "/leading_centers_intro"})
 
-            dispatcher.utter_message(etc_description[16], buttons=buttons)
+            dispatcher.utter_message(etc_description[16], json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11701.wav"
+            })
+
+            dispatcher.utter_message(buttons=buttons)
+
         else:
             buttons = []
             buttons.append({"title": "네 이어서 들을래요", "payload": "/leading_masterbot_more"})
