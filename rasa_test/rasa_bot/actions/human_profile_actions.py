@@ -483,10 +483,10 @@ class ActionLeadingProfile(Action):
                 dispatcher.utter_message(msg7, json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33401.wav"
                 })
-            if msg8 != "":
-                dispatcher.utter_message(msg7, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33501.wav"
-                })
+            #if msg8 != "":
+            #    dispatcher.utter_message(msg7, json_message={
+            #        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33501.wav"
+            #    })
         elif metadata["p"] == 35:
             h_type = "3/5"
             msg4 = profile_description[44]
@@ -561,12 +561,14 @@ class ActionLeadingProfile(Action):
             if msg7 != "":
                 dispatcher.utter_message(msg7)
 
-        dispatcher.utter_message(f"자, {h_type} 역할에 대해 설명해 보았어요.")
+        dispatcher.utter_message(f"자, {h_type} 역할에 대해 설명해 보았어요.", json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33501.wav"
+        })
         buttons = []
         buttons.append({"title": f'질문 있어요', "payload": "/question{\"is_question\":\"1\", \"center_question\":\"0\"}"})
         buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
         dispatcher.utter_message(etc_description[4], json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33501.wav"
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10501.wav"
         })
         dispatcher.utter_message(buttons=buttons)
 
