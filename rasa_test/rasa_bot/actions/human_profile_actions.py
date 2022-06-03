@@ -400,14 +400,12 @@ class ActionLeadingProfileIntro(Action):
         buttons.append({"title": f'예', "payload": "/leading_profile"})
         buttons.append({"title": f'아니요', "payload": "/question_intro"})
         dispatcher.utter_message(profile_description[95], json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/32801.wav"
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/39601.wav"
         })
 
         dispatcher.utter_message(buttons=buttons)
         # 마지막 센터에 밑에 주석 제거
         return [SlotSet('step', step)]
-
-
 
 
 

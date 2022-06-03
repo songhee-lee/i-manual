@@ -529,19 +529,19 @@ class ActionCenterUnegoQuestion(Action):
                 })
                 elif center_type==5:
                     dispatcher.utter_message(message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69101.wav"
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69105.wav"
                 })
                 elif center_type==6:
                     dispatcher.utter_message(message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69101.wav"
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69106.wav"
                 })
                 elif center_type==7:
                     dispatcher.utter_message(message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69101.wav"
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69107.wav"
                 })
                 elif center_type==8:
                     dispatcher.utter_message(message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69101.wav"
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69108.wav"
                 })
 
             # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아, 3번째가 질문 voice, 4번째가 나다움 잃고있어요 voice, 5번째가 비자아 comment voice, 6번째가 자아 comment voice
