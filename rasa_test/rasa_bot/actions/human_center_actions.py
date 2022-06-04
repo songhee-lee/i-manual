@@ -318,12 +318,6 @@ class ActionLeadingCentersIntro(Action):
                 dispatcher.utter_message(msg, json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/55701.wav"
                 })
-                dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/55702.wav"
-                })
-                dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/55703.wav"
-                })
             if msg2 != "":
                 dispatcher.utter_message(msg2, json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/55801.wav"
@@ -948,9 +942,6 @@ class ActionCenterDetailIntro(Action):
             h_type = "방향 센터 ( 정의 )"
             dispatcher.utter_message(center_description[60], json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56101.wav"
-            })
-            dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/56102.wav"
             })
             dispatcher.utter_message(buttons=buttons)
 

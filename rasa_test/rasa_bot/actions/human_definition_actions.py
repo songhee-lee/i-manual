@@ -158,16 +158,9 @@ class ActionLeadingDefinitionIntro(Action):
                 dispatcher.utter_message(msg, json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/41401.wav"
                 })
-            if msg != "":
-                dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/41402.wav"
-                })
             if msg2 != "":
                 dispatcher.utter_message(msg2, json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/41501.wav"
-                })
-                dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/41502.wav"
                 })
             if msg3 != "":
                 dispatcher.utter_message(msg3, json_message={
