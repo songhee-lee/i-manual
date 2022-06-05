@@ -54,11 +54,13 @@ class ActionSetPriority(Action):  # 맨 처음
         gt = metadata["gt"]
         se = change_gate_to_center(gt)
         message = etc_description[0].format(metadata["pn"])
-        dispatcher.utter_message(
-            message, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10101.wav"
-            }
-        )
+
+        #~~님 안녕하세요 ~~
+        #dispatcher.utter_message(
+        #    message, json_message={
+        #        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10101.wav"
+        #    }
+        #)
 
         # 리딩 우선순위 정하는 부분
         leading_priority = []

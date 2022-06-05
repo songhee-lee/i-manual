@@ -62,19 +62,26 @@ class ActionLastMessage(Action):
         if is_finished == 1:
             dispatcher.utter_message(etc_description[10])
         else:
+            dispatcher.utter_message(etc_description[11])
+            dispatcher.utter_message(etc_description[12])
+            dispatcher.utter_message(etc_description[13])
+            dispatcher.utter_message(etc_description[14])
+
+            return [SlotSet('is_finished', 1)]
+
+        '''else:
             dispatcher.utter_message(etc_description[11], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11201.wav"
-        })
+            })
             dispatcher.utter_message(etc_description[12], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11301.wav"
-        })
+            })
             dispatcher.utter_message(etc_description[13], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11401.wav"
-        })
+            })
             dispatcher.utter_message(etc_description[14], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11501.wav"
-        })
-            return [SlotSet('is_finished', 1)]
+            })'''
 
         return []
 
