@@ -123,6 +123,7 @@ entities:
   - sentiment_result
   - ego_or_unego
   - se
+  - lang
 slots:
   center_priority:
     type: list
@@ -211,6 +212,11 @@ slots:
     influence_conversation: false
   se:
     type: list
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  lang:
+    type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
     influence_conversation: false
