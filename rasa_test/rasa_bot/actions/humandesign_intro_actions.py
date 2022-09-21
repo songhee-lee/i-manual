@@ -103,7 +103,7 @@ class ActionSetPriority(Action):  # 맨 처음
                 SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0),
                 SlotSet('center_type', center_priority[0]),
                 SlotSet('center_question', 0), SlotSet('is_sentiment', 0),
-                SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se)]  # slot추가 필요
+                SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se), SlotSet('lang', 0)]  # slot추가 필요
 
 
 class ActionSetPriorityAgain(Action):  # 맨 처음

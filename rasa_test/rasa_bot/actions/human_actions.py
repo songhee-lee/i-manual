@@ -20,6 +20,9 @@ import pandas as pd
 etc_description_csv = pd.read_csv("./data/기타.csv")
 etc_description = etc_description_csv['paragraph'].values.tolist()
 
+# English ver.
+# etc_description_eng_csv = pd.read_csv("./data/기타_eng.csv")
+# etc_description_eng = etc_description_csv['paragraph'].values.tolist()
 
 class ActionInitialized(Action):
     def name(self) -> Text:

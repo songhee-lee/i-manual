@@ -20,6 +20,7 @@ etc_description_csv = pd.read_csv("./data/기타.csv")
 etc_description = etc_description_csv['paragraph'].values.tolist()
 
 def change_gate_to_center(gate):
+    # gate - 0~12: 무의식, 13~25: 의식
     se_gates = [gate[0], gate[1], gate[13], gate[14]]
     center = {0: [53, 60, 52, 19, 39, 41, 54, 38, 58],
               1: [5, 14, 29, 34, 27, 42, 3, 9, 59],
