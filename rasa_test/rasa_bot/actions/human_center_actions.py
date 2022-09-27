@@ -23,7 +23,7 @@ class ActionLeadingCentersIntro(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_leading_centers_intro')
-        # 기존 priority = [4,3,5,2,6,0] #에고 감정 방향 직관 표현 연료
+        # 기존 priority = [4,3,5,2,6,0] # 에고 감정 방향 직관 표현 연료
         definedCnt = 0
 
         metadata = extract_metadata_from_tracker(tracker)
@@ -45,14 +45,14 @@ class ActionLeadingCentersIntro(Action):
 
         center_type = center_priority[center_step]
         if is_finished == 1:
-            if center_step == 0:
+            if center_step == 0:    # 센터 재설명
                 dispatcher.utter_message(
                     center_description[0], json_message={
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
                     }
                 )
         else:
-            if center_step == 0:
+            if center_step == 0:    # 센터 intro
                 dispatcher.utter_message(
                     center_description[1], json_message={
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/50201.wav"
@@ -71,51 +71,51 @@ class ActionLeadingCentersIntro(Action):
         # 연료센터
         if center_type == 0:
 
-            if metadata['ct'][0] == 0:
+            if metadata['ct'][0] == 0:      # 미정의
                 dispatcher.utter_message(
                     center_description[4])
-            elif metadata['ct'][0] == 1:
+            elif metadata['ct'][0] == 1:    # 정의
                 dispatcher.utter_message(
                     center_description[5])
         # 활력센터
         elif center_type == 1:
 
-            if metadata['ct'][1] == 0:
+            if metadata['ct'][1] == 0:      # 미정의
                 dispatcher.utter_message(
                     center_description[6])
-            elif metadata['ct'][1] == 1:
+            elif metadata['ct'][1] == 1:    # 정의
                 dispatcher.utter_message(
                     center_description[7])
         # 직관센터
         elif center_type == 2:
-            if metadata['ct'][2] == 0:
+            if metadata['ct'][2] == 0:      # 미정의
                 dispatcher.utter_message(
                     center_description[8])
-            elif metadata['ct'][2] == 1:
+            elif metadata['ct'][2] == 1:    # 정의
                 dispatcher.utter_message(
                     center_description[9])
         # 감정센터
         elif center_type == 3:
-            if metadata['ct'][3] == 0:
+            if metadata['ct'][3] == 0:      # 미정의
                 dispatcher.utter_message(
                     center_description[10])
-            elif metadata['ct'][3] == 1:
+            elif metadata['ct'][3] == 1:    # 정의
                 dispatcher.utter_message(
                     center_description[11])
         # 에고센터
         elif center_type == 4:
-            if metadata['ct'][4] == 0:
+            if metadata['ct'][4] == 0:      # 미정의
                 dispatcher.utter_message(
                     center_description[12])
-            elif metadata['ct'][4] == 1:
+            elif metadata['ct'][4] == 1:    # 정의
                 dispatcher.utter_message(
                     center_description[13])
         # 방향센터
         elif center_type == 5:
-            if metadata['ct'][5] == 0:
+            if metadata['ct'][5] == 0:      # 미정의
                 dispatcher.utter_message(
                     center_description[14])
-            elif metadata['ct'][5] == 1:
+            elif metadata['ct'][5] == 1:    # 정의
                 dispatcher.utter_message(
                     center_description[15], json_message={
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/51601.wav"
@@ -123,30 +123,30 @@ class ActionLeadingCentersIntro(Action):
 
         # 표현센터
         elif center_type == 6:
-            if metadata['ct'][6] == 0:
+            if metadata['ct'][6] == 0:      # 미정의
                 dispatcher.utter_message(
                     center_description[16])
-            elif metadata['ct'][6] == 1:
+            elif metadata['ct'][6] == 1:    # 정의
                 dispatcher.utter_message(
                     center_description[17], json_message={
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/51801.wav"
                     })
         # 생각센터
         elif center_type == 7:
-            if metadata['ct'][7] == 0:
+            if metadata['ct'][7] == 0:      # 미정의
                 dispatcher.utter_message(
                     center_description[18])
-            elif metadata['ct'][7] == 1:
+            elif metadata['ct'][7] == 1:    # 정의
                 dispatcher.utter_message(
                     center_description[19], json_message={
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/52001.wav"
                     })
         # 영감센터
         elif center_type == 8:
-            if metadata['ct'][8] == 0:
+            if metadata['ct'][8] == 0:      # 미정의
                 dispatcher.utter_message(
                     center_description[20])
-            elif metadata['ct'][8] == 1:
+            elif metadata['ct'][8] == 1:    # 정의
                 dispatcher.utter_message(
                     center_description[21], json_message={
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/52201.wav"
