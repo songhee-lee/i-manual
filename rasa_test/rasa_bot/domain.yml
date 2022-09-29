@@ -124,6 +124,7 @@ entities:
   - ego_or_unego
   - se
   - lang
+  - ninei
 slots:
   center_priority:
     type: list
@@ -215,9 +216,14 @@ slots:
     initial_value: null
     auto_fill: true
     influence_conversation: false
-  lang:
+  lang:   #0: 한국어 #1: 영어
     type: rasa.shared.core.slots.TextSlot
-    initial_value: null
+    initial_value: 0
+    auto_fill: true
+    influence_conversation: false
+  ninei:  #1~10, 멤버 10명
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
     auto_fill: true
     influence_conversation: false
 

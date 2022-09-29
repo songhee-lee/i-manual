@@ -34,7 +34,7 @@ class ActionLeadingCentersIntro(Action):
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
-        is_finished = tracker.get_slot('is_finished')
+        is_finished = tracker.get_slot('is_finished')       #cycle을 다 들었을 때 1, 처음 들을때는 0
         if leading_priority is None or step is None or center_step is None or center_priority is None or is_finished is None:
             return [FollowupAction(name='action_set_priority_again')]
         if center_step == 9:

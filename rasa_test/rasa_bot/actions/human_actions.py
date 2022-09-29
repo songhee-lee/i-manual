@@ -37,24 +37,6 @@ class ActionInitialized(Action):
         # dispatcher.utter_message("로케이션 세팅 완료!")
         metadata = extract_metadata_from_tracker(tracker)
 
-        buttons = []
-        buttons.append({"title": "👀"})
-        dispatcher.utter_message(smalltalk[0], buttons=buttons)
-
-        buttons = []
-        buttons.append({"title": "잘 들려요"})
-        dispatcher.utter_message(smalltalk[1], buttons=buttons)
-
-        buttons = []
-        buttons.append({"title": "반가워요"})
-        dispatcher.utter_message(smalltalk[2].format(metadata["pn"], "이든"), buttons=buttons)
-
-        buttons = []
-        buttons.append({"title": "처음 들어봐요..."})
-        buttons.append({"title": "들어 본 적 있어요"})
-        buttons.append({"title": "저 아이닌이예요 🥰"})
-        dispatcher.utter_message(smalltalk[3].format("이든"), buttons=buttons)
-
         return [FollowupAction(name='action_set_priority')]
 
 
