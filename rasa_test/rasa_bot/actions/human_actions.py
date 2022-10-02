@@ -18,8 +18,11 @@ mycol2 = mydb['user_slot']  # user_slot Collection
 import pandas as pd
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
-etc_description = etc_description_csv['paragraph'].values.tolist()
+etc_description = []
+etc_description.append(etc_description_csv['korean'].values.tolist())
+etc_description.append(etc_description_csv['english'].values.tolist())
 
+# small talk 영어는 없다고 가정 하에 진행
 smalltalk_csv = pd.read_csv("./data/smalltalk.csv")
 smalltalk = smalltalk_csv['paragraph'].values.tolist()
 
@@ -45,6 +48,7 @@ class ActionLastMessage(Action):
         return "action_last_message"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        lang = tracker.get_slot('lang')
         print('action_last_message')
 
         response = tracker.get_slot('result')
@@ -66,12 +70,12 @@ class ActionLastMessage(Action):
                                                         }, upsert=True)
 
         if is_finished == 1:
-            dispatcher.utter_message(etc_description[10])
+            dispatcher.utter_message(etc_description[lang][10])
         else:
-            dispatcher.utter_message(etc_description[11])
-            dispatcher.utter_message(etc_description[12])
-            dispatcher.utter_message(etc_description[13])
-            dispatcher.utter_message(etc_description[14])
+            dispatcher.utter_message(etc_description[lang][11])
+            dispatcher.utter_message(etc_description[lang][12])
+            dispatcher.utter_message(etc_description[lang][13])
+            dispatcher.utter_message(etc_description[lang][14])
 
             return [SlotSet('is_finished', 1)]
 
@@ -97,6 +101,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
         return "action_masterbot"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        lang = tracker.get_slot('lang')
         entities = tracker.latest_message['entities']
 
         metadata = extract_metadata_from_tracker(tracker)
@@ -110,7 +115,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
         # 처음들어온 user 가 마스터봇 호출할 경우
 
         if (user_text == "마스터 봇" or user_text == "마스터봇"):
-            message = etc_description[15].format(metadata["pn"])
+            message = etc_description[lang][15].format(metadata["pn"])
             dispatcher.utter_message(
                 message, json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11601.wav"
@@ -129,7 +134,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
                 buttons.append({"title": "에너지 흐름", "payload": "/leading_definition_intro"})
             buttons.append({"title": "센터", "payload": "/leading_centers_intro"})
 
-            dispatcher.utter_message(etc_description[16], json_message={
+            dispatcher.utter_message(etc_description[lang][16], json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11701.wav"
             })
 
@@ -140,7 +145,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
             buttons.append({"title": "네 이어서 들을래요", "payload": "/leading_masterbot_more"})
             buttons.append({"title": "아뇨! 처음부터 들을래요", "payload": "/initialized"})
 
-            dispatcher.utter_message(etc_description[17], buttons=buttons)
+            dispatcher.utter_message(etc_description[lang][17], buttons=buttons)
 
         # Update user's slot data
         # x = mycol2.find_one({"displayID": metadata["uID"]})
@@ -159,6 +164,7 @@ class ActionMasterbotMore(Action):  # 수정필요 entity를 통해 어디부분
         return "action_masterbot_more"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        lang = tracker.get_slot('lang')
         entities = tracker.latest_message['entities']
 
         metadata = extract_metadata_from_tracker(tracker)

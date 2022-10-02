@@ -11,7 +11,9 @@ logger = logging.getLogger(__name__)
 import pandas as pd
 
 definition_description_csv = pd.read_csv("./data/definition_description.csv")
-definition_description = definition_description_csv['paragraph'].values.tolist()
+definition_description = []
+definition_description.append(definition_description_csv['korean'].values.tolist())
+definition_description.append(definition_description_csv['english'].values.tolist())
 
 
 class ActionLeadingDefinitionIntro(Action):
@@ -19,6 +21,7 @@ class ActionLeadingDefinitionIntro(Action):
         return "action_leading_definition_intro"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        lang = tracker.get_slot('lang')
         print('action_leading_definition_intro')
 
         metadata = extract_metadata_from_tracker(tracker)
@@ -31,7 +34,7 @@ class ActionLeadingDefinitionIntro(Action):
 
         if is_finished == 1:
             dispatcher.utter_message(
-                definition_description[0]
+                definition_description[lang][0]
             )
 
         if (metadata["d"] == 0):
@@ -39,18 +42,18 @@ class ActionLeadingDefinitionIntro(Action):
                 f'절전모드 인트로')
         elif (metadata["d"] == 1):
             dispatcher.utter_message(
-                definition_description[1])
+                definition_description[lang][1])
         elif (metadata["d"] == 2):
             dispatcher.utter_message(
-                definition_description[2])
+                definition_description[lang][2])
         elif (metadata["d"] == 3):
             dispatcher.utter_message(
-                definition_description[3], json_message={
+                definition_description[lang][3], json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/40401.wav"
                 })
         elif (metadata["d"] == 4):
             dispatcher.utter_message(
-                definition_description[4])
+                definition_description[lang][4])
 
         msg = ""
         msg2 = ""
@@ -84,18 +87,18 @@ class ActionLeadingDefinitionIntro(Action):
                 dispatcher.utter_message(msg4)
             if msg5 != "":
                 dispatcher.utter_message(msg5)
-            message = definition_description[21].format(h_type)
+            message = definition_description[lang][21].format(h_type)
             dispatcher.utter_message(message, json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
             })
         elif metadata["d"] == 1:
             h_type = "한 묶음 에너지 흐름"
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_1.png"
-            msg = definition_description[5]
-            msg2 = definition_description[6]
-            msg3 = definition_description[7]
-            msg4 = definition_description[8]
-            msg5 = definition_description[9]
+            msg = definition_description[lang][5]
+            msg2 = definition_description[lang][6]
+            msg3 = definition_description[lang][7]
+            msg4 = definition_description[lang][8]
+            msg5 = definition_description[lang][9]
             tag = "혼자서도 잘해요,조용하면 집중력 UP,홀로 공부할 것"
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
@@ -114,16 +117,16 @@ class ActionLeadingDefinitionIntro(Action):
                 dispatcher.utter_message(msg4)
             if msg5 != "":
                 dispatcher.utter_message(msg5)
-            message = definition_description[21].format(h_type)
+            message = definition_description[lang][21].format(h_type)
             dispatcher.utter_message(message, json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
             })
         elif metadata["d"] == 2:
             h_type = "두 묶음 에너지 흐름"
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_2.png"
-            msg = definition_description[10]
-            msg2 = definition_description[11]
-            msg3 = definition_description[12]
+            msg = definition_description[lang][10]
+            msg2 = definition_description[lang][11]
+            msg3 = definition_description[lang][12]
 
             tag = "카페에서도 공부 잘함,사람에 관심이 많아요,사람 많으면 아이디어 UP"
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
@@ -143,16 +146,16 @@ class ActionLeadingDefinitionIntro(Action):
                 dispatcher.utter_message(msg4)
             if msg5 != "":
                 dispatcher.utter_message(msg5)
-            message = definition_description[21].format(h_type)
+            message = definition_description[lang][21].format(h_type)
             dispatcher.utter_message(message, json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
             })
         elif metadata["d"] == 3:
             h_type = "세 묶음 에너지 흐름"
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_3.png"
-            msg = definition_description[13]
-            msg2 = definition_description[14]
-            msg3 = definition_description[15]
+            msg = definition_description[lang][13]
+            msg2 = definition_description[lang][14]
+            msg3 = definition_description[lang][15]
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
                 dispatcher.utter_message(msg, json_message={
@@ -171,18 +174,18 @@ class ActionLeadingDefinitionIntro(Action):
             if msg5 != "":
                 dispatcher.utter_message(msg5)
             tag = "갈대같은 사람,한 곳에서 집중이 힘듦,자리를 바꿔 공부할 것"
-            message = definition_description[21].format(h_type)
+            message = definition_description[lang][21].format(h_type)
             dispatcher.utter_message(message, json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/42201.wav"
             })
         elif metadata["d"] == 4:
             h_type = "네 묶음 에너지 흐름"
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_4.png"
-            msg = definition_description[16]
-            msg2 = definition_description[17]
-            msg3 = definition_description[18]
-            msg4 = definition_description[19]
-            msg5 = definition_description[20]
+            msg = definition_description[lang][16]
+            msg2 = definition_description[lang][17]
+            msg3 = definition_description[lang][18]
+            msg4 = definition_description[lang][19]
+            msg5 = definition_description[lang][20]
             tag = "우유부단,새로운게 필요해,친구들과 공부할 것"
 
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
@@ -206,7 +209,7 @@ class ActionLeadingDefinitionIntro(Action):
         # dispatcher.utter_message(json_message = {
         #                         "type": "arrContents", "content": [[msg, msg2], [msg3, msg4], [msg5]], "tags": f'{tag}'})
 
-            message = definition_description[21].format(h_type)
+            message = definition_description[lang][21].format(h_type)
             dispatcher.utter_message(message, json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
             })

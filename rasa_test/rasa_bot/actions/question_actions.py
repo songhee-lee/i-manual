@@ -424,6 +424,8 @@ class ActionDefaultFallback(Action):
                             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69201.wav"
                         })#좋아요 나답게 잘 살고 있어요
                         answer = unego_question[1] #자아 comment
+                        dispatcher.utter_message(unego_description[lang][91])
+                        answer = unego_question[1]
                         ego_or_unego[center_priority[center_step]] = 1
                         print("ego_or_unego : ", ego_or_unego)
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
@@ -439,6 +441,8 @@ class ActionDefaultFallback(Action):
                             "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[4]
                         })#~~에 대한 나다움을 잃고 있어요
                         answer = unego_question[2] #비자아 comment
+                        dispatcher.utter_message(message)
+                        answer = unego_question[2]
                         ego_or_unego[center_priority[center_step]] = -1
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
                         unego_answer(question, user_text, metadata)
@@ -527,7 +531,7 @@ class ActionQuestionIntro(Action):
         dispatcher.utter_message(etc_description[lang][4], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10501.wav"
         })
-        dispatcher.utter_message(buttons=buttons)
+        dispatcher.utter_message(etc_description[lang][4], buttons=buttons)
         if is_center:
             return [SlotSet("center_question", 1)]
         else:
@@ -605,6 +609,13 @@ class ActionCenterUnegoQuestion(Action):
             dispatcher.utter_message(unego_question[0], json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[3]
                 }) #질문
+            ####### 여기 merge한 부분. 아래 return부분 오류
+                message = unego_description[lang][90].format(human_center[center_type])
+                dispatcher.utter_message(message)
+
+            # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아
+                dispatcher.utter_message(unego_question[0])
+            ########
 
             if unego_count > 1:
                 unego_answer(question, user_text, metadata)
@@ -670,4 +681,5 @@ class ActionStrategyQuestion(Action):
         buttons = []
         buttons.append({"title": f'질문 있어요', "payload": "/leading_type_question"})
         buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
+        dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
         dispatcher.utter_message(etc_description[lang][6], buttons=buttons)

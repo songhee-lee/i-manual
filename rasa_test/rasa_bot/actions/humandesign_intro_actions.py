@@ -17,7 +17,9 @@ logger = logging.getLogger(__name__)
 import pandas as pd
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
-etc_description = etc_description_csv['paragraph'].values.tolist()
+etc_description = []
+etc_description.append['korean'].values.tolist()
+etc_description.append['english'].values.tolist()
 
 
 def change_gate_to_center(gate):
@@ -47,13 +49,14 @@ class ActionSetPriority(Action):  # 맨 처음
         return "action_set_priority"
 
     def run(self, dispatcher, tracker, domain):
+        lang = tracker.get_slot('lang')
         print('action_set_priority')
         metadata = extract_metadata_from_tracker(tracker)
         print("metadata 출력")
         print(metadata)
         gt = metadata["gt"]
         se = change_gate_to_center(gt)
-        message = etc_description[0].format(metadata["pn"])
+        message = etc_description[lang][0].format(metadata["pn"])
 
         #~~님 안녕하세요 ~~
         #dispatcher.utter_message(
@@ -111,6 +114,7 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
         return "action_set_priority_again"
 
     def run(self, dispatcher, tracker, domain):
+        lang = tracker.get_slot('lang')
         print('action_set_priority_again')
         metadata = extract_metadata_from_tracker(tracker)
         print("metadata 출력")
@@ -193,6 +197,7 @@ class ActionStart(Action):
         return "action_start"
 
     def run(self, dispatcher, tracker, domain):
+        lang = tracker.get_slot('lang')
         print('action_start')
         leading_priority = tracker.get_slot('leading_priority')
         if leading_priority is None:
@@ -214,6 +219,7 @@ class ActionStep(Action):
         return "action_step"
 
     def run(self, dispatcher, tracker, domain):
+        lang = tracker.get_slot('lang')
         print('action_step')
         leading_priority = tracker.get_slot('leading_priority')
         is_finished = tracker.get_slot("is_finished")
@@ -238,7 +244,7 @@ class ActionStep(Action):
                     # is_finished = 1 은 last_message 나오고 set
                     return [FollowupAction(name='action_last_message')]
                 else:
-                    dispatcher.utter_message(etc_description[3], json_message={
+                    dispatcher.utter_message(etc_description[lang][3], json_message={
                         "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10401.wav"
                     })
                     if leading_priority[step] == 0:
@@ -259,6 +265,7 @@ class ActionMore(Action):
         # leading_more -> action_more
 
     def run(self, dispatcher, tracker, domain):
+        lang = tracker.get_slot('lang')
         print('action_more')
         leading_priority = tracker.get_slot('leading_priority')
 
@@ -279,7 +286,7 @@ class ActionMore(Action):
                 buttons = []
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
-                dispatcher.utter_message(etc_description[1], json_message={
+                dispatcher.utter_message(etc_description[lang][1], json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10201.wav"
                 })
                 dispatcher.utter_message(buttons=buttons)  #
@@ -291,7 +298,7 @@ class ActionMore(Action):
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
                 buttons.append({"title": f'센터 건너뛰기', "payload": "/leading_drop_center"})
-                dispatcher.utter_message(etc_description[2], json_message={
+                dispatcher.utter_message(etc_description[lang][2], json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10301.wav"
                 })
                 dispatcher.utter_message(buttons=buttons)
@@ -299,7 +306,7 @@ class ActionMore(Action):
                 buttons = []
                 buttons.append({"title": f'계속', "payload": "/leading_step"})
                 buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
-                dispatcher.utter_message(etc_description[1], json_message={
+                dispatcher.utter_message(etc_description[lang][1], json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10201.wav"
                 })
                 dispatcher.utter_message(buttons=buttons)  #
@@ -313,6 +320,7 @@ class ActionDropCenter(Action):
         # leading_more -> action_more
 
     def run(self, dispatcher, tracker, domain):
+        lang = tracker.get_slot('lang')
         print('action_drop_center')
         leading_priority = tracker.get_slot('leading_priority')
         metadata = extract_metadata_from_tracker(tracker)
@@ -324,7 +332,7 @@ class ActionDropCenter(Action):
         if step == 4:
             return [FollowupAction(name='action_last_message'), SlotSet('center_step', 0)]
         else:
-            dispatcher.utter_message(etc_description[3], json_message={
+            dispatcher.utter_message(etc_description[lang][3], json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10401.wav"
             })
             if leading_priority[step] == 0:

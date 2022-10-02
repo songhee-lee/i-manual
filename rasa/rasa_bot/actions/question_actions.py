@@ -500,14 +500,12 @@ class ActionCenterUnegoQuestion(Action):
             if unego_count == 1:
                 message = unego_description[90].format(human_center[center_type])
                 dispatcher.utter_message(message)
-                
+
             # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아
             dispatcher.utter_message(unego_question[0])
 
-            if unego_count>1:
-
+            if unego_count > 1:
                 unego_answer(question, user_text, metadata)
-
 
             return [SlotSet('bot_question', unego_question[0]), SlotSet("is_question", 0),
                     SlotSet("center_question", 1), SlotSet("is_sentiment", 1), SlotSet("unego_count", unego_count)]
