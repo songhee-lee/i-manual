@@ -12,13 +12,16 @@ logger = logging.getLogger(__name__)
 
 import pandas as pd
 type_description_csv = pd.read_csv("./data/type_description.csv")
-type_description = type_description_csv['paragraph'].values.tolist()
+type_description = []
+type_description.append(type_description_csv['korean'].values.tolist())
+type_description.append(type_description_csv['english'].values.tolist())
 
 class ActionLeadingTypeIntro(Action):
     def name(self) -> Text:
         return "action_leading_type_intro"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        lang = tracker.get_slot('lang')
         print('action_leading_type_intro')
 
         metadata = extract_metadata_from_tracker(tracker)
@@ -32,31 +35,31 @@ class ActionLeadingTypeIntro(Action):
 
         if is_finished == 1:
             dispatcher.utter_message(
-                type_description[0]
+                type_description[lang][0]
             )
 
         if (metadata["t"] == 0):
             # 에너자이저
             dispatcher.utter_message(
-                type_description[1], json_message={
+                type_description[lang][1], json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20201.wav"
             })
         elif (metadata["t"] == 1):
             # 스피드 에너자이저
             dispatcher.utter_message(
-                type_description[2])
+                type_description[lang][2])
         elif (metadata["t"] == 2):
             # 혁신주도가
             dispatcher.utter_message(
-                type_description[3])
+                type_description[lang][3])
         elif (metadata["t"] == 3):
             # 가이드
             dispatcher.utter_message(
-                type_description[4])
+                type_description[lang][4])
         elif (metadata["t"] == 4):
             # 거울
             dispatcher.utter_message(
-                type_description[5])
+                type_description[lang][5])
 
         h_type = ''
         msg_1 = ""
@@ -67,9 +70,9 @@ class ActionLeadingTypeIntro(Action):
         if metadata["t"] == 0:
             h_type = "에너자이저 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_0.png"
-            msg_1 = type_description[6]
-            msg_2 = type_description[7]
-            msg_3 = type_description[8]
+            msg_1 = type_description[lang][6]
+            msg_2 = type_description[lang][7]
+            msg_3 = type_description[lang][8]
             # 인트로 다음 이미지
             dispatcher.utter_message(image=img)
 
@@ -86,9 +89,9 @@ class ActionLeadingTypeIntro(Action):
         elif metadata["t"] == 1:
             h_type = "스피드 에너자이저 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_1.png"
-            msg_1 = type_description[9]
-            msg_2 = type_description[10]
-            msg_3 = type_description[11]
+            msg_1 = type_description[lang][9]
+            msg_2 = type_description[lang][10]
+            msg_3 = type_description[lang][11]
             # 인트로 다음 이미지
             dispatcher.utter_message(image=img)
 
@@ -99,9 +102,9 @@ class ActionLeadingTypeIntro(Action):
         elif metadata["t"] == 2:
             h_type = "혁신주도가 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_2.png"
-            msg_1 = type_description[12]
-            msg_2 = type_description[13]
-            msg_3 = type_description[14]
+            msg_1 = type_description[lang][12]
+            msg_2 = type_description[lang][13]
+            msg_3 = type_description[lang][14]
             # 인트로 다음 이미지
             dispatcher.utter_message(image=img)
 
@@ -112,8 +115,8 @@ class ActionLeadingTypeIntro(Action):
         elif metadata["t"] == 3:
             h_type = "가이드 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_3M.png"
-            msg_1 = type_description[19]
-            msg_2 = type_description[20]
+            msg_1 = type_description[lang][19]
+            msg_2 = type_description[lang][20]
             # 인트로 다음 이미지
             dispatcher.utter_message(image=img)
 
@@ -125,11 +128,11 @@ class ActionLeadingTypeIntro(Action):
         elif metadata["t"] == 4:
             h_type = "거울 종족"
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_4.png"
-            msg_1 = type_description[26]
-            msg_2 = type_description[27]
-            msg_3 = type_description[28]
-            msg_4 = type_description[29]
-            msg_5 = type_description[30]
+            msg_1 = type_description[lang][26]
+            msg_2 = type_description[lang][27]
+            msg_3 = type_description[lang][28]
+            msg_4 = type_description[lang][29]
+            msg_5 = type_description[lang][30]
 
             # 인트로 다음 이미지
             dispatcher.utter_message(image=img)
@@ -153,10 +156,10 @@ class ActionLeadingTypeIntro(Action):
         buttons.append({"title": f'예', "payload": "/leading_type"})
         buttons.append({"title": f'아니요', "payload": "/leading_type_question"})
         if metadata["t"] == 2 or metadata["t"] == 3 or metadata["t"] == 4:
-            dispatcher.utter_message(type_description[34], buttons=buttons)
+            dispatcher.utter_message(type_description[lang][34], buttons=buttons)
             return [SlotSet('step', step)]
         else:
-            message = type_description[35].format(h_type)
+            message = type_description[lang][35].format(h_type)
             dispatcher.utter_message(message, json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20903.wav"
             })
@@ -169,6 +172,7 @@ class ActionLeadingType(Action):
         return "action_leading_type"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        lang = tracker.get_slot('lang')
         print('action_leading_type')
 
         metadata = extract_metadata_from_tracker(tracker)
@@ -185,10 +189,10 @@ class ActionLeadingType(Action):
         msg_5 = ""
         if metadata["t"] == 2:
             h_type = "혁신주도가 종족"
-            msg_1 = type_description[15]
-            msg_2 = type_description[16]
-            msg_3 = type_description[17]
-            msg_4 = type_description[18]
+            msg_1 = type_description[lang][15]
+            msg_2 = type_description[lang][16]
+            msg_3 = type_description[lang][17]
+            msg_4 = type_description[lang][18]
             dispatcher.utter_message(msg_1, json_message = {
                         "type": "voiceID", 'sender':metadata['uID'], "content": "out_긴문장/1.wav"
                     })
@@ -197,11 +201,11 @@ class ActionLeadingType(Action):
             dispatcher.utter_message(msg_4)
         elif metadata["t"] == 3:
             h_type = "가이드 종족"
-            msg_1 = type_description[21]
-            msg_2 = type_description[22]
-            msg_3 = type_description[23]
-            msg_4 = type_description[24]
-            msg_5 = type_description[25]
+            msg_1 = type_description[lang][21]
+            msg_2 = type_description[lang][22]
+            msg_3 = type_description[lang][23]
+            msg_4 = type_description[lang][24]
+            msg_5 = type_description[lang][25]
             dispatcher.utter_message(msg_1)
             dispatcher.utter_message(msg_2)
             dispatcher.utter_message(msg_3)
@@ -209,16 +213,16 @@ class ActionLeadingType(Action):
             dispatcher.utter_message(msg_5)
         elif metadata["t"] == 4:
             h_type = "거울 종족"
-            msg_1 = type_description[31]
-            msg_2 = type_description[32]
-            msg_3 = type_description[33]
+            msg_1 = type_description[lang][31]
+            msg_2 = type_description[lang][32]
+            msg_3 = type_description[lang][33]
             dispatcher.utter_message(msg_1)
             dispatcher.utter_message(msg_2)
             dispatcher.utter_message(msg_3)
 
 
 
-        message = type_description[35].format(h_type)
+        message = type_description[lang][35].format(h_type)
         dispatcher.utter_message(message)
 
         if leading_priority[0]==0:
@@ -236,6 +240,7 @@ class ActionLeadingTypeQuestion(Action):
         return "action_leading_type_question"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        lang = tracker.get_slot('lang')
         print('action_leading_type_question')
         metadata = extract_metadata_from_tracker(tracker)
 
@@ -298,7 +303,7 @@ class ActionLeadingTypeQuestion(Action):
             buttons.append({"title": f'거울 종족 아이는 어떻게 키워야 하나요?',
                             "payload": "/strategy_question{\"bot_question\":\"거울 종족 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
         buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
-        dispatcher.utter_message(type_description[36], json_message={
+        dispatcher.utter_message(type_description[lang][36], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/23701.wav"
         })
         dispatcher.utter_message(buttons=buttons)
