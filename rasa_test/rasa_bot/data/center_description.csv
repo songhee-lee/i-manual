@@ -1,138 +1,171 @@
-﻿title,paragraph
-센터 재설명,그럼 센터에 대해 다시 알려드릴게요!
-센터 intro,지금부터 당신이 갖고 있는 아홉개의 센터에 대해 설명하려고해요.
-센터 intro,"모든 사람은 아홉개의 센터를 가지는데, 각 센터들 중 어느 센터가 영향을 주는 쪽인지 혹은 영향을 받는 쪽인지에 따라 서로 다른 삶을 살게 됩니다."
-센터 intro,"자, 시작해볼까요~"
-연료 센터(미정의) intro,당신은 그동안 주변환경이 주는 불편한 압박감으로 인해 늘 뭔 가에 쫓기듯 바쁘게 살아오지 않았나요?
-연료 센터(정의) intro,당신은 자신만의 특별한 방식으로 스트레스를 컨트롤하고 오히려 그것을 원동력 삼아 세상으로 나아갈 수 있는 능력을 갖고 태어난 사람입니다. 
-활력 센터(미정의) intro,당신은 인류의 34%에 속하는 비교적 활력 에너지가 부족한 사람입니다.
-활력 센터(정의) intro,"당신은 항상 몸에 활력 에너지가 존재하고, 다른 사람들의 지속적인 에너지 사용에 영향을 주는 사람입니다."
-직관 센터(미정의) intro,당신은 생존에 대한 불안감으로부터 자유로울 수 있는 특별한 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 마스터봇의 설명을 잘 들어보기 바랍니다.
-직관 센터(정의) intro,당신은 직관적으로 무엇이 나의 생존에 도움이 되는지 알아차릴 수 있는 능력을 갖고 태어난 사람입니다.
-감정 센터(미정의) intro,당신은 다른 사람들의 감정 에너지에 영향을 받아 때론 억울하게도 다혈질이라는 얘기를 들을 수도 있습니다. 하지만 당신의 온전한 감정 에너지는 매우 평온한 사람입니다.
-감정 센터(정의) intro,당신은 자신만의 감정 에너지를 갖고 있으며 당신이 발신하는 에너지는 다른 사람들의 감정에 영향을 미치도록 디자인되어 있는 사람입니다. 평소에 당신의 감정으로 인해 어려움이 있었다면 마스터봇의 설명에 집중해주기 바랍니다.
-에고 센터(미정의) intro,당신은 자신을 증명하거나 자신의 존재를 드러내기 위해 애쓸 필요가 없는 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 마스터봇의 설명을 잘 들어 보기 바랍니다.
-에고 센터(정의) intro,"당신은 다른 사람들과 약속을 하고 그것을 지키는 과정에서 별다른 스트레스를 받지 않고, 당신의 의지력을 잘 활용할 줄 아는 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 마스터봇의 설명을 잘 들어보기 바랍니다. "
-방향 센터(미정의) intro,당신은 자유로운 정체성을 갖을 수 있는 특별한 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 마스터봇의 설명을 잘 들어보기 바랍니다.
-방향 센터(정의) intro,당신은 자신의 정체성에 대한 안정된 확신을 갖고 있는 사람입니다.
-표현 센터(미정의) intro,당신은 자신의 의견을 말하거나 표현하기 위해 애쓰지 않아도 다른 사람들의 주의를 자연스럽게 끌 수도 있는 특별한 능력을 지닌 사람입니다.
-표현 센터(정의) intro,"당신은 자신만의 고유한 표현방식이 있고, 언제 표현해야 할 지를 알고 있는 사람입니다. 당신이 이러한 점에서 어려움을 겪고 있다면 마스터봇의 설명을 잘 들어보세요."
-생각 센터(미정의) intro,당신은 다른 사람이나 다른 무언가로부터 오는 다양한 사고방식에 열려 있고 스폰지처럼 정보를 흡수할 수 있는 사람입니다.
-생각 센터(정의) intro,"당신은 생각하고 의견을 내는 데에 있어서 자신만의 일정한 방식을 갖고 있고, 자기 신념이 확고한 편입니다. "
-영감 센터(미정의) intro,"당신은 다른 사람이나 다른 무언가로부터 늘 영감을 받는 사람입니다. 또한, ‘누가 나에게 혼란을 주고, 누가 나에게 영감을 주는지 구별할 수 있는 사람이기도 합니다."
-영감 센터(정의) intro,당신은 다른 사람들이 무언가에 대해 생각하도록 영감을 주는 사람입니다. 항상 머릿속에 떠오르는 의문에 대한 답을 찾는 사람이기도 합니다.
-연료 센터(정의) ,인류의 60%는 연료센터에서 자신만의 에너지를 발신하며 다른 사람들이 내뿜는 압력에 좌우되지 않고 자신의 고유한 페이스대로 나아갈 수 있는 능력을 갖고 있습니다. 
-연료 센터(정의),"당신은 바로 이러한 능력을 가진 사람입니다. 즉, 자신만의 스트레스를 원동력 삼아 세상에 없는 새로운 무엇인가를 만들러 온 사람들이라고 할 수 있습니다."
-연료 센터(정의) ,연료센터는 3개의 다른 센터와 연결되어 있습니다. 직관센터와 연결되어 있다면 자신만의 정해진 방식으로 스트레스를 사용하여 삶의 잘못된 것들을 고치기 위해 애씁니다. 
-연료 센터(정의),생존 자체를 위해 연료를 사용하고 그것을 통해 살아있음의 기쁨과 즐거움을 느낍니다.
-연료 센터(정의) 추가 설명 질문,다른 두개의 센터와의 관계도 설명해 볼까요?
-연료 센터(정의) 추가 설명,당신의 연료센터가 감정센터와 연결될 경우 개인적 혹은 대인 관계에서의 감정적 스트레스에 대해 스스로의 방식으로 해소할 수 있습니다. 감정적 스트레스를 극복하는 과정을 통해서 더욱 감정에 성숙해지고 다채롭게 드러낼 수 있게 됩니다. 
-연료 센터(정의) 추가 설명,"연료센터와 연결될 경우, 지나치게 스트레스에 노출되어 강박적인 성향을 가질 수 있습니다. 모든 스트레스에 무차별적으로 과민 반응하며 건강을 축낼 수 있습니다. 이러한 경우 자신의 스트레스를 주변으로 퍼트리지 않도록 주의하기 바랍니다."
-활력 센터(정의),당신은 자신이 좋아하는 일을 위해서는 며칠 밤을 새우더라도 괜찮을 수 있는 에너지를 지니고 있습니다. 하지만 이 에너지는 당신이 정말 좋아하는 일을 위해서 사용할 때만 활성화될 수 있습니다. 그렇지 않다면 당신은 만성피로에 시달리는 활력 없는 사람이 되고 말 것입니다. 
-활력 센터(정의),에너지를 활성화시킬 수 있는지 알기 위해서는 주변 사람들에게 “Yes” or “No”로 답이 가능한 형태의 질문을 받아야 합니다. 질문 받은 당신의 몸에서 바로 ‘Yes’라는 반응이 일어나는 일이라면 당신은 늘 활기찰 수 있습니다.
-직관 센터(정의),"당신이 갖고 태어난 능력은 오직 지금 이 순간에만 적용되며 말로는 표현할 수 없는 내면적 인식입니다. 직관(직감)이라는 것은 특히 생명에 직결되고 즉흥적으로 일어나는 정보인데 예를 들면 “느낌이 쎄-해”, “그냥 내 촉이 그래”와 같은 느낌입니다. "
-직관 센터(정의),"주의할 점은 직관센터는 한 번 경고를 주고 나면 다시 알려주지 않는다는 점입니다. 처음 직관에서 경고를 했을 때, 그것을 합리화하려는 생각이나 주변 분위기에 맞춰서 타협 혹은 미룰 경우 기회를 놓치게 됩니다. "
-직관 센터(정의),"직관센터가 정의되어 있는 당신은, 더더욱 내면에 귀를 기울이고 그 경고를 무시해서는 안 됩니다. 경고를 무시할수록 당신은 자신의 건강을 잃게 됩니다. "
-직관 센터(정의),"직관센터의 경고를 신뢰하고 존중할 경우, 선천적인 면역력과 건강을 기반으로 나의 삶에서 위험요소들을 줄일 수 있습니다. "
-직관 센터(정의) 추가 설명 질문,직관센터는 당신의 건강과 밀접합니다. 좀더 설명을 들으시겠어요?
-직관 센터(정의) 추가 설명,"세상에는 직관센터가 정의되어 있는 당신과 같은 부류의 사람들이 55%, 나머지 45%의 사람들은 직관센터가 미정입니다. 즉, 당신과 같은 생존에 대한 직관이 존재하지 않습니다. "
-직관 센터(정의) 추가 설명,"따라서, 직관센터 미정인 사람들에게는 직관센터가 정의된 사람이 옆에 함께 있어주는 것만으로도 기분이 좋고 건강이 좋아지는 것 같은 영향을 주기도 합니다."
-직관 센터(정의) 추가 설명,"당신의 직관센터 에너지가 건강하게 작동할 경우 삶에서 맞닥뜨릴 수 있는 위험요소에 대한 걱정과 두려움은 고민할 필요도 없으며, 그 결과 자연적으로 실존 그 자체를 깊이 경험할 수 있습니다. "
-직관 센터(정의) 추가 설명,초 단위로 작동하는 직관센터의 면역체계가 당신을 지켜줍니다. 
-감정 센터(정의),"인류의 절반은 자신만의 감정 에너지를 갖고 발신하며 살고 있고, 나머지 절반은 특별한 감정 에너지 없이 다른 절반이 발신하는 감정 에너지에 영향을 받으며 살아가고 있습니다. "
-감정 센터(정의),이러한 감정 에너지와 관련된 센터를 감정센터라고 부릅니다. 감정센터가 정의되어 있는 사람들은 자신만의 감정 에너지의 사이클을 갖도록 디자인된 사람들입니다. 
-감정 센터(정의),당신은 감정센터가 정의되어 있는 사람에 속하므로 자신만의 고유한 감정 에너지의 사이클을 가지며 항상 감정의 업과 다운이 존재함을 느낍니다. 
-감정 센터(정의),"당신에게 인내심을 요구하는 것은 쉬운 일이 아닙니다. 당신은 늘 자신의 감정파도 속에서 파도가 높으면 상기되어 고조된 채로 쉽게 결정을 내려버리고, 파도가 낮으면 가라앉은 채로 아무것도 하지 않으려는 무기력한 모습을 보이기 쉽습니다. "
-감정 센터(정의) 추가 설명 질문,감정의 사이클이라는 것이 좀 어색하죠? 조금더 설명을 들어보시겠어요?
-감정 센터(정의) 추가 설명,"감정대로 결정을 내리면, 안좋은 일을 Yes 해버리거나 좋은 일을 No 해버리는 경우가 많다는 걸 경험해 보았을거예요. 당신의 감정 사이클이 높지도 않고 낮지 않은 평정심일 때 중요한 결정을 하는 것이 매우 중요합니다. "
-감정 센터(정의) 추가 설명,"당신의 감정이 어떠한지 알 수 있는 유일한 방법은 그 감정의 파도가 지나간 후에 아까 내가 어떤 상태였구나 (높은 파도였구나, 낮은 파도였구나) 라는 것을 스스로 알아차리는 수 밖에는 없습니다. "
-감정 센터(정의) 추가 설명,"감정센터의 에너지는 달콤하고, 유혹적이며 강력합니다. 오직 자신의 감정의 흐름만 인내하고 지켜볼 수 있다면 얼마든지 자신에게 유리하게 사용할 수 있다는 겁니다. "
-감정 센터(정의) 추가 설명,"당신이 감정적으로 명료하게 결정을 내리기 위해 인내하는 시간은 자연스레 다른 사람들에게도 똑같은 기다림의 시간이 되며, 그 기다림의 시간동안 그들은 결국 당신의 그 에너지를, 그 따스함을 더욱 원하게 됩니다. "
-에고 센터(정의),"에고센터는 무언가를 하고 싶은 의지, 용기, 그리고 경쟁을 통해 성취해내는 에너지와 관련된 센터입니다. 이 센터가 정의되어 있는 사람들은 인류의 37% 정도이며 이러한 에너지를 계속 발신하면서 자신만의 의지와 용기로 세상과 맞서 싸우며 살아갑니다. 당신은 에고센터 정의에 해당하므로 이렇게 살아가도록 디자인되어 있습니다."
-에고 센터(정의),"당신이 무엇을 입을지, 어디서 일할지, 몇시간이나 일을 할지, 일을 처리하기 위해 시간이 얼마나 필요한지 모든 것을 스스로 통제하고 결정하고 싶어 합니다. 스스로의 가치를 잘 알고 있고 약간은 자신감을 과장하는 경향도 있습니다."
-에고 센터(정의) 추가 설명 질문,"자, 에고센터 정의인 사람들에 대해 좀더 설명해볼까요?"
-에고 센터(정의) 추가 설명,"당신은 일하는 것을 즐기는 편이고, 당신 스스로가 모든 것을 통제하고 결정할 수 있을 때 가장 자연스럽고 내면의 힘을 발휘할 수 있습니다. "
-에고 센터(정의) 추가 설명,"자신의 목표한 것, 약속한 것을 지켜내는 과정을 즐기고, 주변 사람들에게도 그러한 과정을 즐기도록 영향력을 발휘합니다. 자신의 내면에 귀 기울일 때 의지력은 더욱 온전히 발휘되고 일과 휴식의 균형 뿐만 아니라 상황에 맞는 가장 적합한 해결책을 보여줍니다. "
-에고 센터(정의) 추가 설명,"하지만, 누군가에 의해 무시되거나 거절되어 당신 에고의 의지력이 억눌릴 경우 건강에 안 좋은 영향을 미칩니다. "
-에고 센터(정의) 추가 설명,"따라서, 무작정 의지력만 믿고 이것저것 일을 벌리거나 실현 가능성이 없는 허무맹랑한 약속만 내걸면서 성취를 이루지 못하고 낭비하게 되면 결국에는 사람들로부터 신뢰를 잃고 누구도 당신을 찾지 않게 될 수도 있음을 명심하기 바랍니다."
-방향 센터(정의),"당신은 자신의 방향센터에서 에너지를 발신하는 사람입니다. 이것을 방향센터 정의라고 부릅니다. 이러한 부류의 사람들은 사랑받는다는 게 어떤 느낌인지, 사랑을 주는 게 어떤 것인지 자신만의 감각을 가지고 있습니다. "
-방향 센터(정의),자기자신을 아끼고 스스로를 사랑하며 그와 같이 다른 사람들에게도 사랑을 전합니다.
-방향 센터(정의),삶에서 나의 길이 어디를 향하는지 내가 가야 할 방향을 알고 새로운 길을 개척하는 것도 어려움이 없습니다. 
-방향 센터(정의),"어디로 가야 하는지 길을 잃은 듯한 다른 사람들에게 안정감을 줄 수도 있고, 더 나아가 인류가 어느 방향을 향해야 하는지 진화하기 위한 길이 무엇인지 전하는 역할을 할 수도 있습니다."
-방향 센터(정의) 추가 설명 질문,"자, 당신의 방향센터에 대해 이해가 되셨나요? 당신이 갖게 되는 딜레마에 대해서도 설명해 볼까요?"
-방향 센터(정의) 추가 설명,"방향센터 정의의 가장 큰 딜레마는 첫째로 “모든 사람들이 다들 자신이 어디를 향하여 가고 있는지 알고 있을 것이다” 라고 너무나 당연하게 생각한다는 점과, 둘째로 “내가 느끼는(자신이 향하는) 이 방향이 옳은 길이다” 라고 지나치게 다른 사람들에게 밀어붙일 수 있다는 점입니다. "
-방향 센터(정의) 추가 설명,모두의 길이 똑같지 않고 각자의 길이 다르다는 점을 이해하지 못한 채 사람들에게 지시하고 방향을 가르쳐주겠다며 이끌려고 할 경우 오히려 분열을 야기하고 불협화음을 만들 수 있습니다. 
-방향 센터(정의) 추가 설명,방향센터는 마치 자석처럼 작동하는데 양극을 모두 가지지 않고 한쪽 극만 가지고 있어 끌어당김만이 작용합니다. 바로 사랑이죠. 
-방향 센터(정의) 추가 설명,"우리는 사랑을 서로 주고 받는 다라고 생각하지만, 실제로 더 정확히는 어느 한쪽이 반드시 더 주도적으로 사랑하게끔 되어있다는 것입니다. "
-방향 센터(정의) 추가 설명,"특히 주로 방향센터 정의가 사랑을 하는 쪽(주는 쪽)이 되고, 방향센터가 미정인 사람은 그것이 자신의 마음에 들 경우 증폭/반영해주게 되는 것이죠. "
-표현 센터(정의),당신은 표현센터를 통해 자신만의 고유한 표현방식으로 자신이 원하는 때에 하고 싶은 말이나 표현을 할 수 있는 능력을 타고난 사람입니다. 
-표현 센터(정의),이것을 표현센터가 정의되어 있다고 말합니다. 표현센터는 당신을 구성하는 9개의 센터 중 중심점이고 당신이 가진 모든 것을 모아 당신의 내면을 외부세상에 표현하고 행동하도록 해줍니다.
-표현 센터(정의),"무슨 말을 해야 할 지, 어떻게 전달해야 할 지, 언제 표현하는 것이 좋을 지, 자신만의 감각을 가지고 있습니다. "
-표현 센터(정의),하지만 자신만의 감각을 가지고 있는 것이 꼭 좋은 것만은 아닙니다. 표현센터가 어떤 센터에 연결되어 있느냐 에 따라 다양한 상황이 만들어지기 때문입니다.
-표현 센터(정의) 추가 설명 질문,어떤 상황들이 있을 수 있는지 좀더 얘기해 볼까요?
-표현 센터(정의) 추가 설명,"당신의 표현센터가 생각센터와 연결되면 자신이 정리한 논리와 개념들, 주장들을 내세우게 됩니다. "
-표현 센터(정의) 추가 설명,"만약 직관센터와 연결되어 있다면 순간순간의 직감, 특히나 생존이나 안전, 건강에 대한 것들에 대해 표현하려고 합니다. "
-표현 센터(정의) 추가 설명,"방향센터와 연결되어 있다면 자신의 정체성, 혹은 나아가야 하는 방향에 대해, 사랑에 대해 표현하려 하고, 활력센터와 연결되어 있다면 자신의 활력반응을 그대로 표현하고 실행하게 됩니다."
-표현 센터(정의) 추가 설명,"에고센터와 연결되어 있다면 자신의 의지/약속을 “나는 이걸 하고 싶어, 저걸 가지고 싶어, 이렇게 이렇게 하겠어” 와 같은 방식으로 드러내게 되고, 감정센터와 연결되어 있다면 나의 감정상태, 기분에 따라 행동하고 이야기합니다."
-생각 센터(정의),"도표나 그림을 떠올리며 생각을 하기도 하고, 어떤 소리가 들려와 생각하기도 하고, 과거에 했던 경험을 바탕으로 생각을 하는 등의 과정을 거쳐 자기만의 의견을 가지게 됩니다."
-생각 센터(정의),"이렇게 형성된 당신의 의견은 좀처럼 바뀌지 않고, 외부의 영향에도 잘 흔들리지 않습니다. 하지만, 무언가를 이해하려고 집착적으로 생각하다가 근심에 휩싸일 수 있으니 생각은 생각일 뿐, 행동으로 옮기는 것에는 신중하기 바랍니다. "
-영감 센터(정의),"때때로 과거의 경험이 떠올라 혼란스러울 수 있고, 무언가에 대한 의심이 들고, 알듯 말 듯 한 것을 명확히 알고 싶어지지만 이것은 단지 당신이 세상을 이해하기 위한 현상일 뿐입니다."
-영감 센터(정의),"억지로 답을 찾으려는 노력을 하는 동안에는 답이 보이지 않고, 답을 찾기를 멈추었을 때, 답을 보게 될 것입니다."
-연료 센터(미정의),누구나 갖고 있는 9개의 센터 중에서 연료센터는 우리 몸에 주어지는 육체적 압박감에 대한 에너지와 관련이 있습니다. 당신은 인류의 40%에 해당하는 연료센터가 정의되어 있지 않은 사람에 해당합니다. 
-연료 센터(미정의),연료센터는 우리 몸의 아드레날린과 관련이 있는데 연료센터가 미정인 당신은 이것이 꾸준하지 않기 때문에 한 번 일을 시작해도 그것을 오래도록 이어가진 못합니다. 
-연료 센터(미정의),그러다 보니 한가지를 진득하게 하기보다는 이것 하다 저것 하다 분주하기만 하기 쉽죠. 초점이 없이 여러가지에 바쁘기만 합니다. 
-연료 센터(미정의),당신은 주변의 모든 일을 자신이 받아서 하려고 나서거나 해결할 수 없는 압박감을 해결하기 위해 바쁘곤 합니다. 그러다 보면 결국에는 탈진하거나 번아웃되어 질려버리고 말죠. 
-연료 센터(미정의),자각하지 못한 채 외부로부터 들어오는 압박에 의해 자신이 작동되도록 내버려두게 됩니다. 당신이 느끼는 대부분의 압박감은 당신 자신의 것이 아니라는 것을 자각하기 바랍니다.
-연료 센터(미정의) 추가 설명 질문,"자, 이제는 극복할 수 있는 방법에 대해 좀더 얘기해볼까요?"
-연료 센터(미정의) 추가 설명,외부로부터 압박감을 느낄 때는 두가지 방법으로 대처할 수 있습니다. 
-연료 센터(미정의) 추가 설명,"한가지는 그 압박감에 휘둘리지 않고 잠시 자신만의 공간으로 물러나 심호흡 하며 정돈하는 것이고, 다른 하나는 그 압박감에 기꺼이 자신을 내맡겨 상황 자체를 자신에게 유리하게 사용하는 것입니다. "
-연료 센터(미정의) 추가 설명,"대부분의 경우에는 그저 뭔 지 모를 압박감과 불편함에 무엇이라도 하면서 자신을 바쁘게 만들 뿐, 그것이 좋은 성과나 어떤 결과물로 이어지지는 못합니다. "
-연료 센터(미정의) 추가 설명,오히려 좌충우돌 사고만 치고 사건만 만들기 쉽죠. 당신은 그러한 압박으로부터 자유로울 수 있는 존재라는 것을 잊지 말기 바랍니다.
-활력 센터(미정의),"더 일하고 싶고, 더 공부하고 싶고, 더 놀고, 더 자고, 더 먹고 싶다 등등 당신은 늘 아쉽습니다. 더 해야 할 것 같고, 더 했으면 좋겠는데 생각과 달리 체력이 따라주지 않습니다."
-활력 센터(미정의),그럼에도 늘 ‘더 하고 싶어!! 더 할 거야!!’ 라고 생각하며 늘 지나치게 무언가를 합니다. 자신에게 활력 에너지가 부족함에도 마치 가지고 있는 것처럼 착각하기 쉽습니다.
-활력 센터(미정의),당신은 활력 에너지를 통해 생산적인 일을 하는데 적합한 사람이 아니므로 절대 무리하지 말고 되도록 많이 쉬어줄 수 있기를 바랍니다. 
-직관 센터(미정의),인류의 45%는 생존에 대한 두려움이나 불안감에 대한 감각이 거의 없습니다. 반면 나머지 55%는 본능적으로 생존에 대한 위협에 대한 자신만의 감각을 지니고 있습니다. 
-직관 센터(미정의),"이러한 역할을 담당하는 센터를 직관센터라고 부르고 당신이 속한 45%의 부류를 직관센터가 정의되어 있지 않다, ‘직관센터 미정’이라고 말합니다. "
-직관 센터(미정의),"즉, 당신의 직관센터는 에너지를 발신하지 않으므로 두려움이나 불안감에 대해 별다른 감각을 갖고 있지 않고, 건강한 상태의 직관센터 미정이라면 오히려 이러한 부분에 대해 편안함을 느끼며 살게 됩니다."
-직관 센터(미정의),하지만 우리의 삶은 늘 다른 사람들 과의 관계속에서 이루어지므로 나머지 55%의 사람들이 발신하는 에너지들이 당신과 같은 미정들에게도 영향을 미치게 됩니다. 
-직관 센터(미정의),"즉, 당신 자신은 별다른 두려움이나 불안감이 없음에도 가까운 사람이 발신하는 에너지를 받거나 심지어 증폭해서 두려움과 불안감을 느끼게 될 수 있습니다."
-직관 센터(미정의) 추가 설명 질문,"자, 당신이 알아야 할 점을 좀더 얘기해 볼까요?"
-직관 센터(미정의) 추가 설명,직관센터가 미정인 사람들은 가까운 사람들이 발신하는 에너지에 영향을 받아 안정감을 느끼는 경우가 많습니다. 그것이 그 사람에 대한 의존성을 크게 만들기도 합니다. 
-직관 센터(미정의) 추가 설명,특히 가족관계나 연인관계에서 더욱 그렇습니다. 그 사람의 존재(영향력)가 나의 생존을 보장해주는 느낌이니까요. 
-직관 센터(미정의) 추가 설명,"이렇게 직관센터가 정의되어 있는 사람의 영향력에 얽매여 있게 된 경우,  그 사람이 주는 직관 정의의 안정감이 너무 크기 때문에 언제 헤어져야 할지, 제대로 관계를 정리해야 할지 모를 수 있습니다."
-감정 센터(미정의),"인류의 절반은 자신만의 감정 에너지를 갖고 발신하며 살고 있고, 나머지 절반은 특별한 감정 에너지 없이 다른 절반이 발신하는 감정 에너지에 영향을 받으며 살아가고 있습니다. "
-감정 센터(미정의),이러한 감정 에너지와 관련된 센터를 감정센터라고 부릅니다. 감정센터가 정의되어 있는 사람들은 자신만의 감정 에너지의 사이클을 갖도록 디자인된 사람들입니다. 
-감정 센터(미정의),나머지 절반의 사람들은 감정센터 미정으로 자신만의 감정 에너지를 발신하지 않고 주변에서 발신하는 감정 에너지의 영향을 받게 됩니다. 물론 좋은 감정 에너지의 발신은 감정센터 미정들에게도 너무나 큰 행복감을 줄 수 있습니다. 
-감정 센터(미정의),당신은 감정센터 미정에 속하는 사람이므로 늘 다른 사람들의 감정 에너지 흐름에 민감하고 그것에 좌우되는 경우가 많습니다.
-감정 센터(미정의) 추가 설명 질문,"자, 감정센터와 관련되어 조심할 점을 좀더 얘기해 볼까요?"
-감정 센터(미정의) 추가 설명,당신의 감정센터는 마치 열려 있는 창문과 같습니다. 여러 감정들을 받아들이고 그것을 분석합니다. 여기서 잊지 말아야 할 점은 객관성을 잃어서는 안 된다는 점입니다. 그 감정에 빠져들거나 개인적인 것으로 받아들여선 안 됩니다. 
-감정 센터(미정의) 추가 설명,"그렇게 되면 창문은 투명성을 잃고, 전체의 감정이 아닌 자신이 원하는 편협하고 일부분의 감정들만 받아들이고, 나머지는 외면하거나 거절하게 됩니다."
-감정 센터(미정의) 추가 설명,"그렇게 점차 자신의 감정상태 뿐만 아니라 주변의 감정 상태에 대해서도 혼란스러움만 커지고 감정 업 다운에 끊임없이 휩쓸릴 경우, 그 불편함을 해소하기 위해 오히려 더욱 과민하게 반응하거나, 별 일 아닌 데도 과장되게 더 억지스럽게 표현하곤 합니다. "
-감정 센터(미정의) 추가 설명,다른 사람들의 감정에 좌우되지 않도록 주의하기 바랍니다.
-에고 센터(미정의),"에고센터는 무언가를 하고 싶은 의지, 용기, 그리고 경쟁을 통해 성취해내는 에너지와 관련된 센터입니다."
-에고 센터(미정의),이 센터가 정의되어 있는 인류의 37%의 사람들은 이러한 에너지를 계속 발신하면서 자신만의 의지와 용기로 세상과 맞서 싸우며 살아갑니다. 하지만 당신이 속한 63%의 사람들은 이러한 경쟁의 부담감으로부터 자유로운 사람들입니다. 
-에고 센터(미정의),"다른 사람들에게 무엇을 해주어 나의 가치를 인정받고 싶다 거나, 내가 무엇인가를 성취하여 나의 존재를 드러내고 싶다 거나, 지금의 이 경쟁에서 이겨내고 싶다는 부담을 전혀 느낄 필요가 없는 사람들입니다."
-에고 센터(미정의) 추가 설명 질문,"자, 에고센터 미정인 사람들이 빠지기 쉬운 함정에 대해 좀더 설명해줄까요?"
-에고 센터(미정의) 추가 설명,"하지만, 에고센터가 정의되어 있는 사람들과 섞여 살수 밖에 없으므로 그들이 발신하는 에너지를 수신하고 심지어 증폭함으로써 굳이 지킬 수 없는 약속을 하거나 자신을 채찍질하고 밀어붙이는 삶을 살게 되기 쉽습니다. "
-에고 센터(미정의) 추가 설명,"우리가 살아가는 현대사회에서는 항상 “더 빠르고, 예쁘고, 강하고, 성공적이고, 부자일 수 있다!” 라는 에너지로 가득합니다. 에고센터 미정인 당신은 이 에너지 안에 갇혀 함정에 빠진 채 끊임없이 자신을 채찍질하고 밀어붙입니다. "
-에고 센터(미정의) 추가 설명,"자신이 내건 약속을 지키기 위해 이들은 더 큰 약속을 만들기를 반복하고, 결국 자신의 무능력을 느끼며 다시 추락합니다. 실패할 때 마다, 더 상황은 나빠지고 자존감은 바닥에 떨어지게 되죠. "
-에고 센터(미정의) 추가 설명,"당신이 지금 약속을 지키기 위한 큰 부담을 갖고 있거나, 자신의 무능력에 대한 자괴감에 시달리고 있다면, 그러한 부담감이 어디서부터 출발하고 있는지 돌아보면 좋겠습니다. "
-에고 센터(미정의) 추가 설명,당신은 그러한 것으로부터 자유로운 사람으로 디자인되었음을 다시한번 돌아보기 바랍니다.
-방향 센터(미정의),"당신은 고정된 정체성을 갖기 보다는 어느 환경, 어느 자리에서 든 자유롭게 자기 자신을 녹여낼 수 있는 특징을 갖고 있습니다. "
-방향 센터(미정의),당신은 자신만의 방향성을 갖고 있기 보다는 다른 사람들의 영향력에 의해 여기저기로 항하게 되며 그러한 과정을 거치면서 자신의 방향으로 점차 맞춰 나갑니다.
-방향 센터(미정의),"여기저기를 경험하는 동안 자신만의 정체성을 쌓아가며 자신만의 아지트, 집중할 수 있는 곳, 즐겨가는 단골가게 등을 만들어갑니다. 이러한 모든 것들이 모여 당신의 방향을 만들어줍니다."
-방향 센터(미정의) 추가 설명 질문,"자, 당신의 정체성과 방향성에 대해 이해가 되었나요? 당신에 대해 흥미로운 조언을 좀더 해드릴까요?"
-방향 센터(미정의) 추가 설명,당신은 특히 장소에 민감합니다. 당신에게 알맞은 장소가 아니라면 그곳에서 만나는 사람들 또한 적합하지 않을 확률이 매우 높습니다. 
-방향 센터(미정의) 추가 설명,좋은 사람을 만나고 싶다면 당신에게 좋은 느낌을 주는 장소들을 찾아야 합니다. 아무리 좋은 사람을 만나더라도 장소가 마음에 들지 않는다면 그 사람과 어떠한 흐름도 이어지지 않습니다.
-방향 센터(미정의) 추가 설명,새로운 장소에서 다시 시작해 보세요. 이것이 바로 당신이 자신의 방향을 찾아가는 방법입니다.
-표현 센터(미정의),"당신이 애쓰지 않고 다른 사람들에 의해 초대되어질 때 가장 자연스럽게 주의가 모아지고, 가장 좋은 타이밍에, 가장 힘들이지 않고, 제일 효과적인 반응을 이끌어낼 수 있습니다."
-표현 센터(미정의),"억지로 고민하며 말을 하려고 하지도 말고, 침묵의 불편함이 싫어서 불필요한 말을 할 필요도 없고, 뭔가 의견이나 표현이 떠오르면 떠오르는 대로 자연스러운 모습 그대로 있는 것이 좋습니다. 통제하지 않는, 자유로운 목소리가 당신의 진정한 모습입니다."
-표현 센터(미정의) 추가 설명 질문,당신의 좋은 모습을 이해할 수 있겠죠? 좋지 않은 모습에 대해서도 알려줄까요?
-표현 센터(미정의) 추가 설명,당신은 다른 사람들의 주의를 끌기 위해 노력하기도 합니다. 다른 사람들이 당신에게 관심을 가져주지 않을까봐 걱정하고 주의를 끌기 위해 노력하는 경우가 있을 수 있습니다. 
-표현 센터(미정의) 추가 설명,"이것은 진정한 모습을 잃어버린 경우입니다. 쓸데없는 말을 많이 하게 되고, 어수선하고 번잡스러운 행동을 하거나, 인상을 남기기 위해 억지 모습을 보이는 것 등이 해당됩니다."
-생각 센터(미정의),당신은 늘 ‘이런 의견도 있구나. 저렇게 생각할 수도 있겠는데? 이 정보도 일리가 있어’ 라고 생각합니다.
-생각 센터(미정의),하지만 다른 한편으로는 ‘나는 왜 다 일리가 있다고 할까? 왜 자꾸 생각이나 의견이 바뀌지? 귀가 얇은가?’ 라는 생각도 듭니다. 걱정하지 마세요. 그것이 바로 당신의 건강한 모습입니다.
-생각 센터(미정의),당신에게는 어떤 생각이 더 좋은 것이고 어떤 의견이 더 맞는 것인지 구별할 수 있는 잠재력이 있으니 다양한 생각과 의견에 열린 자세를 갖고 살아가기 바랍니다.
-영감 센터(미정의),"평소에 생각이 많지 않다가 어떤 때는 지나치게 생각이 많아져 머리가 지끈거리거나, 생각을 하고 또 하다가 불면증에 시달린 경험들이 있나요? 이것은 당신 자신으로부터 비롯된 것이 아니라 외부의 영향 때문입니다."
-영감 센터(미정의),당신에게는 혼란과 영감을 잘 구별할 수 있는 잠재력이 있습니다.
-센터 마무리 멘트,당신의 {0}에 대해 설명해 보았어요.
+﻿title,korean,english
+센터 재설명,그럼 센터에 대해 다시 알려드릴게요!,Then let me tell you about the center again!
+센터 intro,지금부터 당신이 갖고 있는 9개의 센터에 대해 설명하려고해요.,Now I'm going to explain the nine centers you have.
+센터 intro,"모든 사람은 9개의 센터를 갖고 있고 자신이 갖고 있는 각 센터가 에너지를 발신(정의, 컬러)하는지 수신(미정, 흑백)하는지에 따라 다른 삶을 살게 됩니다.","Everyone has nine centers, and each of them leads a different life depending on whether each of them is transmitting (defining, color) or receiving (indeterminate, black and white) energy."
+센터 intro,"자, 시작해볼까요~","Come on, let's get started"
+연료 센터(미정의) intro,당신은 그동안 주변환경이 주는 불편한 압박감으로 인해 늘 뭔 가에 쫓기듯 바쁘게 살아오지 않았나요?,Have you been feeling the uncomfortable physical pressure of your surroundings and have been busy and chased by something?
+연료 센터(정의) intro,당신은 자신만의 특별한 방식으로 스트레스를 컨트롤하고 오히려 그것을 원동력 삼아 세상으로 나아갈 수 있는 능력을 갖고 태어난 사람입니다.,You are born with the ability to control stress in your own unique way and use it as a driving force to move into the world.
+활력 센터(미정의) intro,당신은 인류의 34%에 속하는 비교적 활력 에너지가 부족한 사람입니다.,"You belong to 34% of the human race, and you are relatively low in vital energy."
+활력 센터(정의) intro,"당신은 항상 몸에 활력 에너지가 존재하고, 다른 사람들의 지속적인 에너지 사용에 영향을 주는 사람입니다.",You are the one who always has vital energy in your body and influences continuous energy use of others.
+직관 센터(미정의) intro,당신은 생존에 대한 불안감으로부터 자유로울 수 있는 특별한 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 마스터봇의 설명을 잘 들어보기 바랍니다.,"You are a special person free from the anxiety of survival. If you are living a different life, listen carefully to this explanation."
+직관 센터(정의) intro,당신은 직관적으로 무엇이 나의 생존에 도움이 되는지 알아차릴 수 있는 능력을 갖고 태어난 사람입니다.,You are born with the ability to intuitively notice what is helpful to my survival.
+감정 센터(미정의) intro,당신은 다른 사람들의 감정 에너지에 영향을 받아 때론 억울하게도 다혈질이라는 얘기를 들을 수도 있습니다. 하지만 당신의 온전한 감정 에너지는 매우 평온한 사람입니다.,"You may have heard that you are sometimes hot-blooded, influenced by the emotional energy of other people.
+In fact, you are a very calm person with emotional energy."
+감정 센터(정의) intro,당신은 자신만의 감정 에너지를 갖고 있으며 당신이 발신하는 에너지는 다른 사람들의 감정에 영향을 미치도록 디자인되어 있는 사람입니다. 평소에 당신의 감정으로 인해 어려움이 있었다면 마스터봇의 설명에 집중해주기 바랍니다.,"You have your own emotional energy, and the energy you radiate is designed to affect the emotions of others.
+If you usually have difficulties due to your emotions, listen carefully to my explanation."
+에고 센터(미정의) intro,당신은 자신을 증명하거나 자신의 존재를 드러내기 위해 애쓸 필요가 없는 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 마스터봇의 설명을 잘 들어 보기 바랍니다.,"You are 63% of the human race who don't have to struggle to prove themselves or make their presence known. If you are living a different life, please listen carefully to this explanation."
+에고 센터(정의) intro,"당신은 다른 사람들과 약속을 하고 그것을 지키는 과정에서 별다른 스트레스를 받지 않고, 당신의 의지력을 잘 활용할 줄 아는 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 마스터봇의 설명을 잘 들어보기 바랍니다.","You are a person who knows how to make good use of your willpower, without much stress in the process of making and keeping promises to others.
+If you are living a different life, listen carefully to this explanation."
+방향 센터(미정의) intro,당신은 자유로운 정체성을 갖을 수 있는 특별한 사람입니다. 만약 당신이 그렇지 않은 삶을 살고 있다면 마스터봇의 설명을 잘 들어보기 바랍니다.,"You are a special person with a free identity.
+If you are living a different life, listen carefully to this explanation."
+방향 센터(정의) intro,당신은 자신의 정체성에 대한 안정된 확신을 갖고 있는 사람입니다.,You are a person with stable convictions about your identity.
+표현 센터(미정의) intro,당신은 자신의 의견을 말하거나 표현하기 위해 애쓰지 않아도 다른 사람들의 주의를 자연스럽게 끌 수도 있는 특별한 능력을 지닌 사람입니다.,You are a person with a special ability to naturally attract the attention of others without even trying to state or express your opinion.
+표현 센터(정의) intro,"당신은 자신만의 고유한 표현방식이 있고, 언제 표현해야 할 지를 알고 있는 사람입니다. 당신이 이러한 점에서 어려움을 겪고 있다면 마스터봇의 설명을 잘 들어보세요.","You have your own unique way of expressing yourself, and you know when to express yourself.
+If you're struggling with this, listen carefully."
+생각 센터(미정의) intro,당신은 다른 사람이나 다른 무언가로부터 오는 다양한 사고방식에 열려 있고 스폰지처럼 정보를 흡수할 수 있는 사람입니다.,You are a person who is open to different mindsets and absorbs information like a sponge that comes from other people.
+생각 센터(정의) intro,"당신은 생각하고 의견을 내는 데에 있어서 자신만의 일정한 방식을 갖고 있고, 자기 신념이 확고한 편입니다.","You have your own way of thinking and voicing your opinion, and you're fairly self-confident about your opinion."
+영감 센터(미정의) intro,"당신은 다른 사람이나 다른 무언가로부터 늘 영감을 받는 사람입니다. 또한, ‘누가 나에게 혼란을 주고, 누가 나에게 영감을 주는지 구별할 수 있는 사람이기도 합니다.","You are always inspired by other people or something else. Also, you can tell who confuses you and who inspires me."
+영감 센터(정의) intro,당신은 다른 사람들이 무언가에 대해 생각하도록 영감을 주는 사람입니다. 항상 머릿속에 떠오르는 의문에 대한 답을 찾는 사람이기도 합니다.,You are the one who inspires others to think about something. You are also a person who always seek answers to questions that come to mind.
+연료 센터(정의),인류의 60%는 연료센터에서 자신만의 에너지를 발신하며 다른 사람들이 내뿜는 압력에 좌우되지 않고 자신의 고유한 페이스대로 나아갈 수 있는 능력을 갖고 있습니다.,60% of humanity radiates their own energy from the root center and has the ability to move forward at their own pace without being influenced by the pressures exerted by others.
+연료 센터(정의),"당신은 바로 이러한 능력을 가진 사람입니다. 즉, 자신만의 스트레스를 원동력 삼아 세상에 없는 새로운 무엇인가를 만들러 온 사람들이라고 할 수 있습니다.","You are the one with these abilities. Therefore, you can be said to be able to create something new that does not exist in the world by using your own stress as a driving force."
+연료 센터(정의),연료센터는 3개의 다른 센터와 연결되어 있습니다. 직관센터와 연결되어 있다면 자신만의 정해진 방식으로 스트레스를 사용하여 삶의 잘못된 것들을 고치기 위해 애씁니다.,"The root center is connected to 3 other centers. If you are connected to an Intuition center, you work to fix the wrongs in your life using stress in your own way."
+연료 센터(정의),생존 자체를 위해 연료를 사용하고 그것을 통해 살아있음의 기쁨과 즐거움을 느낍니다.,"You use fuel for survival itself, and through it you feel the joy and pleasure of being alive."
+연료 센터(정의) 추가 설명 질문,다른 두개의 센터와의 관계도 설명해 볼까요?,Shall we also explain the relationship between the other two centers?
+연료 센터(정의) 추가 설명,당신의 연료센터가 감정센터와 연결될 경우 개인적 혹은 대인 관계에서의 감정적 스트레스에 대해 스스로의 방식으로 해소할 수 있습니다. 감정적 스트레스를 극복하는 과정을 통해서 더욱 감정에 성숙해지고 다채롭게 드러낼 수 있게 됩니다.,"When the root center is connected to the emotion center, you can relieve emotional stress in your personal or interpersonal relationships in your own way."
+연료 센터(정의) 추가 설명,"연료센터와 연결될 경우, 지나치게 스트레스에 노출되어 강박적인 성향을 가질 수 있습니다. 모든 스트레스에 무차별적으로 과민 반응하며 건강을 축낼 수 있습니다. 이러한 경우 자신의 스트레스를 주변으로 퍼트리지 않도록 주의하기 바랍니다.","When connected to a vitality center, you may have an obsessive tendency due to overexposure to stress.
+You can overreact indiscriminately to any stress and ruin your health.
+In this case, be careful not to spread your stress around you."
+활력 센터(정의),당신은 자신이 좋아하는 일을 위해서는 며칠 밤을 새우더라도 괜찮을 수 있는 에너지를 지니고 있습니다. 하지만 이 에너지는 당신이 정말 좋아하는 일을 위해서 사용할 때만 활성화될 수 있습니다. 그렇지 않다면 당신은 만성피로에 시달리는 활력 없는 사람이 되고 말 것입니다.,"You have the energy to spend a few nights doing what you love. But this energy can only be activated when you use it for something you really love. Otherwise, you'll end up with an inactive person suffering from chronic fatigue."
+활력 센터(정의),에너지를 활성화시킬 수 있는지 알기 위해서는 주변 사람들에게 “Yes” or “No”로 답이 가능한 형태의 질문을 받아야 합니다. 질문 받은 당신의 몸에서 바로 ‘Yes’라는 반응이 일어나는 일이라면 당신은 늘 활기찰 수 있습니다.,"To know if you can activate your energy, you need to ask the people around you to ask you a question that can be answered with “Yes” or “No”. You can always be energized if the response of 'Yes' occurs right away in your body being questioned."
+직관 센터(정의),"당신이 갖고 태어난 능력은 오직 지금 이 순간에만 적용되며 말로는 표현할 수 없는 내면적 인식입니다. 직관(직감)이라는 것은 특히 생명에 직결되고 즉흥적으로 일어나는 정보인데 예를 들면 “느낌이 쎄-해”, “그냥 내 촉이 그래”와 같은 느낌입니다.","This ability applies only atThis ability applies only at the present moment and is an inner awareness that cannot be expressed in words.
+Intuition is information that is directly related to life and occurs spontaneously, for example, “I have a strong feeling” and “I just feel this hunch”. the present moment and is an inner awareness that cannot be expressed in words."
+직관 센터(정의),"주의할 점은 직관센터는 한 번 경고를 주고 나면 다시 알려주지 않는다는 점입니다. 처음 직관에서 경고를 했을 때, 그것을 합리화하려는 생각이나 주변 분위기에 맞춰서 타협 혹은 미룰 경우 기회를 놓치게 됩니다.","It is important to note that the Intuition Center gives a warning once and does not notify you again. When you first give a warning from your intuition, if you compromise or postpone it according to your thoughts to rationalize it or the atmosphere around you, you will miss the opportunity."
+직관 센터(정의),"직관센터가 정의되어 있는 당신은, 더더욱 내면에 귀를 기울이고 그 경고를 무시해서는 안 됩니다. 경고를 무시할수록 당신은 자신의 건강을 잃게 됩니다.","If you have an Intuition Center defined, you must listen more closely and never ignore its warnings. The more you ignore the warning, the more you lose your health."
+직관 센터(정의),"직관센터의 경고를 신뢰하고 존중할 경우, 선천적인 면역력과 건강을 기반으로 나의 삶에서 위험요소들을 줄일 수 있습니다.","If you trust and respect the warnings, you can reduce the risk factors in your life based on your innate immunity and health."
+직관 센터(정의) 추가 설명 질문,직관센터는 당신의 건강과 밀접합니다. 좀더 설명을 들으시겠어요?,The Intuition Center is closely related to your health. Would you like more explanation?
+직관 센터(정의) 추가 설명,"세상에는 직관센터가 정의되어 있는 당신과 같은 부류의 사람들이 55%, 나머지 45%의 사람들은 직관센터가 미정입니다. 즉, 당신과 같은 생존에 대한 직관이 존재하지 않습니다.","In the world, 55% of people like you who have an intuition center have an intuition center, and the remaining 45% of people do not have an intuition center. In other words, there is no such intuition for survival as yours."
+직관 센터(정의) 추가 설명,"따라서, 직관센터 미정인 사람들에게는 직관센터가 정의된 사람이 옆에 함께 있어주는 것만으로도 기분이 좋고 건강이 좋아지는 것 같은 영향을 주기도 합니다.","For people with Intuition Center Undefined, just being with someone with Intuition Center Defined makes them feel good and has the same effect as improving their health."
+직관 센터(정의) 추가 설명,"당신의 직관센터 에너지가 건강하게 작동할 경우 삶에서 맞닥뜨릴 수 있는 위험요소에 대한 걱정과 두려움은 고민할 필요도 없으며, 그 결과 자연적으로 실존 그 자체를 깊이 경험할 수 있습니다.","When your intuition center energy is healthy, you don't have to worry about the dangers and fears you may face in life, and as a result, you can naturally experience your existence deeply."
+직관 센터(정의) 추가 설명,초 단위로 작동하는 직관센터의 면역체계가 당신을 지켜줍니다.,"The immune system of the Intuition Center, which works in seconds, protects you."
+감정 센터(정의),"인류의 절반은 자신만의 감정 에너지를 갖고 발신하며 살고 있고, 나머지 절반은 특별한 감정 에너지 없이 다른 절반이 발신하는 감정 에너지에 영향을 받으며 살아가고 있습니다.","Half of the human race is living with their own emotional energy, and the other half lives under the influence of the emotional energy emitted by the other half without their own special emotional energy."
+감정 센터(정의),이러한 감정 에너지와 관련된 센터를 감정센터라고 부릅니다. 감정센터가 정의되어 있는 사람들은 자신만의 감정 에너지의 사이클을 갖도록 디자인된 사람들입니다.,The center associated with this emotion energy is called the emotion center. People with defined emotional centers are those who are designed to have their own cycle of emotion energy.
+감정 센터(정의),당신은 감정센터가 정의되어 있는 사람에 속하므로 자신만의 고유한 감정 에너지의 사이클을 가지며 항상 감정의 업과 다운이 존재함을 느낍니다.,"Since you belong to a person with a defined emotion center, you have your own cycle of emotion energy, and you always feel that there is an up and down emotion."
+감정 센터(정의),"당신에게 인내심을 요구하는 것은 쉬운 일이 아닙니다. 당신은 늘 자신의 감정파도 속에서 파도가 높으면 상기되어 고조된 채로 쉽게 결정을 내려버리고, 파도가 낮으면 가라앉은 채로 아무것도 하지 않으려는 무기력한 모습을 보이기 쉽습니다.","Asking you to be patient is not an easy task. When the waves are high, you are always reminded of the high waves and easily make decisions when the waves are low, and when the waves are low, it is easy to show a helpless figure of not wanting to do anything."
+감정 센터(정의) 추가 설명 질문,감정의 사이클이라는 것이 좀 어색하죠? 조금더 설명을 들어보시겠어요?,Isn't it a bit awkward to have an emotional cycle? Could you please explain a little more?
+감정 센터(정의) 추가 설명,"감정대로 결정을 내리면, 안좋은 일을 Yes 해버리거나 좋은 일을 No 해버리는 경우가 많다는 걸 경험해 보았을거예요. 당신의 감정 사이클이 높지도 않고 낮지 않은 평정심일 때 중요한 결정을 하는 것이 매우 중요합니다.","If you made decisions based on emotion, you must have experienced that there are many cases where you say Yes to bad things or say No to good things.
+You have to make decisions when your emotion cycle is in a calm state that is neither high nor low."
+감정 센터(정의) 추가 설명,"당신의 감정이 어떠한지 알 수 있는 유일한 방법은 그 감정의 파도가 지나간 후에 아까 내가 어떤 상태였구나 (높은 파도였구나, 낮은 파도였구나) 라는 것을 스스로 알아차리는 수 밖에는 없습니다.",The only way to know the state of such an emotion is to find out for yourself as time passes after the current emotion has passed.
+감정 센터(정의) 추가 설명,"감정센터의 에너지는 달콤하고, 유혹적이며 강력합니다. 오직 자신의 감정의 흐름만 인내하고 지켜볼 수 있다면 얼마든지 자신에게 유리하게 사용할 수 있다는 겁니다.","The energy of the Emotion Center is sweet, seductive and powerful. If you can only patiently and watch the flow of your emotions, you can use it to your advantage."
+감정 센터(정의) 추가 설명,"당신이 감정적으로 명료하게 결정을 내리기 위해 인내하는 시간은 자연스레 다른 사람들에게도 똑같은 기다림의 시간이 되며, 그 기다림의 시간동안 그들은 결국 당신의 그 에너지를, 그 따스함을 더욱 원하게 됩니다.","The time you endure to make emotionally clear decisions naturally becomes the waiting time for other people, and during that time they end up wanting your energy and your warmth more."
+에고 센터(정의),"에고센터는 무언가를 하고 싶은 의지, 용기, 그리고 경쟁을 통해 성취해내는 에너지와 관련된 센터입니다. 이 센터가 정의되어 있는 사람들은 인류의 37% 정도이며 이러한 에너지를 계속 발신하면서 자신만의 의지와 용기로 세상과 맞서 싸우며 살아갑니다. 당신은 에고센터 정의에 해당하므로 이렇게 살아가도록 디자인되어 있습니다.","Ego center is a center related to the will, courage, and energy to achieve through competition.
+The people who have this center defined are about 37% of the human race, and they live by fighting the world with their own will and courage while continuing to transmit this energy.
+You are Ego Center Defined, so you are designed to live like this."
+에고 센터(정의),"당신이 무엇을 입을지, 어디서 일할지, 몇시간이나 일을 할지, 일을 처리하기 위해 시간이 얼마나 필요한지 모든 것을 스스로 통제하고 결정하고 싶어 합니다. 스스로의 가치를 잘 알고 있고 약간은 자신감을 과장하는 경향도 있습니다.","You want to control and decide for yourself what you wear, where you work, how many hours you work, and how much time you need to get things done.
+They know their worth and tend to exaggerate their self-confidence a bit."
+에고 센터(정의) 추가 설명 질문,"자, 에고센터 정의인 사람들에 대해 좀더 설명해볼까요?","Now, let's talk more about people who are the ego center justice."
+에고 센터(정의) 추가 설명,"당신은 일하는 것을 즐기는 편이고, 당신 스스로가 모든 것을 통제하고 결정할 수 있을 때 가장 자연스럽고 내면의 힘을 발휘할 수 있습니다.","You enjoy working, and you are most natural and at your best when you can control and make decisions for yourself."
+에고 센터(정의) 추가 설명,"자신의 목표한 것, 약속한 것을 지켜내는 과정을 즐기고, 주변 사람들에게도 그러한 과정을 즐기도록 영향력을 발휘합니다. 자신의 내면에 귀 기울일 때 의지력은 더욱 온전히 발휘되고 일과 휴식의 균형 뿐만 아니라 상황에 맞는 가장 적합한 해결책을 보여줍니다.","You enjoy the process of keeping your goals and promises, and you influence the people around you to enjoy the process as well. When you listen to yourself, your willpower is more fully exercised, and it reveals a work-rest balance as well as the most appropriate solution for the situation."
+에고 센터(정의) 추가 설명,"하지만, 누군가에 의해 무시되거나 거절되어 당신 에고의 의지력이 억눌릴 경우 건강에 안 좋은 영향을 미칩니다.","However, if your willpower is suppressed by being ignored or rejected by someone, it will adversely affect your health."
+에고 센터(정의) 추가 설명,"따라서, 무작정 의지력만 믿고 이것저것 일을 벌리거나 실현 가능성이 없는 허무맹랑한 약속만 내걸면서 성취를 이루지 못하고 낭비하게 되면 결국에는 사람들로부터 신뢰를 잃고 누구도 당신을 찾지 않게 될 수도 있음을 명심하기 바랍니다.","Therefore, please keep in mind that if you blindly trust your willpower and make things like this or that, or make empty promises that are not feasible, you may end up losing trust from people and no one looking for you if you waste your money without fulfilling it."
+방향 센터(정의),"당신은 자신의 방향센터에서 에너지를 발신하는 사람입니다. 이것을 방향센터 정의라고 부릅니다. 이러한 부류의 사람들은 사랑받는다는 게 어떤 느낌인지, 사랑을 주는 게 어떤 것인지 자신만의 감각을 가지고 있습니다.","We call this Direction Center defined.
+These types of people have their own sense of what it feels like to be loved and what it feels like to give love."
+방향 센터(정의),자기자신을 아끼고 스스로를 사랑하며 그와 같이 다른 사람들에게도 사랑을 전합니다.,"You care for yourself, you love yourself, and you share your love with others in your own ways."
+방향 센터(정의),삶에서 나의 길이 어디를 향하는지 내가 가야 할 방향을 알고 새로운 길을 개척하는 것도 어려움이 없습니다.,It is not difficult for you to know where your path is going in life and starting a new path.
+방향 센터(정의),"어디로 가야 하는지 길을 잃은 듯한 다른 사람들에게 안정감을 줄 수도 있고, 더 나아가 인류가 어느 방향을 향해야 하는지 진화하기 위한 길이 무엇인지 전하는 역할을 할 수도 있습니다.","It can provide a sense of security to others who seem lost on where to go, or it can serve as a reminder of where humanity should be headed and what the path to evolution is."
+방향 센터(정의) 추가 설명 질문,"자, 당신의 방향센터에 대해 이해가 되셨나요? 당신이 갖게 되는 딜레마에 대해서도 설명해 볼까요?",Can I explain the dilemma you are likely having?
+방향 센터(정의) 추가 설명,"방향센터 정의의 가장 큰 딜레마는 첫째로 “모든 사람들이 다들 자신이 어디를 향하여 가고 있는지 알고 있을 것이다” 라고 너무나 당연하게 생각한다는 점과, 둘째로 “내가 느끼는(자신이 향하는) 이 방향이 옳은 길이다” 라고 지나치게 다른 사람들에게 밀어붙일 수 있다는 점입니다.","The first is that you think “everyone will know where they are going”.
+The second is you clash often with people who think “This direction is the correct way”"
+방향 센터(정의) 추가 설명,모두의 길이 똑같지 않고 각자의 길이 다르다는 점을 이해하지 못한 채 사람들에게 지시하고 방향을 가르쳐주겠다며 이끌려고 할 경우 오히려 분열을 야기하고 불협화음을 만들 수 있습니다.,"Without understanding everyone’s path is different, trying to guide people by giving direction and lead them will often lead to division and dissonance."
+방향 센터(정의) 추가 설명,방향센터는 마치 자석처럼 작동하는데 양극을 모두 가지지 않고 한쪽 극만 가지고 있어 끌어당김만이 작용합니다. 바로 사랑이죠.,"Orientation centers act like magnets, but they don't have all poles, but only one pole, so only attraction works. That's love."
+방향 센터(정의) 추가 설명,"우리는 사랑을 서로 주고 받는 다라고 생각하지만, 실제로 더 정확히는 어느 한쪽이 반드시 더 주도적으로 사랑하게끔 되어있다는 것입니다.","We think of giving and receiving love, but more precisely, one of them is bound to love more proactively."
+방향 센터(정의) 추가 설명,"특히 주로 방향센터 정의가 사랑을 하는 쪽(주는 쪽)이 되고, 방향센터가 미정인 사람은 그것이 자신의 마음에 들 경우 증폭/반영해주게 되는 것이죠.","Usually, Direction Center Defined tends to be the one who gives love while the undefined person responds by amplifying the love that they receive if they like it."
+표현 센터(정의),당신은 표현센터를 통해 자신만의 고유한 표현방식으로 자신이 원하는 때에 하고 싶은 말이나 표현을 할 수 있는 능력을 타고난 사람입니다.,"Expression center has the ability to express your own unique way of expression, when you want, through actions such as words, songs, dances and gestures."
+표현 센터(정의),이것을 표현센터가 정의되어 있다고 말합니다. 표현센터는 당신을 구성하는 9개의 센터 중 중심점이고 당신이 가진 모든 것을 모아 당신의 내면을 외부세상에 표현하고 행동하도록 해줍니다.,"This means that the Expression center is defined.
+This center is the most important among the 9 centers that make up you, and everything you have comes together to express your inner world to the outside world."
+표현 센터(정의),"무슨 말을 해야 할 지, 어떻게 전달해야 할 지, 언제 표현하는 것이 좋을 지, 자신만의 감각을 가지고 있습니다.","You have your own sense of what to say, how to convey it, and when to express it."
+표현 센터(정의),하지만 자신만의 감각을 가지고 있는 것이 꼭 좋은 것만은 아닙니다. 표현센터가 어떤 센터에 연결되어 있느냐 에 따라 다양한 상황이 만들어지기 때문입니다.,But having your own senses is not necessarily a good thing. This is because various situations are created depending on which center the expression center is connected to.
+표현 센터(정의) 추가 설명 질문,어떤 상황들이 있을 수 있는지 좀더 얘기해 볼까요?,Let's talk a little bit more about what situations might be.
+표현 센터(정의) 추가 설명,"당신의 표현센터가 생각센터와 연결되면 자신이 정리한 논리와 개념들, 주장들을 내세우게 됩니다.","When your Expression Center expression is connected to the Mental Awareness Center, you will present your own organized logic, concepts, and arguments."
+표현 센터(정의) 추가 설명,"만약 직관센터와 연결되어 있다면 순간순간의 직감, 특히나 생존이나 안전, 건강에 대한 것들에 대해 표현하려고 합니다.","When connected to the Intuition Center, you try to express our intuition from moment to moment, especially about survival, safety, and health."
+표현 센터(정의) 추가 설명,"방향센터와 연결되어 있다면 자신의 정체성, 혹은 나아가야 하는 방향에 대해, 사랑에 대해 표현하려 하고, 활력센터와 연결되어 있다면 자신의 활력반응을 그대로 표현하고 실행하게 됩니다.","If you are connected to the Direction Center, you try to express your identity, the direction you need to go, and your love.
+If you are connected to the vitality center, you will express and execute your instinct as it is."
+표현 센터(정의) 추가 설명,"에고센터와 연결되어 있다면 자신의 의지/약속을 “나는 이걸 하고 싶어, 저걸 가지고 싶어, 이렇게 이렇게 하겠어” 와 같은 방식으로 드러내게 되고, 감정센터와 연결되어 있다면 나의 감정상태, 기분에 따라 행동하고 이야기합니다.","If you are connected to the Ego Center, you will reveal your will/promise in a way as “I want to do this, I want to have that, I will do this.”.
+If connected to the Emotion Center, you act and talk according to your emotional state and mood."
+생각 센터(정의),"도표나 그림을 떠올리며 생각을 하기도 하고, 어떤 소리가 들려와 생각하기도 하고, 과거에 했던 경험을 바탕으로 생각을 하는 등의 과정을 거쳐 자기만의 의견을 가지게 됩니다.","By recalling diagrams or pictures, hearing a certain sound and thinking, and thinking based on past experiences, you will create your own opinion."
+생각 센터(정의),"이렇게 형성된 당신의 의견은 좀처럼 바뀌지 않고, 외부의 영향에도 잘 흔들리지 않습니다. 하지만, 무언가를 이해하려고 집착적으로 생각하다가 근심에 휩싸일 수 있으니 생각은 생각일 뿐, 행동으로 옮기는 것에는 신중하기 바랍니다.","Your opinion formed in this way does not change easily and is not easily shaken by external influences. However, thinking is only a thought and you should be careful about putting it into action, as you can become overwhelmed by worry while thinking obsessively to understand something."
+영감 센터(정의),"때때로 과거의 경험이 떠올라 혼란스러울 수 있고, 무언가에 대한 의심이 들고, 알듯 말 듯 한 것을 명확히 알고 싶어지지만 이것은 단지 당신이 세상을 이해하기 위한 현상일 뿐입니다.","Sometimes the memories of the past can create confusion, you might start doubting about something, and you want to be clear about the unknown, but it's just your way of understanding the world."
+영감 센터(정의),"억지로 답을 찾으려는 노력을 하는 동안에는 답이 보이지 않고, 답을 찾기를 멈추었을 때, 답을 보게 될 것입니다.","You will not see the answer while you are trying to deliberately find it, but you will see it when you stop looking for it."
+연료 센터(미정의),누구나 갖고 있는 9개의 센터 중에서 연료센터는 우리 몸에 주어지는 육체적 압박감에 대한 에너지와 관련이 있습니다. 당신은 인류의 40%에 해당하는 연료센터가 정의되어 있지 않은 사람에 해당합니다.,The root center is related to the energy of the physical pressure that is placed on our body. You belong in the 40% of humanity who have an undefined root center.
+연료 센터(미정의),연료센터는 우리 몸의 아드레날린과 관련이 있는데 연료센터가 미정인 당신은 이것이 꾸준하지 않기 때문에 한 번 일을 시작해도 그것을 오래도록 이어가진 못합니다.,"The root center is related to our body's adrenaline, and if you have an undefined root center, you won't be able to keep it for long once you start working because it's not steady."
+연료 센터(미정의),그러다 보니 한가지를 진득하게 하기보다는 이것 하다 저것 하다 분주하기만 하기 쉽죠. 초점이 없이 여러가지에 바쁘기만 합니다.,"As a result, it’s easier to just get busy with this and that rather than trying to do one thing."
+연료 센터(미정의),당신은 주변의 모든 일을 자신이 받아서 하려고 나서거나 해결할 수 없는 압박감을 해결하기 위해 바쁘곤 합니다. 그러다 보면 결국에는 탈진하거나 번아웃되어 질려버리고 말죠.,"You need someone to dump your emotions to to take on everything around you or to deal with the pressure you can't handle.
+Eventually, you end up exhausted or burned out."
+연료 센터(미정의),자각하지 못한 채 외부로부터 들어오는 압박에 의해 자신이 작동되도록 내버려두게 됩니다. 당신이 느끼는 대부분의 압박감은 당신 자신의 것이 아니라는 것을 자각하기 바랍니다.,"Without realizing it, you allow yourself to be activated by external pressure. Realize that most of the pressure you feel is not your own."
+연료 센터(미정의) 추가 설명 질문,"자, 이제는 극복할 수 있는 방법에 대해 좀더 얘기해볼까요?","Now, let's talk a little bit more about how to overcome it."
+연료 센터(미정의) 추가 설명,외부로부터 압박감을 느낄 때는 두가지 방법으로 대처할 수 있습니다.,"When you feel pressure from the outside, you can deal with it in two ways."
+연료 센터(미정의) 추가 설명,"한가지는 그 압박감에 휘둘리지 않고 잠시 자신만의 공간으로 물러나 심호흡 하며 정돈하는 것이고, 다른 하나는 그 압박감에 기꺼이 자신을 내맡겨 상황 자체를 자신에게 유리하게 사용하는 것입니다.","One way is to not be swayed by the pressure, but to step back to your own space and time for a while and take a deep breath to organize, and the other method is to willingly surrender to the pressure and experience the situation itself fully."
+연료 센터(미정의) 추가 설명,"대부분의 경우에는 그저 뭔 지 모를 압박감과 불편함에 무엇이라도 하면서 자신을 바쁘게 만들 뿐, 그것이 좋은 성과나 어떤 결과물로 이어지지는 못합니다.","In most cases, they do something to make themselves busy with unknown pressure and discomfort, but that doesn't lead to good results or any results."
+연료 센터(미정의) 추가 설명,오히려 좌충우돌 사고만 치고 사건만 만들기 쉽죠. 당신은 그러한 압박으로부터 자유로울 수 있는 존재라는 것을 잊지 말기 바랍니다.,"Rather, it's easier to just make an accident. Don't forget that you can be free from such pressure."
+활력 센터(미정의),"더 일하고 싶고, 더 공부하고 싶고, 더 놀고, 더 자고, 더 먹고 싶다 등등 당신은 늘 아쉽습니다. 더 해야 할 것 같고, 더 했으면 좋겠는데 생각과 달리 체력이 따라주지 않습니다.","You want to work more, study more, play more, sleep more, eat more, etc. which makes you sad. You think you need to do more, but your stamina can’t keep up."
+활력 센터(미정의),그럼에도 늘 ‘더 하고 싶어!! 더 할 거야!!’ 라고 생각하며 늘 지나치게 무언가를 합니다. 자신에게 활력 에너지가 부족함에도 마치 가지고 있는 것처럼 착각하기 쉽습니다.,"Still, you always say, ‘I want to do more!! I'll do more!!' and you always overdo something. Even if you lack vital energy, it is easy to mistake it as if you have it."
+활력 센터(미정의),당신은 활력 에너지를 통해 생산적인 일을 하는데 적합한 사람이 아니므로 절대 무리하지 말고 되도록 많이 쉬어줄 수 있기를 바랍니다.,"You are not the right person to do productive things with your vital energy, so please don't overdo it and get as much rest as possible."
+직관 센터(미정의),인류의 45%는 생존에 대한 두려움이나 불안감에 대한 감각이 거의 없습니다. 반면 나머지 55%는 본능적으로 생존에 대한 위협에 대한 자신만의 감각을 지니고 있습니다.,"45% of humanity has little sense of fear or insecurity about survival.
+The remaining 55%, on the other hand, instinctively have their own sense of threat to survival."
+직관 센터(미정의),"이러한 역할을 담당하는 센터를 직관센터라고 부르고 당신이 속한 45%의 부류를 직관센터가 정의되어 있지 않다, ‘직관센터 미정’이라고 말합니다.","The center that takes on this role is called Intuition, and the 45% to which you belong is called Intuition Center Undefined."
+직관 센터(미정의),"즉, 당신의 직관센터는 에너지를 발신하지 않으므로 두려움이나 불안감에 대해 별다른 감각을 갖고 있지 않고, 건강한 상태의 직관센터 미정이라면 오히려 이러한 부분에 대해 편안함을 느끼며 살게 됩니다.","In other words, your Intuition Center does not transmit energy, so you do not have much sense of fear or anxiety, and if you are in a healthy undefined state, you will feel comfortable living in these areas."
+직관 센터(미정의),하지만 우리의 삶은 늘 다른 사람들 과의 관계속에서 이루어지므로 나머지 55%의 사람들이 발신하는 에너지들이 당신과 같은 미정들에게도 영향을 미치게 됩니다.,"But since our lives are always built in relationships with other people, the energy emitted by the remaining 55% of people affects undefined people like you."
+직관 센터(미정의),"즉, 당신 자신은 별다른 두려움이나 불안감이 없음에도 가까운 사람이 발신하는 에너지를 받거나 심지어 증폭해서 두려움과 불안감을 느끼게 될 수 있습니다.","In other words, you may receive, or even amplify, the energy from someone close to you, even if you don't have much fear or anxiety yourself."
+직관 센터(미정의) 추가 설명 질문,"자, 당신이 알아야 할 점을 좀더 얘기해 볼까요?","Now, let's talk more about what you need to know."
+직관 센터(미정의) 추가 설명,직관센터가 미정인 사람들은 가까운 사람들이 발신하는 에너지에 영향을 받아 안정감을 느끼는 경우가 많습니다. 그것이 그 사람에 대한 의존성을 크게 만들기도 합니다.,"People whose Intuition Center is undefined often feel a sense of security, influenced by the energy emitted by those close to them.
+It also creates a great dependence on that person."
+직관 센터(미정의) 추가 설명,특히 가족관계나 연인관계에서 더욱 그렇습니다. 그 사람의 존재(영향력)가 나의 생존을 보장해주는 느낌이니까요.,"This is especially true in family or romantic relationships.
+Because that person's presence (influence) guarantees my survival."
+직관 센터(미정의) 추가 설명,"이렇게 직관센터가 정의되어 있는 사람의 영향력에 얽매여 있게 된 경우, 그 사람이 주는 직관 정의의 안정감이 너무 크기 때문에 언제 헤어져야 할지, 제대로 관계를 정리해야 할지 모를 수 있습니다.","If you are bound by the influence of a person whose Intuition Center is defined in this way, you may not know when to break up or properly organize the relationship because the stability of the intuition definition given by that person is so great."
+감정 센터(미정의),"인류의 절반은 자신만의 감정 에너지를 갖고 발신하며 살고 있고, 나머지 절반은 특별한 감정 에너지 없이 다른 절반이 발신하는 감정 에너지에 영향을 받으며 살아가고 있습니다.","Half of humanity has their own fixed emotional energy and lives by transmitting it, and the other half lives by receiving and being affected by the emotional energy emitted by the other half without special emotional energy."
+감정 센터(미정의),이러한 감정 에너지와 관련된 센터를 감정센터라고 부릅니다. 감정센터가 정의되어 있는 사람들은 자신만의 감정 에너지의 사이클을 갖도록 디자인된 사람들입니다.,"The center associated with this emotion energy is called the emotion center. People with defined emotional centers are those who are designed to have their own cycle of emotion energy.
+They are people who always have a wave of emotions."
+감정 센터(미정의),나머지 절반의 사람들은 감정센터 미정으로 자신만의 감정 에너지를 발신하지 않고 주변에서 발신하는 감정 에너지의 영향을 받게 됩니다. 물론 좋은 감정 에너지의 발신은 감정센터 미정들에게도 너무나 큰 행복감을 줄 수 있습니다.,"The other half of the people are Emotion Center Undefined and do not send their own emotional energy, but are affected by the emotional energy emitted from their surroundings.
+Sending out good emotion energy can give too much happiness to the ones with undefined emotion center, but when receiving bad emotion energy, it amplifies at least two to ten times more."
+감정 센터(미정의),당신은 감정센터 미정에 속하는 사람이므로 늘 다른 사람들의 감정 에너지 흐름에 민감하고 그것에 좌우되는 경우가 많습니다.,"Since you belong to the emotion center undefined, you are always sensitive to the flow of other people's emotional energy and are often influenced by it."
+감정 센터(미정의) 추가 설명 질문,"자, 감정센터와 관련되어 조심할 점을 좀더 얘기해 볼까요?","Now, let's talk a little bit more about the emotional center and what to watch out for."
+감정 센터(미정의) 추가 설명,당신의 감정센터는 마치 열려 있는 창문과 같습니다. 여러 감정들을 받아들이고 그것을 분석합니다. 여기서 잊지 말아야 할 점은 객관성을 잃어서는 안 된다는 점입니다. 그 감정에 빠져들거나 개인적인 것으로 받아들여선 안 됩니다.,"Your emotion center is like an open window. It takes in multiple emotions and analyzes them.
+The important thing to remember here is that you must not lose your objectivity. Don't get caught up in that emotion or take it personally."
+감정 센터(미정의) 추가 설명,"그렇게 되면 창문은 투명성을 잃고, 전체의 감정이 아닌 자신이 원하는 편협하고 일부분의 감정들만 받아들이고, 나머지는 외면하거나 거절하게 됩니다.","When that happens, the window loses its transparency and accepts only the narrow and partial emotions that it wants, not the whole feeling, and turns away or rejects the rest."
+감정 센터(미정의) 추가 설명,"그렇게 점차 자신의 감정상태 뿐만 아니라 주변의 감정 상태에 대해서도 혼란스러움만 커지고 감정 업 다운에 끊임없이 휩쓸릴 경우, 그 불편함을 해소하기 위해 오히려 더욱 과민하게 반응하거나, 별 일 아닌 데도 과장되게 더 억지스럽게 표현하곤 합니다.","In this way, when the confusion about not only one's own emotional state but also the emotional state of those around him grows and he is constantly swept up and down by emotional ups and downs, he reacts more sensitively to relieve the discomfort, or exaggerates and forcibly often express."
+감정 센터(미정의) 추가 설명,다른 사람들의 감정에 좌우되지 않도록 주의하기 바랍니다.,Be careful not to be influenced by other people's emotions.
+에고 센터(미정의),"에고센터는 무언가를 하고 싶은 의지, 용기, 그리고 경쟁을 통해 성취해내는 에너지와 관련된 센터입니다.","Ego center is a center related to the will to do something, courage, and energy to achieve through competition."
+에고 센터(미정의),이 센터가 정의되어 있는 인류의 37%의 사람들은 이러한 에너지를 계속 발신하면서 자신만의 의지와 용기로 세상과 맞서 싸우며 살아갑니다. 하지만 당신이 속한 63%의 사람들은 이러한 경쟁의 부담감으로부터 자유로운 사람들입니다.,37% of mankind whose center is defined continue to transmit these energies while fighting against the world with their own will and courage. But 63% of the people you belong to are free from the pressure of this competition.
+에고 센터(미정의),"다른 사람들에게 무엇을 해주어 나의 가치를 인정받고 싶다 거나, 내가 무엇인가를 성취하여 나의 존재를 드러내고 싶다 거나, 지금의 이 경쟁에서 이겨내고 싶다는 부담을 전혀 느낄 필요가 없는 사람들입니다.","These are people who do not need to feel the pressure of wanting to be recognized for their worth by doing something to others, wanting to show their existence by achieving something, or wanting to win the current competition."
+에고 센터(미정의) 추가 설명 질문,"자, 에고센터 미정인 사람들이 빠지기 쉬운 함정에 대해 좀더 설명해줄까요?","Now, can I explain a bit more about the pitfalls that people with Ego Center undefined fall into?"
+에고 센터(미정의) 추가 설명,"하지만, 에고센터가 정의되어 있는 사람들과 섞여 살수 밖에 없으므로 그들이 발신하는 에너지를 수신하고 심지어 증폭함으로써 굳이 지킬 수 없는 약속을 하거나 자신을 채찍질하고 밀어붙이는 삶을 살게 되기 쉽습니다.","Since you have no choice but to live with people with a Defined Ego Center, it is easy to live a life of making useless promises and pushing yourself by receiving and even amplifying the energy they send out."
+에고 센터(미정의) 추가 설명,"우리가 살아가는 현대사회에서는 항상 “더 빠르고, 예쁘고, 강하고, 성공적이고, 부자일 수 있다!” 라는 에너지로 가득합니다. 에고센터 미정인 당신은 이 에너지 안에 갇혀 함정에 빠진 채 끊임없이 자신을 채찍질하고 밀어붙입니다.","In the modern society we live in, there is always “you can be faster, prettier, stronger, more successful, and richer!” energy. As Ego Center Undefined, you are trapped in this energy, constantly whipping and pushing yourself into a trap."
+에고 센터(미정의) 추가 설명,"자신이 내건 약속을 지키기 위해 이들은 더 큰 약속을 만들기를 반복하고, 결국 자신의 무능력을 느끼며 다시 추락합니다. 실패할 때 마다, 더 상황은 나빠지고 자존감은 바닥에 떨어지게 되죠.","In order to keep the promise they made, they repeatedly make bigger promises, and in the end they feel their own incompetence and fall again. Every time you fail, things get worse and your self-esteem plummets."
+에고 센터(미정의) 추가 설명,"당신이 지금 약속을 지키기 위한 큰 부담을 갖고 있거나, 자신의 무능력에 대한 자괴감에 시달리고 있다면, 그러한 부담감이 어디서부터 출발하고 있는지 돌아보면 좋겠습니다.","If you are currently under a lot of pressure to keep your promises or are suffering from a sense of shame about your incompetence, it would be a good idea to look back on where that pressure is coming from."
+에고 센터(미정의) 추가 설명,당신은 그러한 것으로부터 자유로운 사람으로 디자인되었음을 다시한번 돌아보기 바랍니다.,want you to look back once again and remind yourself that you are designed to be free from such things.
+방향 센터(미정의),"당신은 고정된 정체성을 갖기 보다는 어느 환경, 어느 자리에서 든 자유롭게 자기 자신을 녹여낼 수 있는 특징을 갖고 있습니다.","Rather than having a fixed identity, you have the characteristic of being able to freely dissolve yourself in any environment and anywhere."
+방향 센터(미정의),당신은 자신만의 방향성을 갖고 있기 보다는 다른 사람들의 영향력에 의해 여기저기로 항하게 되며 그러한 과정을 거치면서 자신의 방향으로 점차 맞춰 나갑니다.,"Rather than having your own direction, you are navigating here and there under the influence of other people, and gradually adjust to your own direction through the process."
+방향 센터(미정의),"여기저기를 경험하는 동안 자신만의 정체성을 쌓아가며 자신만의 아지트, 집중할 수 있는 곳, 즐겨가는 단골가게 등을 만들어갑니다. 이러한 모든 것들이 모여 당신의 방향을 만들어줍니다.","While experiencing here and there, you build your own identity and make your own special place, place to focus, and regular shops that you enjoy.
+All of these things come together to shape your direction."
+방향 센터(미정의) 추가 설명 질문,"자, 당신의 정체성과 방향성에 대해 이해가 되었나요? 당신에 대해 흥미로운 조언을 좀더 해드릴까요?","Now, do you understand your identity and direction?
+Can I give you some more interesting advice about you?"
+방향 센터(미정의) 추가 설명,당신은 특히 장소에 민감합니다. 당신에게 알맞은 장소가 아니라면 그곳에서 만나는 사람들 또한 적합하지 않을 확률이 매우 높습니다.,"You are particularly sensitive to places.
+If it's not the right place for you, it's very likely that the people you meet there won't be either."
+방향 센터(미정의) 추가 설명,좋은 사람을 만나고 싶다면 당신에게 좋은 느낌을 주는 장소들을 찾아야 합니다. 아무리 좋은 사람을 만나더라도 장소가 마음에 들지 않는다면 그 사람과 어떠한 흐름도 이어지지 않습니다.,"If you want to meet good people, you need to find places that make you feel good.
+No matter how good a person you meet, if you don't like the place, there will be no connection with that person."
+방향 센터(미정의) 추가 설명,새로운 장소에서 다시 시작해 보세요. 이것이 바로 당신이 자신의 방향을 찾아가는 방법입니다.,"Try again in a new place.
+This is how you find your direction."
+표현 센터(미정의),"당신이 애쓰지 않고 다른 사람들에 의해 초대되어질 때 가장 자연스럽게 주의가 모아지고, 가장 좋은 타이밍에, 가장 힘들이지 않고, 제일 효과적인 반응을 이끌어낼 수 있습니다.","When you're invited by others without effort, you'll get the most natural attention, the best timing, the least effort, and the most effective response."
+표현 센터(미정의),"억지로 고민하며 말을 하려고 하지도 말고, 침묵의 불편함이 싫어서 불필요한 말을 할 필요도 없고, 뭔가 의견이나 표현이 떠오르면 떠오르는 대로 자연스러운 모습 그대로 있는 것이 좋습니다. 통제하지 않는, 자유로운 목소리가 당신의 진정한 모습입니다.","There is no need to say anything unnecessary just because you don't like the discomfort of silence.
+When an opinion or expression comes to mind, it's best to be as natural as possible.
+An uncontrolled, free voice is who you really are."
+표현 센터(미정의) 추가 설명 질문,당신의 좋은 모습을 이해할 수 있겠죠? 좋지 않은 모습에 대해서도 알려줄까요?,Do you understand your good side? Can I tell you about the bad side?
+표현 센터(미정의) 추가 설명,당신은 다른 사람들의 주의를 끌기 위해 노력하기도 합니다. 다른 사람들이 당신에게 관심을 가져주지 않을까봐 걱정하고 주의를 끌기 위해 노력하는 경우가 있을 수 있습니다.,"You often try too hard to get other people's attention.
+There may be times when you are worried that other people will not be interested in you so you are trying extra hard to get attention."
+표현 센터(미정의) 추가 설명,"이것은 진정한 모습을 잃어버린 경우입니다. 쓸데없는 말을 많이 하게 되고, 어수선하고 번잡스러운 행동을 하거나, 인상을 남기기 위해 억지 모습을 보이는 것 등이 해당됩니다.","This is when you lose your true self.
+This includes saying a lot of useless things, engaging in cluttered and cumbersome actions, or making a fake appearance to impress."
+생각 센터(미정의),당신은 늘 ‘이런 의견도 있구나. 저렇게 생각할 수도 있겠는데? 이 정보도 일리가 있어’ 라고 생각합니다.,"You always say, ""Some may have this opinion. You might think differently. This information also makes sense’."
+생각 센터(미정의),하지만 다른 한편으로는 ‘나는 왜 다 일리가 있다고 할까? 왜 자꾸 생각이나 의견이 바뀌지? 귀가 얇은가?’ 라는 생각도 듭니다. 걱정하지 마세요. 그것이 바로 당신의 건강한 모습입니다.,"But on the other hand, 'Why do I say everything makes sense? Why do I keep changing my thoughts and opinions? Am I wishy-washy?’ I wonder. Do not worry. That's your healthy look."
+생각 센터(미정의),당신에게는 어떤 생각이 더 좋은 것이고 어떤 의견이 더 맞는 것인지 구별할 수 있는 잠재력이 있으니 다양한 생각과 의견에 열린 자세를 갖고 살아가기 바랍니다.,"You have the potential to distinguish which ideas are better and which ones are better for you, so live with an open mind to different ideas and opinions."
+영감 센터(미정의),"평소에 생각이 많지 않다가 어떤 때는 지나치게 생각이 많아져 머리가 지끈거리거나, 생각을 하고 또 하다가 불면증에 시달린 경험들이 있나요? 이것은 당신 자신으로부터 비롯된 것이 아니라 외부의 영향 때문입니다.","Do you sometimes have too many thoughts, so you have a headache, or keep yourself awake at night thinking things over and over again? This is not because of yourself, but because of external influences."
+영감 센터(미정의),당신에게는 혼란과 영감을 잘 구별할 수 있는 잠재력이 있습니다.,You have the potential to distinguish between confusion and inspiration.
+센터 마무리 멘트,당신의 {0}에 대해 설명해 보았어요.,I explained about your {0}.
