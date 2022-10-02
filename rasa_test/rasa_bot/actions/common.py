@@ -76,7 +76,7 @@ def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
     return answer
 
 
-def unego_get_question(ct, unego_count, defined=False):
+def unego_get_question(ct, unego_count,lang, defined=False):
     question = ""
     # 0: 연료, 1: 활력, 2: 직관, 3: 감정, 4: 에고, 5: 방향, 6: 표현, 7: 생각, 8: 영감
     # 연료센터
