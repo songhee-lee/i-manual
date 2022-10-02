@@ -18,8 +18,8 @@ import pandas as pd
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
 etc_description = []
-etc_description.append['korean'].values.tolist()
-etc_description.append['english'].values.tolist()
+etc_description.append(etc_description_csv['korean'].values.tolist())
+etc_description.append(etc_description_csv['english'].values.tolist())
 
 
 def change_gate_to_center(gate):
