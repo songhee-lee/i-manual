@@ -13,9 +13,13 @@ import pandas as pd
 
 unego_description_csv = pd.read_csv("./data/자아_비자아 question.csv")
 unego_description = unego_description_csv['paragraph'].values.tolist()
+unego_description.append(unego_description_csv['korean'].values.tolist())
+unego_description.append(unego_description_csv['english'].values.tolist())
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
 etc_description = etc_description_csv['paragraph'].values.tolist()
+etc_description.append(etc_description_csv['korean'].values.tolist())
+etc_description.append(etc_description_csv['english'].values.tolist())
 logger = logging.getLogger(__name__)
 
 center_defined_csv = pd.read_csv("./data/center(defined).csv")
@@ -36,26 +40,76 @@ strategy3_csv = pd.read_csv("./data/strategy(guide).csv")
 strategy4_csv = pd.read_csv("./data/strategy(mirror).csv")
 
 cd_title = center_defined_csv['title'].values.tolist()
+cd_title.append(center_defined_csv['korean'].values.tolist())
+cd_title.append(center_defined_csv['english'].values.tolist())
+
 cud_title = center_undefined_csv['title'].values.tolist()
+cud_title.append(center_undefined_csv['korean'].values.tolist())
+cud_title.append(center_undefined_csv['english'].values.tolist())
+
 def_title = definition_csv['title'].values.tolist()
+def_title.append(definition_csv['korean'].values.tolist())
+def_title.append(definition_csv['english'].values.tolist())
+
 prf_title = profile_csv['title'].values.tolist()
+prf_title.append(profile_csv['korean'].values.tolist())
+prf_title.append(profile_csv['english'].values.tolist())
 
 cd_paragraph = center_defined_csv['paragraph'].values.tolist()
+cd_paragraph.append(center_defined_csv['korean'].values.tolist())
+cd_paragraph.append(center_defined_csv['english'].values.tolist())
+
 cud_paragraph = center_undefined_csv['paragraph'].values.tolist()
+cud_paragraph.append(center_undefined_csv['korean'].values.tolist())
+cud_paragraph.append(center_undefined_csv['english'].values.tolist())
+
 def_paragraph = definition_csv['paragraph'].values.tolist()
+def_paragraph.append(definition_csv['korean'].values.tolist())
+def_paragraph.append(definition_csv['english'].values.tolist())
+
 prf_paragraph = profile_csv['paragraph'].values.tolist()
+prf_paragraph.append(profile_csv['korean'].values.tolist())
+prf_paragraph.append(profile_csv['english'].values.tolist())
 
 type0_paragraph = type0_csv['paragraph'].values.tolist()
+type0_paragraph.append(type0_csv['korean'].values.tolist())
+type0_paragraph.append(type0_csv['english'].values.tolist())
+
 type1_paragraph = type1_csv['paragraph'].values.tolist()
+type1_paragraph.append(type1_csv['korean'].values.tolist())
+type1_paragraph.append(type1_csv['english'].values.tolist())
+
 type2_paragraph = type2_csv['paragraph'].values.tolist()
+type2_paragraph.append(type2_csv['korean'].values.tolist())
+type2_paragraph.append(type2_csv['english'].values.tolist())
+
 type3_paragraph = type3_csv['paragraph'].values.tolist()
+type3_paragraph.append(type3_csv['korean'].values.tolist())
+type3_paragraph.append(type3_csv['english'].values.tolist())
+
 type4_paragraph = type4_csv['paragraph'].values.tolist()
+type4_paragraph.append(type4_csv['korean'].values.tolist())
+type4_paragraph.append(type4_csv['english'].values.tolist())
 
 strategy0_paragraph = strategy0_csv['paragraph'].values.tolist()
+strategy0_paragraph.append(strategy0_csv['korean'].values.tolist())
+strategy0_paragraph.append(strategy0_csv['english'].values.tolist())
+
 strategy1_paragraph = strategy1_csv['paragraph'].values.tolist()
+strategy1_paragraph.append(strategy1_csv['korean'].values.tolist())
+strategy1_paragraph.append(strategy1_csv['english'].values.tolist())
+
 strategy2_paragraph = strategy2_csv['paragraph'].values.tolist()
+strategy2_paragraph.append(strategy2_csv['korean'].values.tolist())
+strategy2_paragraph.append(strategy2_csv['english'].values.tolist())
+
 strategy3_paragraph = strategy3_csv['paragraph'].values.tolist()
+strategy3_paragraph.append(strategy3_csv['korean'].values.tolist())
+strategy3_paragraph.append(strategy3_csv['english'].values.tolist())
+
 strategy4_paragraph = strategy4_csv['paragraph'].values.tolist()
+strategy4_paragraph.append(strategy4_csv['korean'].values.tolist())
+strategy4_paragraph.append(strategy4_csv['english'].values.tolist())
 
 center_index = [0, 2, 3, 4, 5, 6]
 center_info = ["연료 센터", "활력 센터", "직관 센터", "감정 센터", "에고 센터", "방향 센터", "표현 센터", "생각 센터", "영감 센터"]
@@ -64,15 +118,15 @@ center_info = ["연료 센터", "활력 센터", "직관 센터", "감정 센터
 def type_retrieve_context(i, context_index):
     type_context = ''
     if i == 0:
-        type_context = type0_paragraph[context_index]
+        type_context = type0_paragraph[lang][context_index]
     elif i == 1:
-        type_context = type1_paragraph[context_index]
+        type_context = type1_paragraph[lang][context_index]
     elif i == 2:
-        type_context = type2_paragraph[context_index]
+        type_context = type2_paragraph[lang][context_index]
     elif i == 3:
-        type_context = type3_paragraph[context_index]
+        type_context = type3_paragraph[lang][context_index]
     elif i == 4:
-        type_context = type4_paragraph[context_index]
+        type_context = type4_paragraph[lang][context_index]
 
     return type_context
 
@@ -80,15 +134,15 @@ def type_retrieve_context(i, context_index):
 def strategy_retrieve_context(i, context_index):
     strategy_context = ''
     if i == 0:
-        strategy_context = strategy0_paragraph[context_index]
+        strategy_context = strategy0_paragraph[lang][context_index]
     elif i == 1:
-        strategy_context = strategy1_paragraph[context_index]
+        strategy_context = strategy1_paragraph[lang][context_index]
     elif i == 2:
-        strategy_context = strategy2_paragraph[context_index]
+        strategy_context = strategy2_paragraph[lang][context_index]
     elif i == 3:
-        strategy_context = strategy3_paragraph[context_index]
+        strategy_context = strategy3_paragraph[lang][context_index]
     elif i == 4:
-        strategy_context = strategy4_paragraph[context_index]
+        strategy_context = strategy4_paragraph[lang][context_index]
 
     return strategy_context
 
@@ -138,6 +192,7 @@ class ActionQuestion(Action):
         return "action_question"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        lang = tracker.get_slot('lang')
         print('action_question')
 
         metadata = extract_metadata_from_tracker(tracker)
@@ -169,7 +224,7 @@ class ActionDefaultFallback(Action):
         return "action_default_fallback"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
+        lang = tracker.get_slot('lang')
         print('action_default_fallback')
 
         metadata = extract_metadata_from_tracker(tracker)
@@ -316,7 +371,7 @@ class ActionDefaultFallback(Action):
         # 올바른 질문이 아닌경우
         if is_question and answer == "":
             # 다시 action_default_fallback으로 넘어오는 분기 필요!!
-            answer = etc_description[7]
+            answer = etc_description[lang][7]
 
             dispatcher.utter_message(answer)
             buttons = []
@@ -328,7 +383,7 @@ class ActionDefaultFallback(Action):
                 buttons.append(
                     {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
                 buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
-            dispatcher.utter_message(etc_description[4], buttons=buttons)
+            dispatcher.utter_message(etc_description[lang][4], buttons=buttons)
             return [SlotSet("step", step)]
 
         # QA이면
@@ -349,7 +404,7 @@ class ActionDefaultFallback(Action):
                     {"title": f'질문 없어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
             dispatcher.utter_message(f'{answer}')
-            dispatcher.utter_message(etc_description[6], buttons=qa_buttons)
+            dispatcher.utter_message(etc_description[lang][6], buttons=qa_buttons)
 
         # 감정분석이면
         else:
@@ -365,7 +420,7 @@ class ActionDefaultFallback(Action):
 
                     # 자아인 경우
                     if sentiment_result > 0:
-                        dispatcher.utter_message(unego_description[91], json_message={
+                        dispatcher.utter_message(unego_description[lang][91], json_message={
                             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69201.wav"
                         })#좋아요 나답게 잘 살고 있어요
                         answer = unego_question[1] #자아 comment
@@ -379,7 +434,7 @@ class ActionDefaultFallback(Action):
 
                     # 비자아 혹은 중립인 경우
                     else:
-                        message = unego_description[92].format(center_info[center_type])
+                        message = unego_description[lang][92].format(center_info[center_type])
                         dispatcher.utter_message(message, json_message={
                             "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[4]
                         })#~~에 대한 나다움을 잃고 있어요
@@ -408,8 +463,8 @@ class ActionDefaultFallback(Action):
                 notice_buttons.append(
                     {"title": f'질문 없어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
-                notice = etc_description[8]
-                notice2 = etc_description[9]
+                notice = etc_description[lang][8]
+                notice2 = etc_description[lang][9]
                 dispatcher.utter_message(f'{notice}')
                 dispatcher.utter_message(f'{notice2}', buttons=notice_buttons)
 
@@ -421,6 +476,7 @@ class ActionQuestionIntro(Action):
         return "action_question_intro"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        lang = tracker.get_slot('lang')
         print('action_question_intro')
         metadata = extract_metadata_from_tracker(tracker)
 
@@ -468,7 +524,7 @@ class ActionQuestionIntro(Action):
         else:
             buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
 
-        dispatcher.utter_message(etc_description[4], json_message={
+        dispatcher.utter_message(etc_description[lang][4], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10501.wav"
         })
         dispatcher.utter_message(buttons=buttons)
@@ -483,6 +539,7 @@ class ActionCenterUnegoQuestion(Action):
         return "action_center_unego_question"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        lang = tracker.get_slot('lang')
         print('action_center_unego_question')
         human_center = ["연료센터", "활력센터", "직관센터", "감정센터", "에고센터", "방향센터", "표현센터", "생각센터", "영감센터"]
         metadata = extract_metadata_from_tracker(tracker)
@@ -510,7 +567,7 @@ class ActionCenterUnegoQuestion(Action):
 
             # 조건화 질문 시작시 멘트
             if unego_count == 1:
-                message = unego_description[90].format(human_center[center_type]) #다음의 질문에 답해보세요~
+                message = unego_description[lang][90].format(human_center[center_type]) #다음의 질문에 답해보세요~
                 if center_type==1:
                     dispatcher.utter_message(message, json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
@@ -565,6 +622,7 @@ class ActionTypeQuestion(Action):
         return "action_type_question"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        lang = tracker.get_slot('lang')
         print('action_type_question')
         metadata = extract_metadata_from_tracker(tracker)
 
@@ -583,7 +641,7 @@ class ActionTypeQuestion(Action):
         buttons = []
         buttons.append({"title": f'질문 있어요', "payload": "/leading_type_question"})
         buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
-        dispatcher.utter_message(etc_description[6], buttons=buttons)
+        dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
 
 
 class ActionStrategyQuestion(Action):
@@ -591,6 +649,7 @@ class ActionStrategyQuestion(Action):
         return "action_strategy_question"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        lang = tracker.get_slot('lang')
         print('action_strategy_question')
         metadata = extract_metadata_from_tracker(tracker)
 
@@ -611,4 +670,4 @@ class ActionStrategyQuestion(Action):
         buttons = []
         buttons.append({"title": f'질문 있어요', "payload": "/leading_type_question"})
         buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
-        dispatcher.utter_message(etc_description[6], buttons=buttons)
+        dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
