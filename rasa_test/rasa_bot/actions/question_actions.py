@@ -12,10 +12,12 @@ from rasa_sdk.events import FollowupAction
 import pandas as pd
 
 unego_description_csv = pd.read_csv("./data/자아_비자아 question.csv")
+unego_description = []
 unego_description.append(unego_description_csv['korean'].values.tolist())
 unego_description.append(unego_description_csv['english'].values.tolist())
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
+etc_description = []
 etc_description.append(etc_description_csv['korean'].values.tolist())
 etc_description.append(etc_description_csv['english'].values.tolist())
 logger = logging.getLogger(__name__)
@@ -53,45 +55,59 @@ prf_title = profile_csv['title'].values.tolist()
 prf_title.append(profile_csv['korean'].values.tolist())
 prf_title.append(profile_csv['english'].values.tolist())
 
+cd_paragraph = []
 cd_paragraph.append(center_defined_csv['korean'].values.tolist())
 cd_paragraph.append(center_defined_csv['english'].values.tolist())
 
+cud_paragraph = []
 cud_paragraph.append(center_undefined_csv['korean'].values.tolist())
 cud_paragraph.append(center_undefined_csv['english'].values.tolist())
 
+def_paragraph = []
 def_paragraph.append(definition_csv['korean'].values.tolist())
 def_paragraph.append(definition_csv['english'].values.tolist())
 
+prf_paragraph = []
 prf_paragraph.append(profile_csv['korean'].values.tolist())
 prf_paragraph.append(profile_csv['english'].values.tolist())
 
+type0_paragraph = []
 type0_paragraph.append(type0_csv['korean'].values.tolist())
 type0_paragraph.append(type0_csv['english'].values.tolist())
 
+type1_paragraph = []
 type1_paragraph.append(type1_csv['korean'].values.tolist())
 type1_paragraph.append(type1_csv['english'].values.tolist())
 
+type2_paragraph = []
 type2_paragraph.append(type2_csv['korean'].values.tolist())
 type2_paragraph.append(type2_csv['english'].values.tolist())
 
+type3_paragraph = []
 type3_paragraph.append(type3_csv['korean'].values.tolist())
 type3_paragraph.append(type3_csv['english'].values.tolist())
 
+type4_paragraph = []
 type4_paragraph.append(type4_csv['korean'].values.tolist())
 type4_paragraph.append(type4_csv['english'].values.tolist())
 
+strategy0_paragraph = []
 strategy0_paragraph.append(strategy0_csv['korean'].values.tolist())
 strategy0_paragraph.append(strategy0_csv['english'].values.tolist())
 
+strategy1_paragraph = []
 strategy1_paragraph.append(strategy1_csv['korean'].values.tolist())
 strategy1_paragraph.append(strategy1_csv['english'].values.tolist())
 
+strategy2_paragraph = []
 strategy2_paragraph.append(strategy2_csv['korean'].values.tolist())
 strategy2_paragraph.append(strategy2_csv['english'].values.tolist())
 
+strategy3_paragraph = []
 strategy3_paragraph.append(strategy3_csv['korean'].values.tolist())
 strategy3_paragraph.append(strategy3_csv['english'].values.tolist())
 
+strategy4_paragraph = []
 strategy4_paragraph.append(strategy4_csv['korean'].values.tolist())
 strategy4_paragraph.append(strategy4_csv['english'].values.tolist())
 
