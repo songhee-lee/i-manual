@@ -49,7 +49,6 @@ class ActionSetPriority(Action):  # 맨 처음
         return "action_set_priority"
 
     def run(self, dispatcher, tracker, domain):
-        lang = tracker.get_slot('lang')
         print('action_set_priority')
         metadata = extract_metadata_from_tracker(tracker)
         print("metadata 출력")

@@ -265,6 +265,7 @@ actions:
   - action_masterbot_more
   - action_drop_center
   - action_set_priority_again
+  - action_smalltalk_first
 
 forms: {}
 e2e_actions: []

@@ -224,7 +224,6 @@ class ActionDefaultFallback(Action):
         return "action_default_fallback"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_default_fallback')
 
         metadata = extract_metadata_from_tracker(tracker)
@@ -251,6 +250,7 @@ class ActionDefaultFallback(Action):
         unego_count = tracker.get_slot("unego_count")
         sentiment_result = tracker.get_slot("sentiment_result")
         ego_or_unego = tracker.get_slot("ego_or_unego")
+        lang = tracker.get_slot('lang')
         if is_question is None or is_sentiment is None or center_question is None or leading_priority is None or center_priority is None or step is None or ego_or_unego is None:
             return [FollowupAction(name='action_set_priority_again')]
         print("step", step)
@@ -414,9 +414,9 @@ class ActionDefaultFallback(Action):
                 # 비자아 질문 3개 다한 경우
                 if unego_count == 3:
                     if metadata['ct'][center_type] == 0:
-                        unego_question = unego_get_question(center_type, unego_count - 1, defined=False)
+                        unego_question = unego_get_question(center_type, unego_count - 1, lang, defined=False)
                     else:
-                        unego_question = unego_get_question(center_type, unego_count - 1, defined=True)
+                        unego_question = unego_get_question(center_type, unego_count - 1, lang, defined=True)
 
                     # 자아인 경우
                     if sentiment_result > 0:
@@ -565,9 +565,9 @@ class ActionCenterUnegoQuestion(Action):
         print("unego_count : ", unego_count)
         if unego_count < 4:
             if metadata['ct'][center_type] == 0:
-                unego_question = unego_get_question(center_type, unego_count - 1, defined=False)
+                unego_question = unego_get_question(center_type, unego_count - 1, lang, defined=False)
             else:
-                unego_question = unego_get_question(center_type, unego_count - 1, defined=True)
+                unego_question = unego_get_question(center_type, unego_count - 1, lang, defined=True)
 
             # 조건화 질문 시작시 멘트
             if unego_count == 1:
@@ -609,13 +609,6 @@ class ActionCenterUnegoQuestion(Action):
             dispatcher.utter_message(unego_question[0], json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[3]
                 }) #질문
-            ####### 여기 merge한 부분. 아래 return부분 오류
-                message = unego_description[lang][90].format(human_center[center_type])
-                dispatcher.utter_message(message)
-
-            # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아
-                dispatcher.utter_message(unego_question[0])
-            ########
 
             if unego_count > 1:
                 unego_answer(question, user_text, metadata)
