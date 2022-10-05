@@ -56,6 +56,7 @@ class ActionSetPriority(Action):  # 맨 처음
         gt = metadata["gt"]
         se = change_gate_to_center(gt)
         # message = etc_description[lang][0].format(metadata["pn"])
+        # dispatcher.utter_message(message)
 
         #~~님 안녕하세요 ~~
         #dispatcher.utter_message(
@@ -113,7 +114,7 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
         return "action_set_priority_again"
 
     def run(self, dispatcher, tracker, domain):
-        lang = tracker.get_slot('lang')
+        # lang = tracker.get_slot('lang')
         print('action_set_priority_again')
         metadata = extract_metadata_from_tracker(tracker)
         print("metadata 출력")
