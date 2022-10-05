@@ -115,7 +115,7 @@ center_index = [0, 2, 3, 4, 5, 6]
 center_info = ["연료 센터", "활력 센터", "직관 센터", "감정 센터", "에고 센터", "방향 센터", "표현 센터", "생각 센터", "영감 센터"]
 
 
-def type_retrieve_context(i, context_index):
+def type_retrieve_context(i, context_index, lang):
     type_context = ''
     if i == 0:
         type_context = type0_paragraph[lang][context_index]
@@ -638,7 +638,7 @@ class ActionTypeQuestion(Action):
             return [FollowupAction(name='action_set_priority_again')]
         print(step)
 
-        context = type_retrieve_context(type_index, context_index=context_index)
+        context = type_retrieve_context(type_index, context_index=context_index, lang = lang)
         answer = koelectra_qa_getanswer(context, question, metadata=metadata)
         dispatcher.utter_message(answer)
 
