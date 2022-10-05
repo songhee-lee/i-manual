@@ -55,7 +55,7 @@ class ActionSetPriority(Action):  # 맨 처음
         print(metadata)
         gt = metadata["gt"]
         se = change_gate_to_center(gt)
-        message = etc_description[lang][0].format(metadata["pn"])
+        # message = etc_description[lang][0].format(metadata["pn"])
 
         #~~님 안녕하세요 ~~
         #dispatcher.utter_message(
