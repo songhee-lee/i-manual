@@ -131,7 +131,7 @@ def type_retrieve_context(i, context_index):
     return type_context
 
 
-def strategy_retrieve_context(i, context_index):
+def strategy_retrieve_context(i, context_index, lang):
     strategy_context = ''
     if i == 0:
         strategy_context = strategy0_paragraph[lang][context_index]
@@ -665,7 +665,7 @@ class ActionStrategyQuestion(Action):
             return [FollowupAction(name='action_set_priority_again')]
         print(step)
 
-        context = strategy_retrieve_context(type_index, context_index=context_index)
+        context = strategy_retrieve_context(type_index, context_index=context_index, lang=lang)
         print(context)
         answer = koelectra_qa_getanswer(context, question)
         print(answer)
