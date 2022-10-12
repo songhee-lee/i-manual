@@ -17,3 +17,5 @@ last message,당신이 타고난 디자인대로 행복하게 살 수 있기를 
 마스터봇 호출,"안녕하세요 , 저를 부르셨나요? 다시 찾아주셔서 감사해요","Hello, did you call me? Thanks for coming back"
 마스터봇 호출(리딩 종료),다시 듣고 싶은 항목을 선택해 주세요,Please select the item you want to hear again
 마스터봇 호출(리딩 미종료),지난번에 이어서 들으시겠어요?,Would you like to hear from last time?
+질문 있어요 버튼,질문 있어요,I have a question
+질문 없어요 버튼,질문 없어요,I don't have any questions

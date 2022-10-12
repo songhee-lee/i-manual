@@ -377,12 +377,12 @@ class ActionDefaultFallback(Action):
             buttons = []
             if center_question == 1:
                 buttons.append(
-                    {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
-                buttons.append({"title": f'질문 없어요', "payload": "/center_unego_question"})
+                    {"title": etc_description[lang][18], "payload": "/question{\"is_question\":1, \"center_question\":1}"}) # 질문 있어요
+                buttons.append({"title": etc_description[lang][19], "payload": "/center_unego_question"}) # 질문 없어요
             else:
                 buttons.append(
-                    {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
-                buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
+                    {"title": etc_description[lang][18], "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+                buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
             dispatcher.utter_message(etc_description[lang][4], buttons=buttons)
             return [SlotSet("step", step)]
 
@@ -393,15 +393,15 @@ class ActionDefaultFallback(Action):
             print("after QA center question", center_question)
             if center_question == 1:
                 qa_buttons.append(
-                    {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
+                    {"title": etc_description[lang][18], "payload": "/question{\"is_question\":1, \"center_question\":1}"})
                 qa_buttons.append(
-                    {"title": f'질문 없어요', "payload": "/center_unego_question{\"is_question\":0, \"center_question\":0}"})
+                    {"title": etc_description[lang][19], "payload": "/center_unego_question{\"is_question\":0, \"center_question\":0}"})
             # 센터 질문이 아니면
             else:
                 qa_buttons.append(
-                    {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+                    {"title": etc_description[lang][18], "payload": "/question{\"is_question\":1, \"center_question\":0}"})
                 qa_buttons.append(
-                    {"title": f'질문 없어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
+                    {"title": etc_description[lang][19], "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
             dispatcher.utter_message(f'{answer}')
             dispatcher.utter_message(etc_description[lang][6], buttons=qa_buttons)
@@ -459,13 +459,13 @@ class ActionDefaultFallback(Action):
                 notice_buttons = []
                 if center_question == 1:
                     notice_buttons.append(
-                        {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":1}"})
+                        {"title": etc_description[lang][18], "payload": "/question{\"is_question\":1, \"center_question\":1}"})
                 else:
                     notice_buttons.append(
-                        {"title": f'질문 있어요', "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+                        {"title": etc_description[lang][18], "payload": "/question{\"is_question\":1, \"center_question\":0}"})
 
                 notice_buttons.append(
-                    {"title": f'질문 없어요', "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
+                    {"title": etc_description[lang][19], "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
                 notice = etc_description[lang][8]
                 notice2 = etc_description[lang][9]
@@ -516,17 +516,17 @@ class ActionQuestionIntro(Action):
 
         buttons = []
         if is_type:
-            buttons.append({"title": f'질문 있어요', "payload": "/leading_type_question"})
+            buttons.append({"title": etc_description[lang][18], "payload": "/leading_type_question"})
         else:
-            buttons.append({"title": f'질문 있어요', "payload": "/question{\"is_question\":\"1\"}"})
+            buttons.append({"title": etc_description[lang][18], "payload": "/question{\"is_question\":\"1\"}"})
 
         if is_center:
             if center_step == 9:
-                buttons.append({"title": f'질문 없어요', "payload": "/leading_centers_question"})
+                buttons.append({"title": etc_description[lang][19], "payload": "/leading_centers_question"})
             else:
-                buttons.append({"title": f'질문 없어요', "payload": "/center_unego_question"})
+                buttons.append({"title": etc_description[lang][19], "payload": "/center_unego_question"})
         else:
-            buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
+            buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
 
         dispatcher.utter_message(etc_description[lang][4], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10501.wav"
@@ -643,8 +643,8 @@ class ActionTypeQuestion(Action):
         dispatcher.utter_message(answer)
 
         buttons = []
-        buttons.append({"title": f'질문 있어요', "payload": "/leading_type_question"})
-        buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
+        buttons.append({"title": etc_description[lang][18], "payload": "/leading_type_question"})
+        buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
         dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
 
 
@@ -672,7 +672,7 @@ class ActionStrategyQuestion(Action):
         dispatcher.utter_message(answer)
 
         buttons = []
-        buttons.append({"title": f'질문 있어요', "payload": "/leading_type_question"})
-        buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
+        buttons.append({"title": etc_description[lang][18], "payload": "/leading_type_question"})
+        buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
         dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
         dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
