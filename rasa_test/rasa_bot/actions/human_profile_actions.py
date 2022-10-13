@@ -402,8 +402,8 @@ class ActionLeadingProfileIntro(Action):
             return [SlotSet('step', step), FollowupAction(name='action_question_intro')]
 
         buttons = []
-        buttons.append({"title": f'예', "payload": "/leading_profile"})
-        buttons.append({"title": f'아니요', "payload": "/question_intro"})
+        buttons.append({"title": etc_description[lang][23], "payload": "/leading_profile"}) # 예
+        buttons.append({"title": etc_description[lang][24], "payload": "/question_intro"}) # 아니오
         dispatcher.utter_message(profile_description[lang][95], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/39601.wav"
         })
@@ -569,8 +569,8 @@ class ActionLeadingProfile(Action):
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33501.wav"
         })
         buttons = []
-        buttons.append({"title": f'질문 있어요', "payload": "/question{\"is_question\":\"1\", \"center_question\":\"0\"}"})
-        buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
+        buttons.append({"title": etc_description[lang][18], "payload": "/question{\"is_question\":\"1\", \"center_question\":\"0\"}"}) # 질문 있어요
+        buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"}) # 질문 없어요
         dispatcher.utter_message(etc_description[lang][4], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10501.wav"
         })

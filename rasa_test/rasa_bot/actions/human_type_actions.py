@@ -16,6 +16,11 @@ type_description = []
 type_description.append(type_description_csv['korean'].values.tolist())
 type_description.append(type_description_csv['english'].values.tolist())
 
+etc_description_csv = pd.read_csv("./data/기타.csv")
+etc_description = []
+etc_description.append(etc_description_csv['korean'].values.tolist())
+etc_description.append(etc_description_csv['english'].values.tolist())
+
 class ActionLeadingTypeIntro(Action):
     def name(self) -> Text:
         return "action_leading_type_intro"
@@ -153,8 +158,8 @@ class ActionLeadingTypeIntro(Action):
             step = 4
 
         buttons = []
-        buttons.append({"title": f'예', "payload": "/leading_type"})
-        buttons.append({"title": f'아니요', "payload": "/leading_type_question"})
+        buttons.append({"title": etc_description[lang][23], "payload": "/leading_type"}) # 예
+        buttons.append({"title": etc_description[lang][24], "payload": "/leading_type_question"}) #아니오
         if metadata["t"] == 2 or metadata["t"] == 3 or metadata["t"] == 4:
             dispatcher.utter_message(type_description[lang][34], buttons=buttons)
             return [SlotSet('step', step)]
@@ -250,59 +255,59 @@ class ActionLeadingTypeQuestion(Action):
 
         if metadata["t"] == 0:
 
-            buttons.append({"title": f'어떤 에너지를 가지고 있나요?',
+            buttons.append({"title": type_description[lang][37],
                             "payload": "/type_question{\"bot_question\":\"어떤 에너지를 가지고 있나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'힘들 때 어떻게 해야 하나요?',
+            buttons.append({"title": type_description[lang][38],
                             "payload": "/type_question{\"bot_question\":\"힘들 때 어떻게 해야 하나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'에너자이저의 전략은 뭔가요?',
+            buttons.append({"title": type_description[lang][39],
                             "payload": "/strategy_question{\"bot_question\":\"에너자이저의 전략은 뭔가요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'에너자이저 아이는 어떻게 키워야 하나요?',
+            buttons.append({"title": type_description[lang][40],
                             "payload": "/strategy_question{\"bot_question\":\"에너자이저 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
         elif metadata["t"] == 1:
 
-            buttons.append({"title": f'어떤 단점이 있을까요?',
+            buttons.append({"title": type_description[lang][41],
                             "payload": "/type_question{\"bot_question\":\"어떤 단점이 있을까요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'힘들 때 어떻게 해야 하나요?',
+            buttons.append({"title": type_description[lang][42],
                             "payload": "/type_question{\"bot_question\":\"힘들 때 어떻게 해야 하나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'스피드 에너자이저의 전략은 뭔가요?',
+            buttons.append({"title": type_description[lang][43],
                             "payload": "/strategy_question{\"bot_question\":\"스피드 에너자이저의 전략은 뭔가요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'스피드 에너자이저 아이는 어떻게 키워야 하나요?',
+            buttons.append({"title": type_description[lang][44],
                             "payload": "/strategy_question{\"bot_question\":\"에너자이저 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
         elif metadata["t"] == 2:
-            buttons.append({"title": f'어떻게 살아가야 하나요?',
+            buttons.append({"title": type_description[lang][45],
                             "payload": "/type_question{\"bot_question\":\"어떻게 살아가야 하나요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'주변 사람들은 왜 저를 힘들게 할까요?',
+            buttons.append({"title": type_description[lang][46],
                             "payload": "/type_question{\"bot_question\":\"주변 사람들은 왜 저를 힘들게 할까요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'혁신주도가의 전략은 무엇인가요?',
+            buttons.append({"title": type_description[lang][47],
                             "payload": "/strategy_question{\"bot_question\":\"혁신주도가의 전략은 무엇인가요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'알림은 어떻게 해야하나요?',
+            buttons.append({"title": type_description[lang][48],
                             "payload": "/strategy_question{\"bot_question\":\"알림은 어떻게 해야하나요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'혁신주도가 아이는 어떻게 키워야 하나요?',
+            buttons.append({"title": type_description[lang][49],
                             "payload": "/strategy_question{\"bot_question\":\"혁신주도가 아이는 어떻게 키워야 하나요?\", \"context_index\": 1}"})
         elif metadata["t"] == 3:
-            buttons.append({"title": f'어떻게 살아가야 하나요?',
+            buttons.append({"title": type_description[lang][50],
                             "payload": "/type_question{\"bot_question\":\"어떻게 살아가야 하나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'어떤 장점이 있을까요?',
+            buttons.append({"title": type_description[lang][51],
                             "payload": "/type_question{\"bot_question\":\"어떤 장점이 있을까요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'가이드 아이는 어떻게 키워야 하나요?',
+            buttons.append({"title": type_description[lang][52],
                             "payload": "/type_question{\"bot_question\":\"가이드 아이는 어떻게 키워야 하나요?\", \"context_index\": 1}"})
-            buttons.append({"title": f'초대를 기다린다는게 무슨 뜻인가요?',
+            buttons.append({"title": type_description[lang][53],
                             "payload": "/strategy_question{\"bot_question\":\"초대가 무엇인가요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'초대를 받은 후 어떻게 해야하나요?',
+            buttons.append({"title": type_description[lang][54],
                             "payload": "/strategy_question{\"bot_question\":\"초대를 받은 후 어떻게 해야하나요?\", \"context_index\": 0}"})
         elif metadata["t"] == 4:
 
-            buttons.append({"title": f'어떻게 살아가야 하나요?',
+            buttons.append({"title": type_description[lang][55],
                             "payload": "/type_question{\"bot_question\":\"어떻게 살아가야 하나요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'거울 종족의 전략은 무엇인가요?',
+            buttons.append({"title": type_description[lang][56],
                             "payload": "/strategy_question{\"bot_question\":\"거울 종족의 전략은 무엇인가요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'한 달간 기다리지 않으면 안되나요?',
+            buttons.append({"title": type_description[lang][57],
                             "payload": "/strategy_question{\"bot_question\":\"한 달간 기다리지 않으면 안되나요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'잘 기다리려면 어떻게 해야되나요?',
+            buttons.append({"title": type_description[lang][58],
                             "payload": "/strategy_question{\"bot_question\":\"거울 종족의 기다림을 어떻게 도와줘야 하나요?\", \"context_index\": 0}"})
-            buttons.append({"title": f'거울 종족 아이는 어떻게 키워야 하나요?',
+            buttons.append({"title": type_description[lang][59],
                             "payload": "/strategy_question{\"bot_question\":\"거울 종족 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
-        buttons.append({"title": f'질문 없어요', "payload": "/leading_more"})
+        buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"}) # 질문 없어요
         dispatcher.utter_message(type_description[lang][36], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/23701.wav"
         })

@@ -283,7 +283,7 @@ class ActionDefaultFallback(Action):
 
             elif q_type == 3:
                 if center_priority[center_step] == 0 and metadata["ct"][0] == 0:
-                    qa_step = "연료센터(미정의)"
+                    qa_step = "연료센터(미정의)" # unego_description[title][0]
                 elif center_priority[center_step] == 0 and metadata["ct"][0] == 1:
                     qa_step = "연료센터(정의)"
 

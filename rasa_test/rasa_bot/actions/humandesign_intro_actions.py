@@ -284,8 +284,8 @@ class ActionMore(Action):
                 return [SlotSet('center_step', 0), FollowupAction(name='action_last_message')]
             else:
                 buttons = []
-                buttons.append({"title": f'계속', "payload": "/leading_step"})
-                buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
+                buttons.append({"title": etc_description[lang][20], "payload": "/leading_step"}) # 계속
+                buttons.append({"title": etc_description[lang][21], "payload": "/last_message"}) # 오늘은 그만
                 dispatcher.utter_message(etc_description[lang][1], json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10201.wav"
                 })
@@ -295,17 +295,17 @@ class ActionMore(Action):
                     se[2] in center_priority[0:center_step] and se[3] in center_priority[
                                                                          0:center_step] and is_finished == 0:
                 buttons = []
-                buttons.append({"title": f'계속', "payload": "/leading_step"})
-                buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
-                buttons.append({"title": f'센터 건너뛰기', "payload": "/leading_drop_center"})
+                buttons.append({"title": etc_description[lang][20], "payload": "/leading_step"})
+                buttons.append({"title": etc_description[lang][21], "payload": "/last_message"})
+                buttons.append({"title": etc_description[lang][22], "payload": "/leading_drop_center"}) # 센터 건너뛰기
                 dispatcher.utter_message(etc_description[lang][2], json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10301.wav"
                 })
                 dispatcher.utter_message(buttons=buttons)
             else:
                 buttons = []
-                buttons.append({"title": f'계속', "payload": "/leading_step"})
-                buttons.append({"title": f'오늘은 그만', "payload": "/last_message"})
+                buttons.append({"title": etc_description[lang][20], "payload": "/leading_step"})
+                buttons.append({"title": etc_description[lang][21], "payload": "/last_message"})
                 dispatcher.utter_message(etc_description[lang][1], json_message={
                     "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10201.wav"
                 })
