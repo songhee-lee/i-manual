@@ -1,26 +1,32 @@
-ï»¿title,korean,english
-ì‹œì‘ message,ì•ˆë…•í•˜ì„¸ìš”. ì €ëŠ” ë‹¹ì‹ ì´ ì–´ë–¤ ì‚¬ëŒì¸ì§€ ì•Œë ¤ì¤„ ë§ˆìŠ¤í„° ë´‡ ì…ë‹ˆë‹¤.,"Hello, I am Master Bot who will tell you what kind of person you are. Now letâ€™s get to know you."
-íŠ¹ì§• í•˜ë‚˜ ëë‚¬ì„ ë•Œ ê³„ì† í•  ì§€,ê³„ì† í• ê¹Œìš”?,"What do you think? There is still more to talk about, shall we learn more about your Type?"
-ì„¼í„° í•˜ë‚˜ ëë‚¬ì„ ë•Œ ê³„ì† í•  ì§€,ì„¼í„°ì— ëŒ€í•œ ì„¤ëª…ì„ ì´ì–´ì„œ ë“¤ìœ¼ì‹œê² ì–´ìš”?,Would you like to hear more about the center?
-íŠ¹ì§• ì‹œì‘ ì‹œ,"ì, ì´ì œ ë‹¤ë¥¸ íŠ¹ì§•ì— ëŒ€í•´ ì•Œì•„ë´…ì‹œë‹¤",Now letâ€™s look at the other features.
-ì§ˆë¬¸ ìˆëŠ”ì§€ ë¬¼ìŒ,ì§ˆë¬¸ì´ ìˆë‚˜ìš”?,"If you have any questions, select from the following."
-ì§ˆë¬¸ ìˆì–´ìš” ë²„íŠ¼ í´ë¦­ ì‹œ,ë¬´ì—‡ì´ ê¶ê¸ˆí•˜ì‹ ê°€ìš”?,What are you curious about?
-ì§ˆë¬¸ ëë‚¬ì„ ë•Œ ì¶”ê°€ ì§ˆë¬¸ ìˆëŠ” ì§€,ë‹¤ë¥¸ ì§ˆë¬¸ìˆë‚˜ìš”?,Any other questions?
-ì˜¬ë°”ë¥¸ ì§ˆë¬¸ì´ ì•„ë‹Œ ê²½ìš°,ì˜ ì´í•´í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.  ê¶ê¸ˆí•œ ê²Œ ìˆìœ¼ì‹œë©´ ì•„ì´ë§¤ë‰´ì–¼ì„ ì½ì–´ë³´ì„¸ìš”!,"I don't quite understand. If you have any questions, please read the i-Manual!"
-ì±„íŒ… ì¹˜ë©´ ì•ˆ ë  ë•Œ ì±„íŒ… ì‹œ,ì§€ê¸ˆì€ ì±„íŒ…í•˜ì‹¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ì§ˆë¬¸ì´ ìˆìœ¼ì‹œë©´ ì§ˆë¬¸ ë²„íŠ¼ì„ í´ë¦­í•´ì£¼ì„¸ìš”!,"Chat is not available at this time. If you have any questions, please click the Ask button!"
-ì±„íŒ… ì¹˜ë©´ ì•ˆ ë  ë•Œ ì±„íŒ… ì‹œ,ë¬¸ì œê°€ ìƒê²¼ë‹¤ë©´ ë§ˆìŠ¤í„°ë´‡ì„ ì…ë ¥í•´ì£¼ì„¸ìš”!,"If you have any problems, please enter the masterbot!"
-last message,ë§ˆìŠ¤í„°ë´‡ì˜ ì„¤ëª…ì´ ë„ì›€ì´ ë˜ê³  ìˆë‚˜ìš”? ì–¸ì œë“  ë‹¤ì‹œ ë¶ˆëŸ¬ì£¼ì„¸ìš”,Is Masterbot's explanation helpful? call back anytime
-last message,ë‹¹ì‹ ì´ íƒ€ê³ ë‚œ ë””ìì¸ì— ëŒ€í•œ ë§ˆìŠ¤í„°ë´‡ì˜ ì„¤ëª…ì´ ì´í•´ê°€ ì˜ ë˜ì…¨ë‚˜ìš”?,Did you understand Masterbot's explanation of your innate design?
-last message,ì•„ì´ë§¤ë‰´ì–¼ì—ì„œ ì¤€ë¹„í•œ ë‹¹ì‹ ì˜ ì„¤ëª…ì„œë¥¼ ê¼¼ê¼¼íˆ ì½ì–´ë³´ì‹œê¸¸ ë°”ëë‹ˆë‹¤. ë”ë¶ˆì–´ í–‰ë³µì„¤ëª…ì„œì™€ ê´€ê³„ì‚¬ìš© ì„¤ëª…ì„œë„ ê¼­ ì½ì–´ë³´ì„¸ìš”,"Please carefully read your description prepared in the iManual. Also, be sure to read the happiness manual and relationship user manual."
-last message,ê¶ê¸ˆí•œ ì ì´ ìˆë‹¤ë©´ ì±„íŒ…ì°½ì— 'ë§ˆìŠ¤í„°ë´‡'ì´ë¼ê³  ì…ë ¥í•´ì£¼ì„¸ìš”.,"If you have any questions, please call the Masterbot again at any time."
-last message,ë‹¹ì‹ ì´ íƒ€ê³ ë‚œ ë””ìì¸ëŒ€ë¡œ í–‰ë³µí•˜ê²Œ ì‚´ ìˆ˜ ìˆê¸°ë¥¼ ì‘ì›í•©ë‹ˆë‹¤. ë‹¤ì‹œ ë§Œë‚˜ìš”,I hope that you can live a happy life according to the design you were born with.See you again!
-ë§ˆìŠ¤í„°ë´‡ í˜¸ì¶œ,"ì•ˆë…•í•˜ì„¸ìš” , ì €ë¥¼ ë¶€ë¥´ì…¨ë‚˜ìš”? ë‹¤ì‹œ ì°¾ì•„ì£¼ì…”ì„œ ê°ì‚¬í•´ìš”","Hello, did you call me? Thanks for coming back"
-ë§ˆìŠ¤í„°ë´‡ í˜¸ì¶œ(ë¦¬ë”© ì¢…ë£Œ),ë‹¤ì‹œ ë“£ê³  ì‹¶ì€ í•­ëª©ì„ ì„ íƒí•´ ì£¼ì„¸ìš”,Please select the item you want to hear again
-ë§ˆìŠ¤í„°ë´‡ í˜¸ì¶œ(ë¦¬ë”© ë¯¸ì¢…ë£Œ),ì§€ë‚œë²ˆì— ì´ì–´ì„œ ë“¤ìœ¼ì‹œê² ì–´ìš”?,Would you like to hear from last time?
-ì§ˆë¬¸ ìˆì–´ìš” ë²„íŠ¼,ì§ˆë¬¸ ìˆì–´ìš”,I have a question
-ì§ˆë¬¸ ì—†ì–´ìš” ë²„íŠ¼,ì§ˆë¬¸ ì—†ì–´ìš”,I don't have any questions
-ê³„ì† ë²„íŠ¼,ê³„ì†,Continue.
-ì˜¤ëŠ˜ì€ ê·¸ë§Œ ë²„íŠ¼,ì˜¤ëŠ˜ì€ ê·¸ë§Œ,Enough for today.
-ì„¼í„° ê±´ë„ˆë›°ê¸° ë²„íŠ¼,ì„¼í„° ê±´ë„ˆë›°ê¸°,Skip Center
-ì˜ˆ ë²„íŠ¼,ì˜ˆ,Yes
-ì•„ë‹ˆì˜¤ ë²„íŠ¼,ì•„ë‹ˆì˜¤,No
+title,korean,english
+½ÃÀÛ message,¾È³çÇÏ¼¼¿ä. Àú´Â ´ç½ÅÀÌ ¾î¶² »ç¶÷ÀÎÁö ¾Ë·ÁÁÙ ¸¶½ºÅÍ º¿ ÀÔ´Ï´Ù.,"Hello, I am Master Bot who will tell you what kind of person you are. Now let¡¯s get to know you."
+Æ¯Â¡ ÇÏ³ª ³¡³µÀ» ¶§ °è¼Ó ÇÒ Áö,°è¼Ó ÇÒ±î¿ä?,"What do you think? There is still more to talk about, shall we learn more about your Type?"
+¼¾ÅÍ ÇÏ³ª ³¡³µÀ» ¶§ °è¼Ó ÇÒ Áö,¼¾ÅÍ¿¡ ´ëÇÑ ¼³¸íÀ» ÀÌ¾î¼­ µéÀ¸½Ã°Ú¾î¿ä?,Would you like to hear more about the center?
+Æ¯Â¡ ½ÃÀÛ ½Ã,"ÀÚ, ÀÌÁ¦ ´Ù¸¥ Æ¯Â¡¿¡ ´ëÇØ ¾Ë¾Æº¾½Ã´Ù",Now let¡¯s look at the other features.
+Áú¹® ÀÖ´ÂÁö ¹°À½,Áú¹®ÀÌ ÀÖ³ª¿ä?,"If you have any questions, select from the following."
+Áú¹® ÀÖ¾î¿ä ¹öÆ° Å¬¸¯ ½Ã,¹«¾ùÀÌ ±Ã±İÇÏ½Å°¡¿ä?,What are you curious about?
+Áú¹® ³¡³µÀ» ¶§ Ãß°¡ Áú¹® ÀÖ´Â Áö,´Ù¸¥ Áú¹®ÀÖ³ª¿ä?,Any other questions?
+¿Ã¹Ù¸¥ Áú¹®ÀÌ ¾Æ´Ñ °æ¿ì,Àß ÀÌÇØÇÒ ¼ö ¾ø½À´Ï´Ù.  ±Ã±İÇÑ °Ô ÀÖÀ¸½Ã¸é ¾ÆÀÌ¸Å´º¾óÀ» ÀĞ¾îº¸¼¼¿ä!,"I don't quite understand. If you have any questions, please read the i-Manual!"
+Ã¤ÆÃ Ä¡¸é ¾È µÉ ¶§ Ã¤ÆÃ ½Ã,Áö±İÀº Ã¤ÆÃÇÏ½Ç ¼ö ¾ø½À´Ï´Ù. Áú¹®ÀÌ ÀÖÀ¸½Ã¸é Áú¹® ¹öÆ°À» Å¬¸¯ÇØÁÖ¼¼¿ä!,"Chat is not available at this time. If you have any questions, please click the Ask button!"
+Ã¤ÆÃ Ä¡¸é ¾È µÉ ¶§ Ã¤ÆÃ ½Ã,¹®Á¦°¡ »ı°å´Ù¸é ¸¶½ºÅÍº¿À» ÀÔ·ÂÇØÁÖ¼¼¿ä!,"If you have any problems, please enter the masterbot!"
+last message,¸¶½ºÅÍº¿ÀÇ ¼³¸íÀÌ µµ¿òÀÌ µÇ°í ÀÖ³ª¿ä? ¾ğÁ¦µç ´Ù½Ã ºÒ·¯ÁÖ¼¼¿ä,Is Masterbot's explanation helpful? call back anytime
+last message,´ç½ÅÀÌ Å¸°í³­ µğÀÚÀÎ¿¡ ´ëÇÑ ¸¶½ºÅÍº¿ÀÇ ¼³¸íÀÌ ÀÌÇØ°¡ Àß µÇ¼Ì³ª¿ä?,Did you understand Masterbot's explanation of your innate design?
+last message,¾ÆÀÌ¸Å´º¾ó¿¡¼­ ÁØºñÇÑ ´ç½ÅÀÇ ¼³¸í¼­¸¦ ²Ä²ÄÈ÷ ÀĞ¾îº¸½Ã±æ ¹Ù¶ø´Ï´Ù. ´õºÒ¾î Çàº¹¼³¸í¼­¿Í °ü°è»ç¿ë ¼³¸í¼­µµ ²À ÀĞ¾îº¸¼¼¿ä,"Please carefully read your description prepared in the iManual. Also, be sure to read the happiness manual and relationship user manual."
+last message,±Ã±İÇÑ Á¡ÀÌ ÀÖ´Ù¸é Ã¤ÆÃÃ¢¿¡ '¸¶½ºÅÍº¿'ÀÌ¶ó°í ÀÔ·ÂÇØÁÖ¼¼¿ä.,"If you have any questions, please call the Masterbot again at any time."
+last message,´ç½ÅÀÌ Å¸°í³­ µğÀÚÀÎ´ë·Î Çàº¹ÇÏ°Ô »ì ¼ö ÀÖ±â¸¦ ÀÀ¿øÇÕ´Ï´Ù. ´Ù½Ã ¸¸³ª¿ä,I hope that you can live a happy life according to the design you were born with.See you again!
+¸¶½ºÅÍº¿ È£Ãâ,"¾È³çÇÏ¼¼¿ä , Àú¸¦ ºÎ¸£¼Ì³ª¿ä? ´Ù½Ã Ã£¾ÆÁÖ¼Å¼­ °¨»çÇØ¿ä","Hello, did you call me? Thanks for coming back"
+¸¶½ºÅÍº¿ È£Ãâ(¸®µù Á¾·á),´Ù½Ã µè°í ½ÍÀº Ç×¸ñÀ» ¼±ÅÃÇØ ÁÖ¼¼¿ä,Please select the item you want to hear again
+¸¶½ºÅÍº¿ È£Ãâ(¸®µù ¹ÌÁ¾·á),Áö³­¹ø¿¡ ÀÌ¾î¼­ µéÀ¸½Ã°Ú¾î¿ä?,Would you like to hear from last time?
+Áú¹® ÀÖ¾î¿ä ¹öÆ°,Áú¹® ÀÖ¾î¿ä,I have a question
+Áú¹® ¾ø¾î¿ä ¹öÆ°,Áú¹® ¾ø¾î¿ä,I don't have any questions
+°è¼Ó ¹öÆ°,°è¼Ó,Continue.
+¿À´ÃÀº ±×¸¸ ¹öÆ°,¿À´ÃÀº ±×¸¸,Enough for today.
+¼¾ÅÍ °Ç³Ê¶Ù±â ¹öÆ°,¼¾ÅÍ °Ç³Ê¶Ù±â,Skip Center
+¿¹ ¹öÆ°,¿¹,Yes
+¾Æ´Ï¿À ¹öÆ°,¾Æ´Ï¿À,No
+Á¾Á· ¹öÆ°,Á¾Á·,race
+»çÈ¸Àû ¼ºÇâ ¹öÆ°,»çÈ¸Àû ¼ºÇâ,social inclination
+¿¡³ÊÁö Èå¸§ ¹öÆ°,¿¡³ÊÁö Èå¸§,energy flow
+¼¾ÅÍ ¹öÆ°,¼¾ÅÍ,center
+³× ÀÌ¾î¼­ µéÀ»·¡¿ä ¹öÆ°,³× ÀÌ¾î¼­ µéÀ»·¡¿ä,"yes, I will listen"
+¾Æ´¢! Ã³À½ºÎÅÍ µéÀ»·¡¿ä ¹öÆ°,¾Æ´¢! Ã³À½ºÎÅÍ µéÀ»·¡¿ä,"No, I want to hear it from the beginning"

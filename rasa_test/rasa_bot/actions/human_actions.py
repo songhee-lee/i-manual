@@ -128,11 +128,11 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
         if is_finished == 1:
 
             buttons = []
-            buttons.append({"title": "종족", "payload": "/leading_type_intro"})
-            buttons.append({"title": "사회적 성향", "payload": "/leading_profile_intro"})
+            buttons.append({"title": etc_description[lang][25], "payload": "/leading_type_intro"}) # 종족
+            buttons.append({"title": etc_description[lang][26], "payload": "/leading_profile_intro"}) # 사회적 성향
             if metadata["d"] != 0:
-                buttons.append({"title": "에너지 흐름", "payload": "/leading_definition_intro"})
-            buttons.append({"title": "센터", "payload": "/leading_centers_intro"})
+                buttons.append({"title": etc_description[lang][27], "payload": "/leading_definition_intro"}) # 에너지 흐름
+            buttons.append({"title": etc_description[lang][28], "payload": "/leading_centers_intro"}) # 센터
 
             dispatcher.utter_message(etc_description[lang][16], json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11701.wav"
@@ -142,8 +142,8 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
 
         else:
             buttons = []
-            buttons.append({"title": "네 이어서 들을래요", "payload": "/leading_masterbot_more"})
-            buttons.append({"title": "아뇨! 처음부터 들을래요", "payload": "/initialized"})
+            buttons.append({"title": etc_description[lang][29], "payload": "/leading_masterbot_more"}) # 네 이어서 들을래요
+            buttons.append({"title": etc_description[lang][30], "payload": "/initialized"}) # 아뇨! 처음부터 들을래요
 
             dispatcher.utter_message(etc_description[lang][17], buttons=buttons)
 

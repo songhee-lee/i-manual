@@ -927,8 +927,8 @@ class ActionCenterDetailIntro(Action):
         h_center = center_priority[center_step]
 
         buttons = []
-        buttons.append({"title": f'네. 듣고 싶어요', "payload": "/leading_centers"})
-        buttons.append({"title": f'아뇨 괜찮아요', "payload": "/question_intro"})
+        buttons.append({"title": center_description[lang][137], "payload": "/leading_centers"})
+        buttons.append({"title": center_description[lang][138], "payload": "/question_intro"})
 
         if h_center == 0 and metadata['ct'][0] == 1:
             h_type = "연료 센터 ( 정의 )"
