@@ -528,9 +528,10 @@ class ActionQuestionIntro(Action):
         else:
             buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
 
-        dispatcher.utter_message(etc_description[lang][4], buttons=buttons, json_message={
+        dispatcher.utter_message(etc_description[lang][4], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10501.wav"
         })
+        dispatcher.utter_message(etc_description[lang][4], buttons=buttons)
         if is_center:
             return [SlotSet("center_question", 1)]
         else:
