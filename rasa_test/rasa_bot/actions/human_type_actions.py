@@ -73,7 +73,7 @@ class ActionLeadingTypeIntro(Action):
         msg_4 = ""
         msg_5 = ""
         if metadata["t"] == 0:
-            h_type = "에너자이저 종족"
+            h_type = type_description[lang][61] # 에너자이저 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_0.png"
             msg_1 = type_description[lang][6]
             msg_2 = type_description[lang][7]
@@ -92,7 +92,7 @@ class ActionLeadingTypeIntro(Action):
             })
 
         elif metadata["t"] == 1:
-            h_type = "스피드 에너자이저 종족"
+            h_type = type_description[lang][62] # 스피드 에너자이저 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_1.png"
             msg_1 = type_description[lang][9]
             msg_2 = type_description[lang][10]
@@ -105,7 +105,7 @@ class ActionLeadingTypeIntro(Action):
             dispatcher.utter_message(msg_3)
 
         elif metadata["t"] == 2:
-            h_type = "혁신주도가 종족"
+            h_type = type_description[lang][63] # 혁신주도가 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_2.png"
             msg_1 = type_description[lang][12]
             msg_2 = type_description[lang][13]
@@ -118,7 +118,7 @@ class ActionLeadingTypeIntro(Action):
             dispatcher.utter_message(msg_3)
 
         elif metadata["t"] == 3:
-            h_type = "가이드 종족"
+            h_type = type_description[lang][64] # 가이드 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_3M.png"
             msg_1 = type_description[lang][19]
             msg_2 = type_description[lang][20]
@@ -131,7 +131,7 @@ class ActionLeadingTypeIntro(Action):
                     })
 
         elif metadata["t"] == 4:
-            h_type = "거울 종족"
+            h_type = type_description[lang][65] # 거울 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_4.png"
             msg_1 = type_description[lang][26]
             msg_2 = type_description[lang][27]
@@ -193,7 +193,7 @@ class ActionLeadingType(Action):
         msg_4 = ""
         msg_5 = ""
         if metadata["t"] == 2:
-            h_type = "혁신주도가 종족"
+            h_type = type_description[lang][63] # 혁신주도가 종족
             msg_1 = type_description[lang][15]
             msg_2 = type_description[lang][16]
             msg_3 = type_description[lang][17]
@@ -205,7 +205,7 @@ class ActionLeadingType(Action):
             dispatcher.utter_message(msg_3)
             dispatcher.utter_message(msg_4)
         elif metadata["t"] == 3:
-            h_type = "가이드 종족"
+            h_type = type_description[lang][64] # 가이드 종족
             msg_1 = type_description[lang][21]
             msg_2 = type_description[lang][22]
             msg_3 = type_description[lang][23]
@@ -217,7 +217,7 @@ class ActionLeadingType(Action):
             dispatcher.utter_message(msg_4)
             dispatcher.utter_message(msg_5)
         elif metadata["t"] == 4:
-            h_type = "거울 종족"
+            h_type = type_description[lang][65] # 거울 종족
             msg_1 = type_description[lang][31]
             msg_2 = type_description[lang][32]
             msg_3 = type_description[lang][33]
