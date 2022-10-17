@@ -564,8 +564,7 @@ class ActionLeadingProfile(Action):
                 dispatcher.utter_message(msg6)
             if msg7 != "":
                 dispatcher.utter_message(msg7)
-
-        dispatcher.utter_message(f"자, {h_type} 역할에 대해 설명해 보았어요.", json_message={
+        dispatcher.utter_message(profile_description[lang][96].format(h_type), json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33501.wav"
         })
         buttons = []
