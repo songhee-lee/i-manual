@@ -112,7 +112,6 @@ strategy4_paragraph.append(strategy4_csv['korean'].values.tolist())
 strategy4_paragraph.append(strategy4_csv['english'].values.tolist())
 
 center_index = [0, 2, 3, 4, 5, 6]
-center_info = ["연료 센터", "활력 센터", "직관 센터", "감정 센터", "에고 센터", "방향 센터", "표현 센터", "생각 센터", "영감 센터"]
 
 
 def type_retrieve_context(i, context_index, lang):
@@ -212,7 +211,7 @@ class ActionQuestion(Action):
             if q_type == 0:
                 return [FollowupAction(name="action_leading_type_question")]
             else:
-                dispatcher.utter_message(etc_description[5])
+                dispatcher.utter_message(etc_description[lang][5])
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
 
@@ -436,6 +435,7 @@ class ActionDefaultFallback(Action):
 
                     # 비자아 혹은 중립인 경우
                     else:
+                        center_info = [etc_description[lang][31], etc_description[lang][32],etc_description[lang][33],etc_description[lang][34],etc_description[lang][35],etc_description[lang][36],etc_description[lang][37],etc_description[lang][38],etc_description[lang][39]]
                         message = unego_description[lang][92].format(center_info[center_type])
                         dispatcher.utter_message(message, json_message={
                             "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[4]
@@ -545,7 +545,7 @@ class ActionCenterUnegoQuestion(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         lang = tracker.get_slot('lang')
         print('action_center_unego_question')
-        human_center = ["연료센터", "활력센터", "직관센터", "감정센터", "에고센터", "방향센터", "표현센터", "생각센터", "영감센터"]
+        human_center = [etc_description[lang][31], etc_description[lang][32],etc_description[lang][33],etc_description[lang][34],etc_description[lang][35],etc_description[lang][36],etc_description[lang][37],etc_description[lang][38],etc_description[lang][39]]
         metadata = extract_metadata_from_tracker(tracker)
 
         user_text = tracker.latest_message['text']
