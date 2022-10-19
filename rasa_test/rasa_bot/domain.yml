@@ -125,6 +125,7 @@ entities:
   - se
   - lang
   - ninei
+  - smalltalk_step
 slots:
   center_priority:
     type: list
@@ -222,6 +223,11 @@ slots:
     auto_fill: true
     influence_conversation: false
   ninei:  #1~10, 멤버 10명
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
+    auto_fill: true
+    influence_conversation: false
+  smalltalk_step:
     type: rasa.shared.core.slots.TextSlot
     initial_value: 0
     auto_fill: true
