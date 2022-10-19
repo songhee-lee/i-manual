@@ -530,8 +530,8 @@ class ActionQuestionIntro(Action):
 
         dispatcher.utter_message(etc_description[lang][4], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10501.wav"
-        })
-        dispatcher.utter_message(etc_description[lang][4], buttons=buttons)
+        }, buttons=buttons)
+        #dispatcher.utter_message(etc_description[lang][4], buttons=buttons)
         if is_center:
             return [SlotSet("center_question", 1)]
         else:
