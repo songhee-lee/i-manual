@@ -33,6 +33,9 @@ class ActionSmalltalkFirst(Action):
         if smalltalk_step in [4, 8, 9, 16, 18]:
             buttons = []
 
+        # buttons 요소 1개
+        else:
+            buttons = []
 
         # ninei = metadata['ninei']
 
