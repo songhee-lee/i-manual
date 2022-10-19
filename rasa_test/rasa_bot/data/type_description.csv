@@ -59,8 +59,8 @@
 거울 질문,한 달간 기다리지 않으면 안되나요?,Do I have to wait a month?
 거울 질문,잘 기다리려면 어떻게 해야되나요?,How can I wait well?
 거울 질문,거울 종족 아이는 어떻게 키워야 하나요?,How should I raise a mirror race child?
-h_type 에너자이저 종족,에너자이저 종족,energizer type
-h_type 스피드 에너자이저 종족,스피드 에너자이저 종족,speed energizer type
-h_type 혁신주도가 종족,혁신주도가 종족,innovative type
-h_type 가이드 종족,가이드 종족,guide type
-h_type 거울 종족,거울 종족,mirror type
+h_type 에너자이저 종족,에너자이저 종족,Energizer
+h_type 스피드 에너자이저 종족,스피드 에너자이저 종족,Speed Energizer
+h_type 혁신주도가 종족,혁신주도가 종족,SELF-LEADER
+h_type 가이드 종족,가이드 종족,Guide
+h_type 거울 종족,거울 종족,Mirror
