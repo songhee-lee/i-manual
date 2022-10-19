@@ -15,6 +15,11 @@ center_description = []
 center_description.append(center_description_csv['korean'].values.tolist())
 center_description.append(center_description_csv['english'].values.tolist())
 
+etc_description_csv = pd.read_csv("./data/기타.csv")
+etc_description = []
+etc_description.append(etc_description_csv['korean'].values.tolist())
+etc_description.append(etc_description_csv['english'].values.tolist())
+
 logger = logging.getLogger(__name__)
 
 
@@ -182,7 +187,7 @@ class ActionLeadingCentersIntro(Action):
         center_name = ""
         if h_center == 0 and metadata['ct'][0] == 1:
             h_type = "연료 센터 ( 정의 )"
-            center_name = center_description[lang][146]
+            center_name = etc_description[lang][31]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_0.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/root.png"
             msg = center_description[lang][22]
@@ -211,7 +216,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 1 and metadata["ct"][1] == 1:
             h_type = "활력 센터 ( 정의 )"
-            center_name = center_description[lang][139]
+            center_name = etc_description[lang][32]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_1.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/sacral.png"
             msg = center_description[lang][29]
@@ -233,7 +238,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 2 and metadata['ct'][2] == 1:
             h_type = "직관 센터 ( 정의 )"
-            center_name = center_description[lang][143]
+            center_name = etc_description[lang][33]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_2.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/spleen.png"
             msg = center_description[lang][31]
@@ -261,7 +266,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 3 and metadata['ct'][3] == 1:
             h_type = "감정 센터 ( 정의 )"
-            center_name = center_description[lang][144]
+            center_name = etc_description[lang][34]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_3.gif"
             img = " https://asset.i-manual.co.kr/static/images/chat/center/solar.png"
             msg = center_description[lang][40]
@@ -290,7 +295,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 4 and metadata['ct'][4] == 1:
             h_type = "에고 센터 ( 정의 )"
-            center_name = center_description[lang][145]
+            center_name = etc_description[lang][35]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_4.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/heart.png"
             msg = center_description[lang][49]
@@ -309,7 +314,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 5 and metadata['ct'][5] == 1:
             h_type = "방향 센터 ( 정의 )"
-            center_name = center_description[lang][146]
+            center_name = etc_description[lang][36]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_5.gif"
             img = " https://asset.i-manual.co.kr/static/images/chat/center/g.png"
             msg = center_description[lang][56]
@@ -339,7 +344,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 6 and metadata['ct'][6] == 1:
             h_type = "표현 센터 ( 정의 )"
-            center_name = center_description[lang][147]
+            center_name = etc_description[lang][37]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_6.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/throat.png"
             msg = center_description[lang][66]
@@ -367,7 +372,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 7 and metadata["ct"][7] == 1:
             h_type = "생각 센터 ( 정의 )"
-            center_name = center_description[lang][140]
+            center_name = etc_description[lang][38]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_7.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/ajna.png"
             msg = center_description[lang][75]
@@ -391,7 +396,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 8 and metadata["ct"][8] == 1:
             h_type = "영감 센터 ( 정의 )"
-            center_name = center_description[lang][141]
+            center_name = etc_description[lang][39]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_8.gif"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/head.png"
             msg = center_description[lang][77]
@@ -415,7 +420,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 0 and metadata['ct'][0] == 0:
             h_type = "연료 센터 ( 미정의 )"
-            center_name = center_description[lang][142]
+            center_name = etc_description[lang][31]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_0_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/root.png"
             msg = center_description[lang][79]
@@ -445,7 +450,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 1 and metadata['ct'][1] == 0:
             h_type = "활력 센터 ( 미정의 )"
-            center_name = center_description[lang][139]
+            center_name = etc_description[lang][32]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_1_off.png"
             img = " https://asset.i-manual.co.kr/static/images/chat/center/sacral_off.png"
             msg = center_description[lang][89]
@@ -471,7 +476,7 @@ class ActionLeadingCentersIntro(Action):
                         SlotSet('step', step), FollowupAction(name='action_question_intro')]
         elif h_center == 2 and metadata['ct'][2] == 0:
             h_type = "직관 센터 ( 미정의 )"
-            center_name = center_description[lang][143]
+            center_name = etc_description[lang][33]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_2_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/spleen_off.png"
             msg = center_description[lang][92]
@@ -501,7 +506,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 3 and metadata['ct'][3] == 0:
             h_type = "감정 센터 ( 미정의 )"
-            center_name = center_description[lang][144]
+            center_name = etc_description[lang][34]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_3_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/solar_off.png"
             msg = center_description[lang][101]
@@ -529,7 +534,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 4 and metadata['ct'][4] == 0:
             h_type = "에고 센터 ( 미정의 )"
-            center_name = center_description[lang][145]
+            center_name = etc_description[lang][35]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_4_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/heart_off.png"
             msg = center_description[lang][110]
@@ -553,7 +558,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 5 and metadata['ct'][5] == 0:
             h_type = "방향 센터 ( 미정의 )"
-            center_name = center_description[lang][146]
+            center_name = etc_description[lang][36]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_5_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/g_off.png"
             msg = center_description[lang][119]
@@ -575,7 +580,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 6 and metadata['ct'][6] == 0:
             h_type = "표현 센터 ( 미정의 )"
-            center_name = center_description[lang][147]
+            center_name = etc_description[lang][37]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_6_off.png"
             img = " https://asset.i-manual.co.kr/static/images/chat/center/throat_off.png"
             msg = center_description[lang][126]
@@ -593,7 +598,7 @@ class ActionLeadingCentersIntro(Action):
 
         elif h_center == 7 and metadata['ct'][7] == 0:
             h_type = "생각 센터 ( 미정의 )"
-            center_name = center_description[lang][140]
+            center_name = etc_description[lang][38]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_7_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/ajna_off.png"
             msg = center_description[lang][131]
@@ -619,7 +624,7 @@ class ActionLeadingCentersIntro(Action):
                         SlotSet('step', step), FollowupAction(name='action_question_intro')]
         elif h_center == 8 and metadata['ct'][8] == 0:
             h_type = "영감 센터 ( 미정의 )"
-            center_name = center_description[lang][141]
+            center_name = etc_description[lang][39]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_8_off.png"
             img = "https://asset.i-manual.co.kr/static/images/chat/center/head_off.png"
             msg = center_description[lang][134]
@@ -691,7 +696,7 @@ class ActionLeadingCenters(Action):
         h_center = center_priority[center_step]  # 센터 몇번째까지 했는지를 기준으로 정하는 부분
         if h_center == 0 and metadata['ct'][0] == 1:
             h_type = "연료 센터 ( 정의 )"
-            center_name = center_description[lang][142]
+            center_name = etc_description[lang][31]
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_0.gif"
             msg = center_description[lang][27]
             msg2 = center_description[lang][28]
@@ -703,7 +708,7 @@ class ActionLeadingCenters(Action):
 
         elif h_center == 2 and metadata['ct'][2] == 1:
             h_type = "직관 센터 ( 정의 )"
-            center_name = center_description[lang][143]
+            center_name = etc_description[lang][33]
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_2.gif"
             msg = center_description[lang][36]
             msg2 = center_description[lang][37]
@@ -717,7 +722,7 @@ class ActionLeadingCenters(Action):
             dispatcher.utter_message(message)
         elif h_center == 3 and metadata['ct'][3] == 1:
             h_type = "감정 센터 ( 정의 )"
-            center_name = center_description[lang][144]
+            center_name = etc_description[lang][34]
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_3.gif"
             msg = center_description[lang][45]
             msg2 = center_description[lang][46]
@@ -732,7 +737,7 @@ class ActionLeadingCenters(Action):
 
         elif h_center == 4 and metadata['ct'][4] == 1:
             h_type = "에고 센터 ( 정의 )"
-            center_name = center_description[lang][145]
+            center_name = etc_description[lang][35]
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_4.gif"
             msg = center_description[lang][52]
             msg2 = center_description[lang][53]
@@ -746,7 +751,7 @@ class ActionLeadingCenters(Action):
             dispatcher.utter_message(message)
         elif h_center == 5 and metadata['ct'][5] == 1:
             h_type = "방향 센터 ( 정의 )"
-            center_name = center_description[lang][146]
+            center_name = etc_description[lang][36]
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_5.gif"
             msg = center_description[lang][61]
             msg2 = center_description[lang][62]
@@ -775,7 +780,7 @@ class ActionLeadingCenters(Action):
                 })
         elif h_center == 6 and metadata['ct'][6] == 1:
             h_type = "표현 센터 ( 정의 )"
-            center_name = center_description[lang][147]
+            center_name = etc_description[lang][37]
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_6.gif"
             msg = center_description[lang][71]
             msg2 = center_description[lang][72]
@@ -800,7 +805,7 @@ class ActionLeadingCenters(Action):
                 })
         elif h_center == 0 and metadata['ct'][0] == 0:
             h_type = "연료 센터 ( 미정의 )"
-            center_name = center_description[lang][142]
+            center_name = etc_description[lang][31]
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_0_off.png"
             msg = center_description[lang][85]
             msg2 = center_description[lang][86]
@@ -815,7 +820,7 @@ class ActionLeadingCenters(Action):
 
         elif h_center == 2 and metadata['ct'][2] == 0:
             h_type = "직관 센터 ( 미정의 )"
-            center_name = center_description[lang][143]
+            center_name = etc_description[lang][33]
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_2_off.png"
             msg = center_description[lang][98]
             msg2 = center_description[lang][99]
@@ -829,7 +834,7 @@ class ActionLeadingCenters(Action):
 
         elif h_center == 3 and metadata['ct'][3] == 0:
             h_type = "감정 센터 ( 미정의 )"
-            center_name = center_description[lang][144]
+            center_name = etc_description[lang][34]
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_3_off.png"
             msg = center_description[lang][106]
             msg2 = center_description[lang][107]
@@ -844,7 +849,7 @@ class ActionLeadingCenters(Action):
 
         elif h_center == 4 and metadata['ct'][4] == 0:
             h_type = "에고 센터 ( 미정의 )"
-            center_name = center_description[lang][145]
+            center_name = etc_description[lang][35]
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_4_off.png"
             msg = center_description[lang][114]
             msg2 = center_description[lang][115]
@@ -860,7 +865,7 @@ class ActionLeadingCenters(Action):
             dispatcher.utter_message(message)
         elif h_center == 5 and metadata['ct'][5] == 0:
             h_type = "방향 센터 ( 미정의 )"
-            center_name = center_description[lang][146]
+            center_name = etc_description[lang][36]
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_5_off.png"
             msg = center_description[lang][123]
             msg2 = center_description[lang][124]
@@ -872,7 +877,7 @@ class ActionLeadingCenters(Action):
             dispatcher.utter_message(message)
         elif h_center == 6 and metadata['ct'][6] == 0:
             h_type = "표현 센터 ( 미정의 )"
-            center_name = center_description[lang][147]
+            center_name = etc_description[lang][37]
             img = "https://asset.i-manual.co.kr/static/images/centerCard/card_6_off.png"
             msg = center_description[lang][129]
             msg2 = center_description[lang][130]
