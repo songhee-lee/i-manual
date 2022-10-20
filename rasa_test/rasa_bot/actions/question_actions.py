@@ -441,7 +441,7 @@ class ActionDefaultFallback(Action):
                             "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[4]
                         })#~~에 대한 나다움을 잃고 있어요
                         answer = unego_question[2] #비자아 comment
-                        # dispatcher.utter_message(message)
+                        # dispatcher.utter_message(message) #두번 출력되서 삭제 진행
                         answer = unego_question[2]
                         ego_or_unego[center_priority[center_step]] = -1
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
