@@ -23,8 +23,8 @@ etc_description.append(etc_description_csv['korean'].values.tolist())
 etc_description.append(etc_description_csv['english'].values.tolist())
 
 # small talk 영어는 없다고 가정 하에 진행
-smalltalk_csv = pd.read_csv("./data/smalltalk.csv")
-smalltalk = smalltalk_csv['paragraph'].values.tolist()
+# smalltalk_csv = pd.read_csv("./data/smalltalk.csv")
+# smalltalk = smalltalk_csv['paragraph'].values.tolist()
 
 # English ver.
 # etc_description_eng_csv = pd.read_csv("./data/기타_eng.csv")
