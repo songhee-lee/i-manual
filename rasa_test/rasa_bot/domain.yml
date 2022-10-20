@@ -101,6 +101,8 @@ intents:
       use_entities: false
   - set_priority_again:
       use_entities: true
+  - smalltalk_first:
+      use_entities: true
 
 entities:
   - id

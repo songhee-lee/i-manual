@@ -210,3 +210,8 @@ stories:
     steps:
       - intent: set_priority_again
       - action: action_set_priority_again
+
+  - story: More smalltalk_first
+    steps:
+      - intent: smalltalk_first
+      - action: action_set_priority_again

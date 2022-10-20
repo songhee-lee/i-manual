@@ -9,11 +9,15 @@ from rasa_sdk.events import FollowupAction
 import pandas as pd
 logger = logging.getLogger(__name__)
 
-smalltalk_csv = pd.read_csv("./data/smalltalk.csv")
-smalltalk = []
-smalltalk.append(smalltalk_csv['korean'].values.tolist())
-smalltalk.append(smalltalk_csv['english'].values.tolist())
+smalltalk_question_csv = pd.read_csv("./data/smalltalk_question.csv")
+smalltalk_question = []
+smalltalk_question.append(smalltalk_question_csv['korean'].values.tolist())
+smalltalk_question.append(smalltalk_question_csv['english'].values.tolist())
 
+smalltalk_answer_csv = pd.read_csv("./data/smalltalk_answer.csv")
+smalltalk_answer = []
+smalltalk_answer.append(smalltalk_answer_csv['korean'].values.tolist())
+smalltalk_answer.append(smalltalk_answer_csv['english'].values.tolist())
 
 class ActionSmalltalkFirst(Action):
     def name(self) -> Text:
@@ -27,16 +31,33 @@ class ActionSmalltalkFirst(Action):
         ninei = tracker.get_slot('ninei')
         lang = tracker.get_slot('lang')
 
-        msg = ""
+
+        # 첫인사 끝
+        if smalltalk_step == 9 :
+            question = smalltalk_question[lang][smalltalk_step]
+
+            dispatcher.utter_message(answer)
+
+            buttons = []
+            buttons.append(
+                {"title": smalltalk_answer[lang][smalltalk_step],
+                 "payload": "/smalltalk_first{\"smalltalk_step\":smalltalk_step+1}"}
+            )
+            return [FollowupAction(name='action_start')]
 
         # buttons 요소 2개 이상
-        if smalltalk_step in [4, 8, 9, 16, 18]:
-            buttons = []
+        if smalltalk_step == 3 :
+            return [SlotSet('smalltalk_step', 6), FollowupAction(name='action_smalltalk_first')]
 
         # buttons 요소 1개
         else:
+            question = smalltalk_question[lang][smalltalk_step]
+
+            dispatcher.utter_message(answer)
+
             buttons = []
+            buttons.append(
+                {"title": smalltalk_answer[lang][smalltalk_step], "payload": "/smalltalk_first{\"smalltalk_step\":smalltalk_step+1}"}
+            )
 
-        # ninei = metadata['ninei']
-
-        return [FollowupAction(name='action_set_priority')]
+            dispatcher.utter_message(buttons=buttons)
