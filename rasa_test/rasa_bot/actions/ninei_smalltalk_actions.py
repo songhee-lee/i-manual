@@ -40,7 +40,27 @@ class ActionSmalltalkFirst(Action):
             return [FollowupAction(name='action_start')]
 
         # buttons 요소 2개 이상
-        if smalltalk_step == 3 :
+        if smalltalk_step in [3]:
+            if smalltalk_step == 3:
+                question = smalltalk_question[lang][smalltalk_step]
+
+                dispatcher.utter_message(question)
+
+                buttons = []
+                buttons.append(
+                   {"title": smalltalk_answer[lang][3], "payload": "/smalltalk_first{\"smalltalk_step\":5, "
+                                                                   "\"continue_smalltalk\":1}"}
+                )
+                buttons.append(
+                   {"title": smalltalk_answer[lang][4], "payload": "/smalltalk_first{\"smalltalk_step\":5, "
+                                                                   "\"continue_smalltalk\":1}"}
+                )
+                buttons.append(
+                   {"title": smalltalk_answer[lang][5], "payload": "/smalltalk_first{\"smalltalk_step\":5, "
+                                                                   "\"continue_smalltalk\":1}"}
+                )
+
+            dispatcher.utter_message(buttons=buttons)
             return [SlotSet('smalltalk_step', 6), FollowupAction(name='action_smalltalk_first')]
 
         # buttons 요소 1개
@@ -51,7 +71,8 @@ class ActionSmalltalkFirst(Action):
 
             buttons = []
             buttons.append(
-                {"title": smalltalk_answer[lang][smalltalk_step], "payload": "/smalltalk_first{\"continue_smalltalk\":1}"}
+                {"title": smalltalk_answer[lang][smalltalk_step], "payload": "/smalltalk_first{"
+                                                                             "\"continue_smalltalk\":1}"}
             )
 
             dispatcher.utter_message(buttons=buttons)
