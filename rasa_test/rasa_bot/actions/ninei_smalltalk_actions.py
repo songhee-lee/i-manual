@@ -30,19 +30,13 @@ class ActionSmalltalkFirst(Action):
         smalltalk_step = tracker.get_slot('smalltalk_step')
         ninei = tracker.get_slot('ninei')
         lang = tracker.get_slot('lang')
+        continue_smalltalk = tracker.get_slot('continue_smalltalk')
 
+        if continue_smalltalk == 1 :
+            smalltalk_step += 1
 
         # 첫인사 끝
-        if smalltalk_step == 9 :
-            question = smalltalk_question[lang][smalltalk_step]
-
-            dispatcher.utter_message(answer)
-
-            buttons = []
-            buttons.append(
-                {"title": smalltalk_answer[lang][smalltalk_step],
-                 "payload": "/smalltalk_first{\"smalltalk_step\":smalltalk_step+1}"}
-            )
+        if smalltalk_step == 10 :
             return [FollowupAction(name='action_start')]
 
         # buttons 요소 2개 이상
@@ -53,11 +47,11 @@ class ActionSmalltalkFirst(Action):
         else:
             question = smalltalk_question[lang][smalltalk_step]
 
-            dispatcher.utter_message(answer)
+            dispatcher.utter_message(question)
 
             buttons = []
             buttons.append(
-                {"title": smalltalk_answer[lang][smalltalk_step], "payload": "/smalltalk_first{\"smalltalk_step\":smalltalk_step+1}"}
+                {"title": smalltalk_answer[lang][smalltalk_step], "payload": "/smalltalk_first{\"continue_smalltalk\":1}"}
             )
 
             dispatcher.utter_message(buttons=buttons)

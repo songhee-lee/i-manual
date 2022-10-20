@@ -100,21 +100,21 @@ class ActionSetPriority(Action):  # 맨 처음
                               "profile": metadata["p"],
                               "definition": metadata["d"], "centers": metadata["ct"], "question": [],
                               "self_notSelf": []})
-"""
+        """
         return [FollowupAction(name='action_start'), SlotSet('leading_priority', leading_priority),
                 SlotSet('center_priority', center_priority),
                 SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0),
                 SlotSet('center_type', center_priority[0]),
                 SlotSet('center_question', 0), SlotSet('is_sentiment', 0),
                 SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se), SlotSet('lang', 1), SlotSet('ninei', 0), SlotSet('smalltalk_step', 0)]  # slot추가 필요
-"""
+        """
         return [FollowupAction(name='action_smalltalk_first'), SlotSet('leading_priority', leading_priority),
                 SlotSet('center_priority', center_priority),
                 SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0),
                 SlotSet('center_type', center_priority[0]),
                 SlotSet('center_question', 0), SlotSet('is_sentiment', 0),
                 SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se), SlotSet('lang', 1),
-                SlotSet('ninei', 0), SlotSet('smalltalk_step', 0)]  # slot추가 필요
+                SlotSet('ninei', 0), SlotSet('smalltalk_step', 0), SlotSet('continue_smalltalk', 0)]  # slot추가 필요
 
 
 class ActionSetPriorityAgain(Action):  # 맨 처음
@@ -197,7 +197,7 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
                 SlotSet('step', step), SlotSet('is_finished', is_finished), SlotSet('center_step', center_step),
                 SlotSet('is_question', is_question), SlotSet('center_type', center_type),
                 SlotSet('center_question', center_question), SlotSet('is_sentiment', is_sentiment),
-                SlotSet('ego_or_unego', ego_or_unego), SlotSet('se', se), SlotSet('lang', 1), SlotSet('ninei', 0), SlotSet('smalltalk_step', 0)]  # slot추가 필요
+                SlotSet('ego_or_unego', ego_or_unego), SlotSet('se', se), SlotSet('lang', 1), SlotSet('ninei', 0), SlotSet('smalltalk_step', 0), SlotSet('continue_smalltalk', 0)]  # slot추가 필요
 
 
 class ActionStart(Action):

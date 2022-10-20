@@ -128,6 +128,7 @@ entities:
   - lang
   - ninei
   - smalltalk_step
+  - continue_smalltalk
 slots:
   center_priority:
     type: list
@@ -230,6 +231,11 @@ slots:
     auto_fill: true
     influence_conversation: false
   smalltalk_step:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
+    auto_fill: true
+    influence_conversation: false
+  continue_smalltalk:
     type: rasa.shared.core.slots.TextSlot
     initial_value: 0
     auto_fill: true
