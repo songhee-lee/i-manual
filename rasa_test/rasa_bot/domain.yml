@@ -231,12 +231,12 @@ slots:
     auto_fill: true
     influence_conversation: false
   smalltalk_step:
-    type: rasa.shared.core.slots.TextSlot
+    type: rasa.shared.core.slots.FloatSlot
     initial_value: 0
     auto_fill: true
     influence_conversation: false
   continue_smalltalk:
-    type: rasa.shared.core.slots.TextSlot
+    type: rasa.shared.core.slots.FloatSlot
     initial_value: 0
     auto_fill: true
     influence_conversation: false

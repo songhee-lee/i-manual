@@ -138,6 +138,8 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
         center_question = tracker.get_slot("center_question")
         is_sentiment = tracker.get_slot("is_sentiment")
         ego_or_unego = tracker.get_slot("ego_or_unego")
+        smalltalk_step = tracker.get_slot("smalltalk_step")
+        continue_smalltalk = tracker.get_slot("continue_smalltalk")
 
         # 리딩 우선순위 정하는 부분
         leading_priority = []
@@ -197,7 +199,7 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
                 SlotSet('step', step), SlotSet('is_finished', is_finished), SlotSet('center_step', center_step),
                 SlotSet('is_question', is_question), SlotSet('center_type', center_type),
                 SlotSet('center_question', center_question), SlotSet('is_sentiment', is_sentiment),
-                SlotSet('ego_or_unego', ego_or_unego), SlotSet('se', se), SlotSet('lang', 1), SlotSet('ninei', 0), SlotSet('smalltalk_step', 0), SlotSet('continue_smalltalk', 0)]  # slot추가 필요
+                SlotSet('ego_or_unego', ego_or_unego), SlotSet('se', se), SlotSet('lang', 1), SlotSet('ninei', 0), SlotSet('smalltalk_step', smalltalk_step), SlotSet('continue_smalltalk', continue_smalltalk)]  # slot추가 필요
 
 
 class ActionStart(Action):

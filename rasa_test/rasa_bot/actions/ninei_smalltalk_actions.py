@@ -71,8 +71,6 @@ class ActionSmalltalkFirst(Action):
 
             buttons = []
             buttons.append(
-                {"title": smalltalk_answer[lang][smalltalk_step], "payload": "/smalltalk_first{"
-                                                                             "\"continue_smalltalk\":1}"}
-            )
+                {"title": smalltalk_answer[lang][smalltalk_step], "payload": "/smalltalk_first{\"continue_smalltalk\":1}"})
 
             dispatcher.utter_message(buttons=buttons)
