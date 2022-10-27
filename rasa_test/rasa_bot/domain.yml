@@ -282,6 +282,7 @@ actions:
   - action_drop_center
   - action_set_priority_again
   - action_smalltalk_first
+  - action_change_smalltalk_step
 
 forms: {}
 e2e_actions: []
