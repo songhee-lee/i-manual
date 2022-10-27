@@ -30,13 +30,13 @@ class ActionSmalltalkFirst(Action):
 
         metadata = extract_metadata_from_tracker(tracker)
         smalltalk_step = racker.get_slot('smalltalk_step')
-        ninei = tracker.get_slot('ninei')
         lang = tracker.get_slot('lang')
-        continue_smalltalk = tracker.get_slot('continue_smalltalk')
 
         # 첫인사 끝
         if smalltalk_step == 10:
             return [FollowupAction(name='action_start')]
+
+        buttons = []
 
         # buttons 요소 2개 이상
         if smalltalk_step in [3]:
@@ -45,7 +45,6 @@ class ActionSmalltalkFirst(Action):
 
                 dispatcher.utter_message(question)
 
-                buttons = []
                 buttons.append(
                     {"title": smalltalk_answer[lang][3], "payload": "/change_smalltalk_step{\"smalltalk_step\":5}"}
                 )
@@ -64,7 +63,6 @@ class ActionSmalltalkFirst(Action):
 
             dispatcher.utter_message(question)
 
-            buttons = []
             buttons.append(
                 {"title": smalltalk_answer[lang][smalltalk_step], "payload": "/change_smalltalk_step"})
 
@@ -77,6 +75,6 @@ class ActionChangeSmalltalkStep(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_change_smalltalk_step')
 
-        smalltalk_step = racker.get_slot('smalltalk_step')
+        smalltalk_step = tracker.get_slot('smalltalk_step')
 
         return [SlotSet("smalltalk_step", smalltalk_step + 1), FollowupAction(name="action_smalltalk_first")]
