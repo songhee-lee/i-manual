@@ -282,7 +282,7 @@ class ActionDefaultFallback(Action):
 
             elif q_type == 3:
                 if center_priority[center_step] == 0 and metadata["ct"][0] == 0:
-                    qa_step = "연료센터(미정의)" # unego_description[title][0]
+                    qa_step = "연료센터(미정의)"  # unego_description[title][0]
                 elif center_priority[center_step] == 0 and metadata["ct"][0] == 1:
                     qa_step = "연료센터(정의)"
 
@@ -376,11 +376,13 @@ class ActionDefaultFallback(Action):
             buttons = []
             if center_question == 1:
                 buttons.append(
-                    {"title": etc_description[lang][18], "payload": "/question{\"is_question\":1, \"center_question\":1}"}) # 질문 있어요
-                buttons.append({"title": etc_description[lang][19], "payload": "/center_unego_question"}) # 질문 없어요
+                    {"title": etc_description[lang][18],
+                     "payload": "/question{\"is_question\":1, \"center_question\":1}"})  # 질문 있어요
+                buttons.append({"title": etc_description[lang][19], "payload": "/center_unego_question"})  # 질문 없어요
             else:
                 buttons.append(
-                    {"title": etc_description[lang][18], "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+                    {"title": etc_description[lang][18],
+                     "payload": "/question{\"is_question\":1, \"center_question\":0}"})
                 buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
             dispatcher.utter_message(etc_description[lang][4], buttons=buttons)
             return [SlotSet("step", step)]
@@ -392,15 +394,19 @@ class ActionDefaultFallback(Action):
             print("after QA center question", center_question)
             if center_question == 1:
                 qa_buttons.append(
-                    {"title": etc_description[lang][18], "payload": "/question{\"is_question\":1, \"center_question\":1}"})
+                    {"title": etc_description[lang][18],
+                     "payload": "/question{\"is_question\":1, \"center_question\":1}"})
                 qa_buttons.append(
-                    {"title": etc_description[lang][19], "payload": "/center_unego_question{\"is_question\":0, \"center_question\":0}"})
+                    {"title": etc_description[lang][19],
+                     "payload": "/center_unego_question{\"is_question\":0, \"center_question\":0}"})
             # 센터 질문이 아니면
             else:
                 qa_buttons.append(
-                    {"title": etc_description[lang][18], "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+                    {"title": etc_description[lang][18],
+                     "payload": "/question{\"is_question\":1, \"center_question\":0}"})
                 qa_buttons.append(
-                    {"title": etc_description[lang][19], "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
+                    {"title": etc_description[lang][19],
+                     "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
             dispatcher.utter_message(f'{answer}')
             dispatcher.utter_message(etc_description[lang][6], buttons=qa_buttons)
@@ -421,8 +427,8 @@ class ActionDefaultFallback(Action):
                     if sentiment_result > 0:
                         dispatcher.utter_message(unego_description[lang][91], json_message={
                             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69201.wav"
-                        })#좋아요 나답게 잘 살고 있어요
-                        answer = unego_question[1] #자아 comment
+                        })  # 좋아요 나답게 잘 살고 있어요
+                        answer = unego_question[1]  # 자아 comment
                         dispatcher.utter_message(unego_description[lang][91])
                         answer = unego_question[1]
                         ego_or_unego[center_priority[center_step]] = 1
@@ -435,12 +441,14 @@ class ActionDefaultFallback(Action):
 
                     # 비자아 혹은 중립인 경우
                     else:
-                        center_info = [etc_description[lang][31], etc_description[lang][32],etc_description[lang][33],etc_description[lang][34],etc_description[lang][35],etc_description[lang][36],etc_description[lang][37],etc_description[lang][38],etc_description[lang][39]]
+                        center_info = [etc_description[lang][31], etc_description[lang][32], etc_description[lang][33],
+                                       etc_description[lang][34], etc_description[lang][35], etc_description[lang][36],
+                                       etc_description[lang][37], etc_description[lang][38], etc_description[lang][39]]
                         message = unego_description[lang][92].format(center_info[center_type])
                         dispatcher.utter_message(message, json_message={
                             "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[4]
-                        })#~~에 대한 나다움을 잃고 있어요
-                        answer = unego_question[2] #비자아 comment
+                        })  # ~~에 대한 나다움을 잃고 있어요
+                        answer = unego_question[2]  # 비자아 comment
                         # dispatcher.utter_message(message) #두번 출력되서 삭제 진행
                         answer = unego_question[2]
                         ego_or_unego[center_priority[center_step]] = -1
@@ -459,13 +467,16 @@ class ActionDefaultFallback(Action):
                 notice_buttons = []
                 if center_question == 1:
                     notice_buttons.append(
-                        {"title": etc_description[lang][18], "payload": "/question{\"is_question\":1, \"center_question\":1}"})
+                        {"title": etc_description[lang][18],
+                         "payload": "/question{\"is_question\":1, \"center_question\":1}"})
                 else:
                     notice_buttons.append(
-                        {"title": etc_description[lang][18], "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+                        {"title": etc_description[lang][18],
+                         "payload": "/question{\"is_question\":1, \"center_question\":0}"})
 
                 notice_buttons.append(
-                    {"title": etc_description[lang][19], "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
+                    {"title": etc_description[lang][19],
+                     "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
                 notice = etc_description[lang][8]
                 notice2 = etc_description[lang][9]
@@ -545,7 +556,9 @@ class ActionCenterUnegoQuestion(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         lang = tracker.get_slot('lang')
         print('action_center_unego_question')
-        human_center = [etc_description[lang][31], etc_description[lang][32],etc_description[lang][33],etc_description[lang][34],etc_description[lang][35],etc_description[lang][36],etc_description[lang][37],etc_description[lang][38],etc_description[lang][39]]
+        human_center = [etc_description[lang][31], etc_description[lang][32], etc_description[lang][33],
+                        etc_description[lang][34], etc_description[lang][35], etc_description[lang][36],
+                        etc_description[lang][37], etc_description[lang][38], etc_description[lang][39]]
         metadata = extract_metadata_from_tracker(tracker)
 
         user_text = tracker.latest_message['text']
@@ -571,44 +584,45 @@ class ActionCenterUnegoQuestion(Action):
 
             # 조건화 질문 시작시 멘트
             if unego_count == 1:
-                message = unego_description[lang][90].format(human_center[center_type]) #다음의 질문에 답해보세요~
-                if center_type==1:
+                message = unego_description[lang][90].format(human_center[center_type])  # 다음의 질문에 답해보세요~
+                if center_type == 1:
                     dispatcher.utter_message(message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
-                })
-                elif center_type==2:
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                    })
+                elif center_type == 2:
                     dispatcher.utter_message(message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
-                })
-                elif center_type==3:
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                    })
+                elif center_type == 3:
                     dispatcher.utter_message(message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
-                })
-                elif center_type==4:
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                    })
+                elif center_type == 4:
                     dispatcher.utter_message(message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
-                })
-                elif center_type==5:
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                    })
+                elif center_type == 5:
                     dispatcher.utter_message(message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69105.wav"
-                })
-                elif center_type==6:
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69105.wav"
+                    })
+                elif center_type == 6:
                     dispatcher.utter_message(message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69106.wav"
-                })
-                elif center_type==7:
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69106.wav"
+                    })
+                elif center_type == 7:
                     dispatcher.utter_message(message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69107.wav"
-                })
-                elif center_type==8:
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69107.wav"
+                    })
+                elif center_type == 8:
                     dispatcher.utter_message(message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69108.wav"
-                })
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69108.wav"
+                    })
 
-            # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아, 3번째가 질문 voice, 4번째가 나다움 잃고있어요 voice, 5번째가 비자아 comment voice, 6번째가 자아 comment voice
+            # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아, 3번째가 질문 voice, 4번째가 나다움 잃고있어요 voice, 5번째가 비자아 comment voice,
+            # 6번째가 자아 comment voice
             dispatcher.utter_message(unego_question[0], json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[3]
-                }) #질문
+                "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[3]
+            })  # 질문
 
             if unego_count > 1:
                 unego_answer(question, user_text, metadata)
@@ -638,7 +652,7 @@ class ActionTypeQuestion(Action):
             return [FollowupAction(name='action_set_priority_again')]
         print(step)
 
-        context = type_retrieve_context(type_index, context_index=context_index, lang = lang)
+        context = type_retrieve_context(type_index, context_index=context_index, lang=lang)
         answer = koelectra_qa_getanswer(context, question, metadata=metadata)
         dispatcher.utter_message(answer)
 

@@ -103,6 +103,8 @@ intents:
       use_entities: true
   - smalltalk_first:
       use_entities: true
+  - change_smalltalk_step:
+      use_entities: true
 
 entities:
   - id

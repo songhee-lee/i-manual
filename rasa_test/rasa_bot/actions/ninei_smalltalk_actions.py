@@ -7,6 +7,7 @@ from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReve
 from actions.common import extract_metadata_from_tracker
 from rasa_sdk.events import FollowupAction
 import pandas as pd
+
 logger = logging.getLogger(__name__)
 
 smalltalk_question_csv = pd.read_csv("./data/smalltalk_question.csv")
@@ -19,6 +20,7 @@ smalltalk_answer = []
 smalltalk_answer.append(smalltalk_answer_csv['korean'].values.tolist())
 smalltalk_answer.append(smalltalk_answer_csv['english'].values.tolist())
 
+
 class ActionSmalltalkFirst(Action):
     def name(self) -> Text:
         return "action_smalltalk_first"
@@ -27,16 +29,13 @@ class ActionSmalltalkFirst(Action):
         print('action_smalltalk_first')
 
         metadata = extract_metadata_from_tracker(tracker)
-        smalltalk_step = tracker.get_slot('smalltalk_step')
+        smalltalk_step = racker.get_slot('smalltalk_step')
         ninei = tracker.get_slot('ninei')
         lang = tracker.get_slot('lang')
         continue_smalltalk = tracker.get_slot('continue_smalltalk')
 
-        if continue_smalltalk == 1 :
-            smalltalk_step += 1
-
         # 첫인사 끝
-        if smalltalk_step == 10 :
+        if smalltalk_step == 10:
             return [FollowupAction(name='action_start')]
 
         # buttons 요소 2개 이상
@@ -48,20 +47,16 @@ class ActionSmalltalkFirst(Action):
 
                 buttons = []
                 buttons.append(
-                   {"title": smalltalk_answer[lang][3], "payload": "/smalltalk_first{\"smalltalk_step\":5, "
-                                                                   "\"continue_smalltalk\":1}"}
+                    {"title": smalltalk_answer[lang][3], "payload": "/change_smalltalk_step{\"smalltalk_step\":5}"}
                 )
                 buttons.append(
-                   {"title": smalltalk_answer[lang][4], "payload": "/smalltalk_first{\"smalltalk_step\":5, "
-                                                                   "\"continue_smalltalk\":1}"}
+                    {"title": smalltalk_answer[lang][4], "payload": "/change_smalltalk_step{\"smalltalk_step\":5}"}
                 )
                 buttons.append(
-                   {"title": smalltalk_answer[lang][5], "payload": "/smalltalk_first{\"smalltalk_step\":5, "
-                                                                   "\"continue_smalltalk\":1}"}
+                    {"title": smalltalk_answer[lang][5], "payload": "/change_smalltalk_step{\"smalltalk_step\":5}"}
                 )
 
             dispatcher.utter_message(buttons=buttons)
-            return [SlotSet('smalltalk_step', 6), FollowupAction(name='action_smalltalk_first')]
 
         # buttons 요소 1개
         else:
@@ -71,6 +66,17 @@ class ActionSmalltalkFirst(Action):
 
             buttons = []
             buttons.append(
-                {"title": smalltalk_answer[lang][smalltalk_step], "payload": "/smalltalk_first{\"continue_smalltalk\":1}"})
+                {"title": smalltalk_answer[lang][smalltalk_step], "payload": "/change_smalltalk_step"})
 
             dispatcher.utter_message(buttons=buttons)
+
+class ActionChangeSmalltalkStep(Action):
+    def name(self) -> Text:
+        return "action_change_smalltalk_step"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print('action_change_smalltalk_step')
+
+        smalltalk_step = racker.get_slot('smalltalk_step')
+
+        return [SlotSet("smalltalk_step", smalltalk_step + 1), FollowupAction(name="action_smalltalk_first")]

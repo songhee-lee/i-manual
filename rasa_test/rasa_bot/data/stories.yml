@@ -215,3 +215,8 @@ stories:
     steps:
       - intent: smalltalk_first
       - action: action_set_priority_again
+
+  - story: change_smalltalk_step
+    steps:
+      - intent: change_smalltalk_step
+      - action: action_change_smalltalk_step
