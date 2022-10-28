@@ -1,41 +1,41 @@
-﻿title,korean,english
-시작 message,안녕하세요. 저는 당신이 어떤 사람인지 알려줄 마스터 봇 입니다.,"Hello, I am Master Bot who will tell you what kind of person you are. Now let’s get to know you."
-특징 하나 끝났을 때 계속 할 지,계속 할까요?,"What do you think? There is still more to talk about, shall we learn more about your Type?"
-센터 하나 끝났을 때 계속 할 지,센터에 대한 설명을 이어서 들으시겠어요?,Would you like to hear more about the center?
-특징 시작 시,"자, 이제 다른 특징에 대해 알아봅시다",Now let’s look at the other features.
-질문 있는지 물음,질문이 있나요?,"If you have any questions, select from the following."
-질문 있어요 버튼 클릭 시,무엇이 궁금하신가요?,What are you curious about?
-질문 끝났을 때 추가 질문 있는 지,다른 질문있나요?,Any other questions?
-올바른 질문이 아닌 경우,잘 이해할 수 없습니다.  궁금한 게 있으시면 아이매뉴얼을 읽어보세요!,"I don't quite understand. If you have any questions, please read the i-Manual!"
-채팅 치면 안 될 때 채팅 시,지금은 채팅하실 수 없습니다. 질문이 있으시면 질문 버튼을 클릭해주세요!,"Chat is not available at this time. If you have any questions, please click the Ask button!"
-채팅 치면 안 될 때 채팅 시,문제가 생겼다면 마스터봇을 입력해주세요!,"If you have any problems, please enter the masterbot!"
-last message,마스터봇의 설명이 도움이 되고 있나요? 언제든 다시 불러주세요,Is Masterbot's explanation helpful? call back anytime
-last message,당신이 타고난 디자인에 대한 마스터봇의 설명이 이해가 잘 되셨나요?,Did you understand Masterbot's explanation of your innate design?
-last message,아이매뉴얼에서 준비한 당신의 설명서를 꼼꼼히 읽어보시길 바랍니다. 더불어 행복설명서와 관계사용 설명서도 꼭 읽어보세요,"Please carefully read your description prepared in the iManual. Also, be sure to read the happiness manual and relationship user manual."
-last message,궁금한 점이 있다면 채팅창에 '마스터봇'이라고 입력해주세요.,"If you have any questions, please call the Masterbot again at any time."
-last message,당신이 타고난 디자인대로 행복하게 살 수 있기를 응원합니다. 다시 만나요,I hope that you can live a happy life according to the design you were born with.See you again!
-마스터봇 호출,"안녕하세요 , 저를 부르셨나요? 다시 찾아주셔서 감사해요","Hello, did you call me? Thanks for coming back"
-마스터봇 호출(리딩 종료),다시 듣고 싶은 항목을 선택해 주세요,Please select the item you want to hear again
-마스터봇 호출(리딩 미종료),지난번에 이어서 들으시겠어요?,Would you like to hear from last time?
-질문 있어요 버튼,질문 있어요,I have a question
-질문 없어요 버튼,질문 없어요,I don't have any questions
-계속 버튼,계속,Continue.
-오늘은 그만 버튼,오늘은 그만,Enough for today.
-센터 건너뛰기 버튼,센터 건너뛰기,Skip Center
-예 버튼,예,Yes
-아니오 버튼,아니오,No
-종족 버튼,종족,race
-사회적 성향 버튼,사회적 성향,social inclination
-에너지 흐름 버튼,에너지 흐름,enegy flow
-센터 버튼,센터,center
-네 이어서 들을래요 버튼,네 이어서 들을래요,yes I will listen
-아뇨! 처음부터 들을래요 버튼,아뇨! 처음부터 들을래요,No I want to hear it from the beginning
-center_name 연료센터,연료센터,Root
-center_name 활력센터,활력센터,Vitality
-center_name 직관센터,직관센터,Intuition
-center_name 감정센터,감정센터,Emotion
-center_name 에고센터,에고센터,Ego
-center_name 방향센터,방향센터,Navi.(Direction)
-center_name 표현센터,표현센터,Expression
-center_name 생각센터,생각센터,Mental Awareness
-center_name 영감센터,영감센터,Mental Pressure
+title,korean,english,voiceID
+시작 message,안녕하세요. 저는 당신이 어떤 사람인지 알려줄 마스터 봇 입니다.,"Hello, I am Master Bot who will tell you what kind of person you are. Now let’s get to know you.",1001
+특징 하나 끝났을 때 계속 할 지,계속 할까요?,"What do you think? There is still more to talk about, shall we learn more about your Type?",1002
+센터 하나 끝났을 때 계속 할 지,센터에 대한 설명을 이어서 들으시겠어요?,Would you like to hear more about the center?,1003
+특징 시작 시,"자, 이제 다른 특징에 대해 알아봅시다",Now let’s look at the other features.,1004
+질문 있는지 물음,질문이 있나요?,"If you have any questions, select from the following.",1005
+질문 있어요 버튼 클릭 시,무엇이 궁금하신가요?,What are you curious about?,1006
+질문 끝났을 때 추가 질문 있는 지,다른 질문있나요?,Any other questions?,1007
+올바른 질문이 아닌 경우,잘 이해할 수 없습니다.  궁금한 게 있으시면 아이매뉴얼을 읽어보세요!,"I don't quite understand. If you have any questions, please read the i-Manual!",1008
+채팅 치면 안 될 때 채팅 시,지금은 채팅하실 수 없습니다. 질문이 있으시면 질문 버튼을 클릭해주세요!,"Chat is not available at this time. If you have any questions, please click the Ask button!",1009
+채팅 치면 안 될 때 채팅 시,문제가 생겼다면 마스터봇을 입력해주세요!,"If you have any problems, please enter the masterbot!",1010
+last message,마스터봇의 설명이 도움이 되고 있나요? 언제든 다시 불러주세요,Is Masterbot's explanation helpful? call back anytime,1011
+last message,당신이 타고난 디자인에 대한 마스터봇의 설명이 이해가 잘 되셨나요?,Did you understand Masterbot's explanation of your innate design?,1012
+last message,아이매뉴얼에서 준비한 당신의 설명서를 꼼꼼히 읽어보시길 바랍니다. 더불어 행복설명서와 관계사용 설명서도 꼭 읽어보세요,"Please carefully read your description prepared in the iManual. Also, be sure to read the happiness manual and relationship user manual.",1013
+last message,궁금한 점이 있다면 채팅창에 '마스터봇'이라고 입력해주세요.,"If you have any questions, please call the Masterbot again at any time.",1014
+last message,당신이 타고난 디자인대로 행복하게 살 수 있기를 응원합니다. 다시 만나요,I hope that you can live a happy life according to the design you were born with.See you again!,1015
+마스터봇 호출,"안녕하세요 , 저를 부르셨나요? 다시 찾아주셔서 감사해요","Hello, did you call me? Thanks for coming back",1016
+마스터봇 호출(리딩 종료),다시 듣고 싶은 항목을 선택해 주세요,Please select the item you want to hear again,1017
+마스터봇 호출(리딩 미종료),지난번에 이어서 들으시겠어요?,Would you like to hear from last time?,1018
+질문 있어요 버튼,질문 있어요,I have a question,1019
+질문 없어요 버튼,질문 없어요,I don't have any questions,1020
+계속 버튼,계속,Continue.,1021
+오늘은 그만 버튼,오늘은 그만,Enough for today.,1022
+센터 건너뛰기 버튼,센터 건너뛰기,Skip Center,1023
+예 버튼,예,Yes,1024
+아니오 버튼,아니오,No,1025
+종족 버튼,종족,race,1026
+사회적 성향 버튼,사회적 성향,social inclination,1027
+에너지 흐름 버튼,에너지 흐름,enegy flow,1028
+센터 버튼,센터,center,1029
+네 이어서 들을래요 버튼,네 이어서 들을래요,yes I will listen,1030
+아뇨! 처음부터 들을래요 버튼,아뇨! 처음부터 들을래요,No I want to hear it from the beginning,1031
+center_name 연료센터,연료센터,Root,1032
+center_name 활력센터,활력센터,Vitality,1033
+center_name 직관센터,직관센터,Intuition,1034
+center_name 감정센터,감정센터,Emotion,1035
+center_name 에고센터,에고센터,Ego,1036
+center_name 방향센터,방향센터,Navi.(Direction),1037
+center_name 표현센터,표현센터,Expression,1038
+center_name 생각센터,생각센터,Mental Awareness,1039
+center_name 영감센터,영감센터,Mental Pressure,1040
