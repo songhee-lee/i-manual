@@ -14,6 +14,7 @@ definition_description_csv = pd.read_csv("./data/definition_description.csv")
 definition_description = []
 definition_description.append(definition_description_csv['korean'].values.tolist())
 definition_description.append(definition_description_csv['english'].values.tolist())
+definition_description.append(definition_description_csv['voiceID'].values.tolist())
 
 
 class ActionLeadingDefinitionIntro(Action):

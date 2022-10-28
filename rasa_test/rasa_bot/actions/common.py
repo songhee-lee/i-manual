@@ -20,6 +20,7 @@ unego_description_csv = pd.read_csv("./data/자아_비자아 question.csv")
 unego_description = []
 unego_description.append(unego_description_csv['korean'].values.tolist())
 unego_description.append(unego_description_csv['english'].values.tolist())
+unego_description.append(unego_description_csv['voiceID'].values.tolist())
 
 
 

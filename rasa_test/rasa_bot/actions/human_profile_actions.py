@@ -13,11 +13,13 @@ profile_description_csv = pd.read_csv("./data/profile_description.csv")
 profile_description = []
 profile_description.append(profile_description_csv['korean'].values.tolist())
 profile_description.append(profile_description_csv['english'].values.tolist())
+profile_description.append(profile_description_csv['voiceID'].values.tolist())
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
 etc_description = []
 etc_description.append(etc_description_csv['korean'].values.tolist())
 etc_description.append(etc_description_csv['english'].values.tolist())
+etc_description.append(etc_description_csv['voiceID'].values.tolist())
 
 class ActionLeadingProfileIntro(Action):
     def name(self) -> Text:

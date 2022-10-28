@@ -20,6 +20,7 @@ etc_description_csv = pd.read_csv("./data/기타.csv")
 etc_description = []
 etc_description.append(etc_description_csv['korean'].values.tolist())
 etc_description.append(etc_description_csv['english'].values.tolist())
+etc_description.append(etc_description_csv['voiceID'].values.tolist())
 
 
 def change_gate_to_center(gate):
@@ -55,6 +56,7 @@ class ActionSetPriority(Action):  # 맨 처음
         print(metadata)
         gt = metadata["gt"]
         se = change_gate_to_center(gt)
+        ninei = metadata["member"]
         # message = etc_description[lang][0].format(metadata["pn"])
         # dispatcher.utter_message(message)
 
@@ -100,21 +102,23 @@ class ActionSetPriority(Action):  # 맨 처음
                               "profile": metadata["p"],
                               "definition": metadata["d"], "centers": metadata["ct"], "question": [],
                               "self_notSelf": []})
-        """
-        return [FollowupAction(name='action_start'), SlotSet('leading_priority', leading_priority),
+
+        if ninei == 0:
+            return [FollowupAction(name='action_start'), SlotSet('leading_priority', leading_priority),
                 SlotSet('center_priority', center_priority),
                 SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0),
                 SlotSet('center_type', center_priority[0]),
                 SlotSet('center_question', 0), SlotSet('is_sentiment', 0),
-                SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se), SlotSet('lang', 1), SlotSet('ninei', 0), SlotSet('smalltalk_step', 0)]  # slot추가 필요
-        """
-        return [FollowupAction(name='action_smalltalk_first'), SlotSet('leading_priority', leading_priority),
+                SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se), SlotSet('smalltalk_step', 0)]  # slot추가 필요
+
+        else :
+            return [FollowupAction(name='action_smalltalk_first'), SlotSet('leading_priority', leading_priority),
                 SlotSet('center_priority', center_priority),
                 SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0),
                 SlotSet('center_type', center_priority[0]),
                 SlotSet('center_question', 0), SlotSet('is_sentiment', 0),
                 SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se),
-                SlotSet('smalltalk_step', 0), SlotSet('continue_smalltalk', 0)]  # slot추가 필요
+                SlotSet('smalltalk_step', 0)]  # slot추가 필요
 
 
 class ActionSetPriorityAgain(Action):  # 맨 처음

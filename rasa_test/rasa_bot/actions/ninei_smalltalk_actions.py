@@ -14,11 +14,13 @@ smalltalk_question_csv = pd.read_csv("./data/smalltalk_question.csv")
 smalltalk_question = []
 smalltalk_question.append(smalltalk_question_csv['korean'].values.tolist())
 smalltalk_question.append(smalltalk_question_csv['english'].values.tolist())
+smalltalk_question.append(smalltalk_question_csv['voiceID'].values.tolist())
 
 smalltalk_answer_csv = pd.read_csv("./data/smalltalk_answer.csv")
 smalltalk_answer = []
 smalltalk_answer.append(smalltalk_answer_csv['korean'].values.tolist())
 smalltalk_answer.append(smalltalk_answer_csv['english'].values.tolist())
+smalltalk_answer.append(smalltalk_answer_csv['voiceID'].values.tolist())
 
 
 class ActionSmalltalkFirst(Action):
@@ -30,7 +32,7 @@ class ActionSmalltalkFirst(Action):
 
         metadata = extract_metadata_from_tracker(tracker)
         smalltalk_step = tracker.get_slot('smalltalk_step')
-        member = metadata['member']
+        ninei = metadata['member']
         lang = metadata['lang']
 
         # 첫인사 끝
@@ -42,7 +44,10 @@ class ActionSmalltalkFirst(Action):
             buttons = []
             if smalltalk_step == 3:
                 question = smalltalk_question[lang][smalltalk_step]
-                dispatcher.utter_message(question)
+                vID = smalltalk_question[2][smalltalk_step]
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
+                })
                 buttons.append(
                     {"title": smalltalk_answer[lang][3], "payload": "/change_smalltalk_step{\"smalltalk_step\":5}"}
                 )
@@ -56,7 +61,11 @@ class ActionSmalltalkFirst(Action):
         # buttons 요소 1개
         else:
             question = smalltalk_question[lang][smalltalk_step]
-            dispatcher.utter_message(question)
+            vID = smalltalk_question[2][smalltalk_step]
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                "data": question
+            })
 
             buttons = [{"title": smalltalk_answer[lang][smalltalk_step],
                         "payload": "/change_smalltalk_step"}]

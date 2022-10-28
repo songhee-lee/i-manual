@@ -15,11 +15,13 @@ type_description_csv = pd.read_csv("./data/type_description.csv")
 type_description = []
 type_description.append(type_description_csv['korean'].values.tolist())
 type_description.append(type_description_csv['english'].values.tolist())
+type_description.append(type_description_csv['voiceID'].values.tolist())
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
 etc_description = []
 etc_description.append(etc_description_csv['korean'].values.tolist())
 etc_description.append(etc_description_csv['english'].values.tolist())
+etc_description.append(etc_description_csv['voiceID'].values.tolist())
 
 class ActionLeadingTypeIntro(Action):
     def name(self) -> Text:

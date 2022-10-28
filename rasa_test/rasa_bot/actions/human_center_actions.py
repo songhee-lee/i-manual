@@ -14,11 +14,13 @@ center_description_csv = pd.read_csv("./data/center_description.csv")
 center_description = []
 center_description.append(center_description_csv['korean'].values.tolist())
 center_description.append(center_description_csv['english'].values.tolist())
+center_description.append(center_description_csv['voiceID'].values.tolist())
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
 etc_description = []
 etc_description.append(etc_description_csv['korean'].values.tolist())
 etc_description.append(etc_description_csv['english'].values.tolist())
+etc_description.append(etc_description_csv['voiceID'].values.tolist())
 
 logger = logging.getLogger(__name__)
 
