@@ -48,12 +48,12 @@ class ActionLastMessage(Action):
         return "action_last_message"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_last_message')
 
         response = tracker.get_slot('result')
         print(response)
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
 
         is_finished = tracker.get_slot('is_finished')
         if is_finished is None:
@@ -101,10 +101,10 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
         return "action_masterbot"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         entities = tracker.latest_message['entities']
 
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
         x = mycol2.find_one({"displayID": metadata["uID"]})
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
@@ -164,7 +164,6 @@ class ActionMasterbotMore(Action):  # 수정필요 entity를 통해 어디부분
         return "action_masterbot_more"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         entities = tracker.latest_message['entities']
 
         metadata = extract_metadata_from_tracker(tracker)

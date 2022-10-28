@@ -26,10 +26,10 @@ class ActionLeadingTypeIntro(Action):
         return "action_leading_type_intro"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_leading_type_intro')
 
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
@@ -177,10 +177,10 @@ class ActionLeadingType(Action):
         return "action_leading_type"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_leading_type')
 
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
 
         leading_priority = tracker.get_slot('leading_priority')
         if leading_priority is None:
@@ -245,9 +245,9 @@ class ActionLeadingTypeQuestion(Action):
         return "action_leading_type_question"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_leading_type_question')
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
 
         leading_priority = tracker.get_slot('leading_priority')
 

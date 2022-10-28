@@ -113,8 +113,8 @@ class ActionSetPriority(Action):  # 맨 처음
                 SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0),
                 SlotSet('center_type', center_priority[0]),
                 SlotSet('center_question', 0), SlotSet('is_sentiment', 0),
-                SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se), SlotSet('lang', 1),
-                SlotSet('ninei', 0), SlotSet('smalltalk_step', 0), SlotSet('continue_smalltalk', 0)]  # slot추가 필요
+                SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se),
+                SlotSet('smalltalk_step', 0), SlotSet('continue_smalltalk', 0)]  # slot추가 필요
 
 
 class ActionSetPriorityAgain(Action):  # 맨 처음
@@ -122,7 +122,6 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
         return "action_set_priority_again"
 
     def run(self, dispatcher, tracker, domain):
-        # lang = tracker.get_slot('lang')
         print('action_set_priority_again')
         metadata = extract_metadata_from_tracker(tracker)
         print("metadata 출력")
@@ -199,7 +198,7 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
                 SlotSet('step', step), SlotSet('is_finished', is_finished), SlotSet('center_step', center_step),
                 SlotSet('is_question', is_question), SlotSet('center_type', center_type),
                 SlotSet('center_question', center_question), SlotSet('is_sentiment', is_sentiment),
-                SlotSet('ego_or_unego', ego_or_unego), SlotSet('se', se), SlotSet('lang', 1), SlotSet('ninei', 0), SlotSet('smalltalk_step', smalltalk_step), SlotSet('continue_smalltalk', continue_smalltalk)]  # slot추가 필요
+                SlotSet('ego_or_unego', ego_or_unego), SlotSet('se', se), SlotSet('smalltalk_step', smalltalk_step), SlotSet('continue_smalltalk', continue_smalltalk)]  # slot추가 필요
 
 
 class ActionStart(Action):
@@ -207,7 +206,6 @@ class ActionStart(Action):
         return "action_start"
 
     def run(self, dispatcher, tracker, domain):
-        lang = tracker.get_slot('lang')
         print('action_start')
         leading_priority = tracker.get_slot('leading_priority')
         if leading_priority is None:
@@ -229,13 +227,13 @@ class ActionStep(Action):
         return "action_step"
 
     def run(self, dispatcher, tracker, domain):
-        lang = tracker.get_slot('lang')
         print('action_step')
         leading_priority = tracker.get_slot('leading_priority')
         is_finished = tracker.get_slot("is_finished")
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
         if leading_priority is None or is_finished is None or step is None or center_step is None:
             return [FollowupAction(name='action_set_priority_again')]
         if is_finished == 1:
@@ -275,11 +273,11 @@ class ActionMore(Action):
         # leading_more -> action_more
 
     def run(self, dispatcher, tracker, domain):
-        lang = tracker.get_slot('lang')
         print('action_more')
         leading_priority = tracker.get_slot('leading_priority')
 
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
         is_finished = tracker.get_slot("is_finished")
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
@@ -330,10 +328,10 @@ class ActionDropCenter(Action):
         # leading_more -> action_more
 
     def run(self, dispatcher, tracker, domain):
-        lang = tracker.get_slot('lang')
         print('action_drop_center')
         leading_priority = tracker.get_slot('leading_priority')
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')

@@ -21,10 +21,10 @@ class ActionLeadingDefinitionIntro(Action):
         return "action_leading_definition_intro"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_leading_definition_intro')
 
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
         is_finished = tracker.get_slot('is_finished')

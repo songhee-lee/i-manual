@@ -191,10 +191,10 @@ class ActionQuestion(Action):
         return "action_question"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_question')
 
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
 
         leading_priority = tracker.get_slot('leading_priority')
         is_question = tracker.get_slot('is_question')
@@ -226,6 +226,7 @@ class ActionDefaultFallback(Action):
         print('action_default_fallback')
 
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
 
         user_reponse_type = 0
         # 질문인지 아닌지(0이면 질문아님, 1이면 질문)
@@ -249,7 +250,6 @@ class ActionDefaultFallback(Action):
         unego_count = tracker.get_slot("unego_count")
         sentiment_result = tracker.get_slot("sentiment_result")
         ego_or_unego = tracker.get_slot("ego_or_unego")
-        lang = tracker.get_slot('lang')
         if is_question is None or is_sentiment is None or center_question is None or leading_priority is None or center_priority is None or step is None or ego_or_unego is None:
             return [FollowupAction(name='action_set_priority_again')]
         print("step", step)
@@ -491,9 +491,9 @@ class ActionQuestionIntro(Action):
         return "action_question_intro"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_question_intro')
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
 
         human_types = ["에너자이저 종족", "스피드 에너자이저 종족", "혁신주도가 종족", "가이드 종족", "거울 종족"]
         human_definition = ["절전모드", "한 묶음 흐름", "두 묶음 흐름", "세 묶음 흐름", "네 묶음 흐름"]
@@ -554,12 +554,12 @@ class ActionCenterUnegoQuestion(Action):
         return "action_center_unego_question"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_center_unego_question')
         human_center = [etc_description[lang][31], etc_description[lang][32], etc_description[lang][33],
                         etc_description[lang][34], etc_description[lang][35], etc_description[lang][36],
                         etc_description[lang][37], etc_description[lang][38], etc_description[lang][39]]
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
 
         user_text = tracker.latest_message['text']
         question = tracker.get_slot("bot_question")
@@ -640,9 +640,9 @@ class ActionTypeQuestion(Action):
         return "action_type_question"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_type_question')
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
 
         type_index = metadata["t"]
         question = tracker.get_slot("bot_question")
@@ -667,9 +667,9 @@ class ActionStrategyQuestion(Action):
         return "action_strategy_question"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_strategy_question')
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
 
         type_index = metadata["t"]
         question = tracker.get_slot("bot_question")

@@ -29,12 +29,12 @@ class ActionLeadingCentersIntro(Action):
         return "action_leading_centers_intro"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_leading_centers_intro')
         # 기존 priority = [4,3,5,2,6,0] # 에고 감정 방향 직관 표현 연료
         definedCnt = 0
 
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
 
         print("MetaData: ", metadata)
 
@@ -654,12 +654,12 @@ class ActionLeadingCenters(Action):
         return "action_leading_centers"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_leading_centers')
         # 기존 priority = [4,3,5,2,6,0] #에고 감정 방향 직관 표현 연료
         definedCnt = 0
 
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
         print("MetaData: ", metadata)
 
         leading_priority = tracker.get_slot('leading_priority')
@@ -900,7 +900,6 @@ class ActionLeadingCentersQuestion(Action):
         return "action_leading_centers_question"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_leading_centers_question')
 
         metadata = extract_metadata_from_tracker(tracker)
@@ -918,10 +917,10 @@ class ActionCenterDetailIntro(Action):
         return "action_center_detail_intro"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lang = tracker.get_slot('lang')
         print('action_center_detail_intro')
         # 자세히 설명하기 위한 인트로 (센터별로 다르기때문에 새로 구현)
         metadata = extract_metadata_from_tracker(tracker)
+        lang = metadata['lang']
 
         center_step = tracker.get_slot("center_step")
         center_priority = tracker.get_slot('center_priority')
