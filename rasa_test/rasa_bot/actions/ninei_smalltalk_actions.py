@@ -30,8 +30,8 @@ class ActionSmalltalkFirst(Action):
 
         metadata = extract_metadata_from_tracker(tracker)
         smalltalk_step = tracker.get_slot('smalltalk_step')
-        ninei = tracker.get_slot('ninei')
-        lang = tracker.get_slot('lang')
+        member = metadata['member']
+        lang = metadata['lang']
 
         # 첫인사 끝
         if smalltalk_step == 10:
