@@ -20,7 +20,6 @@ smalltalk_answer_csv = pd.read_csv("./data/smalltalk_answer.csv")
 smalltalk_answer = []
 smalltalk_answer.append(smalltalk_answer_csv['korean'].values.tolist())
 smalltalk_answer.append(smalltalk_answer_csv['english'].values.tolist())
-smalltalk_answer.append(smalltalk_answer_csv['voiceID'].values.tolist())
 
 
 class ActionSmalltalkFirst(Action):
