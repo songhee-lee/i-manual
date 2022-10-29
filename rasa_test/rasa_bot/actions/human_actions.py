@@ -118,8 +118,8 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
         if (user_text == "마스터 봇" or user_text == "마스터봇"):
             message = etc_description[lang][15].format(metadata["pn"])
             dispatcher.utter_message(
-                message, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11601.wav"
+                json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11601.wav", "data" : message
                 })
         if leading_priority is None or step is None:
             if not x:
@@ -135,8 +135,8 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
                 buttons.append({"title": etc_description[lang][27], "payload": "/leading_definition_intro"}) # 에너지 흐름
             buttons.append({"title": etc_description[lang][28], "payload": "/leading_centers_intro"}) # 센터
 
-            dispatcher.utter_message(etc_description[lang][16], json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11701.wav"
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11701.wav", "data" : etc_description[lang][16]
             })
 
             dispatcher.utter_message(buttons=buttons)
