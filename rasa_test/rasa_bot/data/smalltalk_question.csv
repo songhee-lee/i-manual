@@ -2,7 +2,7 @@ title,step,korean,english,voiceID
 첫인사1,1,"아아, 하나 둘 셋 하나 둘 셋","mic check, mic check, one two three, one two three",7001
 첫인사2,2,제 목소리 잘 들리시나요? 잘 들리지 않는다면 볼륨을 높여주세요!,"Can you hear me? If you can't hear me well, please turn up the volume!",7002
 첫인사3,3,"안녕하세요 {0}님, 저는 10인조 보이그룹 나인아이의 멤버이자 오늘 {0}님이 어떤 사람인지 알려줄 {1}이예요!","Hello, {0} I'm {1} who is member of the 10-member boy group NINI.i! I'll tell you what kind of person you are!",7003
-첫인사4,4,혹시 나인아이나 저 {0}에 대해 들어본 적 있나요?,Have you ever heard of NINE.i or {0}?,7004
+첫인사4,4,혹시 나인아이나 저 {1}에 대해 들어본 적 있나요?,Have you ever heard of NINE.i or {1}?,7004
 첫인사5,5,,,
 첫인사6,6,,,
 첫인사7,7,"처음 들어보셨군요! 괜찮아요, 이제부터 알아가는 시간 가지면 되니까요! 😀","It's your first time hearing our name! It's okay, we can get to know each other from now on! 😀",7005
