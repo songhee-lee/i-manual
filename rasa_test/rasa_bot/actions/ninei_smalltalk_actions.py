@@ -21,7 +21,8 @@ smalltalk_answer = []
 smalltalk_answer.append(smalltalk_answer_csv['korean'].values.tolist())
 smalltalk_answer.append(smalltalk_answer_csv['english'].values.tolist())
 
-ninei_members = ['민준', '반', '베리', '서원', '위니', '이든', '제원', '주형', '지호', '태훈']
+ninei_members = [['민준', '반', '베리', '서원', '위니', '이든', '제원', '주형', '지호', '태훈'],
+['minjun', 'van', 'bery', 'seowon', 'winnie', 'eden', 'jewon','juhyeong','jiho','taehoon']]
 
 
 class ActionSmalltalkFirst(Action):
@@ -44,7 +45,7 @@ class ActionSmalltalkFirst(Action):
         if smalltalk_step in [3]:
             buttons = []
             if smalltalk_step == 3:
-                question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[ninei])
+                question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
                 vID = smalltalk_question[2][smalltalk_step]
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
@@ -61,7 +62,7 @@ class ActionSmalltalkFirst(Action):
             dispatcher.utter_message(buttons=buttons)
         # buttons 요소 1개
         else:
-            question = smalltalk_question[lang][smalltalk_step].format(metadata["pn"], ninei_members[ninei])
+            question = smalltalk_question[lang][smalltalk_step].format(metadata["pn"], ninei_members[lang][ninei])
                 
             vID = smalltalk_question[2][smalltalk_step]
             dispatcher.utter_message(json_message={
