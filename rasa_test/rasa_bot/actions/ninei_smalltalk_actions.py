@@ -61,16 +61,12 @@ class ActionSmalltalkFirst(Action):
         else:
             question = smalltalk_question[lang][smalltalk_step]
             vID = smalltalk_question[2][smalltalk_step]
+            buttons = [{"title": smalltalk_answer[lang][smalltalk_step],
+                        "payload": "/change_smalltalk_step"}]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
                 "data": question
-            })
-
-            buttons = [{"title": smalltalk_answer[lang][smalltalk_step],
-                        "payload": "/change_smalltalk_step"}]
-
-            dispatcher.utter_message(buttons=buttons)
-
+            }, buttons=buttons)
 
 class ActionChangeSmalltalkStep(Action):
     def name(self) -> Text:
