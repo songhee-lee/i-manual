@@ -49,8 +49,8 @@ class ActionLeadingDefinitionIntro(Action):
                 definition_description[lang][2])
         elif (metadata["d"] == 3):
             dispatcher.utter_message(
-                definition_description[lang][3], json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/40401.wav"
+                json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/40401.wav", "data" : definition_description[lang][3]
                 })
         elif (metadata["d"] == 4):
             dispatcher.utter_message(
@@ -73,24 +73,24 @@ class ActionLeadingDefinitionIntro(Action):
             tag = "카멜레온,무한한 잠재성,틈틈이 휴식할 것"
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
-                dispatcher.utter_message(msg, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : msg
                 })
             if msg2 != "":
-                dispatcher.utter_message(msg2, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : msg2
                 })
             if msg3 != "":
-                dispatcher.utter_message(msg3, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : msg3
                 })
             if msg4 != "":
                 dispatcher.utter_message(msg4)
             if msg5 != "":
                 dispatcher.utter_message(msg5)
             message = definition_description[lang][21].format(h_type)
-            dispatcher.utter_message(message, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : message
             })
         elif metadata["d"] == 1:
             h_type = definition_description[lang][24] # 한 묶음 에너지 흐름
@@ -103,24 +103,24 @@ class ActionLeadingDefinitionIntro(Action):
             tag = "혼자서도 잘해요,조용하면 집중력 UP,홀로 공부할 것"
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
-                dispatcher.utter_message(msg, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : msg
                 })
             if msg2 != "":
-                dispatcher.utter_message(msg2, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : msg2
                 })
             if msg3 != "":
-                dispatcher.utter_message(msg3, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : msg3
                 })
             if msg4 != "":
                 dispatcher.utter_message(msg4)
             if msg5 != "":
                 dispatcher.utter_message(msg5)
             message = definition_description[lang][21].format(h_type)
-            dispatcher.utter_message(message, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : message
             })
         elif metadata["d"] == 2:
             h_type = definition_description[lang][25] # 두 묶음 에너지 흐름
@@ -132,24 +132,24 @@ class ActionLeadingDefinitionIntro(Action):
             tag = "카페에서도 공부 잘함,사람에 관심이 많아요,사람 많으면 아이디어 UP"
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
-                dispatcher.utter_message(msg, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : msg
                 })
             if msg2 != "":
-                dispatcher.utter_message(msg2, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : msg2
                 })
             if msg3 != "":
-                dispatcher.utter_message(msg3, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : msg3,
                 })
             if msg4 != "":
                 dispatcher.utter_message(msg4)
             if msg5 != "":
                 dispatcher.utter_message(msg5)
             message = definition_description[lang][21].format(h_type)
-            dispatcher.utter_message(message, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : message
             })
         elif metadata["d"] == 3:
             h_type = definition_description[lang][26] # 세 묶음 에너지 흐름
@@ -159,16 +159,16 @@ class ActionLeadingDefinitionIntro(Action):
             msg3 = definition_description[lang][15]
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
-                dispatcher.utter_message(msg, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/41401.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/41401.wav", "data" : msg
                 })
             if msg2 != "":
-                dispatcher.utter_message(msg2, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/41501.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/41501.wav", "data" : msg2
                 })
             if msg3 != "":
-                dispatcher.utter_message(msg3, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/41601.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/41601.wav", "data" : msg3
                 })
             if msg4 != "":
                 dispatcher.utter_message(msg4)
@@ -176,8 +176,8 @@ class ActionLeadingDefinitionIntro(Action):
                 dispatcher.utter_message(msg5)
             tag = "갈대같은 사람,한 곳에서 집중이 힘듦,자리를 바꿔 공부할 것"
             message = definition_description[lang][21].format(h_type)
-            dispatcher.utter_message(message, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/42201.wav"
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/42201.wav", "data" : message
             })
         elif metadata["d"] == 4:
             h_type = definition_description[lang][27] # 네 묶음 에너지 흐름
@@ -191,16 +191,16 @@ class ActionLeadingDefinitionIntro(Action):
 
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
-                dispatcher.utter_message(msg, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : msg
                 })
             if msg2 != "":
-                dispatcher.utter_message(msg2, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : msg2
                 })
             if msg3 != "":
-                dispatcher.utter_message(msg3, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : msg3
                 })
             if msg4 != "":
                 dispatcher.utter_message(msg4)
@@ -211,8 +211,8 @@ class ActionLeadingDefinitionIntro(Action):
         #                         "type": "arrContents", "content": [[msg, msg2], [msg3, msg4], [msg5]], "tags": f'{tag}'})
 
             message = definition_description[lang][21].format(h_type)
-            dispatcher.utter_message(message, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : message
             })
 
         if leading_priority[0] == 2:

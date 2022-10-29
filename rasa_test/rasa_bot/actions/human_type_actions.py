@@ -48,8 +48,8 @@ class ActionLeadingTypeIntro(Action):
         if (metadata["t"] == 0):
             # 에너자이저
             dispatcher.utter_message(
-                type_description[lang][1], json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20201.wav"
+                json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20201.wav", "data" : type_description[lang][1]
             })
         elif (metadata["t"] == 1):
             # 스피드 에너자이저
@@ -83,14 +83,14 @@ class ActionLeadingTypeIntro(Action):
             # 인트로 다음 이미지
             dispatcher.utter_message(image=img)
 
-            dispatcher.utter_message(msg_1, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20701.wav"
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20701.wav", "data" : msg_1
             })
-            dispatcher.utter_message(msg_2, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20801.wav"
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20801.wav", "data" : msg_2
             })
-            dispatcher.utter_message(msg_3, json_message = {
-                "type": "voiceID", 'sender':metadata['uID'], "content": "out_5/20901.wav"
+            dispatcher.utter_message(json_message = {
+                "type": "voiceID", 'sender':metadata['uID'], "content": "out_5/20901.wav", "data" : msg_3
             })
 
         elif metadata["t"] == 1:
@@ -128,8 +128,8 @@ class ActionLeadingTypeIntro(Action):
             dispatcher.utter_message(image=img)
 
             dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2, json_message = {
-                        "type": "voiceID", 'sender':metadata['uID'], "content": "out_긴문장/2.wav"
+            dispatcher.utter_message(json_message = {
+                        "type": "voiceID", 'sender':metadata['uID'], "content": "out_긴문장/2.wav", "data" : msg_2
                     })
 
         elif metadata["t"] == 4:
@@ -167,8 +167,8 @@ class ActionLeadingTypeIntro(Action):
             return [SlotSet('step', step)]
         else:
             message = type_description[lang][35].format(h_type)
-            dispatcher.utter_message(message, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20903.wav"
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20903.wav", "data" : message
             })
             return [SlotSet('step', step), FollowupAction(name='action_leading_type_question')]
 
@@ -200,8 +200,8 @@ class ActionLeadingType(Action):
             msg_2 = type_description[lang][16]
             msg_3 = type_description[lang][17]
             msg_4 = type_description[lang][18]
-            dispatcher.utter_message(msg_1, json_message = {
-                        "type": "voiceID", 'sender':metadata['uID'], "content": "out_긴문장/1.wav"
+            dispatcher.utter_message(json_message = {
+                        "type": "voiceID", 'sender':metadata['uID'], "content": "out_긴문장/1.wav", "data" : msg_1
                     })
             dispatcher.utter_message(msg_2)
             dispatcher.utter_message(msg_3)
@@ -310,8 +310,8 @@ class ActionLeadingTypeQuestion(Action):
             buttons.append({"title": type_description[lang][59],
                             "payload": "/strategy_question{\"bot_question\":\"거울 종족 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
         buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"}) # 질문 없어요
-        dispatcher.utter_message(type_description[lang][36], json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/23701.wav"
+        dispatcher.utter_message(json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/23701.wav", "data" : type_description[lang][36]
         })
         dispatcher.utter_message(buttons=buttons)
 

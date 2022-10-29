@@ -63,7 +63,7 @@ class ActionSetPriority(Action):  # 맨 처음
         #~~님 안녕하세요 ~~
         #dispatcher.utter_message(
         #    message, json_message={
-        #        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10101.wav"
+        #        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10101.wav", "data" : 
         #    }
         #)
 
@@ -256,8 +256,8 @@ class ActionStep(Action):
                     # is_finished = 1 은 last_message 나오고 set
                     return [FollowupAction(name='action_last_message')]
                 else:
-                    dispatcher.utter_message(etc_description[lang][3], json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10401.wav"
+                    dispatcher.utter_message(json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10401.wav", "data" : etc_description[lang][3]
                     })
                     if leading_priority[step] == 0:
                         return [FollowupAction(name='action_leading_type_intro')]
@@ -298,8 +298,8 @@ class ActionMore(Action):
                 buttons = []
                 buttons.append({"title": etc_description[lang][20], "payload": "/leading_step"}) # 계속
                 buttons.append({"title": etc_description[lang][21], "payload": "/last_message"}) # 오늘은 그만
-                dispatcher.utter_message(etc_description[lang][1], json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10201.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10201.wav", "data" : etc_description[lang][1]
                 })
                 dispatcher.utter_message(buttons=buttons)  #
         else:
@@ -310,16 +310,16 @@ class ActionMore(Action):
                 buttons.append({"title": etc_description[lang][20], "payload": "/leading_step"})
                 buttons.append({"title": etc_description[lang][21], "payload": "/last_message"})
                 buttons.append({"title": etc_description[lang][22], "payload": "/leading_drop_center"}) # 센터 건너뛰기
-                dispatcher.utter_message(etc_description[lang][2], json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10301.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10301.wav", "data" : etc_description[lang][2]
                 })
                 dispatcher.utter_message(buttons=buttons)
             else:
                 buttons = []
                 buttons.append({"title": etc_description[lang][20], "payload": "/leading_step"})
                 buttons.append({"title": etc_description[lang][21], "payload": "/last_message"})
-                dispatcher.utter_message(etc_description[lang][1], json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10201.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10201.wav", "data" : etc_description[lang][1]
                 })
                 dispatcher.utter_message(buttons=buttons)  #
 
@@ -344,8 +344,8 @@ class ActionDropCenter(Action):
         if step == 4:
             return [FollowupAction(name='action_last_message'), SlotSet('center_step', 0)]
         else:
-            dispatcher.utter_message(etc_description[lang][3], json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10401.wav"
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10401.wav", "data" : etc_description[lang][3]
             })
             if leading_priority[step] == 0:
                 return [FollowupAction(name='action_leading_type_intro'), SlotSet('center_step', 0)]

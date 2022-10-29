@@ -51,8 +51,8 @@ class ActionLeadingProfileIntro(Action):
                 profile_description[lang][2])
         elif (metadata["p"] == 24):
             dispatcher.utter_message(
-                profile_description[lang][3], json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/30401.wav"
+                json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/30401.wav", "data" : profile_description[lang][3]
         })
         elif (metadata["p"] == 25):
             dispatcher.utter_message(
@@ -149,16 +149,16 @@ class ActionLeadingProfileIntro(Action):
             dispatcher.utter_message(image=img)
 
             if msg != "":
-                dispatcher.utter_message(msg, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/32801.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/32801.wav", "data" : msg
                 })
             if msg2 != "":
-                dispatcher.utter_message(msg2, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/32901.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/32901.wav", "data" : msg2
                 })
             if msg3 != "":
-                dispatcher.utter_message(msg3, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33001.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33001.wav", "data" : msg3
                 })
 
         elif metadata["p"] == 25:
@@ -398,16 +398,16 @@ class ActionLeadingProfileIntro(Action):
 
         if metadata["p"] == 25 or metadata["p"] == 41 or metadata["p"] == 51 or metadata["p"] == 63:
             message = profile_description[lang][96].format(h_type)
-            dispatcher.utter_message(message, json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav"
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : message
             })
             return [SlotSet('step', step), FollowupAction(name='action_question_intro')]
 
         buttons = []
         buttons.append({"title": etc_description[lang][23], "payload": "/leading_profile"}) # 예
         buttons.append({"title": etc_description[lang][24], "payload": "/question_intro"}) # 아니오
-        dispatcher.utter_message(profile_description[lang][95], json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/39601.wav"
+        dispatcher.utter_message(json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/39601.wav", "data" : profile_description[lang][95]
         })
 
         dispatcher.utter_message(buttons=buttons)
@@ -474,24 +474,24 @@ class ActionLeadingProfile(Action):
             msg8 = profile_description[lang][34]
             tag = "숨길 수 없는 재능,관심 신경 안씀,내 팀을 구상할 것"
             if msg4 != "":
-                dispatcher.utter_message(msg4, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33101.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33101.wav", "data" : msg4
                 })
             if msg5 != "":
-                dispatcher.utter_message(msg5, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33201.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33201.wav", "data" : msg5
                 })
             if msg6 != "":
-                dispatcher.utter_message(msg6, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33301.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33301.wav", "data" : msg6
                 })
             if msg7 != "":
-                dispatcher.utter_message(msg7, json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33401.wav"
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33401.wav", "data" : msg7
                 })
             #if msg8 != "":
             #    dispatcher.utter_message(msg7, json_message={
-            #        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33501.wav"
+            #        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33501.wav", "data" : 
             #    })
         elif metadata["p"] == 35:
             h_type = "3/5"
@@ -566,14 +566,14 @@ class ActionLeadingProfile(Action):
                 dispatcher.utter_message(msg6)
             if msg7 != "":
                 dispatcher.utter_message(msg7)
-        dispatcher.utter_message(profile_description[lang][96].format(h_type), json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33501.wav"
+        dispatcher.utter_message(json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/33501.wav", "data" : profile_description[lang][96].format(h_type)
         })
         buttons = []
         buttons.append({"title": etc_description[lang][18], "payload": "/question{\"is_question\":\"1\", \"center_question\":\"0\"}"}) # 질문 있어요
         buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"}) # 질문 없어요
-        dispatcher.utter_message(etc_description[lang][4], json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10501.wav"
+        dispatcher.utter_message(json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10501.wav", "data" : etc_description[lang][4]
         })
         dispatcher.utter_message(buttons=buttons)
 
