@@ -1,11 +1,82 @@
-title,step,korean,english,voiceID
-첫인사1,1,"아아, 하나 둘 셋 하나 둘 셋","mic check, mic check, one two three, one two three",7001
-첫인사2,2,제 목소리 잘 들리시나요? 잘 들리지 않는다면 볼륨을 높여주세요!,"Can you hear me? If you can't hear me well, please turn up the volume!",7002
-첫인사3,3,"안녕하세요 {0}님, 저는 10인조 보이그룹 나인아이의 멤버이자 오늘 {0}님이 어떤 사람인지 알려줄 {1}이예요!","Hello, {0} I'm {1} who is member of the 10-member boy group NINI.i! I'll tell you what kind of person you are!",7003
-첫인사4,4,혹시 나인아이나 저 {1}에 대해 들어본 적 있나요?,Have you ever heard of NINE.i or {1}?,7004
-첫인사5,5,,,
-첫인사6,6,,,
-첫인사7,7,"처음 들어보셨군요! 괜찮아요, 이제부터 알아가는 시간 가지면 되니까요! 😀","It's your first time hearing our name! It's okay, we can get to know each other from now on! 😀",7005
-첫인사8,8,저희를 아시는군요! 앞으로 더 다양한 매력으로 찾아올테니 지켜봐주세요! 🥰,"You know NINE.i! We'll come back with a variety of charms, so please look forward to it! 🥰",7006
-첫인사9,9,앗 우리 아이닌! 여기서 보다니🥲👏🥺🥹 정말 반가워요!,"Oh, i.NINE?! I CAN'T BELIEVE SEEING YOU HERE!🥲👏🥺🥹 I'm glad to see you!",7007
-첫인사10,10,아이닌 생각만 하면 저절로 힘이 나는거 있죠! 오늘 저랑 같이 {0}님에 대해 알아가면서 즐거운 시간 보내봐요!,Just thinking about I.NINE gives me energy! Let's get to know {0} and have a great time today!,7008
+title,korean,english,voiceID
+첫인사1,"아아, 하나 둘 셋 하나 둘 셋","mic check, mic check, one two three, one two three",7001
+첫인사2,제 목소리 잘 들리시나요? 잘 들리지 않는다면 볼륨을 높여주세요!,"Can you hear me? If you can't hear me well, please turn up the volume!",7002
+첫인사3,"안녕하세요 {0} 님, 저는 10인조 보이그룹 나인아이의 멤버이자 오늘 {0} 님이 어떤 사람인지 알려줄 마스터 {1}이예요! ","Hello, {0} I'm {1} who is member of the 10-member boy group NINI.i!
+I'll tell you what kind of person you are!",7003
+첫인사4,혹시 나인아이나 저 {1}에 대해 들어본 적 있나요?,Have you ever heard of NINE.i or {1}? ,7004
+첫인사5,,,
+첫인사6,,,
+첫인사7,"처음 들어보셨군요! 괜찮아요, 이제부터 알아가는 시간 가지면 되니까요! 😀","It's your first time hearing our name! It's okay, we can get to know each other from now on! 😀",7005
+첫인사8,저희를 아시는군요! 앞으로 더 다양한 매력으로 찾아올테니 지켜봐주세요! 🥰,"You know NINE.i! We'll come back with a variety of charms, so please look forward to it! 🥰",7006
+첫인사9,앗 우리 아이닌! 여기서 보다니🥲👏🥺🥹 정말 반가워요!,"Oh, i.NINE?! I CAN'T BELIEVE SEEING YOU HERE!🥲👏🥺🥹  I'm glad to see you!",7007
+첫인사10,아이닌 생각만 하면 저절로 힘이 나는거 있죠! 오늘 저랑 같이 {0}님에 대해 알아가면서 즐거운 시간 보내봐요!,Just thinking about I.NINE gives me energy! Let's get to know {0} and have a great time today!,7008
+첫인사11,"{0}님에 대해 알아가기 전에, 저에 대해서 먼저 소개할게요!  ","Before we get to know {0}, let me introduec myself first!",7009
+첫인사12_1,"안녕하세요:) 아이돌 NINE.i 멤버 민준이에요.
+이렇게 아이매뉴얼에서 여러분을 알아갈 수 있는 기회를 얻다니... 이거 정말 실화인가요?
+NINE.i의 보컬답게 멋진 목소리로 여러분의 모든 성향을 설명해 드릴테니, 기대하셔도 좋아요!","Hello :) I'm idol NINE.i member, MIN JUN.
+I can't believe I got a chance to get to know you in i-manual ... Is this for real?
+As a NINE.i's Vocal, I'll explain your all disposition with charming voice.
+so please look forward to it :) ",7010
+첫인사12_2,"안녕하세요! 아이돌 NINE.i 멤버 반입니다.
+아이매뉴얼에서 여러분의 진짜 모습을 찾아달라는 미션이 주어졌어요!
+이 미션을 성공하기 위해서는 여러분이 함께 해주셔야해요! 자, 그럼 같이 출발해 볼까요? ","Hello! I'm idol NINE.i member, VAHN.
+I was given a mission from i-manual what find your true self!
+In order to susseed this mission, we have to work together! So, shall we go together?",7011
+첫인사12_3,"안녕하세요:) 아이돌 NINE.i 멤버 베리에요!
+객관적으로 자신을 바라보고 나답게 살아가는건 쉽지 않죠.
+그 어려운 것을... 바로 저, 베리가 해냅니다!
+아이매뉴얼에서의 베리의 활약도 기대해 주세요! ","Hello:) I'm idol NINE.i member, VARI.
+It's not easy to look at yourself objectively and live be yourself.
+That difficult thing... It's me, V.A.R.I, did it!
+Please look forward to VARI's performance in i-manual!",7012
+첫인사12_4,"안녕하세요! 아이돌 NINE.i 멤버 서원입니다.
+가수로서만 만나던 여러분을 아이매뉴얼에서 새롭게 만나다니!
+직접 성향을 분석해 드릴 생각에 설레네요:)
+그동안 궁금하셨던 여러분의 숨겨진 성향! 하나 하나 빠짐없이 알려드릴게요, 자 이제 시작해 볼까요? ","Hello! I'm idol NINE.i member, SEO WON.
+Until now, I've only met you as singer, but meeting you again in i-manual!
+I'm excited to analyze your personality :)
+I'll tell you everything about you've been curious about your hidden disposition.
+Shall we get started?",7013
+첫인사12_5,"안녕! 아이돌 NINE.i 멤버 위니에요.
+여러분도 모르고 있었던 본인의 숨겨진 매력과 성향, 여기 아이매뉴얼에서 제가 모두 파헤쳐 드릴게요! ","Hello! i'm idol NINE.i member, WINNIE.
+I'll reveal all the hidden charms and dispositions that you didn't know in i-manual!",7014
+첫인사12_6,"안녕하세요! 아이돌 NINE.i 멤버 이든입니다.
+여러분과 아이매뉴얼에서 만날 생각을 하니 정말 떨려요!
+쉽고 Nice!한 분석을 드릴 수 있도록 열심히 준비했으니 많이 기대해 주세요:)   ","Hello! i'm idol NINE.i member, EDEN.
+I'm so excited to be meet you all in i-manual!
+I worked hard to give easy and nice analysis, so please look forward to it :) ",7015
+첫인사12_7,"안녕하세요! 아이돌 NINE.i의 리더 제원이에요.
+여러분이 자신의 진짜 성향을 알아갈 수 있도록, 저 제원이가 도와드릴게요! 자, 이제 저와 함께 ‘나’를 찾는 여행을 떠나볼까요?","Hello! I'm idol NINE.i Leader, JE WON.
+I'll help you get to know your true disposition.
+Now, shall we go on a journey to 'Find real me'?",7016
+첫인사12_8,"안녕하세요. 아이돌 NINE.i 멤버 주형이에요.
+여러분을 더 가까이에서 알아가고자 이렇게 아이매뉴얼을 찾아왔답니다.
+무대 위에서의 주형이도, 아이매뉴얼에서의 제 모습도 많이 기대해주세요!","hello. I'm idol NINE.i member, JOO HYOUNG.
+The reason why I came to i-manual is I wanted to get to know you more closely!
+Please look forward to 'JOO HYOUNG' on stage and on i-manual!",7017
+첫인사12_9,"안녕하세요! 아이돌 NINE.i 막내 지호입니다.
+아이매뉴얼에서 여러분과 멋진 여정을 떠나게 되었어요!
+해결사이자 가이드인 저를 잘 따라오시면 올바른 길과 해답을 얻어갈 수 있을거예요!
+여정을 시작하고 싶으시면 지금 바로 저를 초대해 주세요!","Hello! I'm idol NINE.i maknae, JI HO.
+We're on a great journey at i-manual!
+If you follow me well as a Fixer and Guide, you will get the right path and answer!
+If you want to start journey with me, please invite me now!",7018
+첫인사12_10,"안녕하세요. 아이돌 NINE.i 멤버 태훈입니다.
+여러분이 개성을 잃지 않고 진정한 자신을 알아갈 수 있도록 열심히 리딩해 드릴게요!
+태훈이의 아이매뉴얼 열차 지금 출발합니다:)","Hello. I'm idol NINE.i member, TAE HUN.
+I'll do my best to help you get to know your true self without losing your personality!
+TAE HUN's i-manual train is leaving now :)",7019
+첫인사13,"{0}님, 이제 저에 대해 빠삭하게 알게 된거네요? 저 원래 이렇게까지 많이 오픈 안하는데... 😎","{0}, You know me well now, right? I don't usually open about my information this much... 😎",7020
+첫인사14,저도 {0}님에 대해 궁금한게 많아요. {0}님은 {0}님에 대해 잘 알고 있나요?,"I have a lot of questions about {0}, Do you know much about yourself?",7021
+첫인사15,,,
+첫인사16,,,
+첫인사17,오호... 그럼 질문 하나만 할까요? {0}님은 혈액형이 뭐예요?,"May I ask a question? {0}, What's your blood type?",7022
+첫인사18,,,
+첫인사19,,,
+첫인사20,,,
+첫인사21,그렇군요! 혹시 {0}님이 태어날 때 혈액형을 선택했나요? ,I see! Did you choose your blood type when you were born?,7023
+첫인사22,😄 황당했죠?,"😄It's absolutely ridiculous, right?",7024
+첫인사23,"우리가 혈액형을 선택해서 태어날 수 없듯이, 사람마다 모두 다른 특성과 역할 등을 자연스럽게 가지고 태어난답니다","Just as we can't choose our blood type, each person is born with different characteristics, roles, and so on",7025
+첫인사24,{0}님도 마찬가지예요!,"{0}, you too!",7026
+첫인사25,아마 오늘 {0}님도 미처 몰랐던 비밀을 얻어갈 수 있을 거예요,"{0}, You'll be able to get a secret that you didn't even know!",7027
+첫인사26,"자, 과연 {0}님은 어떤 성향과 재능을 타고 났을지 함께 가볼까요?",Let's see what kind of talent {0} have,7028
