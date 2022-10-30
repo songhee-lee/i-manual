@@ -55,6 +55,7 @@ class ActionLastMessage(Action):
         print(response)
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
+        ninei = metadata['member']
 
         is_finished = tracker.get_slot('is_finished')
         if is_finished is None:
@@ -71,12 +72,23 @@ class ActionLastMessage(Action):
                                                         }, upsert=True)
 
         if is_finished == 1:
-            dispatcher.utter_message(etc_description[lang][10])
+            dispatcher.utter_message(json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][10]), "data": etc_description[lang][10]
+            })
         else:
-            dispatcher.utter_message(etc_description[lang][11])
-            dispatcher.utter_message(etc_description[lang][12])
-            dispatcher.utter_message(etc_description[lang][13])
-            dispatcher.utter_message(etc_description[lang][14])
+            
+            dispatcher.utter_message(json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][11]), "data": etc_description[lang][11]
+            })
+            dispatcher.utter_message(json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][12]), "data": etc_description[lang][12]
+            })
+            dispatcher.utter_message(json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][13]), "data": etc_description[lang][13]
+            })
+            dispatcher.utter_message(json_message={
+            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][14]), "data": etc_description[lang][14]
+            })
 
             return [SlotSet('is_finished', 1)]
 
@@ -106,6 +118,8 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
 
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
+        ninei = metadata['member']
+
         x = mycol2.find_one({"displayID": metadata["uID"]})
         leading_priority = tracker.get_slot("leading_priority")
         step = tracker.get_slot("step")
@@ -117,9 +131,10 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
 
         if (user_text == "마스터 봇" or user_text == "마스터봇"):
             message = etc_description[lang][15].format(metadata["pn"])
+            vID = etc_description[2][15]
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11601.wav", "data" : message
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
                 })
         if leading_priority is None or step is None:
             if not x:
@@ -134,9 +149,10 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
             if metadata["d"] != 0:
                 buttons.append({"title": etc_description[lang][27], "payload": "/leading_definition_intro"}) # 에너지 흐름
             buttons.append({"title": etc_description[lang][28], "payload": "/leading_centers_intro"}) # 센터
-
+            
+            vID = etc_description[2][16]
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11701.wav", "data" : etc_description[lang][16]
+                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : etc_description[lang][16]
             })
 
             dispatcher.utter_message(buttons=buttons)

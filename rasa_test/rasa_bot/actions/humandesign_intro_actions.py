@@ -109,7 +109,8 @@ class ActionSetPriority(Action):  # 맨 처음
                 SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0),
                 SlotSet('center_type', center_priority[0]),
                 SlotSet('center_question', 0), SlotSet('is_sentiment', 0),
-                SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se), SlotSet('smalltalk_step', 0)]  # slot추가 필요
+                SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se), SlotSet('smalltalk_step', 0),
+                SlotSet('voice_num', 2)]  # slot추가 필요
 
         else :
             return [FollowupAction(name='action_smalltalk_first'), SlotSet('leading_priority', leading_priority),
@@ -118,7 +119,7 @@ class ActionSetPriority(Action):  # 맨 처음
                 SlotSet('center_type', center_priority[0]),
                 SlotSet('center_question', 0), SlotSet('is_sentiment', 0),
                 SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se),
-                SlotSet('smalltalk_step', 0)]  # slot추가 필요
+                SlotSet('smalltalk_step', 0), SlotSet('voice_num', 2)]  # slot추가 필요
 
 
 class ActionSetPriorityAgain(Action):  # 맨 처음
@@ -202,7 +203,8 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
                 SlotSet('step', step), SlotSet('is_finished', is_finished), SlotSet('center_step', center_step),
                 SlotSet('is_question', is_question), SlotSet('center_type', center_type),
                 SlotSet('center_question', center_question), SlotSet('is_sentiment', is_sentiment),
-                SlotSet('ego_or_unego', ego_or_unego), SlotSet('se', se), SlotSet('smalltalk_step', smalltalk_step), SlotSet('continue_smalltalk', continue_smalltalk)]  # slot추가 필요
+                SlotSet('ego_or_unego', ego_or_unego), SlotSet('se', se), SlotSet('smalltalk_step', smalltalk_step), 
+                SlotSet('continue_smalltalk', continue_smalltalk), SlotSet('voice_num', 2)]  # slot추가 필요
 
 
 class ActionStart(Action):
@@ -236,8 +238,10 @@ class ActionStep(Action):
         is_finished = tracker.get_slot("is_finished")
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
+        voice_num = tracker.get_slot('voice_num')
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
+        ninei = metadata['member']
         if leading_priority is None or is_finished is None or step is None or center_step is None:
             return [FollowupAction(name='action_set_priority_again')]
         if is_finished == 1:
@@ -257,8 +261,10 @@ class ActionStep(Action):
                     return [FollowupAction(name='action_last_message')]
                 else:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10401.wav", "data" : etc_description[lang][3]
+                        "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][3]),
+                        "data": etc_description[lang][3]
                     })
+
                     if leading_priority[step] == 0:
                         return [FollowupAction(name='action_leading_type_intro')]
                     elif leading_priority[step] == 1:
@@ -279,8 +285,10 @@ class ActionMore(Action):
     def run(self, dispatcher, tracker, domain):
         print('action_more')
         leading_priority = tracker.get_slot('leading_priority')
+        voice_num = tracker.get_slot('voice_num')
 
         metadata = extract_metadata_from_tracker(tracker)
+        ninei = metadata['member']
         lang = metadata['lang']
         is_finished = tracker.get_slot("is_finished")
         step = tracker.get_slot('step')
@@ -299,8 +307,9 @@ class ActionMore(Action):
                 buttons.append({"title": etc_description[lang][20], "payload": "/leading_step"}) # 계속
                 buttons.append({"title": etc_description[lang][21], "payload": "/last_message"}) # 오늘은 그만
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10201.wav", "data" : etc_description[lang][1]
-                })
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][1]),
+                    "data": etc_description[voice_num][1]
+                })                
                 dispatcher.utter_message(buttons=buttons)  #
         else:
             if se[0] in center_priority[0:center_step] and se[1] in center_priority[0:center_step] and \
@@ -311,15 +320,18 @@ class ActionMore(Action):
                 buttons.append({"title": etc_description[lang][21], "payload": "/last_message"})
                 buttons.append({"title": etc_description[lang][22], "payload": "/leading_drop_center"}) # 센터 건너뛰기
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10301.wav", "data" : etc_description[lang][2]
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][2]),
+                    "data": etc_description[voice_num][2]
                 })
+
                 dispatcher.utter_message(buttons=buttons)
             else:
                 buttons = []
                 buttons.append({"title": etc_description[lang][20], "payload": "/leading_step"})
                 buttons.append({"title": etc_description[lang][21], "payload": "/last_message"})
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10201.wav", "data" : etc_description[lang][1]
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][1]),
+                    "data": etc_description[voice_num][1]
                 })
                 dispatcher.utter_message(buttons=buttons)  #
 
@@ -335,18 +347,21 @@ class ActionDropCenter(Action):
         print('action_drop_center')
         leading_priority = tracker.get_slot('leading_priority')
         metadata = extract_metadata_from_tracker(tracker)
+        ninei = metadata['member']
         lang = metadata['lang']
         step = tracker.get_slot('step')
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
+        voice_num = tracker.get_slot('voice_num')
         if leading_priority is None or step is None:
             return [FollowupAction(name='action_set_priority_again')]
         if step == 4:
             return [FollowupAction(name='action_last_message'), SlotSet('center_step', 0)]
         else:
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10401.wav", "data" : etc_description[lang][3]
-            })
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][3]),
+                    "data": etc_description[voice_num][3]
+                })
             if leading_priority[step] == 0:
                 return [FollowupAction(name='action_leading_type_intro'), SlotSet('center_step', 0)]
             elif leading_priority[step] == 1:

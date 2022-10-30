@@ -32,41 +32,58 @@ class ActionLeadingTypeIntro(Action):
 
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
+        ninei = metadata['member']
 
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
         is_finished = tracker.get_slot('is_finished')
+        voice_num = tracker.get_slot('voice_num')
 
         if leading_priority is None or step is None or is_finished is None:
             return [FollowupAction(name='action_set_priority_again')]
 
         if is_finished == 1:
-            dispatcher.utter_message(
-                type_description[lang][0]
-            )
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], 
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][0]),
+                "data": type_description[lang][0]
+            })
 
         if (metadata["t"] == 0):
             # 에너자이저
-            dispatcher.utter_message(
-                json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20201.wav", "data" : type_description[lang][1]
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], 
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][1]),
+                "data": type_description[lang][1]
             })
         elif (metadata["t"] == 1):
             # 스피드 에너자이저
-            dispatcher.utter_message(
-                type_description[lang][2])
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], 
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][2]),
+                "data": type_description[lang][2]
+            })    
         elif (metadata["t"] == 2):
             # 혁신주도가
-            dispatcher.utter_message(
-                type_description[lang][3])
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], 
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][3]),
+                "data": type_description[lang][3]
+            })
         elif (metadata["t"] == 3):
             # 가이드
-            dispatcher.utter_message(
-                type_description[lang][4])
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], 
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][4]),
+                "data": type_description[lang][4]
+            })
         elif (metadata["t"] == 4):
             # 거울
-            dispatcher.utter_message(
-                type_description[lang][5])
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], 
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][5]),
+                "data": type_description[lang][5]
+            })
 
         h_type = ''
         msg_1 = ""
@@ -78,77 +95,133 @@ class ActionLeadingTypeIntro(Action):
             h_type = type_description[lang][61] # 에너자이저 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_0.png"
             msg_1 = type_description[lang][6]
+            vID_1 = type_description[voice_num][6]
             msg_2 = type_description[lang][7]
+            vID_2 = type_description[voice_num][7]
             msg_3 = type_description[lang][8]
+            vID_3 = type_description[voice_num][8]
             # 인트로 다음 이미지
             dispatcher.utter_message(image=img)
 
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20701.wav", "data" : msg_1
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "data": msg_1
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20801.wav", "data" : msg_2
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "data": msg_2
             })
-            dispatcher.utter_message(json_message = {
-                "type": "voiceID", 'sender':metadata['uID'], "content": "out_5/20901.wav", "data" : msg_3
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "data": msg_3
             })
 
         elif metadata["t"] == 1:
             h_type = type_description[lang][62] # 스피드 에너자이저 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_1.png"
             msg_1 = type_description[lang][9]
+            vID_1 = type_description[voice_num][9]
             msg_2 = type_description[lang][10]
+            vID_2 = type_description[voice_num][10]
             msg_3 = type_description[lang][11]
+            vID_3 = type_description[voice_num][11]
             # 인트로 다음 이미지
             dispatcher.utter_message(image=img)
 
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2)
-            dispatcher.utter_message(msg_3)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "data": msg_1
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "data": msg_2
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "data": msg_3
+            })
 
         elif metadata["t"] == 2:
             h_type = type_description[lang][63] # 혁신주도가 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_2.png"
             msg_1 = type_description[lang][12]
+            vID_1 = type_description[voice_num][12]
             msg_2 = type_description[lang][13]
+            vID_2 = type_description[voice_num][13]
             msg_3 = type_description[lang][14]
+            vID_3 = type_description[voice_num][14]
             # 인트로 다음 이미지
             dispatcher.utter_message(image=img)
 
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2)
-            dispatcher.utter_message(msg_3)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "data": msg_1
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "data": msg_2
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "data": msg_3
+            })
 
         elif metadata["t"] == 3:
             h_type = type_description[lang][64] # 가이드 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_3M.png"
             msg_1 = type_description[lang][19]
+            vID_1 = type_description[voice_num][19]
             msg_2 = type_description[lang][20]
+            vID_2 = type_description[voice_num][20]
             # 인트로 다음 이미지
             dispatcher.utter_message(image=img)
 
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(json_message = {
-                        "type": "voiceID", 'sender':metadata['uID'], "content": "out_긴문장/2.wav", "data" : msg_2
-                    })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "data": msg_1
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "data": msg_2
+            })
 
         elif metadata["t"] == 4:
             h_type = type_description[lang][65] # 거울 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_4.png"
             msg_1 = type_description[lang][26]
+            vID_1 = type_description[voice_num][26]
             msg_2 = type_description[lang][27]
+            vID_2 = type_description[voice_num][27]
             msg_3 = type_description[lang][28]
+            vID_3 = type_description[voice_num][28]
             msg_4 = type_description[lang][29]
+            vID_4 = type_description[voice_num][29]
             msg_5 = type_description[lang][30]
+            vID_5 = type_description[voice_num][30]
 
             # 인트로 다음 이미지
             dispatcher.utter_message(image=img)
 
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2)
-            dispatcher.utter_message(msg_3)
-            dispatcher.utter_message(msg_4)
-            dispatcher.utter_message(msg_5)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "data": msg_1
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "data": msg_2
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "data": msg_3
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_4),
+                "data": msg_4
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_5),
+                "data": msg_5
+            })
 
         if leading_priority[0]==0:
             step = 1
@@ -167,8 +240,10 @@ class ActionLeadingTypeIntro(Action):
             return [SlotSet('step', step)]
         else:
             message = type_description[lang][35].format(h_type)
+            vID = type_description[voice_num][35]
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/20903.wav", "data" : message
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                "data": message
             })
             return [SlotSet('step', step), FollowupAction(name='action_leading_type_question')]
 
@@ -183,8 +258,10 @@ class ActionLeadingType(Action):
 
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
+        ninei = metadata['member']
 
         leading_priority = tracker.get_slot('leading_priority')
+        voice_num = tracker.get_slot('voice_num')
         if leading_priority is None:
             return [FollowupAction(name='action_set_priority_again')]
 
@@ -197,40 +274,91 @@ class ActionLeadingType(Action):
         if metadata["t"] == 2:
             h_type = type_description[lang][63] # 혁신주도가 종족
             msg_1 = type_description[lang][15]
+            vID_1 = type_description[voice_num][15]
             msg_2 = type_description[lang][16]
+            vID_2 = type_description[voice_num][16]
             msg_3 = type_description[lang][17]
+            vID_3 = type_description[voice_num][17]
             msg_4 = type_description[lang][18]
-            dispatcher.utter_message(json_message = {
-                        "type": "voiceID", 'sender':metadata['uID'], "content": "out_긴문장/1.wav", "data" : msg_1
-                    })
-            dispatcher.utter_message(msg_2)
-            dispatcher.utter_message(msg_3)
-            dispatcher.utter_message(msg_4)
+            vID_4 = type_description[voice_num][18]
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "data": msg_1
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "data": msg_2
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "data": msg_3
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_4),
+                "data": msg_4
+            })
         elif metadata["t"] == 3:
             h_type = type_description[lang][64] # 가이드 종족
             msg_1 = type_description[lang][21]
+            vID_1 = type_description[voice_num][21]
             msg_2 = type_description[lang][22]
+            vID_2 = type_description[voice_num][22]
             msg_3 = type_description[lang][23]
+            vID_3 = type_description[voice_num][23]
             msg_4 = type_description[lang][24]
+            vID_4 = type_description[voice_num][24]
             msg_5 = type_description[lang][25]
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2)
-            dispatcher.utter_message(msg_3)
-            dispatcher.utter_message(msg_4)
-            dispatcher.utter_message(msg_5)
+            vID_5 = type_description[voice_num][25]
+            
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "data": msg_1
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "data": msg_2
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "data": msg_3
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_4),
+                "data": msg_4
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_5),
+                "data": msg_5
+            })
         elif metadata["t"] == 4:
             h_type = type_description[lang][65] # 거울 종족
             msg_1 = type_description[lang][31]
+            vID_1 = type_description[voice_num][31]
             msg_2 = type_description[lang][32]
+            vID_2 = type_description[voice_num][32]
             msg_3 = type_description[lang][33]
-            dispatcher.utter_message(msg_1)
-            dispatcher.utter_message(msg_2)
-            dispatcher.utter_message(msg_3)
+            vID_3 = type_description[voice_num][33]
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "data": msg_1
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "data": msg_2
+            })
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "data": msg_3
+            })
 
 
 
         message = type_description[lang][35].format(h_type)
-        dispatcher.utter_message(message)
+        vID = type_description[voice_num][35]
+        dispatcher.utter_message(json_message={
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                "data": message
+            })
 
         if leading_priority[0]==0:
             return [SlotSet('step', 1), FollowupAction(name='action_leading_type_question')]
@@ -250,8 +378,10 @@ class ActionLeadingTypeQuestion(Action):
         print('action_leading_type_question')
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
+        ninei = metadata['member']
 
         leading_priority = tracker.get_slot('leading_priority')
+        voice_num = tracker.get_slot('voice_num')
 
         buttons = []
 
@@ -311,8 +441,9 @@ class ActionLeadingTypeQuestion(Action):
                             "payload": "/strategy_question{\"bot_question\":\"거울 종족 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
         buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"}) # 질문 없어요
         dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/23701.wav", "data" : type_description[lang][36]
-        })
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][36]),
+                "data": type_description[lang][36]
+            })
         dispatcher.utter_message(buttons=buttons)
 
         return []
