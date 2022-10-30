@@ -22,7 +22,7 @@ smalltalk_answer.append(smalltalk_answer_csv['korean'].values.tolist())
 smalltalk_answer.append(smalltalk_answer_csv['english'].values.tolist())
 
 ninei_members = [['민준', '반', '베리', '서원', '위니', '이든', '제원', '주형', '지호', '태훈'],
-['minjun', 'van', 'bery', 'seowon', 'winnie', 'eden', 'jewon','juhyeong','jiho','taehoon']]
+['MIN JUN', 'VAHN', 'VARI', 'SEO WON', 'WINNIE', 'EDEN', 'JE WON','JOO HYOUNG','JI HO','TAE HUN']]
 
 
 class ActionSmalltalkFirst(Action):
