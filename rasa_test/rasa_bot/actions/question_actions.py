@@ -229,7 +229,10 @@ class ActionQuestion(Action):
             if q_type == 0:
                 return [FollowupAction(name="action_leading_type_question")]
             else:
-                dispatcher.utter_message(etc_description[lang][5])
+                dispatcher.utter_message(
+                    json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][5]), "data": etc_description[lang][5]
+                    })
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
 
@@ -390,7 +393,11 @@ class ActionDefaultFallback(Action):
             # 다시 action_default_fallback으로 넘어오는 분기 필요!!
             answer = etc_description[lang][7]
 
-            dispatcher.utter_message(answer)
+            dispatcher.utter_message(
+                json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][7]), "data": answer
+                })
+
             buttons = []
             if center_question == 1:
                 buttons.append(
@@ -426,14 +433,22 @@ class ActionDefaultFallback(Action):
                     {"title": etc_description[lang][19],
                      "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
-            dispatcher.utter_message(f'{answer}')
+            dispatcher.utter_message(
+                json_message={
+                    "type": "voiceID", 'sender': metadata['uID'],
+                    "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][7]), "data": answer
+                }) #dispatcher.utter_message(f'{answer}')
             dispatcher.utter_message(etc_description[lang][6], buttons=qa_buttons)
 
         # 감정분석이면
         else:
             print("center step", center_step)
             if is_sentiment:
-                dispatcher.utter_message(answer)
+                dispatcher.utter_message(
+                    json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][7]), "data": answer
+                    })
+
                 # 비자아 질문 3개 다한 경우
                 if unego_count == 3:
                     if metadata['ct'][center_type] == 0:
@@ -447,7 +462,10 @@ class ActionDefaultFallback(Action):
                             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69201.wav", "data" : unego_description[lang][91]
                         })  # 좋아요 나답게 잘 살고 있어요
                         answer = unego_question[1]  # 자아 comment
-                        dispatcher.utter_message(unego_description[lang][91])
+                        dispatcher.utter_message(
+                            json_message={
+                                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, unego_description[2][91]), "data": unego_description[lang][91]
+                            })
                         answer = unego_question[1]
                         ego_or_unego[center_priority[center_step]] = 1
                         print("ego_or_unego : ", ego_or_unego)
@@ -464,7 +482,7 @@ class ActionDefaultFallback(Action):
                                        etc_description[lang][37], etc_description[lang][38], etc_description[lang][39]]
                         message = unego_description[lang][92].format(center_info[center_type])
                         dispatcher.utter_message(json_message={
-                            "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[4], "data" : message
+                            "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[2][4], "data" : message
                         })  # ~~에 대한 나다움을 잃고 있어요
                         answer = unego_question[2]  # 비자아 comment
                         # dispatcher.utter_message(message) #두번 출력되서 삭제 진행
@@ -498,7 +516,9 @@ class ActionDefaultFallback(Action):
 
                 notice = etc_description[lang][8]
                 notice2 = etc_description[lang][9]
-                dispatcher.utter_message(f'{notice}')
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], "content": etc_description[2][8], "data": notice
+                }) #dispatcher.utter_message(f'{notice}')
                 dispatcher.utter_message(f'{notice2}', buttons=notice_buttons)
 
         return [SlotSet("step", step), SlotSet("is_sentiment", 0), SlotSet("ego_or_unego", ego_or_unego)]
