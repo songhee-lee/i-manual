@@ -15,6 +15,9 @@ smalltalk_question = []
 smalltalk_question.append(smalltalk_question_csv['korean'].values.tolist())
 smalltalk_question.append(smalltalk_question_csv['english'].values.tolist())
 smalltalk_question.append(smalltalk_question_csv['voiceID'].values.tolist())
+smalltalk_question.append(smalltalk_question_csv['cur_step'].values.tolist())
+smalltalk_question.append(smalltalk_question_csv['nest_step'].values.tolist())
+smalltalk_question.append(smalltalk_question_csv['buttons_number'].values.tolist())
 
 smalltalk_answer_csv = pd.read_csv("./data/smalltalk_answer.csv")
 smalltalk_answer = []
@@ -34,11 +37,11 @@ class ActionSmalltalkFirst(Action):
 
         metadata = extract_metadata_from_tracker(tracker)
         smalltalk_step = tracker.get_slot('smalltalk_step')
-        ninei = metadata['member']
+        ninei = metadata['member'] - 1 # 메타데이터 1~ 10 --> 0 ~ 9
         lang = metadata['lang']
 
         # 첫인사 끝
-        if smalltalk_step == 10:
+        if smalltalk_step == 35: #종료
             return [FollowupAction(name='action_start')]
 
         # buttons 요소 2개 이상
@@ -85,5 +88,17 @@ class ActionChangeSmalltalkStep(Action):
         print('action_change_smalltalk_step')
 
         smalltalk_step = tracker.get_slot('smalltalk_step')
+
+        if smalltalk_step == 10: # 나인아이 멤버 자기소개 단계일 때
+            metadata = extract_metadata_from_tracker(tracker)
+            ninei = metadata['member']
+            return [SlotSet("smalltalk_step", smalltalk_step +ninei), FollowupAction(name="action_smalltalk_first")]
+        elif smalltalk_step in range(11,21):
+            return [SlotSet("smalltalk_step", 21), FollowupAction(name="action_smalltalk_first")]
+        elif smalltalk_step == 22:
+            return [SlotSet("smalltalk_step", smalltalk_step +3), FollowupAction(name="action_smalltalk_first")]
+        elif smalltalk_step == 25:
+            return [SlotSet("smalltalk_step", smalltalk_step +4), FollowupAction(name="action_smalltalk_first")]    
+
 
         return [SlotSet("smalltalk_step", smalltalk_step + 1), FollowupAction(name="action_smalltalk_first")]
