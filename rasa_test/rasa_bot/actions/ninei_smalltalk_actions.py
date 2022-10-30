@@ -54,10 +54,10 @@ class ActionSmalltalkFirst(Action):
                     {"title": smalltalk_answer[lang][3], "payload": "/change_smalltalk_step{\"smalltalk_step\":5}"}
                 )
                 buttons.append(
-                    {"title": smalltalk_answer[lang][4], "payload": "/change_smalltalk_step{\"smalltalk_step\":5}"}
+                    {"title": smalltalk_answer[lang][4], "payload": "/change_smalltalk_step{\"smalltalk_step\":6}"}
                 )
                 buttons.append(
-                    {"title": smalltalk_answer[lang][5], "payload": "/change_smalltalk_step{\"smalltalk_step\":5}"}
+                    {"title": smalltalk_answer[lang][5], "payload": "/change_smalltalk_step{\"smalltalk_step\":7}"}
                 )
             dispatcher.utter_message(buttons=buttons)
         # buttons 요소 1개
@@ -81,6 +81,7 @@ class ActionChangeSmalltalkStep(Action):
         return "action_change_smalltalk_step"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
         print('action_change_smalltalk_step')
 
         smalltalk_step = tracker.get_slot('smalltalk_step')
