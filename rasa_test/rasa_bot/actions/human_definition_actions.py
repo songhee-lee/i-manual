@@ -174,15 +174,15 @@ class ActionLeadingDefinitionIntro(Action):
                 })
             if msg3 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID3), "data" : msg3,
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID3), "data" : msg3
                 })
             if msg4 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID4), "data" : msg4,
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID4), "data" : msg4
                 })
             if msg5 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5,
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
                 })
             message = definition_description[lang][21].format(h_type)
             vID = definition_description[2][21]
@@ -213,11 +213,11 @@ class ActionLeadingDefinitionIntro(Action):
                 })
             if msg4 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID4), "data" : msg4,
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID4), "data" : msg4
                 }) 
             if msg5 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5,
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
                 }) 
             tag = "갈대같은 사람,한 곳에서 집중이 힘듦,자리를 바꿔 공부할 것"
             message = definition_description[lang][21].format(h_type)
