@@ -205,7 +205,7 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
                 SlotSet('is_question', is_question), SlotSet('center_type', center_type),
                 SlotSet('center_question', center_question), SlotSet('is_sentiment', is_sentiment),
                 SlotSet('ego_or_unego', ego_or_unego), SlotSet('se', se), SlotSet('smalltalk_step', smalltalk_step), 
-                SlotSet('continue_smalltalk', continue_smalltalk), SlotSet('voice_num', 2), SlotSet('regreetings', regreetings)]  # slot추가 필요
+                SlotSet('continue_smalltalk', continue_smalltalk), SlotSet('voice_num', 2), SlotSet('regreetings', 0)]  # slot추가 필요
 
 
 class ActionStart(Action):
