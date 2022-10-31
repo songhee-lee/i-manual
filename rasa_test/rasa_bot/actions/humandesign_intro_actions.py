@@ -308,7 +308,7 @@ class ActionMore(Action):
                 buttons.append({"title": etc_description[lang][21], "payload": "/last_message"}) # 오늘은 그만
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][1]),
-                    "data": etc_description[voice_num][1]
+                    "data": etc_description[lang][1]
                 })                
                 dispatcher.utter_message(buttons=buttons)  #
         else:

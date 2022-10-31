@@ -227,7 +227,7 @@ slots:
     influence_conversation: false
   voice_num:
     type: rasa.shared.core.slots.TextSlot
-    initial_value: 0
+    initial_value: 2
     auto_fill: true
     influence_conversation: false
 
