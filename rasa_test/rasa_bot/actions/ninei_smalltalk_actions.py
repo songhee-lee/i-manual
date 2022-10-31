@@ -51,10 +51,10 @@ class ActionSmalltalkFirst(Action):
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
                 })
                 buttons.append(
-                    {"title": smalltalk_answer[lang][3], "payload": "/change_smalltalk_step{\"smalltalk_step\":5}"}
+                    {"title": smalltalk_answer[lang][3], "payload": "/change_smalltalk_step{\"smalltalk_step\":3}"}
                 )
                 buttons.append(
-                    {"title": smalltalk_answer[lang][4], "payload": "/change_smalltalk_step{\"smalltalk_step\":5}"}
+                    {"title": smalltalk_answer[lang][4], "payload": "/change_smalltalk_step{\"smalltalk_step\":4}"}
                 )
                 buttons.append(
                     {"title": smalltalk_answer[lang][5], "payload": "/change_smalltalk_step{\"smalltalk_step\":5}"}
@@ -132,7 +132,9 @@ class ActionChangeSmalltalkStep(Action):
 
         smalltalk_step = tracker.get_slot('smalltalk_step')
 
-        if smalltalk_step in range(6, 9):
+        if smalltalk_step in range(3,6):
+            return [SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
+        elif smalltalk_step in range(6, 9):
             return [SlotSet("smalltalk_step", 9), FollowupAction(name="action_smalltalk_first")]
         elif smalltalk_step == 10: # 나인아이 멤버 자기소개 단계일 때
             metadata = extract_metadata_from_tracker(tracker)
