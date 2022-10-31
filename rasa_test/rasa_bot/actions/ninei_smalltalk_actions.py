@@ -107,10 +107,10 @@ class ActionSmalltalkFirst(Action):
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
                 })
                 buttons.append(
-                    {"title": smalltalk_answer[lang][39], "payload": "/change_smalltalk_step{\"smalltalk_step\":38}"}
+                    {"title": smalltalk_answer[lang][38], "payload": "/change_smalltalk_step{\"smalltalk_step\":38}"}
                 )
                 buttons.append(
-                    {"title": smalltalk_answer[lang][38], "payload": "/change_smalltalk_step{\"smalltalk_step\":39}"}
+                    {"title": smalltalk_answer[lang][39], "payload": "/change_smalltalk_step{\"smalltalk_step\":39}"}
                 )
 
             dispatcher.utter_message(buttons=buttons)
