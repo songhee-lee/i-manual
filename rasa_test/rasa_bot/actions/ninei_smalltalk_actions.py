@@ -100,11 +100,23 @@ class ActionSmalltalkFirst(Action):
                 buttons.append(
                     {"title": smalltalk_answer[lang][36], "payload": "/change_smalltalk_step{\"smalltalk_step\":36}"}
                 )
+            elif smalltalk_step == 38:
+                question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
+                vID = smalltalk_question[2][smalltalk_step]
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
+                })
+                buttons.append(
+                    {"title": smalltalk_answer[lang][38], "payload": "/change_smalltalk_step{\"smalltalk_step\":38}"}
+                )
+                buttons.append(
+                    {"title": smalltalk_answer[lang][39], "payload": "/change_smalltalk_step{\"smalltalk_step\":39}"}
+                )
 
             dispatcher.utter_message(buttons=buttons)
 
         # buttons 요소 없음
-        elif smalltalk_step in [31, 33]:
+        elif smalltalk_step in [31, 33, 42, 44]:
             question = smalltalk_question[lang][smalltalk_step].format(metadata["pn"], ninei_members[lang][ninei])
             vID = smalltalk_question[2][smalltalk_step]
 
@@ -146,7 +158,12 @@ class ActionChangeSmalltalkStep(Action):
             return [FollowupAction(name="action_start")]
         if smalltalk_step == 37: # 재방문 인사 끝
             return [FollowupAction(name="action_masterbot"),SlotSet("regreetings",1)]
-
+        if smalltalk_step == 44:
+            return [] # 마무리 인사 끝
+        if smalltalk_step == 40:
+            return [SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
+        if smalltalk_step in range(38,40):
+            return [SlotSet("smalltalk_step", smalltalk_step + 2), FollowupAction(name="action_smalltalk_first")]
         if smalltalk_step in range(3,6):
             return [SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
         elif smalltalk_step in range(6, 9):

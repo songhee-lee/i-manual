@@ -83,3 +83,12 @@ TAE HUN's i-manual train is leaving now :)",7019
 재방문인사1,"뇽안~ {0}님, 오늘의 기분은 어떤가요?","Hi {0}, How is your feeling today?",7029
 재방문인사2,,,
 재방문인사3,"좋은 하루 보내고 있다니 저도 덩달아 즐거워지는 것 같아요! 오늘도 우리 {0}님에 대해 알아보는 시간을 가져볼까요!","I'm happy to you having a great day! Let's take some time to learn about {0} today!",7030
+끝인사1,"{0}님, 저와 함께한 시간이 어땠어요?","{0}, How was your time with me?",7031
+끝인사2,,,
+끝인사3,"마음에 들어하는 것 같아 저도 기분이 좋아요! 다음에도 더 재미있고 흥미로운 주제로 이야기 나눠봐요","I feel good because you seem to like it! Let's talk about more fun and interesting topics next time!",7032
+끝인사4,"혹시 어떤 점이 아쉬웠는지 말해줄 수 있을까요? 아무한테도 말하지 않고 나만 살짝 기억했다가 다음에 만날 때 더 잘 알려주고 싶어요!","Can you tell us what you were disappointed about? I'll not to tell anyone, but I want to remember myself and let you know better next time we meet!",7033
+끝인사5,"그랬군요, 말해줘서 고마워요!","I see, thank you for telling me!",7034
+끝인사6,"오늘은 {0}님이 어떤 사람인지 알아봤어요. <나 사용설명서>를 이용하면 더 자세한 설명을 확인할 수 있으니, 꼭 이용해보세요!","Today we found out what kind of person you are. {0}, you can check the detailed explanation using <i-manual>, so make sure to use it!",7035
+끝인사7,"저는 {0}님이 어떤사람인지 알 수 있도록 도와준 마스터 {1}이었습니다. 다음에 또 만나요!","I was {1} who helped {0} know what kind of person you are. See you next time!",7036
+
+

@@ -90,7 +90,7 @@ class ActionLastMessage(Action):
             "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][14]), "data": etc_description[lang][14]
             })
 
-            return [SlotSet('is_finished', 1)]
+            return [SlotSet('is_finished', 1),SlotSet('smalltalk_step',38), FollowupAction(name="action_smalltalk_first")] #끝인사
 
         '''else:
             dispatcher.utter_message(etc_description[11], json_message={
@@ -106,7 +106,7 @@ class ActionLastMessage(Action):
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11501.wav"
             })'''
 
-        return []
+        return [SlotSet('smalltalk_step',38), FollowupAction(name="action_smalltalk_first")] #끝인사
 
 
 class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부터 설명할지
