@@ -143,9 +143,9 @@ class ActionChangeSmalltalkStep(Action):
 
          # 첫인사 끝
         if smalltalk_step in[34] : #종료
-            return [FollowupAction(name='action_start')]
+            return [FollowupAction(name="action_start")]
         if smalltalk_step == 37: # 재방문 인사 끝
-            return [FollowupAction(name='action_masterbot'),SlotSet(regreetings=1)]
+            return [FollowupAction(name="action_masterbot"),SlotSet("regreetings",1)]
 
         if smalltalk_step in range(3,6):
             return [SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]

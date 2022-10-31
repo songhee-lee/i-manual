@@ -129,6 +129,7 @@ entities:
   - se
   - smalltalk_step
   - voice_num
+  - regreetings
 slots:
   center_priority:
     type: list
