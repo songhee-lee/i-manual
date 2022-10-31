@@ -127,15 +127,19 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
         user_text = tracker.latest_message['text']
         center_step = tracker.get_slot('center_step')
         new_user = tracker.get_slot('new_user')
+        regreetings = tracker.get_slot('regreetings')
         # 처음들어온 user 가 마스터봇 호출할 경우
 
-        if (user_text == "마스터 봇" or user_text == "마스터봇"):
-            message = etc_description[lang][15].format(metadata["pn"])
-            vID = etc_description[2][15]
-            dispatcher.utter_message(
-                json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
-                })
+        if regreetings == 0: #재방문인데, 재방문 인사를 하지 않은 경우
+            if (user_text == "마스터 봇" or user_text == "마스터봇"):
+                message = etc_description[lang][15].format(metadata["pn"])
+                vID = etc_description[2][15]
+                dispatcher.utter_message(
+                    json_message={
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
+                    })
+                return[FollowupAction(name="action_smalltalk_first"),SlotSet("smalltalk_step",35)]
+        
         if leading_priority is None or step is None:
             if not x:
                 return [FollowupAction(name='action_set_priority_again')]

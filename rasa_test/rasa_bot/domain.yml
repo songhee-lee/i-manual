@@ -230,6 +230,11 @@ slots:
     initial_value: 2
     auto_fill: true
     influence_conversation: false
+  regreetings:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
+    auto_fill: true
+    influence_conversation: false
 
 responses:
   utter_default:
