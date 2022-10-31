@@ -110,7 +110,7 @@ class ActionSetPriority(Action):  # 맨 처음
                 SlotSet('center_type', center_priority[0]),
                 SlotSet('center_question', 0), SlotSet('is_sentiment', 0),
                 SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se), SlotSet('smalltalk_step', 0),
-                SlotSet('voice_num', 2)]  # slot추가 필요
+                SlotSet('voice_num', 2), SlotSet('regreetings', 0)]  # slot추가 필요
 
         else :
             return [FollowupAction(name='action_smalltalk_first'), SlotSet('leading_priority', leading_priority),
@@ -119,7 +119,7 @@ class ActionSetPriority(Action):  # 맨 처음
                 SlotSet('center_type', center_priority[0]),
                 SlotSet('center_question', 0), SlotSet('is_sentiment', 0),
                 SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se),
-                SlotSet('smalltalk_step', 0), SlotSet('voice_num', 2)]  # slot추가 필요
+                SlotSet('smalltalk_step', 0), SlotSet('voice_num', 2), SlotSet('regreetings', 0)]  # slot추가 필요
 
 
 class ActionSetPriorityAgain(Action):  # 맨 처음
@@ -144,6 +144,7 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
         ego_or_unego = tracker.get_slot("ego_or_unego")
         smalltalk_step = tracker.get_slot("smalltalk_step")
         continue_smalltalk = tracker.get_slot("continue_smalltalk")
+        regreetings = tracker.get_slot("regreetings")
 
         # 리딩 우선순위 정하는 부분
         leading_priority = []
@@ -204,7 +205,7 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
                 SlotSet('is_question', is_question), SlotSet('center_type', center_type),
                 SlotSet('center_question', center_question), SlotSet('is_sentiment', is_sentiment),
                 SlotSet('ego_or_unego', ego_or_unego), SlotSet('se', se), SlotSet('smalltalk_step', smalltalk_step), 
-                SlotSet('continue_smalltalk', continue_smalltalk), SlotSet('voice_num', 2)]  # slot추가 필요
+                SlotSet('continue_smalltalk', continue_smalltalk), SlotSet('voice_num', 2), SlotSet('regreetings', regreetings)]  # slot추가 필요
 
 
 class ActionStart(Action):
