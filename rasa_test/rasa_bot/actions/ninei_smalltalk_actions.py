@@ -163,6 +163,8 @@ class ActionChangeSmalltalkStep(Action):
             return [] # 마무리 인사 끝
         if smalltalk_step == 40:
             return [SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
+        if smalltalk_step == 41: # 실망한 경우, 슬롯 값 변경후 대기 --> action_masterbot에서 값을 받아서 재실행
+            return [SlotSet("disappointed", 1)] 
         if smalltalk_step in range(38,40):
             return [SlotSet("smalltalk_step", smalltalk_step + 2), FollowupAction(name="action_smalltalk_first")]
         if smalltalk_step in range(3,6):

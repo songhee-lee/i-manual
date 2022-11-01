@@ -130,6 +130,7 @@ entities:
   - smalltalk_step
   - voice_num
   - regreetings
+  - disappointed
 slots:
   center_priority:
     type: list
@@ -232,6 +233,11 @@ slots:
     auto_fill: true
     influence_conversation: false
   regreetings:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
+    auto_fill: true
+    influence_conversation: false
+  disappointed:
     type: rasa.shared.core.slots.TextSlot
     initial_value: 0
     auto_fill: true
