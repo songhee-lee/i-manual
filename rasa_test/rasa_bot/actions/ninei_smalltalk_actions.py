@@ -38,7 +38,7 @@ class ActionSmalltalkFirst(Action):
         lang = metadata['lang']
 
         # buttons 요소 2개 이상
-        if smalltalk_step in [3, 22, 25, 35]:
+        if smalltalk_step in [3, 22, 25, 35, 38]:
             buttons = []
             if smalltalk_step == 3:
                 question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
