@@ -56,6 +56,7 @@ class ActionLastMessage(Action):
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
         ninei = metadata['member']
+        voice_num = tracker.get_slot('voice_num')
 
         is_finished = tracker.get_slot('is_finished')
         if is_finished is None:
@@ -73,21 +74,21 @@ class ActionLastMessage(Action):
 
         if is_finished == 1:
             dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][10]), "data": etc_description[lang][10]
+            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][10]), "data": etc_description[lang][10]
             })
         else:
             
             dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][11]), "data": etc_description[lang][11]
+            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][11]), "data": etc_description[lang][11]
             })
             dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][12]), "data": etc_description[lang][12]
+            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][12]), "data": etc_description[lang][12]
             })
             dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][13]), "data": etc_description[lang][13]
+            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][13]), "data": etc_description[lang][13]
             })
             dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][14]), "data": etc_description[lang][14]
+            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][14]), "data": etc_description[lang][14]
             })
 
             return [SlotSet('is_finished', 1),SlotSet('smalltalk_step',38), FollowupAction(name="action_smalltalk_first")] #끝인사
@@ -128,13 +129,14 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
         center_step = tracker.get_slot('center_step')
         new_user = tracker.get_slot('new_user')
         regreetings = tracker.get_slot('regreetings')
+        voice_num = tracker.get_slot('voice_num')
         # 처음들어온 user 가 마스터봇 호출할 경우
 
         if regreetings == 0: #재방문인데, 재방문 인사를 하지 않은 경우
             if (user_text == "마스터 봇" or user_text == "마스터봇"):
                 if ninei ==0:
                     message = etc_description[lang][15].format(metadata["pn"])
-                    vID = etc_description[2][15]
+                    vID = etc_description[voice_num][15]
                     dispatcher.utter_message(
                         json_message={
                             "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
@@ -155,7 +157,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
                 buttons.append({"title": etc_description[lang][27], "payload": "/leading_definition_intro"}) # 에너지 흐름
             buttons.append({"title": etc_description[lang][28], "payload": "/leading_centers_intro"}) # 센터
             
-            vID = etc_description[2][16]
+            vID = etc_description[voice_num][16]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : etc_description[lang][16]
             })

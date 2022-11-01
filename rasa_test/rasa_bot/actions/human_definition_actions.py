@@ -30,6 +30,7 @@ class ActionLeadingDefinitionIntro(Action):
         leading_priority = tracker.get_slot('leading_priority')
         step = tracker.get_slot('step')
         is_finished = tracker.get_slot('is_finished')
+        voice_num = tracker.get_slot('voice_num')
 
         if leading_priority is None or step is None or is_finished is None:
             return [FollowupAction(name='action_set_priority_again')]
@@ -37,33 +38,33 @@ class ActionLeadingDefinitionIntro(Action):
         if is_finished == 1:
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[2][0]), "data" : definition_description[lang][0]
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[voice_num][0]), "data" : definition_description[lang][0]
                 })
 
         if (metadata["d"] == 0):
              dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[2][22]), "data" : definition_description[lang][22]
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[voice_num][22]), "data" : definition_description[lang][22]
                 })
         elif (metadata["d"] == 1):
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[2][1]), "data" : definition_description[lang][1]
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[voice_num][1]), "data" : definition_description[lang][1]
                 })
         elif (metadata["d"] == 2):
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[2][2]), "data" : definition_description[lang][2]
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[voice_num][2]), "data" : definition_description[lang][2]
                 })
         elif (metadata["d"] == 3):
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[2][3]), "data" : definition_description[lang][3]
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[voice_num][3]), "data" : definition_description[lang][3]
                 })
         elif (metadata["d"] == 4):
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[2][4]), "data" : definition_description[lang][4]
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[voice_num][4]), "data" : definition_description[lang][4]
                 })
 
         msg = ""
@@ -78,11 +79,11 @@ class ActionLeadingDefinitionIntro(Action):
             # msg = "절전모드 간단한 설명입니다."
             # msg2 = "앞 부분 설명"
             msg3 = definition_description[lang][28]
-            vID3 = definition_description[2][28]
+            vID3 = definition_description[voice_num][28]
             msg4 = definition_description[lang][29]
-            vID4 = definition_description[2][29]
+            vID4 = definition_description[voice_num][29]
             msg5 = definition_description[lang][30]
-            vID5 = definition_description[2][30]
+            vID5 = definition_description[voice_num][30]
             tag = "카멜레온,무한한 잠재성,틈틈이 휴식할 것"
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             '''
@@ -108,7 +109,7 @@ class ActionLeadingDefinitionIntro(Action):
                     "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
                 })
             message = definition_description[lang][21].format(h_type)
-            vID = definition_description[2][21]
+            vID = definition_description[voice_num][21]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
             })
@@ -116,15 +117,15 @@ class ActionLeadingDefinitionIntro(Action):
             h_type = definition_description[lang][24] # 한 묶음 에너지 흐름
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_1.png"
             msg = definition_description[lang][5]
-            vID = definition_description[2][5]
+            vID = definition_description[voice_num][5]
             msg2 = definition_description[lang][6]
-            vID2 = definition_description[2][6]
+            vID2 = definition_description[voice_num][6]
             msg3 = definition_description[lang][7]
-            vID3 = definition_description[2][7]
+            vID3 = definition_description[voice_num][7]
             msg4 = definition_description[lang][8]
-            vID4 = definition_description[2][8]
+            vID4 = definition_description[voice_num][8]
             msg5 = definition_description[lang][9]
-            vID5 = definition_description[2][9]
+            vID5 = definition_description[voice_num][9]
             tag = "혼자서도 잘해요,조용하면 집중력 UP,홀로 공부할 것"
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
@@ -148,7 +149,7 @@ class ActionLeadingDefinitionIntro(Action):
                     "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
                 })
             message = definition_description[lang][21].format(h_type)
-            vID = definition_description[2][21]
+            vID = definition_description[voice_num][21]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
             })
@@ -156,11 +157,11 @@ class ActionLeadingDefinitionIntro(Action):
             h_type = definition_description[lang][25] # 두 묶음 에너지 흐름
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_2.png"
             msg = definition_description[lang][10]
-            vID = definition_description[2][10]
+            vID = definition_description[voice_num][10]
             msg2 = definition_description[lang][11]
-            vID2 = definition_description[2][11]
+            vID2 = definition_description[voice_num][11]
             msg3 = definition_description[lang][12]
-            vID3 = definition_description[2][12]
+            vID3 = definition_description[voice_num][12]
 
             tag = "카페에서도 공부 잘함,사람에 관심이 많아요,사람 많으면 아이디어 UP"
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
@@ -185,7 +186,7 @@ class ActionLeadingDefinitionIntro(Action):
                     "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
                 })
             message = definition_description[lang][21].format(h_type)
-            vID = definition_description[2][21]
+            vID = definition_description[voice_num][21]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
             })
@@ -193,11 +194,11 @@ class ActionLeadingDefinitionIntro(Action):
             h_type = definition_description[lang][26] # 세 묶음 에너지 흐름
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_3.png"
             msg = definition_description[lang][13]
-            vID = definition_description[2][13]
+            vID = definition_description[voice_num][13]
             msg2 = definition_description[lang][14]
-            vID2 = definition_description[2][14]
+            vID2 = definition_description[voice_num][14]
             msg3 = definition_description[lang][15]
-            vID3 = definition_description[2][15]
+            vID3 = definition_description[voice_num][15]
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
                 dispatcher.utter_message(json_message={
@@ -221,7 +222,7 @@ class ActionLeadingDefinitionIntro(Action):
                 }) 
             tag = "갈대같은 사람,한 곳에서 집중이 힘듦,자리를 바꿔 공부할 것"
             message = definition_description[lang][21].format(h_type)
-            vID = definition_description[2][21]
+            vID = definition_description[voice_num][21]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
             })
@@ -229,15 +230,15 @@ class ActionLeadingDefinitionIntro(Action):
             h_type = definition_description[lang][27] # 네 묶음 에너지 흐름
             img = "https://asset.i-manual.co.kr/static/images/profile/definition/definition_4.png"
             msg = definition_description[lang][16]
-            vID = definition_description[2][16]
+            vID = definition_description[voice_num][16]
             msg2 = definition_description[lang][17]
-            vID2 = definition_description[2][17]
+            vID2 = definition_description[voice_num][17]
             msg3 = definition_description[lang][18]
-            vID3 = definition_description[2][18]
+            vID3 = definition_description[voice_num][18]
             msg4 = definition_description[lang][19]
-            vID4 = definition_description[2][19]
+            vID4 = definition_description[voice_num][19]
             msg5 = definition_description[lang][20]
-            vID5 = definition_description[2][20]
+            vID5 = definition_description[voice_num][20]
             tag = "우유부단,새로운게 필요해,친구들과 공부할 것"
 
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
@@ -266,7 +267,7 @@ class ActionLeadingDefinitionIntro(Action):
         #                         "type": "arrContents", "content": [[msg, msg2], [msg3, msg4], [msg5]], "tags": f'{tag}'})
 
             message = definition_description[lang][21].format(h_type)
-            vID = definition_description[2][21]
+            vID = definition_description[voice_num][21]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
             })

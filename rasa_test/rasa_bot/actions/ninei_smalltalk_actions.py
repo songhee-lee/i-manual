@@ -36,13 +36,14 @@ class ActionSmalltalkFirst(Action):
         smalltalk_step = tracker.get_slot('smalltalk_step')
         ninei = metadata['member']
         lang = metadata['lang']
+        voice_num = tracker.get_slot('voice_num')
 
         # buttons 요소 2개 이상
         if smalltalk_step in [3, 22, 25, 35, 38]:
             buttons = []
             if smalltalk_step == 3:
                 question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
-                vID = smalltalk_question[2][smalltalk_step]
+                vID = smalltalk_question[voice_num][smalltalk_step]
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
                 })
@@ -57,7 +58,7 @@ class ActionSmalltalkFirst(Action):
                 )
             elif smalltalk_step == 22:
                 question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
-                vID = smalltalk_question[2][smalltalk_step]
+                vID = smalltalk_question[voice_num][smalltalk_step]
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
                 })
@@ -72,7 +73,7 @@ class ActionSmalltalkFirst(Action):
                 )
             elif smalltalk_step == 25:
                 question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
-                vID = smalltalk_question[2][smalltalk_step]
+                vID = smalltalk_question[voice_num][smalltalk_step]
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
                 })
@@ -90,7 +91,7 @@ class ActionSmalltalkFirst(Action):
                 )
             elif smalltalk_step == 35:
                 question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
-                vID = smalltalk_question[2][smalltalk_step]
+                vID = smalltalk_question[voice_num][smalltalk_step]
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
                 })
@@ -102,7 +103,7 @@ class ActionSmalltalkFirst(Action):
                 )
             elif smalltalk_step == 38:
                 question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
-                vID = smalltalk_question[2][smalltalk_step]
+                vID = smalltalk_question[voice_num][smalltalk_step]
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
                 })
@@ -118,7 +119,7 @@ class ActionSmalltalkFirst(Action):
         # buttons 요소 없음
         elif smalltalk_step in [31, 33, 42, 44]:
             question = smalltalk_question[lang][smalltalk_step].format(metadata["pn"], ninei_members[lang][ninei])
-            vID = smalltalk_question[2][smalltalk_step]
+            vID = smalltalk_question[voice_num][smalltalk_step]
 
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -131,7 +132,7 @@ class ActionSmalltalkFirst(Action):
         else:
             question = smalltalk_question[lang][smalltalk_step].format(metadata["pn"], ninei_members[lang][ninei])
                 
-            vID = smalltalk_question[2][smalltalk_step]
+            vID = smalltalk_question[voice_num][smalltalk_step]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
                 "data": question
