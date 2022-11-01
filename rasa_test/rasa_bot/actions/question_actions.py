@@ -250,6 +250,10 @@ class ActionDefaultFallback(Action):
 
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
+        disappointed = tracker.get_slot("disappointed")
+        if disappointed ==1:
+            return[FollowupAction(name="action_smalltalk_first"),SlotSet("smalltalk_step",42), SlotSet("disappointed", 0)]
+
 
         user_reponse_type = 0
         # 질문인지 아닌지(0이면 질문아님, 1이면 질문)
