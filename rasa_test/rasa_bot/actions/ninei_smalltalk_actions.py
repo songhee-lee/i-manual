@@ -117,7 +117,7 @@ class ActionSmalltalkFirst(Action):
             dispatcher.utter_message(buttons=buttons)
 
         # buttons 요소 없음
-        elif smalltalk_step in [31, 33, 42, 44]:
+        elif smalltalk_step in [31, 33, 41, 42, 44]:
             question = smalltalk_question[lang][smalltalk_step].format(metadata["pn"], ninei_members[lang][ninei])
             vID = smalltalk_question[voice_num][smalltalk_step]
 
