@@ -74,21 +74,31 @@ class ActionLastMessage(Action):
 
         if is_finished == 1:
             dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][10]), "data": etc_description[lang][10]
+                "type": "voiceID", 'sender': metadata['uID'],
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][10]),
+                "data": etc_description[lang][10]
             })
         else:
             
             dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][11]), "data": etc_description[lang][11]
+                "type": "voiceID", 'sender': metadata['uID'],
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][11]),
+                "data": etc_description[lang][11]
             })
             dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][12]), "data": etc_description[lang][12]
+                "type": "voiceID", 'sender': metadata['uID'],
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][12]),
+                "data": etc_description[lang][12]
             })
             dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][13]), "data": etc_description[lang][13]
+                "type": "voiceID", 'sender': metadata['uID'],
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][13]),
+                "data": etc_description[lang][13]
             })
             dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][14]), "data": etc_description[lang][14]
+                "type": "voiceID", 'sender': metadata['uID'],
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][14]),
+                "data": etc_description[lang][14]
             })
 
             return [SlotSet('is_finished', 1),SlotSet('smalltalk_step',38), FollowupAction(name="action_smalltalk_first")] #끝인사
@@ -137,10 +147,11 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
                 if ninei ==0:
                     message = etc_description[lang][15].format(metadata["pn"])
                     vID = etc_description[voice_num][15]
-                    dispatcher.utter_message(
-                        json_message={
-                            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
-                        })
+                    dispatcher.utter_message(json_message={
+                            "type": "voiceID", 'sender': metadata['uID'],
+                            "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                            "data" : message
+                    })
             return[FollowupAction(name="action_smalltalk_first"),SlotSet("smalltalk_step",35)]
         
         if leading_priority is None or step is None:
@@ -159,7 +170,9 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
             
             vID = etc_description[voice_num][16]
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : etc_description[lang][16]
+                "type": "voiceID", 'sender': metadata['uID'],
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                "data" : etc_description[lang][16]
             })
 
             dispatcher.utter_message(buttons=buttons)
@@ -169,7 +182,14 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
             buttons.append({"title": etc_description[lang][29], "payload": "/leading_masterbot_more"}) # 네 이어서 들을래요
             buttons.append({"title": etc_description[lang][30], "payload": "/initialized"}) # 아뇨! 처음부터 들을래요
 
-            dispatcher.utter_message(etc_description[lang][17], buttons=buttons)
+            vID = etc_description[voice_num][17]
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                "data" : etc_description[lang][17]
+            })
+
+            dispatcher.utter_message(buttons=buttons)
 
         # Update user's slot data
         # x = mycol2.find_one({"displayID": metadata["uID"]})

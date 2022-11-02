@@ -8,12 +8,19 @@ from transformers import AutoTokenizer, ElectraForSequenceClassification, AdamW
 # GPU 사용
 device = torch.device("cpu")
 
-model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-v2-discriminator", num_labels = 3)
+#model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-v2-discriminator", num_labels = 3)  # kor
+model = ElectraForSequenceClassification.from_pretrained("google/electra-small-discriminator", num_labels = 3)          # eng
+
 #model = nn.DataParallel(model) # use multi-gpu
 model.to(device)
-saved_checkpoint = torch.load("./data/model_ego_survey3.pt", map_location=torch.device('cpu'))
+
+#saved_checkpoint = torch.load("./data/model_ego_survey3.pt", map_location=torch.device('cpu')) # kor
+saved_checkpoint = torch.load("./data/SA_eng_20.pt", map_location=torch.device('cpu'))      # eng
+
 model.load_state_dict(saved_checkpoint, strict=False)
-tokenizer = AutoTokenizer.from_pretrained("monologg/koelectra-small-v2-discriminator")
+
+#tokenizer = AutoTokenizer.from_pretrained("monologg/koelectra-small-v2-discriminator")         # kor
+tokenizer = AutoTokenizer.from_pretrained("google/electra-small-discriminator")                 # eng
 
 def convert_input_data(sentences):
     # Koelectra의 토크나이저로 문장을 토큰으로 분리
