@@ -298,7 +298,7 @@ class ActionLeadingCentersIntro(Action):
                 })
             if h_center == 1 or h_center == 7 or h_center == 8:
                 message = center_description[lang][136].format(center_name) # 활력 센터
-                vID = center_description[voice_num][136]
+                vID = 5158 + h_center
                 dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -517,7 +517,7 @@ class ActionLeadingCentersIntro(Action):
                 })
             if h_center == 1 or h_center == 7 or h_center == 8:
                 message = center_description[lang][136].format(center_name) # 생각 센터
-                vID = center_description[voice_num][136]
+                vID = 5158 + h_center
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", 'sender': metadata['uID'],
                     "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -550,7 +550,7 @@ class ActionLeadingCentersIntro(Action):
                 })
             if h_center == 1 or h_center == 7 or h_center == 8:
                 message = center_description[lang][136].format(center_name) # 영감센터
-                vID = center_description[voice_num][136]
+                vID = 5158 + h_center
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", 'sender': metadata['uID'],
                     "content": "{0}/{1}/{2}.wav".format(lang, ninei,vID),
@@ -638,7 +638,7 @@ class ActionLeadingCentersIntro(Action):
                 })
             if h_center == 1 or h_center == 7 or h_center == 8:
                 message = center_description[lang][136].format(center_name) # 활력센터
-                vID = center_description[voice_num][136]
+                vID = 5158 + h_center
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'],
                     "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -853,7 +853,7 @@ class ActionLeadingCentersIntro(Action):
                 })
             if h_center == 1 or h_center == 7 or h_center == 8:
                 message = center_description[lang][136].format(center_name) # 생각센터
-                vID = center_description[voice_num][136]
+                vID = 5158 + h_center
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'],
                     "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -885,7 +885,7 @@ class ActionLeadingCentersIntro(Action):
                 })
             if h_center == 1 or h_center == 7 or h_center == 8:
                 message = center_description[lang][136].format(center_name) # 영감센터
-                vID = center_description[voice_num][136]
+                vID = 5158 + h_center
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'],
                     "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -965,7 +965,7 @@ class ActionLeadingCenters(Action):
                 "data": msg2
             })
             message = center_description[lang][136].format(center_name) # 연료센터
-            vID = center_description[voice_num][136]
+            vID = 5158 + h_center
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -1007,7 +1007,7 @@ class ActionLeadingCenters(Action):
             })
 
             message = center_description[lang][136].format(center_name) # 직관센터
-            vID = center_description[voice_num][136]
+            vID = 5158 + h_center
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -1046,7 +1046,7 @@ class ActionLeadingCenters(Action):
                 "data": msg4
             })
             message = center_description[lang][136].format(center_name) # 감정센터
-            vID = center_description[voice_num][136]
+            vID = 5158 + h_center
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -1086,7 +1086,7 @@ class ActionLeadingCenters(Action):
                 "data": msg4
             })
             message = center_description[lang][136].format(center_name) # 에고센터
-            vID = center_description[voice_num][136]
+            vID = 5158 + h_center
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -1133,7 +1133,7 @@ class ActionLeadingCenters(Action):
             })
 
             message = center_description[lang][136].format(center_name) # 방향센터
-            vID = center_description[voice_num][136]
+            vID = 5158 + h_center
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -1173,7 +1173,7 @@ class ActionLeadingCenters(Action):
             })
 
             message = center_description[lang][136].format(center_name) # 표현센터
-            vID = center_description[voice_num][136]
+            vID = 5158 + h_center
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -1213,7 +1213,7 @@ class ActionLeadingCenters(Action):
             })
             
             message = center_description[lang][136].format(center_name) # 연료센터
-            vID = center_description[voice_num][136]
+            vID = 5158 + h_center
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -1246,7 +1246,7 @@ class ActionLeadingCenters(Action):
                 "data": msg3
             })
             message = center_description[lang][136].format(center_name) # 직관센터
-            vID = center_description[voice_num][136]
+            vID = 5158 + h_center
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -1288,7 +1288,7 @@ class ActionLeadingCenters(Action):
                 "data": msg4
             })
             message = center_description[lang][136].format(center_name) # 감정센터
-            vID = center_description[voice_num][136]
+            vID = 5158 + h_center
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -1335,7 +1335,7 @@ class ActionLeadingCenters(Action):
                 "data": msg5
             })
             message = center_description[lang][136].format(center_name) # 에고센터
-            vID = center_description[voice_num][136]
+            vID = 5158 + h_center
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -1367,7 +1367,7 @@ class ActionLeadingCenters(Action):
                 "data": msg3
             })
             message = center_description[lang][136].format(center_name) # 방향센터
-            vID = center_description[voice_num][136]
+            vID = 5158 + h_center
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -1394,7 +1394,7 @@ class ActionLeadingCenters(Action):
             })
 
             message = center_description[lang][136].format(center_name) # 표현센터
-            vID = center_description[voice_num][136]
+            vID = 5158 + h_center
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
                 "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),

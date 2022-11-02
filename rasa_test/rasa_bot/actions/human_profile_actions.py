@@ -941,7 +941,7 @@ class ActionLeadingProfile(Action):
                 dispatcher.utter_message(msg6)
             if msg7 != "":
                 dispatcher.utter_message(msg7)
-        dispatcher.utter_message(json_message={
+            dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, profile_description[voice_num][96]),
                 "data": profile_description[lang][96].format(h_type)
             })

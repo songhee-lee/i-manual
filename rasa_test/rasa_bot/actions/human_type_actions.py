@@ -240,7 +240,7 @@ class ActionLeadingTypeIntro(Action):
             return [SlotSet('step', step)]
         else:
             message = type_description[lang][35].format(h_type)
-            vID = type_description[voice_num][35]
+            vID = 2080 + metadata['t']
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
                 "data": message
@@ -354,7 +354,7 @@ class ActionLeadingType(Action):
 
 
         message = type_description[lang][35].format(h_type)
-        vID = type_description[voice_num][35]
+        vID = 2080 + metadata['t']
         dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
                 "data": message

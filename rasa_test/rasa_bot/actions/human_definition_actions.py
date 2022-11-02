@@ -109,7 +109,7 @@ class ActionLeadingDefinitionIntro(Action):
                     "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
                 })
             message = definition_description[lang][21].format(h_type)
-            vID = definition_description[voice_num][21]
+            vID = 4037 + metadata["d"]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
             })
@@ -149,7 +149,7 @@ class ActionLeadingDefinitionIntro(Action):
                     "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
                 })
             message = definition_description[lang][21].format(h_type)
-            vID = definition_description[voice_num][21]
+            vID = 4037 + metadata["d"]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
             })
@@ -186,7 +186,7 @@ class ActionLeadingDefinitionIntro(Action):
                     "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
                 })
             message = definition_description[lang][21].format(h_type)
-            vID = definition_description[voice_num][21]
+            vID = 4037 + metadata["d"]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
             })
@@ -222,7 +222,7 @@ class ActionLeadingDefinitionIntro(Action):
                 }) 
             tag = "갈대같은 사람,한 곳에서 집중이 힘듦,자리를 바꿔 공부할 것"
             message = definition_description[lang][21].format(h_type)
-            vID = definition_description[voice_num][21]
+            vID = 4037 + metadata["d"]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
             })
@@ -267,7 +267,7 @@ class ActionLeadingDefinitionIntro(Action):
         #                         "type": "arrContents", "content": [[msg, msg2], [msg3, msg4], [msg5]], "tags": f'{tag}'})
 
             message = definition_description[lang][21].format(h_type)
-            vID = definition_description[voice_num][21]
+            vID = 4037 + metadata["d"]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
             })

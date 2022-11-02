@@ -72,3 +72,8 @@ h_type 스피드 에너자이저 종족,스피드 에너자이저 종족,Speed E
 h_type 혁신주도가 종족,혁신주도가 종족,SELF-LEADER,2077
 h_type 가이드 종족,가이드 종족,Guide,2078
 h_type 거울 종족,거울 종족,Mirror,2079
+종족마무리2,"자, 에너자이저 종족에 대해 이해가 되셨나요?","So, do you now understand Energizer?",2080
+종족마무리2,"자, 스피드 에너자이저 종족에 대해 이해가 되셨나요?","So, do you now understand Speed Energizer?",2081
+종족마무리2,"자, 혁신주도가 종족에 대해 이해가 되셨나요?","So, do you now understand SELF-LEADER?",2082
+종족마무리2,"자, 가이드 종족에 대해 이해가 되셨나요?","So, do you now understand Guide?",2083
+종족마무리2,"자, 거울 종족에 대해 이해가 되셨나요?","So, do you now understand Mirror?",2084
