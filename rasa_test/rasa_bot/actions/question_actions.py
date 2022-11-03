@@ -486,7 +486,7 @@ class ActionDefaultFallback(Action):
                                        etc_description[lang][37], etc_description[lang][38], etc_description[lang][39]]
                         message = unego_description[lang][92].format(center_info[center_type])
                         dispatcher.utter_message(json_message={
-                            "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[2][4], "data" : message
+                            "type": "voiceID", 'sender': metadata['uID'], "content": 6103 + center_type, "data" : message
                         })  # ~~에 대한 나다움을 잃고 있어요
                         answer = unego_question[2]  # 비자아 comment
                         # dispatcher.utter_message(message) #두번 출력되서 삭제 진행
@@ -629,35 +629,35 @@ class ActionCenterUnegoQuestion(Action):
                 message = unego_description[lang][90].format(human_center[center_type])  # 다음의 질문에 답해보세요~
                 if center_type == 1:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
                     })
                 elif center_type == 2:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
                     })
                 elif center_type == 3:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
                     })
                 elif center_type == 4:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/.wav", "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
                     })
                 elif center_type == 5:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69105.wav", "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
                     })
                 elif center_type == 6:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69106.wav", "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
                     })
                 elif center_type == 7:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69107.wav", "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
                     })
                 elif center_type == 8:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69108.wav", "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
                     })
 
             # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아, 3번째가 질문 voice, 4번째가 나다움 잃고있어요 voice, 5번째가 비자아 comment voice,

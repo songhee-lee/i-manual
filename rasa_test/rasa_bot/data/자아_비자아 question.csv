@@ -92,3 +92,21 @@ title,korean,english,voiceID
 비자아 question intro,"자, 다음의 질문에 답해보세요. 당신의 {0}가 어떤 상태인지 알려줄께요.","Now, answer the following questions. I'll let you know what state your {0} is in.",6091
 건강한 상태 comment,좋아요! 나 답게 잘 살고 있어요!!,Great! You're living well as yourself!!,6092
 건강하지 않은 상태 comment,{0}에 대한 나다움을 잃고 있어요!,"Regarding {0}, you're not living as yourself!",6093
+비자아 question intro2,"자, 다음의 질문에 답해보세요. 당신의 연료센터가 어떤 상태인지 알려줄께요.","Now, answer the following questions. I'll let you know what state your Root is in.",6094
+비자아 question intro2,"자, 다음의 질문에 답해보세요. 당신의 활력센터가 어떤 상태인지 알려줄께요.","Now, answer the following questions. I'll let you know what state your Vitality is in.",6095
+비자아 question intro2,"자, 다음의 질문에 답해보세요. 당신의 직관센터가 어떤 상태인지 알려줄께요.","Now, answer the following questions. I'll let you know what state your Intuition is in.",6096
+비자아 question intro2,"자, 다음의 질문에 답해보세요. 당신의 감정센터가 어떤 상태인지 알려줄께요.","Now, answer the following questions. I'll let you know what state your Emotion is in.",6097
+비자아 question intro2,"자, 다음의 질문에 답해보세요. 당신의 에고센터가 어떤 상태인지 알려줄께요.","Now, answer the following questions. I'll let you know what state your Ego is in.",6098
+비자아 question intro2,"자, 다음의 질문에 답해보세요. 당신의 방향센터가 어떤 상태인지 알려줄께요.","Now, answer the following questions. I'll let you know what state your Navi.(Direction) is in.",6099
+비자아 question intro2,"자, 다음의 질문에 답해보세요. 당신의 표현센터가 어떤 상태인지 알려줄께요.","Now, answer the following questions. I'll let you know what state your Expression is in.",6100
+비자아 question intro2,"자, 다음의 질문에 답해보세요. 당신의 생각센터가 어떤 상태인지 알려줄께요.","Now, answer the following questions. I'll let you know what state your Mental Awareness is in.",6101
+비자아 question intro2,"자, 다음의 질문에 답해보세요. 당신의 영감센터가 어떤 상태인지 알려줄께요.","Now, answer the following questions. I'll let you know what state your Mental Pressure is in.",6102
+건강하지 않은 상태 comment2,"연료센터에 대한 나다움을 잃고 있어요!","Regarding Root, you're not living as yourself!",6103
+건강하지 않은 상태 comment2,"활력센터에 대한 나다움을 잃고 있어요!","Regarding Vitality, you're not living as yourself!",6104
+건강하지 않은 상태 comment2,"직관센터에 대한 나다움을 잃고 있어요!","Regarding Intuition, you're not living as yourself!",6105
+건강하지 않은 상태 comment2,"감정센터에 대한 나다움을 잃고 있어요!","Regarding Emotion, you're not living as yourself!",6106
+건강하지 않은 상태 comment2,"에고센터에 대한 나다움을 잃고 있어요!","Regarding Ego, you're not living as yourself!",6107
+건강하지 않은 상태 comment2,"방향센터에 대한 나다움을 잃고 있어요!","Regarding Navi.(Direction), you're not living as yourself!",6108
+건강하지 않은 상태 comment2,"표현센터에 대한 나다움을 잃고 있어요!","Regarding Expression, you're not living as yourself!",6109
+건강하지 않은 상태 comment2,"생각센터에 대한 나다움을 잃고 있어요!","Regarding Mental Awareness, you're not living as yourself!",6110
+건강하지 않은 상태 comment2,"영감센터에 대한 나다움을 잃고 있어요!","Regarding Mental Pressure, you're not living as yourself!",6111
