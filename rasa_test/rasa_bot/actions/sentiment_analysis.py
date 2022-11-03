@@ -8,19 +8,25 @@ from transformers import AutoTokenizer, ElectraForSequenceClassification, AdamW
 # GPU 사용
 device = torch.device("cpu")
 
-#model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-v2-discriminator", num_labels = 3)  # kor
-model = ElectraForSequenceClassification.from_pretrained("google/electra-small-discriminator", num_labels = 3)          # eng
+def take_model(lang):
+    global model, saved_checkpoint, tokenizer
+    if lang == 0 : # KOREAN
+        model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-v2-discriminator", num_labels = 3)  # kor
+        saved_checkpoint = torch.load("./data/model_ego_survey3.pt", map_location=torch.device('cpu')) # kor
+        tokenizer = AutoTokenizer.from_pretrained("monologg/koelectra-small-v2-discriminator")         # kor
 
-#model = nn.DataParallel(model) # use multi-gpu
-model.to(device)
 
-#saved_checkpoint = torch.load("./data/model_ego_survey3.pt", map_location=torch.device('cpu')) # kor
-saved_checkpoint = torch.load("./data/SA_eng_20.pt", map_location=torch.device('cpu'))      # eng
+    elif lang == 1 : # ENGLISH
+        model = ElectraForSequenceClassification.from_pretrained("google/electra-small-discriminator", num_labels = 3)          # eng
+        saved_checkpoint = torch.load("./data/SA_eng_20.pt", map_location=torch.device('cpu'))  # eng
+        tokenizer = AutoTokenizer.from_pretrained("google/electra-small-discriminator")  # eng
 
-model.load_state_dict(saved_checkpoint, strict=False)
+    #model = nn.DataParallel(model) # use multi-gpu
+    model.to(device)
+    model.load_state_dict(saved_checkpoint, strict=False)
+    
+    return model
 
-#tokenizer = AutoTokenizer.from_pretrained("monologg/koelectra-small-v2-discriminator")         # kor
-tokenizer = AutoTokenizer.from_pretrained("google/electra-small-discriminator")                 # eng
 
 def convert_input_data(sentences):
     # Koelectra의 토크나이저로 문장을 토큰으로 분리
@@ -50,10 +56,11 @@ def convert_input_data(sentences):
 
 
 # 문장 테스트
-def sentiment_predict(question, answer):
+def sentiment_predict(question, answer, lang):
     sentence = [question + ' ' + answer]
 
     # 문장을 입력 데이터로 변환
+    model = take_model(lang)
     inputs, masks = convert_input_data(sentence)
 
     # 데이터를 GPU에 넣음
@@ -75,7 +82,6 @@ def sentiment_predict(question, answer):
     result = np.argmax(logits)
     # 0: 중립 1: 긍정 2: 부정
     return result
-
 
 
 

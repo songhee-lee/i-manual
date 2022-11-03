@@ -373,7 +373,7 @@ class ActionDefaultFallback(Action):
                 elif user_text in neutral_list:
                     user_response_type = 0
                 else:
-                    user_reponse_type = sentiment_predict(question, user_text)
+                    user_reponse_type = sentiment_predict(question, user_text, lang)
 
                 if user_reponse_type == 0:
                     print("중립")
