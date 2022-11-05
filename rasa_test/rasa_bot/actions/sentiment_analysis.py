@@ -8,22 +8,36 @@ from transformers import AutoTokenizer, ElectraForSequenceClassification, AdamW
 # GPU 사용
 device = torch.device("cpu")
 
-model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-v2-discriminator", num_labels = 3)
+#한국어 버전
+kor_model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-v2-discriminator", num_labels = 3)
 #model = nn.DataParallel(model) # use multi-gpu
-model.to(device)
-saved_checkpoint = torch.load("./data/model_ego_survey3.pt", map_location=torch.device('cpu'))
-model.load_state_dict(saved_checkpoint, strict=False)
-tokenizer = AutoTokenizer.from_pretrained("monologg/koelectra-small-v2-discriminator")
+kor_model.to(device)
+kor_saved_checkpoint = torch.load("./data/model_ego_survey3.pt", map_location=torch.device('cpu'))
+kor_model.load_state_dict(kor_saved_checkpoint, strict=False)
+kor_tokenizer = AutoTokenizer.from_pretrained("monologg/koelectra-small-v2-discriminator")
 
-def convert_input_data(sentences):
-    # Koelectra의 토크나이저로 문장을 토큰으로 분리
-    tokenized_texts = [tokenizer.tokenize(sent) for sent in sentences]
+#영어 버전
+eng_model = ElectraForSequenceClassification.from_pretrained("google/electra-small-discriminator", num_labels = 3)
+eng_model.to(device)
+eng_saved_checkpoint = torch.load("./data/SA_eng_20.pt", map_location=torch.device('cpu'))
+eng_model.load_state_dict(eng_saved_checkpoint, strict=False)
+eng_tokenizer = AutoTokenizer.from_pretrained("google/electra-small-discriminator")
 
-    # 입력 토큰의 최대 시퀀스 길이
-    MAX_LEN = 128
+def convert_input_data(sentences, lang):
 
-    # 토큰을 숫자 인덱스로 변환
-    input_ids = [tokenizer.convert_tokens_to_ids(x) for x in tokenized_texts]
+    if lang == 0: # Korean
+        # Koelectra의 토크나이저로 문장을 토큰으로 분리
+        tokenized_texts = [kor_tokenizer.tokenize(sent) for sent in sentences]
+
+        # 입력 토큰의 최대 시퀀스 길이
+        MAX_LEN = 128
+
+        # 토큰을 숫자 인덱스로 변환
+        input_ids = [kor_tokenizer.convert_tokens_to_ids(x) for x in tokenized_texts]
+    elif lang == 1:
+        tokenized_texts = [eng_tokenizer.tokenize(sent) for sent in sentences]
+        MAX_LEN = 128
+        input_ids = [eng_tokenizer.convert_tokens_to_ids(x) for x in tokenized_texts]
 
     # 어텐션 마스크 초기화
     attention_masks = []
@@ -47,7 +61,7 @@ def sentiment_predict(question, answer, lang):
     sentence = [question + ' ' + answer]
 
     # 문장을 입력 데이터로 변환
-    inputs, masks = convert_input_data(sentence)
+    inputs, masks = convert_input_data(sentence, lang)
 
     # 데이터를 GPU에 넣음
     b_input_ids = inputs.to(device)
@@ -56,9 +70,14 @@ def sentiment_predict(question, answer, lang):
     # 그래디언트 계산 안함
     with torch.no_grad():
         # Forward 수행
-        outputs = model(b_input_ids,
-                        token_type_ids=None,
-                        attention_mask=b_input_mask)
+        if lang == 0: #Korean
+            outputs = kor_model(b_input_ids,
+                            token_type_ids=None,
+                            attention_mask=b_input_mask)
+        elif lang == 1: # English
+            outputs = eng_model(b_input_ids,
+                            token_type_ids=None,
+                            attention_mask=b_input_mask)
 
     # 로스 구함
     logits = outputs[0]
