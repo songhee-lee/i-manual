@@ -15,11 +15,13 @@ unego_description_csv = pd.read_csv("./data/자아_비자아 question.csv")
 unego_description = []
 unego_description.append(unego_description_csv['korean'].values.tolist())
 unego_description.append(unego_description_csv['english'].values.tolist())
+unego_description.append(unego_description_csv['voiceID'].values.tolist())
 
 etc_description_csv = pd.read_csv("./data/기타.csv")
 etc_description = []
 etc_description.append(etc_description_csv['korean'].values.tolist())
 etc_description.append(etc_description_csv['english'].values.tolist())
+etc_description.append(etc_description_csv['voiceID'].values.tolist())
 logger = logging.getLogger(__name__)
 
 center_defined_csv = pd.read_csv("./data/center(defined).csv")
@@ -168,7 +170,7 @@ def retrieve_context(i, ct_index, metadata):
     # 종족은 없음
     # return 할 context
     user_context = ""
-
+    lang = metadata['lang']
     # profile
     if i == 1:
 
@@ -177,9 +179,9 @@ def retrieve_context(i, ct_index, metadata):
         print(profile_str)
 
         index = 0
-        for t in prf_title:
+        for t in prf_title[0]: # prf_title['title']
             if profile_str in t:
-                user_context = prf_paragraph[index]
+                user_context = prf_paragraph[lang][index]
                 break
             index += 1
 
@@ -188,7 +190,7 @@ def retrieve_context(i, ct_index, metadata):
         # d는 0: 절전모드, 1: 한묶음, 2: 두묶음, 3: 세묶음, 4: 네묶음
         user_definition = metadata["d"]
         print("user_definition", user_definition)
-        user_context = def_paragraph[user_definition]
+        user_context = def_paragraph[lang][user_definition] # 여기 수정 필요!
 
     # center
     elif i == 3:
@@ -196,10 +198,10 @@ def retrieve_context(i, ct_index, metadata):
         total_center_info = metadata["ct"]
         # 미정의 센터인 경우
         if total_center_info[ct_index] == 0:
-            user_context = cud_paragraph[ct_index]
+            user_context = cud_paragraph[lang][ct_index]
         # 정의 센터인 경우
         else:
-            user_context = cd_paragraph[ct_index]
+            user_context = cd_paragraph[lang][ct_index]
     print(user_context)
     return user_context
 
@@ -220,6 +222,7 @@ class ActionQuestion(Action):
         step = tracker.get_slot("step")
         print(step)
         center_question = tracker.get_slot("center_question")
+        ninei = tracker.get_slot('member')
 
         if leading_priority is None or step is None or is_question is None or center_question is None:
             return [FollowupAction(name='action_set_priority_again')]
@@ -275,6 +278,7 @@ class ActionDefaultFallback(Action):
         unego_count = tracker.get_slot("unego_count")
         sentiment_result = tracker.get_slot("sentiment_result")
         ego_or_unego = tracker.get_slot("ego_or_unego")
+        ninei = tracker.get_slot('member')
         if is_question is None or is_sentiment is None or center_question is None or leading_priority is None or center_priority is None or step is None or ego_or_unego is None:
             return [FollowupAction(name='action_set_priority_again')]
         print("step", step)
@@ -437,11 +441,7 @@ class ActionDefaultFallback(Action):
                     {"title": etc_description[lang][19],
                      "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
-            dispatcher.utter_message(
-                json_message={
-                    "type": "voiceID", 'sender': metadata['uID'],
-                    "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][7]), "data": answer
-                }) #dispatcher.utter_message(f'{answer}')
+            dispatcher.utter_message(f'{answer}')
             dispatcher.utter_message(etc_description[lang][6], buttons=qa_buttons)
 
         # 감정분석이면
@@ -450,7 +450,7 @@ class ActionDefaultFallback(Action):
             if is_sentiment:
                 dispatcher.utter_message(
                     json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][7]), "data": answer
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][7]), "data": etc_description[lang][7]
                     })
 
                 # 비자아 질문 3개 다한 경우
@@ -555,7 +555,7 @@ class ActionQuestionIntro(Action):
         if step is None or center_step is None or leading_priority is None:
             return [FollowupAction(name='action_set_priority_again')]
         q_type = leading_priority[step - 1]
-
+        ninei = tracker.get_slot('member')
         is_center = 0
         is_type = 0
 
@@ -582,7 +582,7 @@ class ActionQuestionIntro(Action):
             buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
 
         dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/10501.wav", "data" : etc_description[lang][4]
+            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][4]), "data" : etc_description[lang][4]
         })
         dispatcher.utter_message(buttons=buttons)
         if is_center:
