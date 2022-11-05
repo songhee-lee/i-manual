@@ -34,26 +34,34 @@ def convert_input_data(sentences, lang):
 
         # 토큰을 숫자 인덱스로 변환
         input_ids = [kor_tokenizer.convert_tokens_to_ids(x) for x in tokenized_texts]
+         # 어텐션 마스크 초기화
+        attention_masks = []
+
+        # 어텐션 마스크를 패딩이 아니면 1, 패딩이면 0으로 설정
+        # 패딩 부분은 electra 모델에서 어텐션을 수행하지 않아 속도 향상
+        for seq in input_ids:
+            seq_mask = [float(i > 0) for i in seq]
+            attention_masks.append(seq_mask)
+
+        # 데이터를 파이토치의 텐서로 변환
+
+        inputs = torch.tensor(input_ids)
+        masks = torch.tensor(attention_masks)
+        return inputs, masks
+
     elif lang == 1:
         tokenized_texts = [eng_tokenizer.tokenize(sent) for sent in sentences]
         MAX_LEN = 128
         input_ids = [eng_tokenizer.convert_tokens_to_ids(x) for x in tokenized_texts]
 
-    # 어텐션 마스크 초기화
-    attention_masks = []
+        attention_masks = []
+        for seq in input_ids:
+            seq_mask = [float(i > 0) for i in seq]
+            attention_masks.append(seq_mask)
 
-    # 어텐션 마스크를 패딩이 아니면 1, 패딩이면 0으로 설정
-    # 패딩 부분은 electra 모델에서 어텐션을 수행하지 않아 속도 향상
-    for seq in input_ids:
-        seq_mask = [float(i > 0) for i in seq]
-        attention_masks.append(seq_mask)
-
-    # 데이터를 파이토치의 텐서로 변환
-
-    inputs = torch.tensor(input_ids)
-    masks = torch.tensor(attention_masks)
-
-    return inputs, masks
+        inputs = torch.tensor(input_ids)
+        masks = torch.tensor(attention_masks)
+        return inputs, masks
 
 
 # 문장 테스트
@@ -74,19 +82,28 @@ def sentiment_predict(question, answer, lang):
             outputs = kor_model(b_input_ids,
                             token_type_ids=None,
                             attention_mask=b_input_mask)
+            # 로스 구함
+            logits = outputs[0]
+
+            # CPU로 데이터 이동
+            logits = logits.detach().cpu().numpy()
+            result = np.argmax(logits)
+            # 0: 중립 1: 긍정 2: 부정
+            return result
+
         elif lang == 1: # English
             outputs = eng_model(b_input_ids,
                             token_type_ids=None,
                             attention_mask=b_input_mask)
+            
+            logits = outputs[0]
 
-    # 로스 구함
-    logits = outputs[0]
+            logits = logits.detach().cpu().numpy()
+            result = np.argmax(logits)
+            return result
 
-    # CPU로 데이터 이동
-    logits = logits.detach().cpu().numpy()
-    result = np.argmax(logits)
-    # 0: 중립 1: 긍정 2: 부정
-    return result
+    
+        
 
 
 
