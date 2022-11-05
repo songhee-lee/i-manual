@@ -321,7 +321,7 @@ class ActionMore(Action):
                 buttons.append({"title": etc_description[lang][22], "payload": "/leading_drop_center"}) # 센터 건너뛰기
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][2]),
-                    "data": etc_description[voice_num][2]
+                    "data": etc_description[lang][2]
                 })
 
                 dispatcher.utter_message(buttons=buttons)
@@ -331,7 +331,7 @@ class ActionMore(Action):
                 buttons.append({"title": etc_description[lang][21], "payload": "/last_message"})
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][1]),
-                    "data": etc_description[voice_num][1]
+                    "data": etc_description[lang][1]
                 })
                 dispatcher.utter_message(buttons=buttons)  #
 
@@ -360,7 +360,7 @@ class ActionDropCenter(Action):
         else:
             dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][3]),
-                    "data": etc_description[voice_num][3]
+                    "data": etc_description[lang][3]
                 })
             if leading_priority[step] == 0:
                 return [FollowupAction(name='action_leading_type_intro'), SlotSet('center_step', 0)]

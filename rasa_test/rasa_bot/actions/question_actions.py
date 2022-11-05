@@ -378,6 +378,7 @@ class ActionDefaultFallback(Action):
                     user_response_type = 0
                 else:
                     user_reponse_type = sentiment_predict(question, user_text, lang)
+                    dispatcher.utter_message("감성분석 발생 : ", user_response_type) # 디버깅을 위한 것 -> sentiment_result 값 보기
 
                 if user_reponse_type == 0:
                     print("중립")
@@ -459,15 +460,12 @@ class ActionDefaultFallback(Action):
 
                     # 자아인 경우
                     if sentiment_result > 0:
-                        dispatcher.utter_message(json_message={
-                            "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/69201.wav", "data" : unego_description[lang][91]
-                        })  # 좋아요 나답게 잘 살고 있어요
-                        answer = unego_question[1]  # 자아 comment
                         dispatcher.utter_message(
                             json_message={
                                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, unego_description[2][91]), "data": unego_description[lang][91]
-                            })
-                        answer = unego_question[1]
+                            })  # 좋아요 나답게 잘 살고 있어요
+                        answer = unego_question[1]  # 자아 comment
+                        
                         ego_or_unego[center_priority[center_step]] = 1
                         print("ego_or_unego : ", ego_or_unego)
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
