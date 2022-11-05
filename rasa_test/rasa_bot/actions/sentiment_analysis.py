@@ -43,7 +43,7 @@ def convert_input_data(sentences):
 
 
 # 문장 테스트
-def sentiment_predict(question, answer):
+def sentiment_predict(question, answer, lang):
     sentence = [question + ' ' + answer]
 
     # 문장을 입력 데이터로 변환

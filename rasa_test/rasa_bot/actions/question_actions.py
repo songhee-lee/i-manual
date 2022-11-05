@@ -377,8 +377,8 @@ class ActionDefaultFallback(Action):
                 elif user_text in neutral_list:
                     user_response_type = 0
                 else:
-                    user_response_type = sentiment_predict(question, user_text) ### 여기가 문제다!
-                    dispatcher.utter_message("감성분석 발생 : ", user_response_type) # 디버깅을 위한 것 -> sentiment_result 값 보기
+                    user_response_type = sentiment_predict(question, user_text, lang) ### 여기가 문제다!
+                    #dispatcher.utter_message("감성분석 발생 : ", user_response_type) # 디버깅을 위한 것 -> sentiment_result 값 보기
 
                 if user_response_type == 0:
                     print("중립")
