@@ -448,10 +448,7 @@ class ActionDefaultFallback(Action):
         else:
             print("center step", center_step)
             if is_sentiment:
-                dispatcher.utter_message(
-                    json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[2][7]), "data": etc_description[lang][7]
-                    })
+                dispatcher.utter_message(answer) # 일단 답변을 하고
 
                 # 비자아 질문 3개 다한 경우
                 if unego_count == 3:
@@ -597,11 +594,12 @@ class ActionCenterUnegoQuestion(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_center_unego_question')
+        lang = metadata['lang']
         human_center = [etc_description[lang][31], etc_description[lang][32], etc_description[lang][33],
                         etc_description[lang][34], etc_description[lang][35], etc_description[lang][36],
                         etc_description[lang][37], etc_description[lang][38], etc_description[lang][39]]
         metadata = extract_metadata_from_tracker(tracker)
-        lang = metadata['lang']
+        
 
         user_text = tracker.latest_message['text']
         question = tracker.get_slot("bot_question")

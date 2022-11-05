@@ -1,4 +1,4 @@
-from transformers import BertTokenizer, BertForQuestionAnswering, AutoConfig
+from transformers import BertTokenizer, BertForQuestionAnswering, AutoConfig, AutoTokenizer, AutoModelForQuestionAnswering
 import torch
 import pandas as pd
 import random
@@ -9,10 +9,12 @@ my_client = MongoClient("mongodb://localhost:27017/")
 mydb = my_client['i-Manual']  # i-Manaul database 생성
 mycol = mydb['users']  # users Collection 생성
 
-model_path = "songhee/i-manual-mbert"
+# 모델 로딩
+
+model_path = "nuri/i-manual-longformer"
 config = AutoConfig.from_pretrained(model_path)
-tokenizer = BertTokenizer.from_pretrained(model_path)
-model = BertForQuestionAnswering.from_pretrained(model_path, config=config)
+tokenizer = AutoTokenizer.from_pretrained(model_path)
+model = AutoModelForQuestionAnswering.from_pretrained(model_path, config=config)
 
 import pandas as pd
 
