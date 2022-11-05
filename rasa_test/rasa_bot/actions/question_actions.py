@@ -4,7 +4,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk.events import SlotSet, AllSlotsReset, Restarted, UserUtteranceReverted, ConversationPaused
-from actions.common import extract_metadata_from_tracker, koelectra_qa_getanswer, unego_get_question, \
+from actions.common import extract_metadata_from_tracker, qa_getanswer, unego_get_question, \
     sentiment_get_ego_or_unego, unego_answer
 from actions.sentiment_analysis import sentiment_predict
 from rasa_sdk.events import FollowupAction
@@ -362,7 +362,7 @@ class ActionDefaultFallback(Action):
             context = retrieve_context(q_type, ct_index=ct_index, metadata=metadata)
             # QA 모듈
 
-            answer = koelectra_qa_getanswer(context, user_text, metadata=metadata, qa_step=qa_step)
+            answer = qa_getanswer(context, user_text, metadata=metadata, qa_step=qa_step)
 
             print(answer)
             qa_step = ""
@@ -693,7 +693,7 @@ class ActionTypeQuestion(Action):
         print(step)
 
         context = type_retrieve_context(type_index, context_index=context_index, lang=lang)
-        answer = koelectra_qa_getanswer(context, question, metadata=metadata)
+        answer = qa_getanswer(context, question, metadata=metadata)
         dispatcher.utter_message(answer)
 
         buttons = []
@@ -721,7 +721,7 @@ class ActionStrategyQuestion(Action):
 
         context = strategy_retrieve_context(type_index, context_index=context_index, lang=lang)
         print(context)
-        answer = koelectra_qa_getanswer(context, question)
+        answer = qa_getanswer(context, question)
         print(answer)
         dispatcher.utter_message(answer)
 

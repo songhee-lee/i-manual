@@ -10,11 +10,15 @@ mydb = my_client['i-Manual']  # i-Manaul database 생성
 mycol = mydb['users']  # users Collection 생성
 
 # 모델 로딩
+kor_model_path = "songhee/i-manual-mbert"
+kor_config = AutoConfig.from_pretrained(kor_model_path)
+kor_tokenizer = BertTokenizer.from_pretrained(kor_model_path)
+kor_model = BertForQuestionAnswering.from_pretrained(kor_model_path, config=kor_config)
 
-model_path = "nuri/i-manual-longformer"
-config = AutoConfig.from_pretrained(model_path)
-tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = AutoModelForQuestionAnswering.from_pretrained(model_path, config=config)
+eng_model_path = "nuri/i-manual-longformer"
+eng_config = AutoConfig.from_pretrained(eng_model_path)
+eng_tokenizer = AutoTokenizer.from_pretrained(eng_model_path)
+eng_model = AutoModelForQuestionAnswering.from_pretrained(eng_model_path, config=eng_config)
 
 import pandas as pd
 
@@ -57,24 +61,40 @@ def unego_answer(question, user_text, metadata=None):
         mycol.update({"displayID": metadata["uID"]}, {"$addToSet": {"unego_answer": {question: user_text}}})
 
 
-def koelectra_qa_getanswer(context, question, metadata=None, qa_step=''):
+def qa_getanswer(context, question, metadata=None, qa_step=''):
     # Mongo DB 
     if qa_step:  # '종족' QA는 저장 안함
         if metadata != None:
             # add user question
             mycol.update({"displayID": metadata["uID"]}, {"$addToSet": {"question": {question: qa_step}}})
 
-    inputs = tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
-    input_ids = inputs["input_ids"].tolist()[0]
-    answer_start_scores, answer_end_scores = model(**inputs, return_dict=False)
-    answer_start = torch.argmax(
-        answer_start_scores
-    )  # Get the most likely beginning of answer with the argmax of the score
-    answer_end = torch.argmax(
-        answer_end_scores) + 1  # Get the most likely end of answer with the argmax of the score
-    answer = tokenizer.convert_tokens_to_string(
-        tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
-    answer = remove_white_space(answer)
+    if metadata["lang"] == 0:
+        inputs = kor_tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
+        input_ids = inputs["input_ids"].tolist()[0]
+        answer_start_scores, answer_end_scores = kor_model(**inputs, return_dict=False)
+        answer_start = torch.argmax(
+            answer_start_scores
+        )
+        # Get the most likely beginning of answer with the argmax of the score
+        answer_end = torch.argmax(
+            answer_end_scores) + 1  # Get the most likely end of answer with the argmax of the score
+        answer = kor_tokenizer.convert_tokens_to_string(
+            kor_tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
+        answer = remove_white_space(answer)
+
+    else:
+        inputs = eng_tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
+        input_ids = inputs["input_ids"].tolist()[0]
+        answer_start_scores, answer_end_scores = eng_model(**inputs, return_dict=False)
+        answer_start = torch.argmax(
+            answer_start_scores
+        ) + 1
+        # Get the most likely beginning of answer with the argmax of the score
+        answer_end = torch.argmax(
+            answer_end_scores) + 2  # Get the most likely end of answer with the argmax of the score
+        answer = eng_tokenizer.convert_tokens_to_string(
+            eng_tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
+        answer = remove_white_space(answer)
 
     return answer
 
