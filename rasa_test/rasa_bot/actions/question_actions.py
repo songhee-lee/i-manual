@@ -256,7 +256,7 @@ class ActionDefaultFallback(Action):
             return[FollowupAction(name="action_smalltalk_first"),SlotSet("smalltalk_step",42), SlotSet("disappointed", 0)]
 
 
-        user_reponse_type = 0
+        user_response_type = 0
         # 질문인지 아닌지(0이면 질문아님, 1이면 질문)
         is_question = tracker.get_slot("is_question")
         print("is_question", is_question)
@@ -371,25 +371,25 @@ class ActionDefaultFallback(Action):
             if is_sentiment:
                 # 0:중립, 1:비자아, 2:자아
                 if user_text in yes_list:
-                    user_reponse_type = 1
+                    user_response_type = 1
                 elif user_text in no_list:
-                    user_reponse_type = 2
+                    user_response_type = 2
                 elif user_text in neutral_list:
                     user_response_type = 0
                 else:
-                    user_reponse_type = sentiment_predict(question, user_text, lang)
+                    user_response_type = sentiment_predict(question, user_text, lang)
                     dispatcher.utter_message("감성분석 발생 : ", user_response_type) # 디버깅을 위한 것 -> sentiment_result 값 보기
 
-                if user_reponse_type == 0:
+                if user_response_type == 0:
                     print("중립")
-                elif user_reponse_type == 1:  # 긍정
+                elif user_response_type == 1:  # 긍정
                     if question not in opposite_question:
                         print("비자아")
                         sentiment_result -= 1
                     else:
                         print("자아")
                         sentiment_result += 1
-                elif user_reponse_type == 2:  # 부정
+                elif user_response_type == 2:  # 부정
                     if question not in opposite_question:
                         print("자아")
                         sentiment_result += 1
