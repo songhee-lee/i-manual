@@ -594,11 +594,12 @@ class ActionCenterUnegoQuestion(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print('action_center_unego_question')
+
+        metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
         human_center = [etc_description[lang][31], etc_description[lang][32], etc_description[lang][33],
                         etc_description[lang][34], etc_description[lang][35], etc_description[lang][36],
                         etc_description[lang][37], etc_description[lang][38], etc_description[lang][39]]
-        metadata = extract_metadata_from_tracker(tracker)
         
 
         user_text = tracker.latest_message['text']
