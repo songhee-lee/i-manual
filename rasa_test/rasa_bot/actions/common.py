@@ -60,7 +60,7 @@ def unego_answer(question, user_text, metadata=None):
     if metadata != None:
         mycol.update({"displayID": metadata["uID"]}, {"$addToSet": {"unego_answer": {question: user_text}}})
 
-def get_TTS(string,metadata, voice_create) # metadata['lang']/metadata['member']/음성id.wav
+def get_TTS(string,metadata, voice_create):
     #string 은 들어올 문장 값
     lang = metadata['lang']
     ninei = metadata['member']
