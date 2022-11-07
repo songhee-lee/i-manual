@@ -60,6 +60,13 @@ def unego_answer(question, user_text, metadata=None):
     if metadata != None:
         mycol.update({"displayID": metadata["uID"]}, {"$addToSet": {"unego_answer": {question: user_text}}})
 
+def get_TTS(string,metadata, voice_create) # metadata['lang']/metadata['member']/음성id.wav
+    #string 은 들어올 문장 값
+    lang = metadata['lang']
+    ninei = metadata['member']
+    uID = metadata['uID']
+    VID = 80000
+    return VID # 생성한 voiceID로, uID/lang/ninei/voice_create 로 저장
 
 def qa_getanswer(context, question, metadata=None, qa_step=''):
     # Mongo DB 
