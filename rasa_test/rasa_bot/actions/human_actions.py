@@ -163,7 +163,8 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
 
             buttons = []
             buttons.append({"title": etc_description[lang][25], "payload": "/leading_type_intro"}) # 종족
-            buttons.append({"title": etc_description[lang][26], "payload": "/leading_profile_intro"}) # 사회적 성향
+            buttons.append\
+                ({"title": etc_description[lang][26], "payload": "/leading_profile_intro"}) # 사회적 성향
             if metadata["d"] != 0:
                 buttons.append({"title": etc_description[lang][27], "payload": "/leading_definition_intro"}) # 에너지 흐름
             buttons.append({"title": etc_description[lang][28], "payload": "/leading_centers_intro"}) # 센터

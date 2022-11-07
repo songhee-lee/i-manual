@@ -103,7 +103,7 @@ class ActionSetPriority(Action):  # 맨 처음
                               "definition": metadata["d"], "centers": metadata["ct"], "question": [],
                               "self_notSelf": []})
 
-        if ninei == 0:
+        if ninei == 0:  # 기본 마스터봇 시작 단계로 이동
             return [FollowupAction(name='action_start'), SlotSet('leading_priority', leading_priority),
                 SlotSet('center_priority', center_priority),
                 SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0),
@@ -112,7 +112,7 @@ class ActionSetPriority(Action):  # 맨 처음
                 SlotSet('ego_or_unego', [0, 0, 0, 0, 0, 0, 0, 0, 0]), SlotSet('se', se), SlotSet('smalltalk_step', 0),
                 SlotSet('voice_num', 2), SlotSet('regreetings', 0)]  # slot추가 필요
 
-        else :
+        else :  # 나인아이 멤버 첫인사 스몰톡으로 이동
             return [FollowupAction(name='action_smalltalk_first'), SlotSet('leading_priority', leading_priority),
                 SlotSet('center_priority', center_priority),
                 SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0),
@@ -142,8 +142,6 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
         center_question = tracker.get_slot("center_question")
         is_sentiment = tracker.get_slot("is_sentiment")
         ego_or_unego = tracker.get_slot("ego_or_unego")
-        smalltalk_step = tracker.get_slot("smalltalk_step")
-        regreetings = tracker.get_slot("regreetings")
 
         # 리딩 우선순위 정하는 부분
         leading_priority = []
@@ -203,7 +201,7 @@ class ActionSetPriorityAgain(Action):  # 맨 처음
                 SlotSet('step', step), SlotSet('is_finished', is_finished), SlotSet('center_step', center_step),
                 SlotSet('is_question', is_question), SlotSet('center_type', center_type),
                 SlotSet('center_question', center_question), SlotSet('is_sentiment', is_sentiment),
-                SlotSet('ego_or_unego', ego_or_unego), SlotSet('se', se), SlotSet('smalltalk_step', smalltalk_step), 
+                SlotSet('ego_or_unego', ego_or_unego), SlotSet('se', se), SlotSet('smalltalk_step', 0),
                 SlotSet('voice_num', 2), SlotSet('regreetings', 0)]  # slot추가 필요
 
 
@@ -242,29 +240,29 @@ class ActionStep(Action):
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
         ninei = metadata['member']
-        if leading_priority is None or is_finished is None or step is None or center_step is None:
+        if leading_priority is None or is_finished is None or step is None or center_step is None or voice_num is None or lang is None or ninei is None:
             return [FollowupAction(name='action_set_priority_again')]
         if is_finished == 1:
             return [FollowupAction(name='action_masterbot')]  # masterbot에서 처리할 수 있게
         # is_finished 상태로 계속하면 끝내버리고, 끝났다고 알려줌
 
         else:
-            if leading_priority[step - 1] == 3 and center_step < 9:
+            if leading_priority[step - 1] == 3 and center_step < 9: # 우선순위가 센터(3)이고 센터 리딩이 끝나지 않은 경우
                 return [FollowupAction(name='action_leading_centers_intro')]
             else:
-                # 절전모드일때 step 건너뛰기
                 if step < 4:
-                    if leading_priority[step] == 2 and metadata["d"] == 0:
+                    if leading_priority[step] == 2 and metadata["d"] == 0:  # 절전모드일때 step 건너뛰기
                         return [SlotSet('step', step + 1), FollowupAction(name='action_step')]
-                if step == 4:
+                if step == 4:   #모든 리딩이 끝난 경우
                     # is_finished = 1 은 last_message 나오고 set
                     return [FollowupAction(name='action_last_message')]
-                else:
+                else:   # 다른 특징에 대한 리딩 시작
                     dispatcher.utter_message(json_message={
                         "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][3]),
                         "data": etc_description[lang][3]
                     })
 
+                    # 0: type, 1: profile, 2: definition, 4: center
                     if leading_priority[step] == 0:
                         return [FollowupAction(name='action_leading_type_intro')]
                     elif leading_priority[step] == 1:
@@ -295,7 +293,7 @@ class ActionMore(Action):
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
         se = tracker.get_slot('se')
-        if is_finished is None or step is None or center_step is None or center_priority is None or se is None:
+        if is_finished is None or step is None or center_step is None or center_priority is None or se is None or leading_priority is None or voice_num is None:
             return [FollowupAction(name='action_set_priority_again')]
 
         if center_step == 0 or center_step == 9:
@@ -309,7 +307,7 @@ class ActionMore(Action):
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, etc_description[voice_num][1]),
                     "data": etc_description[lang][1]
-                })                
+                })
                 dispatcher.utter_message(buttons=buttons)  #
         else:
             if se[0] in center_priority[0:center_step] and se[1] in center_priority[0:center_step] and \
@@ -339,6 +337,7 @@ class ActionMore(Action):
 
 
 class ActionDropCenter(Action):
+    # "센터 건너뛰기"를 선택한 경우의 action
     def name(self):
         return "action_drop_center"
         # leading_more -> action_more
@@ -353,7 +352,7 @@ class ActionDropCenter(Action):
         center_step = tracker.get_slot('center_step')
         center_priority = tracker.get_slot('center_priority')
         voice_num = tracker.get_slot('voice_num')
-        if leading_priority is None or step is None:
+        if leading_priority is None or step is None or center_step is None or center_priority is None or voice_num is None:
             return [FollowupAction(name='action_set_priority_again')]
         if step == 4:
             return [FollowupAction(name='action_last_message'), SlotSet('center_step', 0)]

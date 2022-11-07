@@ -1,7 +1,7 @@
 title,korean,english,voiceID
 첫인사1,"아아, 하나 둘 셋 하나 둘 셋","mic check, mic check, one two three, one two three",7001
 첫인사2,제 목소리 잘 들리시나요? 잘 들리지 않는다면 볼륨을 높여주세요!,"Can you hear me? If you can't hear me well, please turn up the volume!",7002
-첫인사3,"안녕하세요 {0} 님, 저는 10인조 보이그룹 나인아이의 멤버이자 오늘 {0} 님이 어떤 사람인지 알려줄 마스터 {1}이예요! ","Hello, {0} I'm {1} who is member of the 10-member boy group NINI.i!
+첫인사3,"안녕하세요 {0}님, 저는 10인조 보이그룹 나인아이의 멤버이자 오늘 {0}님이 어떤 사람인지 알려줄  {1}이예요! ","Hello, {0} I'm {1} who is member of the 10-member boy group NINI.i!
 I'll tell you what kind of person you are!",7003
 첫인사4,혹시 나인아이나 저 {1}에 대해 들어본 적 있나요?,Have you ever heard of NINE.i or {1}? ,7004
 첫인사5,,,
@@ -62,7 +62,7 @@ We're on a great journey at i-manual!
 If you follow me well as a Fixer and Guide, you will get the right path and answer!
 If you want to start journey with me, please invite me now!",7018
 첫인사12_10,"안녕하세요. 아이돌 NINE.i 멤버 태훈입니다.
-여러분이 개성을 잃지 않고 진정한 자신을 알아갈 수 있도록 열심히 리딩해 드릴게요!
+여러분이 개성을 잃지 않고 진정한 자신을 알아갈 수 있도록 열심히 분석해 드릴게요!
 태훈이의 아이매뉴얼 열차 지금 출발합니다:)","Hello. I'm idol NINE.i member, TAE HUN.
 I'll do my best to help you get to know your true self without losing your personality!
 TAE HUN's i-manual train is leaving now :)",7019

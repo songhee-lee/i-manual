@@ -563,7 +563,7 @@ class ActionLeadingCentersIntro(Action):
             h_type = "연료 센터 ( 미정의 )"
             center_name = etc_description[lang][31]
             # img = "https://asset.i-manual.co.kr/static/images/centerCard/card_0_off.png"
-            img = "https://asset.i-manual.co.kr/static/images/chat/center/root.png"
+            img = "https://asset.i-manual.co.kr/static/images/chat/center/root_off.png"
             msg = center_description[lang][79]
             vID = center_description[voice_num][79]
             msg2 = center_description[lang][80]

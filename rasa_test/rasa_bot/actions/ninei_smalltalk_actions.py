@@ -22,7 +22,8 @@ smalltalk_answer.append(smalltalk_answer_csv['korean'].values.tolist())
 smalltalk_answer.append(smalltalk_answer_csv['english'].values.tolist())
 
 ninei_members = [['', '민준', '반', '베리', '서원', '위니', '이든', '제원', '주형', '지호', '태훈'],
-['', 'MIN JUN', 'VAHN', 'VARI', 'SEO WON', 'WINNIE', 'EDEN', 'JE WON','JOO HYOUNG','JI HO','TAE HUN']]
+                 ['', 'MIN JUN', 'VAHN', 'VARI', 'SEO WON', 'WINNIE', 'EDEN', 'JE WON', 'JOO HYOUNG', 'JI HO',
+                  'TAE HUN']]
 
 
 class ActionSmalltalkFirst(Action):
@@ -45,7 +46,8 @@ class ActionSmalltalkFirst(Action):
                 question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
                 vID = smalltalk_question[voice_num][smalltalk_step]
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                    "data": question
                 })
                 buttons.append(
                     {"title": smalltalk_answer[lang][3], "payload": "/change_smalltalk_step{\"smalltalk_step\":3}"}
@@ -60,7 +62,8 @@ class ActionSmalltalkFirst(Action):
                 question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
                 vID = smalltalk_question[voice_num][smalltalk_step]
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                    "data": question
                 })
                 buttons.append(
                     {"title": smalltalk_answer[lang][22], "payload": "/change_smalltalk_step{\"smalltalk_step\":24}"}
@@ -75,7 +78,8 @@ class ActionSmalltalkFirst(Action):
                 question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
                 vID = smalltalk_question[voice_num][smalltalk_step]
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                    "data": question
                 })
                 buttons.append(
                     {"title": smalltalk_answer[lang][25], "payload": "/change_smalltalk_step{\"smalltalk_step\":28}"}
@@ -93,7 +97,8 @@ class ActionSmalltalkFirst(Action):
                 question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
                 vID = smalltalk_question[voice_num][smalltalk_step]
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                    "data": question
                 })
                 buttons.append(
                     {"title": smalltalk_answer[lang][35], "payload": "/change_smalltalk_step{\"smalltalk_step\":36}"}
@@ -105,7 +110,8 @@ class ActionSmalltalkFirst(Action):
                 question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
                 vID = smalltalk_question[voice_num][smalltalk_step]
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data": question
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                    "data": question
                 })
                 buttons.append(
                     {"title": smalltalk_answer[lang][38], "payload": "/change_smalltalk_step{\"smalltalk_step\":38}"}
@@ -131,7 +137,7 @@ class ActionSmalltalkFirst(Action):
         # buttons 요소 1개
         else:
             question = smalltalk_question[lang][smalltalk_step].format(metadata["pn"], ninei_members[lang][ninei])
-                
+
             vID = smalltalk_question[voice_num][smalltalk_step]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
@@ -149,35 +155,40 @@ class ActionChangeSmalltalkStep(Action):
         return "action_change_smalltalk_step"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
+
         print('action_change_smalltalk_step')
 
         smalltalk_step = tracker.get_slot('smalltalk_step')
         disappointed = tracker.get_slot('disappointed')
 
-         # 첫인사 끝
-        if smalltalk_step in[34] : #종료
+        # 첫인사 끝
+        if smalltalk_step in [34]:  # 종료
             return [FollowupAction(name="action_start")]
-        if smalltalk_step == 37: # 재방문 인사 끝
-            return [FollowupAction(name="action_masterbot"),SlotSet("regreetings",1)]
+        if smalltalk_step == 37:  # 재방문 인사 끝
+            return [FollowupAction(name="action_masterbot"), SlotSet("regreetings", 1)]
         if smalltalk_step == 44:
-            return [] # 마무리 인사 끝
+            return []  # 마무리 인사 끝
         if smalltalk_step == 40:
             return [SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
-        if smalltalk_step == 41: # 실망한 경우, 슬롯 값 변경후 대기, 입력값을 받고 ActionDefaultFallback 실행
-            return [SlotSet("disappointed", 1)] 
-        if smalltalk_step in range(38,40):
+        if smalltalk_step == 41:  # 실망한 경우, 슬롯 값 변경후 대기, 입력값을 받고 ActionDefaultFallback 실행
+            return [SlotSet("disappointed", 1)]
+        if smalltalk_step in range(38, 40):
             return [SlotSet("smalltalk_step", smalltalk_step + 2), FollowupAction(name="action_smalltalk_first")]
-        if smalltalk_step in range(3,6):
+        if smalltalk_step in range(3, 6):
             return [SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
         elif smalltalk_step in range(6, 9):
             return [SlotSet("smalltalk_step", 9), FollowupAction(name="action_smalltalk_first")]
-        elif smalltalk_step == 10: # 나인아이 멤버 자기소개 단계일 때
+        elif smalltalk_step == 10:  # 나인아이 멤버 자기소개 단계일 때
             metadata = extract_metadata_from_tracker(tracker)
             ninei = metadata['member']
+            if metadata["lang"] == 0:
+                img = "https://webapp-dev.i-manual.co.kr/static/images/chat/ninei/profile/ko/{0}.png".format(ninei)
+                dispatcher.utter_message(image=img)
+            else:
+                img = "https://webapp-dev.i-manual.co.kr/static/images/chat/ninei/profile/en/{0}.png".format(ninei)
+                dispatcher.utter_message(image=img)
             return [SlotSet("smalltalk_step", smalltalk_step + ninei), FollowupAction(name="action_smalltalk_first")]
         elif smalltalk_step in range(11, 21):
             return [SlotSet("smalltalk_step", 21), FollowupAction(name="action_smalltalk_first")]
-
 
         return [SlotSet("smalltalk_step", smalltalk_step + 1), FollowupAction(name="action_smalltalk_first")]
