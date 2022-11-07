@@ -12,14 +12,14 @@ device = torch.device("cpu")
 kor_model = ElectraForSequenceClassification.from_pretrained("monologg/koelectra-small-v2-discriminator", num_labels = 3)
 #model = nn.DataParallel(model) # use multi-gpu
 kor_model.to(device)
-kor_saved_checkpoint = torch.load("../data/model_ego_survey3.pt", map_location=torch.device('cpu'))
+kor_saved_checkpoint = torch.load("./data/model_ego_survey3.pt", map_location=torch.device('cpu'))
 kor_model.load_state_dict(kor_saved_checkpoint, strict=False)
 kor_tokenizer = AutoTokenizer.from_pretrained("monologg/koelectra-small-v2-discriminator")
 
 #영어 버전
 eng_model = ElectraForSequenceClassification.from_pretrained("google/electra-small-discriminator", num_labels = 3)
 eng_model.to(device)
-eng_saved_checkpoint = torch.load("../data/SA_eng_20.pt", map_location=torch.device('cpu'))
+eng_saved_checkpoint = torch.load("./data/SA_eng_20.pt", map_location=torch.device('cpu'))
 eng_model.load_state_dict(eng_saved_checkpoint, strict=False)
 eng_tokenizer = AutoTokenizer.from_pretrained("google/electra-small-discriminator")
 
@@ -88,7 +88,6 @@ def sentiment_predict(question, answer, lang):
             # CPU로 데이터 이동
             logits = logits.detach().cpu().numpy()
             result = np.argmax(logits)
-            print(logits)
             # 0: 중립 1: 긍정 2: 부정
             return result
 
@@ -102,16 +101,3 @@ def sentiment_predict(question, answer, lang):
             logits = logits.detach().cpu().numpy()
             result = np.argmax(logits)
             return result
-
-    
-if __name__ =="__main__":
-    print(sentiment_predict("Have you ever regretted speaking up when you shouldn't have?", "yes i do!", 1)) # 1
-    print(sentiment_predict("Do you feel exhausted after talking to someone or giving a presentation?", "no i don't!!", 1)) # 2
-    print(sentiment_predict("Do you tend to make large hand or body movements when speaking?", "I don't know well...", 1)) # 0
-    print(sentiment_predict("나는 취향이 확고한 편인가요?", "그런 편이에요", 0)) # 0
-    print(sentiment_predict("무언가를 이해하려 끝없이 생각하며 스트레스를 받는 편인가요?", "그런 편이에요", 0)) # 0
-    print(sentiment_predict("나는 주변에 의해 생각이 자주 바뀌는 편인가요?", "맞아요! 그런 것 같아요 ㅎㅎ", 0)) # 0
-
-
-
-
