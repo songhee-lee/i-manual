@@ -65,14 +65,14 @@ def unego_answer(question, user_text, metadata=None):
     if metadata != None:
         mycol.update({"displayID": metadata["uID"]}, {"$addToSet": {"unego_answer": {question: user_text}}})
 
-def get_TTS(string,metadata, voice_create):
+def get_TTS(string, metadata, vID):
     members= ['4_minjun', '5_bahn', '6_berry', '7_sewon', '3_winnie', '2_eden', '1_jaewon', '9_juhyung', '10_jiho', '8_taehun' ]
-    model = members[metadata['member']] # 멤버별 모델 선택
-    lang = metadata['lang']        
+    model = members[int(metadata['member'])] # 멤버별 모델 선택
+    lang = int(metadata['lang'])        
     if lang :   # 영어인 경우
             ninei += '_eng'
 
-    lang = 'English' if metadata['lang'] else 'Korean' # 언어 0 한국어 1 영어
+    lang = 'English' if lang else 'Korean' # 언어 0 한국어 1 영어
     uID = metadata['uID']     # user ID                           
     out = str(uID) + "/" + lang + "/" + model # output path
 
