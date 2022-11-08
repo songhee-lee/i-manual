@@ -8,6 +8,7 @@ from actions.common import extract_metadata_from_tracker, qa_getanswer, unego_ge
     sentiment_get_ego_or_unego, unego_answer
 from actions.sentiment_analysis import sentiment_predict
 from rasa_sdk.events import FollowupAction
+from actions.common import get_TTS
 
 import pandas as pd
 
@@ -223,6 +224,7 @@ class ActionQuestion(Action):
         print(step)
         center_question = tracker.get_slot("center_question")
         ninei = tracker.get_slot('member')
+        voice_create = tracker.get_slot('voice_create')
 
         if leading_priority is None or step is None or is_question is None or center_question is None:
             return [FollowupAction(name='action_set_priority_again')]
@@ -239,7 +241,7 @@ class ActionQuestion(Action):
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
 
-        return [SlotSet("step", step), SlotSet("is_question", 1)]
+        return [SlotSet('voice_create',voice_create+1),SlotSet("step", step), SlotSet("is_question", 1)]
 
 
 class ActionDefaultFallback(Action):
@@ -365,6 +367,11 @@ class ActionDefaultFallback(Action):
             answer = qa_getanswer(context, user_text, metadata=metadata, qa_step=qa_step)
 
             print(answer)
+
+            # 새로운 voice id 생성 필요!!
+            voice_create = tracker.get_slot('voice_create')
+            
+
             qa_step = ""
 
         else:
@@ -442,7 +449,12 @@ class ActionDefaultFallback(Action):
                     {"title": etc_description[lang][19],
                      "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
-            dispatcher.utter_message(f'{answer}')
+            vID = get_TTS(answer, metadata, voice_create) # 실시간 문장 생성
+            dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'],
+                    "content": vID,
+                    "data" : answer
+                })
             dispatcher.utter_message(etc_description[lang][6], buttons=qa_buttons)
 
         # 감정분석이면
@@ -520,7 +532,7 @@ class ActionDefaultFallback(Action):
                 }) #dispatcher.utter_message(f'{notice}')
                 dispatcher.utter_message(f'{notice2}', buttons=notice_buttons)
 
-        return [SlotSet("step", step), SlotSet("is_sentiment", 0), SlotSet("ego_or_unego", ego_or_unego)]
+        return [SlotSet("voice_create", voice_create+1),SlotSet("step", step), SlotSet("is_sentiment", 0), SlotSet("ego_or_unego", ego_or_unego)]
 
 
 class ActionQuestionIntro(Action):

@@ -131,6 +131,7 @@ entities:
   - voice_num
   - regreetings
   - disappointed
+  - voice_create
 slots:
   center_priority:
     type: list
@@ -238,6 +239,11 @@ slots:
     auto_fill: true
     influence_conversation: false
   disappointed:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: 0
+    auto_fill: true
+    influence_conversation: false
+  voice_create:
     type: rasa.shared.core.slots.TextSlot
     initial_value: 0
     auto_fill: true
