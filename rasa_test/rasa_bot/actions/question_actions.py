@@ -753,5 +753,4 @@ class ActionStrategyQuestion(Action):
         buttons.append({"title": etc_description[lang][18], "payload": "/leading_type_question"})
         buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
         dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
-        dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
         return [SlotSet("voice_create", voice_create+1)]
