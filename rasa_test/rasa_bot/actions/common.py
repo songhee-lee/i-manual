@@ -74,14 +74,12 @@ def get_TTS(string, metadata, vID):
 
     lang = 'English' if lang else 'Korean' # 언어 0 한국어 1 영어
     uID = metadata['uID']     # user ID                           
-    out = str(uID) + "_" + lang + "_" + model # output name
+    out = str(uID) + "/" + lang + "/" + model # output path
 
-    # output path 없으면 생성
-    '''
+    # output path 없으면 생성 
     if not os.path.exists(out) :   
         os.makedirs(out)
-    '''
-
+    
     hf = "songhee/tts_"
     text2speech = Text2Speech.from_pretrained(
         hf + model
@@ -90,7 +88,7 @@ def get_TTS(string, metadata, vID):
     with torch.no_grad():
         wav = text2speech(string)["wav"]                                
     
-    out_file_name = out+"_"+str(vID)+".wav"                                    
+    out_file_name = out+"/"+str(vID)+".wav"                                    
     scipy.io.wavfile.write(out_file_name, text2speech.fs , wav.view(-1).cpu().numpy())
                             
     return out_file_name 
