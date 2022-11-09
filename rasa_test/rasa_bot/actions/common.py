@@ -8,6 +8,7 @@ from espnet2.bin.tts_inference import Text2Speech
 from espnet2.utils.types import str_or_none
 import scipy.io.wavfile
 import shutil
+import boto3
 
 # MongoDB setting
 my_client = MongoClient("mongodb://localhost:27017/")
@@ -90,7 +91,16 @@ def get_TTS(string, metadata, vID):
     
     out_file_name = out+"/"+str(vID)+".wav"                                    
     scipy.io.wavfile.write(out_file_name, text2speech.fs , wav.view(-1).cpu().numpy())
-                            
+    '''
+    s3 = boto3.client(
+        's3',
+        aws_access_key_id="ID",
+        aws_secret_access_key="key"
+    )
+
+    # out_file_name 그대로
+    s3.upload_file(out_file_name,"bucket_name",out_file_name) 
+    '''
     return out_file_name 
 
 def qa_getanswer(context, question, metadata=None, qa_step=''):
