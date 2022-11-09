@@ -241,7 +241,7 @@ class ActionQuestion(Action):
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
 
-        return [SlotSet('voice_create',voice_create+1),SlotSet("step", step), SlotSet("is_question", 1)]
+        return [SlotSet("step", step), SlotSet("is_question", 1)]
 
 
 class ActionDefaultFallback(Action):
