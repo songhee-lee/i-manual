@@ -740,7 +740,7 @@ class ActionStrategyQuestion(Action):
 
         context = strategy_retrieve_context(type_index, context_index=context_index, lang=lang)
         print(context)
-        answer = qa_getanswer(context, question)
+        answer = qa_getanswer(context, question, metadata=metadata)
         print(answer)
         vID = get_TTS(answer, metadata, voice_create) # 실시간 문장 생성
         dispatcher.utter_message(json_message={
