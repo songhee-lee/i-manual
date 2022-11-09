@@ -699,18 +699,25 @@ class ActionTypeQuestion(Action):
         question = tracker.get_slot("bot_question")
         context_index = tracker.get_slot("context_index")
         step = tracker.get_slot("step")
+        voice_create = tracker.get_slot("voice_create")
         if step is None or question is None or context_index is None:
             return [FollowupAction(name='action_set_priority_again')]
         print(step)
 
         context = type_retrieve_context(type_index, context_index=context_index, lang=lang)
         answer = qa_getanswer(context, question, metadata=metadata)
-        dispatcher.utter_message(answer)
+        vID = get_TTS(answer, metadata, voice_create) # 실시간 문장 생성
+        dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                "content": vID,
+                "data" : answer
+        })
 
         buttons = []
         buttons.append({"title": etc_description[lang][18], "payload": "/leading_type_question"})
         buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
         dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
+        return [SlotSet("voice_create", voice_create+1)]
 
 
 class ActionStrategyQuestion(Action):
@@ -726,6 +733,7 @@ class ActionStrategyQuestion(Action):
         question = tracker.get_slot("bot_question")
         context_index = tracker.get_slot("context_index")
         step = tracker.get_slot("step")
+        voice_create = tracker.get_slot("voice_create")
         if question is None or context_index is None or step is None:
             return [FollowupAction(name='action_set_priority_again')]
         print(step)
@@ -734,10 +742,16 @@ class ActionStrategyQuestion(Action):
         print(context)
         answer = qa_getanswer(context, question)
         print(answer)
-        dispatcher.utter_message(answer)
+        vID = get_TTS(answer, metadata, voice_create) # 실시간 문장 생성
+        dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                "content": vID,
+                "data" : answer
+        })
 
         buttons = []
         buttons.append({"title": etc_description[lang][18], "payload": "/leading_type_question"})
         buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
         dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
         dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
+        return [SlotSet("voice_create", voice_create+1)]
