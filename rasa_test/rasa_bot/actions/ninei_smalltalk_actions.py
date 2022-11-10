@@ -51,7 +51,7 @@ class ActionSmalltalkFirst(Action):
         else:
             vID = smalltalk_question[voice_num][smalltalk_step]
             dispatcher.utter_message(json_message={
-                        "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                        "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID),
                         "data": question
                     })
         # buttons 요소 2개 이상
