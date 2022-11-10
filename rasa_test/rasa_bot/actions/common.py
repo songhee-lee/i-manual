@@ -77,7 +77,7 @@ def get_TTS(string, metadata, vID):
 
     lang = 'English' if lang else 'Korean' # 언어 0 한국어 1 영어
     uID = metadata['uID']     # user ID                           
-    out = str(uID) + "/" + lang + "/" + model # output path
+    out = str(uID) + "/" + metadata['lang'] + "/" + metadata['member'] # output path
 
     # output path 없으면 생성 
     if not os.path.exists(out) :   
