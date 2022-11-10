@@ -10,7 +10,7 @@ import scipy.io.wavfile
 import shutil
 import boto3
 import sys
-import config
+from actions.config import S3_CONFIG
 
 # MongoDB setting
 my_client = MongoClient("mongodb://localhost:27017/")
@@ -96,12 +96,12 @@ def get_TTS(string, metadata, vID):
     
     s3 = boto3.client(
         's3',
-        aws_access_key_id=config.S3_CONFIG['accessKey'],
-        aws_secret_access_key=config.S3_CONFIG['secretKey']
+        aws_access_key_id=S3_CONFIG['accessKey'],
+        aws_secret_access_key=S3_CONFIG['secretKey']
     )
 
     # out_file_name 그대로
-    bucket_name = config.S3_CONFIG['bucket_name']
+    bucket_name = S3_CONFIG['bucket_name']
     s3.upload_file(out_file_name,bucket_name,out_file_name) 
     
     return out_file_name 
