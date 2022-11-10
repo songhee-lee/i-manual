@@ -45,7 +45,7 @@ class ActionLeadingTypeIntro(Action):
         if is_finished == 1:
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], 
-                "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][0]),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, type_description[voice_num][0]),
                 "data": type_description[lang][0]
             })
 
@@ -53,35 +53,35 @@ class ActionLeadingTypeIntro(Action):
             # 에너자이저
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], 
-                "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][1]),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, type_description[voice_num][1]),
                 "data": type_description[lang][1]
             })
         elif (metadata["t"] == 1):
             # 스피드 에너자이저
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], 
-                "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][2]),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, type_description[voice_num][2]),
                 "data": type_description[lang][2]
             })    
         elif (metadata["t"] == 2):
             # 혁신주도가
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], 
-                "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][3]),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, type_description[voice_num][3]),
                 "data": type_description[lang][3]
             })
         elif (metadata["t"] == 3):
             # 가이드
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], 
-                "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][4]),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, type_description[voice_num][4]),
                 "data": type_description[lang][4]
             })
         elif (metadata["t"] == 4):
             # 거울
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], 
-                "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][5]),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, type_description[voice_num][5]),
                 "data": type_description[lang][5]
             })
 
@@ -104,15 +104,15 @@ class ActionLeadingTypeIntro(Action):
             dispatcher.utter_message(image=img)
 
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_1),
                 "data": msg_1
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_2),
                 "data": msg_2
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_3),
                 "data": msg_3
             })
 
@@ -129,15 +129,15 @@ class ActionLeadingTypeIntro(Action):
             dispatcher.utter_message(image=img)
 
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_1),
                 "data": msg_1
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_2),
                 "data": msg_2
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_3),
                 "data": msg_3
             })
 
@@ -154,15 +154,15 @@ class ActionLeadingTypeIntro(Action):
             dispatcher.utter_message(image=img)
 
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_1),
                 "data": msg_1
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_2),
                 "data": msg_2
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_3),
                 "data": msg_3
             })
 
@@ -177,11 +177,11 @@ class ActionLeadingTypeIntro(Action):
             dispatcher.utter_message(image=img)
 
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_1),
                 "data": msg_1
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_2),
                 "data": msg_2
             })
 
@@ -203,23 +203,23 @@ class ActionLeadingTypeIntro(Action):
             dispatcher.utter_message(image=img)
 
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_1),
                 "data": msg_1
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_2),
                 "data": msg_2
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_3),
                 "data": msg_3
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_4),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_4),
                 "data": msg_4
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_5),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_5),
                 "data": msg_5
             })
 
@@ -242,7 +242,7 @@ class ActionLeadingTypeIntro(Action):
             message = type_description[lang][35].format(h_type)
             vID = 2080 + metadata['t']
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID),
                 "data": message
             })
             return [SlotSet('step', step), FollowupAction(name='action_leading_type_question')]
@@ -282,19 +282,19 @@ class ActionLeadingType(Action):
             msg_4 = type_description[lang][18]
             vID_4 = type_description[voice_num][18]
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_1),
                 "data": msg_1
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_2),
                 "data": msg_2
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_3),
                 "data": msg_3
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_4),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_4),
                 "data": msg_4
             })
         elif metadata["t"] == 3:
@@ -311,23 +311,23 @@ class ActionLeadingType(Action):
             vID_5 = type_description[voice_num][25]
             
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_1),
                 "data": msg_1
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_2),
                 "data": msg_2
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_3),
                 "data": msg_3
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_4),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_4),
                 "data": msg_4
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_5),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_5),
                 "data": msg_5
             })
         elif metadata["t"] == 4:
@@ -339,15 +339,15 @@ class ActionLeadingType(Action):
             msg_3 = type_description[lang][33]
             vID_3 = type_description[voice_num][33]
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_1),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_1),
                 "data": msg_1
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_2),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_2),
                 "data": msg_2
             })
             dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID_3),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID_3),
                 "data": msg_3
             })
 
@@ -356,7 +356,7 @@ class ActionLeadingType(Action):
         message = type_description[lang][35].format(h_type)
         vID = 2080 + metadata['t']
         dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID),
                 "data": message
             })
 
@@ -441,7 +441,7 @@ class ActionLeadingTypeQuestion(Action):
                             "payload": "/strategy_question{\"bot_question\":\"거울 종족 아이는 어떻게 키워야 하나요?\", \"context_index\": 0}"})
         buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"}) # 질문 없어요
         dispatcher.utter_message(json_message={
-                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, type_description[voice_num][36]),
+                "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, type_description[voice_num][36]),
                 "data": type_description[lang][36]
             })
         dispatcher.utter_message(buttons=buttons)

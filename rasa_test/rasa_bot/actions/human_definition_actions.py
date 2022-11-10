@@ -38,33 +38,33 @@ class ActionLeadingDefinitionIntro(Action):
         if is_finished == 1:
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[voice_num][0]), "data" : definition_description[lang][0]
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, definition_description[voice_num][0]), "data" : definition_description[lang][0]
                 })
 
         if (metadata["d"] == 0):
              dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[voice_num][22]), "data" : definition_description[lang][22]
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, definition_description[voice_num][22]), "data" : definition_description[lang][22]
                 })
         elif (metadata["d"] == 1):
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[voice_num][1]), "data" : definition_description[lang][1]
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, definition_description[voice_num][1]), "data" : definition_description[lang][1]
                 })
         elif (metadata["d"] == 2):
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[voice_num][2]), "data" : definition_description[lang][2]
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, definition_description[voice_num][2]), "data" : definition_description[lang][2]
                 })
         elif (metadata["d"] == 3):
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[voice_num][3]), "data" : definition_description[lang][3]
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, definition_description[voice_num][3]), "data" : definition_description[lang][3]
                 })
         elif (metadata["d"] == 4):
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, definition_description[voice_num][4]), "data" : definition_description[lang][4]
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, definition_description[voice_num][4]), "data" : definition_description[lang][4]
                 })
 
         msg = ""
@@ -89,29 +89,29 @@ class ActionLeadingDefinitionIntro(Action):
             '''
             if msg != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : msg
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID), "data" : msg
                 })
             if msg2 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID2), "data" : msg2
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID2), "data" : msg2
                 })
             '''
             if msg3 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID3), "data" : msg3
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID3), "data" : msg3
                 })
             if msg4 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID4), "data" : msg4
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID4), "data" : msg4
                 })
             if msg5 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID5), "data" : msg5
                 })
             message = definition_description[lang][21].format(h_type)
             vID = 4037 + metadata["d"]
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
+                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID), "data" : message
             })
         elif metadata["d"] == 1:
             h_type = definition_description[lang][24] # 한 묶음 에너지 흐름
@@ -130,28 +130,28 @@ class ActionLeadingDefinitionIntro(Action):
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : msg
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID), "data" : msg
                 })
             if msg2 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID2), "data" : msg2
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID2), "data" : msg2
                 })
             if msg3 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID3), "data" : msg3
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID3), "data" : msg3
                 })
             if msg4 != "":
                  dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID4), "data" : msg4
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID4), "data" : msg4
                 })
             if msg5 != "":
                  dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID5), "data" : msg5
                 })
             message = definition_description[lang][21].format(h_type)
             vID = 4037 + metadata["d"]
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
+                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID), "data" : message
             })
         elif metadata["d"] == 2:
             h_type = definition_description[lang][25] # 두 묶음 에너지 흐름
@@ -167,28 +167,28 @@ class ActionLeadingDefinitionIntro(Action):
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : msg
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID), "data" : msg
                 })
             if msg2 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID2), "data" : msg2
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID2), "data" : msg2
                 })
             if msg3 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID3), "data" : msg3
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID3), "data" : msg3
                 })
             if msg4 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID4), "data" : msg4
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID4), "data" : msg4
                 })
             if msg5 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID5), "data" : msg5
                 })
             message = definition_description[lang][21].format(h_type)
             vID = 4037 + metadata["d"]
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
+                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID), "data" : message
             })
         elif metadata["d"] == 3:
             h_type = definition_description[lang][26] # 세 묶음 에너지 흐름
@@ -202,29 +202,29 @@ class ActionLeadingDefinitionIntro(Action):
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : msg
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID), "data" : msg
                 })
             if msg2 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID2), "data" : msg2
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID2), "data" : msg2
                 })
             if msg3 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID3), "data" : msg3
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID3), "data" : msg3
                 })
             if msg4 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID4), "data" : msg4
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID4), "data" : msg4
                 }) 
             if msg5 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID5), "data" : msg5
                 }) 
             tag = "갈대같은 사람,한 곳에서 집중이 힘듦,자리를 바꿔 공부할 것"
             message = definition_description[lang][21].format(h_type)
             vID = 4037 + metadata["d"]
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
+                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID), "data" : message
             })
         elif metadata["d"] == 4:
             h_type = definition_description[lang][27] # 네 묶음 에너지 흐름
@@ -244,23 +244,23 @@ class ActionLeadingDefinitionIntro(Action):
             dispatcher.utter_message(image=img)  # 일단 나누기 전에 test용으로 json추가 했을 뿐, 실제 적용할 때는 따로 해야댐
             if msg != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : msg
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID), "data" : msg
                 })
             if msg2 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID2), "data" : msg2
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID2), "data" : msg2
                 })
             if msg3 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID3), "data" : msg3
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID3), "data" : msg3
                 })
             if msg4 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID4), "data" : msg4
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID4), "data" : msg4
                 })
             if msg5 != "":
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID5), "data" : msg5
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID5), "data" : msg5
                 })
 
         # dispatcher.utter_message(json_message = {
@@ -269,7 +269,7 @@ class ActionLeadingDefinitionIntro(Action):
             message = definition_description[lang][21].format(h_type)
             vID = 4037 + metadata["d"]
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.wav".format(lang, ninei, vID), "data" : message
+                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID), "data" : message
             })
 
         if leading_priority[0] == 2:
