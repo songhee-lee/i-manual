@@ -102,7 +102,7 @@ def get_TTS(string, metadata, vID):
 
     # out_file_name 그대로
     bucket_name = S3_CONFIG['bucket_name']
-    s3.upload_file(out_file_name,bucket_name,out_file_name) 
+    s3.upload_file(out_file_name,bucket_name,"/chatbot/users/" + out_file_name) 
     
     return out_file_name 
 
