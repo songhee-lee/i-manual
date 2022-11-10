@@ -43,7 +43,7 @@ class ActionSmalltalkFirst(Action):
         question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
         is_real_time = False
         if smalltalk_step in [2, 3, 10, 21, 22, 25, 29, 32, 33, 34, 35, 37, 38, 43, 44]: # 실시간 생성하는 경우
-            vID = get_TTS(question, metadata, voice_create) #생성하고 경로를 가져옴 /// get_TTS의 함수를 고객 이름 + vid로 해야 겠음
+            vID = get_TTS(question, metadata, int(voice_create)) #생성하고 경로를 가져옴 /// get_TTS의 함수를 고객 이름 + vid로 해야 겠음
             dispatcher.utter_message(json_message={
                         "type": "voiceID", "sender": metadata['uID'], "content": vID,
                         "data": question
@@ -51,7 +51,7 @@ class ActionSmalltalkFirst(Action):
         else:
             vID = smalltalk_question[voice_num][smalltalk_step]
             dispatcher.utter_message(json_message={
-                        "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID),
+                        "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(vID)),
                         "data": question
                     })
         # buttons 요소 2개 이상

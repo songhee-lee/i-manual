@@ -102,9 +102,9 @@ def get_TTS(string, metadata, vID):
 
     # out_file_name 그대로
     bucket_name = S3_CONFIG['bucket_name']
-    s3.upload_file(out_file_name,bucket_name,"/chatbot/users/" + out_file_name) 
+    s3.upload_file(out_file_name,bucket_name,"/chatbot/users/" + out + str(vID) + ".wav") 
     
-    return out_file_name 
+    return "users/" + out_file_name 
 
 def qa_getanswer(context, question, metadata=None, qa_step=''):
     # Mongo DB 
