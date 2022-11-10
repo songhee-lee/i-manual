@@ -10,8 +10,6 @@ import scipy.io.wavfile
 import shutil
 import boto3
 import sys
-
-sys.path.append('secret')
 import config
 
 # MongoDB setting
