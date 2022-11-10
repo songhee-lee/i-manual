@@ -236,7 +236,7 @@ class ActionQuestion(Action):
             else:
                 dispatcher.utter_message(
                     json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[2][5]), "data": etc_description[lang][5]
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][5])), "data": etc_description[lang][5]
                     })
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
@@ -411,7 +411,7 @@ class ActionDefaultFallback(Action):
 
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[2][7]), "data": answer
+                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][7])), "data": answer
                 })
 
             buttons = []
@@ -528,7 +528,7 @@ class ActionDefaultFallback(Action):
                 notice = etc_description[lang][8]
                 notice2 = etc_description[lang][9]
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": etc_description[2][8], "data": notice
+                    "type": "voiceID", 'sender': metadata['uID'], "content": int(etc_description[2][8]), "data": notice
                 }) #dispatcher.utter_message(f'{notice}')
                 dispatcher.utter_message(f'{notice2}', buttons=notice_buttons)
 
@@ -589,7 +589,7 @@ class ActionQuestionIntro(Action):
             buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
 
         dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[2][4]), "data" : etc_description[lang][4]
+            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][4])), "data" : etc_description[lang][4]
         })
         dispatcher.utter_message(buttons=buttons)
         if is_center:

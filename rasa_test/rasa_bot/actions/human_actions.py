@@ -75,29 +75,29 @@ class ActionLastMessage(Action):
         if is_finished == 1:
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
-                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[voice_num][10]),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][10])),
                 "data": etc_description[lang][10]
             })
         else:
             
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
-                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[voice_num][11]),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][11])),
                 "data": etc_description[lang][11]
             })
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
-                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[voice_num][12]),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][12])),
                 "data": etc_description[lang][12]
             })
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
-                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[voice_num][13]),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][13])),
                 "data": etc_description[lang][13]
             })
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
-                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[voice_num][14]),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][14])),
                 "data": etc_description[lang][14]
             })
 
@@ -149,7 +149,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
                     vID = etc_description[voice_num][15]
                     dispatcher.utter_message(json_message={
                             "type": "voiceID", 'sender': metadata['uID'],
-                            "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID),
+                            "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(vID)),
                             "data" : message
                     })
             return[FollowupAction(name="action_smalltalk_first"),SlotSet("smalltalk_step",35)]
@@ -172,7 +172,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
             vID = etc_description[voice_num][16]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
-                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(vID)),
                 "data" : etc_description[lang][16]
             })
 
@@ -186,7 +186,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
             vID = etc_description[voice_num][17]
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
-                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, vID),
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(vID)),
                 "data" : etc_description[lang][17]
             })
 

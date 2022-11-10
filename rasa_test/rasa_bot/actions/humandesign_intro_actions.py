@@ -258,7 +258,7 @@ class ActionStep(Action):
                     return [FollowupAction(name='action_last_message')]
                 else:   # 다른 특징에 대한 리딩 시작
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[voice_num][3]),
+                        "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][3])),
                         "data": etc_description[lang][3]
                     })
 
@@ -305,7 +305,7 @@ class ActionMore(Action):
                 buttons.append({"title": etc_description[lang][20], "payload": "/leading_step"}) # 계속
                 buttons.append({"title": etc_description[lang][21], "payload": "/last_message"}) # 오늘은 그만
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[voice_num][1]),
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][1])),
                     "data": etc_description[lang][1]
                 })
                 dispatcher.utter_message(buttons=buttons)  #
@@ -318,7 +318,7 @@ class ActionMore(Action):
                 buttons.append({"title": etc_description[lang][21], "payload": "/last_message"})
                 buttons.append({"title": etc_description[lang][22], "payload": "/leading_drop_center"}) # 센터 건너뛰기
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[voice_num][2]),
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][2])),
                     "data": etc_description[lang][2]
                 })
 
@@ -328,7 +328,7 @@ class ActionMore(Action):
                 buttons.append({"title": etc_description[lang][20], "payload": "/leading_step"})
                 buttons.append({"title": etc_description[lang][21], "payload": "/last_message"})
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[voice_num][1]),
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][1])),
                     "data": etc_description[lang][1]
                 })
                 dispatcher.utter_message(buttons=buttons)  #
@@ -358,7 +358,7 @@ class ActionDropCenter(Action):
             return [FollowupAction(name='action_last_message'), SlotSet('center_step', 0)]
         else:
             dispatcher.utter_message(json_message={
-                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, etc_description[voice_num][3]),
+                    "type": "voiceID", "sender": metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][3])),
                     "data": etc_description[lang][3]
                 })
             if leading_priority[step] == 0:
