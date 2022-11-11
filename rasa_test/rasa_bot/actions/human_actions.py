@@ -71,7 +71,7 @@ class ActionLastMessage(Action):
                                                         "center_step": tracker.get_slot("center_step"),
                                                         "center_type": tracker.get_slot("center_type")
                                                         }, upsert=True)
-
+        '''
         if is_finished == 1:
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
@@ -100,9 +100,10 @@ class ActionLastMessage(Action):
                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][14])),
                 "data": etc_description[lang][14]
             })
+            
 
             return [SlotSet('is_finished', 1),SlotSet('smalltalk_step',38), FollowupAction(name="action_smalltalk_first")] #끝인사
-
+        '''    #여기까지  스크립트 주석처리
         '''else:
             dispatcher.utter_message(etc_description[11], json_message={
             "type": "voiceID", 'sender': metadata['uID'], "content": "out_5/11201.mp3"
