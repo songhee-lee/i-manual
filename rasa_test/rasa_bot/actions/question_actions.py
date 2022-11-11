@@ -216,14 +216,13 @@ class ActionQuestion(Action):
 
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
-
+        ninei = metadata['member']
         leading_priority = tracker.get_slot('leading_priority')
         is_question = tracker.get_slot('is_question')
         print("is_question", is_question)
         step = tracker.get_slot("step")
         print(step)
         center_question = tracker.get_slot("center_question")
-        ninei = tracker.get_slot('member')
         voice_create = tracker.get_slot('voice_create')
 
         if leading_priority is None or step is None or is_question is None or center_question is None:
@@ -236,7 +235,9 @@ class ActionQuestion(Action):
             else:
                 dispatcher.utter_message(
                     json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][5])), "data": etc_description[lang][5]
+                        "type": "voiceID", 'sender': metadata['uID'], 
+                        "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][5])), 
+                        "data": etc_description[lang][5]
                     })
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
@@ -281,6 +282,7 @@ class ActionDefaultFallback(Action):
         sentiment_result = tracker.get_slot("sentiment_result")
         ego_or_unego = tracker.get_slot("ego_or_unego")
         ninei = tracker.get_slot('member')
+        voice_num = tracker.get_slot('voice_num')
         if is_question is None or is_sentiment is None or center_question is None or leading_priority is None or center_priority is None or step is None or ego_or_unego is None:
             return [FollowupAction(name='action_set_priority_again')]
         print("step", step)
@@ -411,7 +413,9 @@ class ActionDefaultFallback(Action):
 
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][7])), "data": answer
+                    "type": "voiceID", 'sender': metadata['uID'], 
+                    "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][7])), 
+                    "data": answer
                 })
 
             buttons = []
@@ -425,7 +429,13 @@ class ActionDefaultFallback(Action):
                     {"title": etc_description[lang][18],
                      "payload": "/question{\"is_question\":1, \"center_question\":0}"})
                 buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
-            dispatcher.utter_message(etc_description[lang][4], buttons=buttons)
+            dispatcher.utter_message(
+                json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], 
+                    "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][4])), 
+                    "data": etc_description[lang][4]
+                })
+            dispatcher.utter_message(buttons=buttons)
             return [SlotSet("step", step)]
 
         # QA이면
@@ -455,13 +465,25 @@ class ActionDefaultFallback(Action):
                     "content": vID,
                     "data" : answer
                 })
-            dispatcher.utter_message(etc_description[lang][6], buttons=qa_buttons)
+            dispatcher.utter_message(
+                json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], 
+                    "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][6])), 
+                    "data": etc_description[lang][6]
+                })
+            dispatcher.utter_message(buttons=qa_buttons)
+            
 
         # 감정분석이면
         else:
             print("center step", center_step)
             if is_sentiment:
-                dispatcher.utter_message(answer) # 일단 답변을 하고
+                vID = get_TTS(answer, metadata, voice_create)
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'],
+                    "content": vID,
+                    "data" : answer
+                })
 
                 # 비자아 질문 3개 다한 경우
                 if unego_count == 3:
@@ -474,7 +496,9 @@ class ActionDefaultFallback(Action):
                     if sentiment_result > 0:
                         dispatcher.utter_message(
                             json_message={
-                                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, unego_description[2][91]), "data": unego_description[lang][91]
+                                "type": "voiceID", 'sender': metadata['uID'], 
+                                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(unego_description[2][91])), 
+                                "data": unego_description[lang][91]
                             })  # 좋아요 나답게 잘 살고 있어요
                         answer = unego_question[1]  # 자아 comment
                         
@@ -483,7 +507,9 @@ class ActionDefaultFallback(Action):
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
                         unego_answer(question, user_text, metadata)
                         dispatcher.utter_message(json_message={
-                            "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[6], "data" : answer
+                            "type": "voiceID", 'sender': metadata['uID'], 
+                            "content": unego_question[6], 
+                            "data" : answer
                         })
 
                     # 비자아 혹은 중립인 경우
@@ -493,7 +519,9 @@ class ActionDefaultFallback(Action):
                                        etc_description[lang][37], etc_description[lang][38], etc_description[lang][39]]
                         message = unego_description[lang][92].format(center_info[center_type])
                         dispatcher.utter_message(json_message={
-                            "type": "voiceID", 'sender': metadata['uID'], "content": 6103 + center_type, "data" : message
+                            "type": "voiceID", 'sender': metadata['uID'], 
+                            "content": 6103 + center_type, 
+                            "data" : message
                         })  # ~~에 대한 나다움을 잃고 있어요
                         answer = unego_question[2]  # 비자아 comment
                         # dispatcher.utter_message(message) #두번 출력되서 삭제 진행
@@ -502,7 +530,9 @@ class ActionDefaultFallback(Action):
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
                         unego_answer(question, user_text, metadata)
                         dispatcher.utter_message(json_message={
-                            "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[5], "data" : answer
+                            "type": "voiceID", 'sender': metadata['uID'], 
+                            "content": unego_question[5], 
+                            "data" : answer
                         })
 
                     return [SlotSet("sentiment_result", 0), SlotSet("ego_or_unego", ego_or_unego),
@@ -528,7 +558,9 @@ class ActionDefaultFallback(Action):
                 notice = etc_description[lang][8]
                 notice2 = etc_description[lang][9]
                 dispatcher.utter_message(json_message={
-                    "type": "voiceID", 'sender': metadata['uID'], "content": int(etc_description[2][8]), "data": notice
+                    "type": "voiceID", 'sender': metadata['uID'], 
+                    "content": int(etc_description[2][8]), 
+                    "data": notice
                 }) #dispatcher.utter_message(f'{notice}')
                 dispatcher.utter_message(f'{notice2}', buttons=notice_buttons)
 
@@ -589,7 +621,9 @@ class ActionQuestionIntro(Action):
             buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
 
         dispatcher.utter_message(json_message={
-            "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][4])), "data" : etc_description[lang][4]
+            "type": "voiceID", 'sender': metadata['uID'], 
+            "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][4])), 
+            "data" : etc_description[lang][4]
         })
         dispatcher.utter_message(buttons=buttons)
         if is_center:
@@ -607,6 +641,7 @@ class ActionCenterUnegoQuestion(Action):
 
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
+        ninei = metadata["member"]
         human_center = [etc_description[lang][31], etc_description[lang][32], etc_description[lang][33],
                         etc_description[lang][34], etc_description[lang][35], etc_description[lang][36],
                         etc_description[lang][37], etc_description[lang][38], etc_description[lang][39]]
@@ -622,6 +657,7 @@ class ActionCenterUnegoQuestion(Action):
         # default 값이 0이므로 시작 count 를 1로 설정.
         unego_count += 1
         step = tracker.get_slot("step")
+        
         print(step)
         if center_type is None or center_step is None or unego_count is None or step is None:
             return [FollowupAction(name='action_set_priority_again')]
@@ -638,35 +674,35 @@ class ActionCenterUnegoQuestion(Action):
                 message = unego_description[lang][90].format(human_center[center_type])  # 다음의 질문에 답해보세요~
                 if center_type == 1:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(6094 + center_type)), "data" : message
                     })
                 elif center_type == 2:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(6094 + center_type)), "data" : message
                     })
                 elif center_type == 3:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(6094 + center_type)), "data" : message
                     })
                 elif center_type == 4:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(6094 + center_type)), "data" : message
                     })
                 elif center_type == 5:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(6094 + center_type)), "data" : message
                     })
                 elif center_type == 6:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(6094 + center_type)), "data" : message
                     })
                 elif center_type == 7:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(6094 + center_type)), "data" : message
                     })
                 elif center_type == 8:
                     dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'], "content": 6094 + center_type, "data" : message
+                        "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(6094 + center_type)), "data" : message
                     })
 
             # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아, 3번째가 질문 voice, 4번째가 나다움 잃고있어요 voice, 5번째가 비자아 comment voice,
@@ -700,6 +736,7 @@ class ActionTypeQuestion(Action):
         context_index = tracker.get_slot("context_index")
         step = tracker.get_slot("step")
         voice_create = tracker.get_slot("voice_create")
+        voice_num = tracker.get_slot("voice_num")
         if step is None or question is None or context_index is None:
             return [FollowupAction(name='action_set_priority_again')]
         print(step)
@@ -716,7 +753,12 @@ class ActionTypeQuestion(Action):
         buttons = []
         buttons.append({"title": etc_description[lang][18], "payload": "/leading_type_question"})
         buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
-        dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
+        dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                "content": etc_description[voice_num][6],
+                "data" : etc_description[lang][6]
+        })
+        dispatcher.utter_message(buttons=buttons)
         return [SlotSet("voice_create", voice_create+1)]
 
 
@@ -734,6 +776,7 @@ class ActionStrategyQuestion(Action):
         context_index = tracker.get_slot("context_index")
         step = tracker.get_slot("step")
         voice_create = tracker.get_slot("voice_create")
+        voice_num = tracker.get_slot("voice_num")
         if question is None or context_index is None or step is None:
             return [FollowupAction(name='action_set_priority_again')]
         print(step)
@@ -752,5 +795,10 @@ class ActionStrategyQuestion(Action):
         buttons = []
         buttons.append({"title": etc_description[lang][18], "payload": "/leading_type_question"})
         buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
-        dispatcher.utter_message(etc_description[lang][6], buttons=buttons)
+        dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                "content": etc_description[voice_num][6],
+                "data" : etc_description[lang][6]
+        })
+        dispatcher.utter_message(buttons=buttons)
         return [SlotSet("voice_create", voice_create+1)]

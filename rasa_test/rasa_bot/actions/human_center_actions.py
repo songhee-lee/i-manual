@@ -1449,18 +1449,38 @@ class ActionCenterDetailIntro(Action):
 
         if h_center == 0 and metadata['ct'][0] == 1:
             h_type = "연료 센터 ( 정의 )"
-            dispatcher.utter_message(center_description[lang][26], buttons=buttons)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(center_description[voice_num][26])),
+                 "data" : center_description[lang][26]
+            })
+            dispatcher.utter_message(buttons=buttons)
         elif h_center == 2 and metadata['ct'][2] == 1:
             h_type = "직관 센터 ( 정의 )"
-            dispatcher.utter_message(center_description[lang][35], buttons=buttons)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(center_description[voice_num][35])),
+                 "data" : center_description[lang][35]
+            })
+            dispatcher.utter_message(buttons=buttons)
 
         elif h_center == 3 and metadata['ct'][3] == 1:
             h_type = "감정 센터 ( 정의 )"
-            dispatcher.utter_message(center_description[lang][44], buttons=buttons)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(center_description[voice_num][44])),
+                 "data" : center_description[lang][44]
+            })
+            dispatcher.utter_message(buttons=buttons)
 
         elif h_center == 4 and metadata['ct'][4] == 1:
             h_type = "에고 센터 ( 정의 )"
-            dispatcher.utter_message(center_description[lang][51], buttons=buttons)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(center_description[voice_num][51])),
+                 "data" : center_description[lang][51]
+            })
+            dispatcher.utter_message(buttons=buttons)
         elif h_center == 5 and metadata['ct'][5] == 1:
             h_type = "방향 센터 ( 정의 )"
             dispatcher.utter_message(json_message={
@@ -1479,26 +1499,54 @@ class ActionCenterDetailIntro(Action):
             })
             dispatcher.utter_message(buttons=buttons)
 
-
-
         elif h_center == 0 and metadata['ct'][0] == 0:
             h_type = "연료 센터 ( 미정의 )"
-            dispatcher.utter_message(center_description[lang][84], buttons=buttons)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(center_description[voice_num][84])),
+                 "data" : center_description[lang][84]
+            })
+            dispatcher.utter_message(buttons=buttons)
         elif h_center == 2 and metadata['ct'][2] == 0:
             h_type = "직관 센터 ( 미정의 )"
-            dispatcher.utter_message(center_description[lang][97], buttons=buttons)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(center_description[voice_num][97])),
+                 "data" : center_description[lang][97]
+            })
+            dispatcher.utter_message(buttons=buttons)
         elif h_center == 3 and metadata['ct'][3] == 0:
             h_type = "감정 센터 ( 미정의 )"
-            dispatcher.utter_message(center_description[lang][105], buttons=buttons)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(center_description[voice_num][105])),
+                 "data" : center_description[lang][105]
+            })
+            dispatcher.utter_message(buttons=buttons)
         elif h_center == 4 and metadata['ct'][4] == 0:
             h_type = "에고 센터 ( 미정의 )"
-            dispatcher.utter_message(center_description[lang][113], buttons=buttons)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(center_description[voice_num][113])),
+                 "data" : center_description[lang][113]
+            })
+            dispatcher.utter_message(buttons=buttons)
         elif h_center == 5 and metadata['ct'][5] == 0:
             h_type = "방향 센터 ( 미정의 )"
-            dispatcher.utter_message(center_description[lang][122], buttons=buttons)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(center_description[voice_num][122])),
+                 "data" : center_description[lang][122]
+            })
+            dispatcher.utter_message(buttons=buttons)
         elif h_center == 6 and metadata['ct'][6] == 0:
             h_type = "표현 센터 ( 미정의 )"
-            dispatcher.utter_message(center_description[lang][128], buttons=buttons)
+            dispatcher.utter_message(json_message={
+                "type": "voiceID", 'sender': metadata['uID'],
+                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(center_description[voice_num][128])),
+                 "data" : center_description[lang][128]
+            })
+            dispatcher.utter_message(buttons=buttons)
 
         return []
 # class ActionCenterMore(Action):
