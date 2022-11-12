@@ -69,13 +69,13 @@ def unego_answer(question, user_text, metadata=None):
         mycol.update({"displayID": metadata["uID"]}, {"$addToSet": {"unego_answer": {question: user_text}}})
 
 def get_TTS(string, metadata, vID):
-    members= ['','4_minjun', '5_bahn', '6_berry', '7_sewon', '3_winnie', '2_eden', '1_jaewon', '9_juhyung', '10_jiho', '8_taehun' ]
+    members= ['', '4_minjun', '5_bahn', '6_berry', '7_sewon', '3_winnie', '2_eden', '1_jaewon', '9_juhyung', '10_jiho', '8_taehun' ]
     model = members[int(metadata['member'])] # 멤버별 모델 선택
     lang = int(metadata['lang'])        
     if lang :   # 영어인 경우
-            ninei += '_eng'
+            model += '_eng'
 
-    lang = 'English' if lang else 'Korean' # 언어 0 한국어 1 영어
+    #lang = 'English' if lang else 'Korean' # 언어 0 한국어 1 영어
     uID = metadata['uID']     # user ID                           
     out = str(uID) + "/" + str(metadata['lang']) + "/" + str(metadata['member']) # output path
 
@@ -103,6 +103,9 @@ def get_TTS(string, metadata, vID):
     # out_file_name 그대로
     bucket_name = S3_CONFIG['bucket_name']
     s3.upload_file(out_file_name,bucket_name,"chatbot/users/" + out_file_name) 
+    
+    # 생성한 음성 파일 삭제
+    os.remove(out_file_name)
     
     return "users/" + out_file_name 
 
