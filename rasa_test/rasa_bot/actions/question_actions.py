@@ -479,12 +479,14 @@ class ActionDefaultFallback(Action):
         else:
             print("center step", center_step)
             if is_sentiment:
+                '''
                 vID = get_TTS(answer, metadata, voice_create)
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", 'sender': metadata['uID'],
                     "content": vID,
                     "data" : answer
                 })
+                '''
 
                 # 비자아 질문 3개 다한 경우
                 if unego_count == 3:
