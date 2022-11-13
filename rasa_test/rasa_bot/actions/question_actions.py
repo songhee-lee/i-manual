@@ -58,9 +58,11 @@ def_title.append(definition_csv['english'].values.tolist())
 def_title.append(definition_csv['voiceID'].values.tolist())
 
 prf_title = profile_csv['title'].values.tolist()
+'''
 prf_title.append(profile_csv['korean'].values.tolist())
 prf_title.append(profile_csv['english'].values.tolist())
 prf_title.append(profile_csv['voiceID'].values.tolist())
+'''
 
 cd_paragraph = []
 cd_paragraph.append(center_defined_csv['korean'].values.tolist())
@@ -180,7 +182,7 @@ def retrieve_context(i, ct_index, metadata):
         print(profile_str)
 
         index = 0
-        for t in prf_title[0]: # prf_title['title']
+        for t in prf_title: # prf_title['title']
             if profile_str in t:
                 user_context = prf_paragraph[lang][index]
                 break
