@@ -254,6 +254,7 @@ class ActionDefaultFallback(Action):
 
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
+        ninei = metadata['member']
         disappointed = tracker.get_slot("disappointed")
         if disappointed ==1:
             return[FollowupAction(name="action_smalltalk_first"),SlotSet("smalltalk_step",42), SlotSet("disappointed", 0)]
@@ -281,7 +282,7 @@ class ActionDefaultFallback(Action):
         unego_count = tracker.get_slot("unego_count")
         sentiment_result = tracker.get_slot("sentiment_result")
         ego_or_unego = tracker.get_slot("ego_or_unego")
-        ninei = tracker.get_slot('member')
+        
         voice_num = tracker.get_slot('voice_num')
         if is_question is None or is_sentiment is None or center_question is None or leading_priority is None or center_priority is None or step is None or ego_or_unego is None:
             return [FollowupAction(name='action_set_priority_again')]
