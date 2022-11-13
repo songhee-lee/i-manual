@@ -576,7 +576,7 @@ class ActionQuestionIntro(Action):
         print('action_question_intro')
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
-
+        ninei = metadata['member']
         human_types = ["에너자이저 종족", "스피드 에너자이저 종족", "혁신주도가 종족", "가이드 종족", "거울 종족"]
         human_definition = ["절전모드", "한 묶음 흐름", "두 묶음 흐름", "세 묶음 흐름", "네 묶음 흐름"]
         human_center = ["연료센터", "활력센터", "직관센터", "감정센터", "에고센터", "방향센터", "표현센터", "생각센터", "영감센터"]
@@ -595,7 +595,7 @@ class ActionQuestionIntro(Action):
         if step is None or center_step is None or leading_priority is None:
             return [FollowupAction(name='action_set_priority_again')]
         q_type = leading_priority[step - 1]
-        ninei = tracker.get_slot('member')
+        
         is_center = 0
         is_type = 0
 
