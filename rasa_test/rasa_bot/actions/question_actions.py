@@ -513,7 +513,7 @@ class ActionDefaultFallback(Action):
                         unego_answer(question, user_text, metadata)
                         dispatcher.utter_message(json_message={
                             "type": "voiceID", 'sender': metadata['uID'], 
-                            "content": unego_question[6], 
+                            "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(unego_question[6])),
                             "data" : answer
                         })
 
@@ -530,13 +530,12 @@ class ActionDefaultFallback(Action):
                         })  # ~~에 대한 나다움을 잃고 있어요
                         answer = unego_question[2]  # 비자아 comment
                         # dispatcher.utter_message(message) #두번 출력되서 삭제 진행
-                        answer = unego_question[2]
                         ego_or_unego[center_priority[center_step]] = -1
                         sentiment_get_ego_or_unego(ego_or_unego, metadata)
                         unego_answer(question, user_text, metadata)
                         dispatcher.utter_message(json_message={
                             "type": "voiceID", 'sender': metadata['uID'], 
-                            "content": unego_question[5], 
+                            "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(unego_question[5])),
                             "data" : answer
                         })
 
@@ -713,7 +712,7 @@ class ActionCenterUnegoQuestion(Action):
             # 0번째가 질문, 1번째가 자아 멘트, 2번째가 비자아, 3번째가 질문 voice, 4번째가 나다움 잃고있어요 voice, 5번째가 비자아 comment voice,
             # 6번째가 자아 comment voice
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'], "content": unego_question[3], "data" : unego_question[0]
+                "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(unego_question[3])), "data" : unego_question[0]
             })  # 질문
 
             if unego_count > 1:
