@@ -1,5 +1,5 @@
 title,korean,english,voiceID
-시작 message,안녕하세요. 저는 당신이 어떤 사람인지 알려줄 마스터 봇 입니다.,"Hello, I am Master Bot who will tell you what kind of person you are. Now let’s get to know you.",1001
+시작 message,안녕하세요. 저는 당신이 어떤 사람인지 알려줄 나인아이봇 입니다.,"Hello, I am NINE.i Bot who will tell you what kind of person you are. Now let’s get to know you.",1001
 특징 하나 끝났을 때 계속 할 지,계속 할까요?,"What do you think? There is still more to talk about, shall we learn more about your Type?",1002
 센터 하나 끝났을 때 계속 할 지,센터에 대한 설명을 이어서 들으시겠어요?,Would you like to hear more about the center?,1003
 특징 시작 시,"자, 이제 다른 특징에 대해 알아봅시다",Now let’s look at the other features.,1004
@@ -8,15 +8,15 @@ title,korean,english,voiceID
 질문 끝났을 때 추가 질문 있는 지,다른 질문있나요?,Any other questions?,1007
 올바른 질문이 아닌 경우,잘 이해할 수 없습니다. 궁금한 게 있으시면 아이매뉴얼을 읽어보세요!,"I don't quite understand. If you have any questions, please read the i-Manual!",1008
 채팅 치면 안 될 때 채팅 시,지금은 채팅하실 수 없습니다. 질문이 있으시면 질문 버튼을 클릭해주세요!,"The chat is not available right now. If you have any questions, please click the Ask button!",1009
-채팅 치면 안 될 때 채팅 시,문제가 생겼다면 마스터봇을 입력해주세요!,"If you have any problems, please enter 'Masterbot'!",1010
-last message,마스터봇의 설명이 도움이 되고 있나요? 언제든 다시 불러주세요,Is the Masterbot's explanation helping? Call again whenever you need.,1011
-last message,당신이 타고난 디자인에 대한 마스터봇의 설명이 이해가 잘 되셨나요?,Did you understand Masterbot's explanation of your innate design?,1012
+채팅 치면 안 될 때 채팅 시,문제가 생겼다면 나인아이봇을 입력해주세요!,"If you have any problems, please enter 'nineibot'!",1010
+last message,나인아이봇의 설명이 도움이 되고 있나요? 언제든 다시 불러주세요,Is the NINE.i bot's explanation helping? Call again whenever you need.,1011
+last message,당신이 타고난 디자인에 대한 나인아이봇의 설명이 이해가 잘 되셨나요?,Did you understand NINE.i bot's explanation of your innate design?,1012
 last message,아이매뉴얼에서 준비한 당신의 설명서를 꼼꼼히 읽어보시길 바랍니다. 더불어 행복설명서와 관계사용 설명서도 꼭 읽어보세요,"Please carefully read your description prepared in the iManual. Also, be sure to read the happiness manual and relationship user manual.",1013
-last message,궁금한 점이 있다면 채팅창에 '마스터봇'이라고 입력해주세요.,"If you have any questions, please call the Masterbot again at any time.",1014
+last message,궁금한 점이 있다면 채팅창에 '나인아이봇'이라고 입력해주세요.,"If you have any questions, please call the NINE.i bot again at any time.",1014
 last message,당신이 타고난 디자인대로 행복하게 살 수 있기를 응원합니다. 다시 만나요,I hope that you can live a happy life according to the design you were born with.See you again!,1015
-마스터봇 호출,"안녕하세요, 저를 부르셨나요? 다시 찾아주셔서 감사해요","Hello, did you call me? Thanks for coming back.",1016
-마스터봇 호출(리딩 종료),다시 듣고 싶은 항목을 선택해 주세요,Please select the category you want to hear about again.,1017
-마스터봇 호출(리딩 미종료),지난번에 이어서 들으시겠어요?,Would you like to hear continuing on from last time?,1018
+나인아이봇 호출,"안녕하세요, 저를 부르셨나요? 다시 찾아주셔서 감사해요","Hello, did you call me? Thanks for coming back.",1016
+나인아이봇 호출(리딩 종료),다시 듣고 싶은 항목을 선택해 주세요,Please select the category you want to hear about again.,1017
+나인아이봇 호출(리딩 미종료),지난번에 이어서 들으시겠어요?,Would you like to hear continuing on from last time?,1018
 질문 있어요 버튼,질문 있어요,I have a question,1019
 질문 없어요 버튼,질문 없어요,I don't have any questions,1020
 계속 버튼,계속,Continue.,1021

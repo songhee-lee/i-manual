@@ -145,7 +145,7 @@ class ActionChangeSmalltalkStep(Action):
             return [SlotSet('voice_create', voice_create+1),FollowupAction(name="action_start"), ]
         if smalltalk_step == 37:  # 재방문 인사 끝
             return [SlotSet('voice_create', voice_create+1),FollowupAction(name="action_masterbot"), SlotSet("regreetings", 1)]
-        if smalltalk_step == 44:
+        if smalltalk_step == 45:
             return [SlotSet('voice_create', voice_create+1),]  # 마무리 인사 끝
         if smalltalk_step == 40:
             return [SlotSet('voice_create', voice_create+1),SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]

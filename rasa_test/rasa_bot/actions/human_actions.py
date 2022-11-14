@@ -147,8 +147,8 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
             return[SlotSet("smalltalk_step",42), SlotSet("disappointed", 0), FollowupAction(name="action_smalltalk_first")]
 
         if regreetings == 0: #재방문인데, 재방문 인사를 하지 않은 경우
-            if (user_text == "마스터 봇" or user_text == "마스터봇"):
-                if ninei ==0:
+            if (user_text == "나인아이 봇" or user_text == "나인아이봇"):
+                if ninei == 0:
                     message = etc_description[lang][15].format(metadata["pn"])
                     vID = etc_description[voice_num][15]
                     dispatcher.utter_message(json_message={
