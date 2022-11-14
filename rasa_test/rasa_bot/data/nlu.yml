@@ -2,20 +2,26 @@ version: "2.0"
 nlu:
   - intent: masterbot
     examples: |
-      - 마스터봇
-      - 마스터 봇
-      - masterbot
-      - master bot
-      - 헤이 마스터봇
-      - 헤이 마스터 봇
-      - 안녕 마스터 봇
-      - 안녕 마스터봇
-      - 마스터 봇 거기 있니?
+      - 나인아이봇
+      - 나인아이 봇
+      - nineibot
+      - ninei bot
+      - NINE.i bot
+      - NINE.ibot
+      - 헤이 나인아이봇
+      - 헤이 나인아이 봇
+      - 안녕 나인아이 봇
+      - 안녕 나인아이봇
+      - 나인아이 봇 거기 있니?
       - 헤이
-      - 하이 마스터봇
-      - 하이 마스터 봇
-      - ㅎㅇ 마스터봇
-      - ㅎㄴ 마스터 봇
+      - 하이 나인아이봇
+      - 하이 나인아이 봇
+      - ㅎㅇ 나인아이봇
+      - ㅎㄴ 나인아이 봇
+      - Hi nineibot
+      - Hi ninei bot
+      - Hello nineibot
+      - Hello ninei bot
   - intent: initialized
     examples: |
       - initialized
@@ -23,11 +29,14 @@ nlu:
       - 처음 실행
       - 리셋
       - reset
+      - initialize
   - intent: explain
     examples: |
       - 설명
       - 설명해주세요
       - 설명이 필요해요
+      - Explain
+      - I need explanation
   - intent: question
     examples: |
       - 질문
@@ -36,4 +45,6 @@ nlu:
       - 궁금한게 있어요
       - 궁금한거
       - 질문이요
+      - Question
+      - I have a question
 

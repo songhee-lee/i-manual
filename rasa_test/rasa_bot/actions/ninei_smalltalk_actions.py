@@ -115,7 +115,7 @@ class ActionSmalltalkFirst(Action):
             dispatcher.utter_message(buttons=buttons)
 
         # buttons 요소 없음
-        elif smalltalk_step in [31, 33, 41, 42, 44]:
+        elif smalltalk_step in [31, 33, 41, 42, 44, 45]:
 
             return [SlotSet('voice_create', voice_create+1), FollowupAction(name="action_change_smalltalk_step")]
 
