@@ -144,7 +144,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
         # 처음들어온 user 가 마스터봇 호출할 경우
         disappointed = tracker.get_slot('disappointed')
         if disappointed ==1: # 영어버전 때문에 넣음
-            return[FollowupAction(name="action_smalltalk_first"),SlotSet("smalltalk_step",42), SlotSet("disappointed", 0)]
+            return[SlotSet("smalltalk_step",42), SlotSet("disappointed", 0), FollowupAction(name="action_smalltalk_first")]
 
         if regreetings == 0: #재방문인데, 재방문 인사를 하지 않은 경우
             if (user_text == "마스터 봇" or user_text == "마스터봇"):
