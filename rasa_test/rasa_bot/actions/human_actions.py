@@ -156,7 +156,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
                             "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(vID)),
                             "data" : message
                     })
-            return[FollowupAction(name="action_smalltalk_first"),SlotSet("smalltalk_step",35)]
+            return[SlotSet("smalltalk_step",35), FollowupAction(name="action_smalltalk_first")]
         
         if leading_priority is None or step is None:
             if not x:
