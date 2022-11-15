@@ -564,7 +564,7 @@ class ActionDefaultFallback(Action):
                 notice2 = etc_description[lang][9]
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", 'sender': metadata['uID'], 
-                    "content": int(etc_description[2][8]), 
+                    "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][8])),
                     "data": notice
                 }) #dispatcher.utter_message(f'{notice}')
                 dispatcher.utter_message(f'{notice2}', buttons=notice_buttons)
@@ -760,7 +760,7 @@ class ActionTypeQuestion(Action):
         buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
         dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
-                "content": etc_description[voice_num][6],
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][6])),
                 "data" : etc_description[lang][6]
         })
         dispatcher.utter_message(buttons=buttons)
@@ -802,7 +802,7 @@ class ActionStrategyQuestion(Action):
         buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
         dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
-                "content": etc_description[voice_num][6],
+                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][6])),
                 "data" : etc_description[lang][6]
         })
         dispatcher.utter_message(buttons=buttons)

@@ -228,7 +228,7 @@ stories:
       - intent: change_smalltalk_step
       - action: action_change_smalltalk_step
       - intent: masterbot
-      - action: action_default_fallback
+      - action: action_masterbot
 
   - story: change_smalltalk_step
     steps:
