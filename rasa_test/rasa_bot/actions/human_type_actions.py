@@ -92,7 +92,7 @@ class ActionLeadingTypeIntro(Action):
         msg_4 = ""
         msg_5 = ""
         if metadata["t"] == 0:
-            h_type = type_description[lang][61] # 에너자이저 종족
+            h_type = type_description[lang][60] # 에너자이저 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_0.png"
             msg_1 = type_description[lang][6]
             vID_1 = type_description[voice_num][6]
@@ -120,7 +120,7 @@ class ActionLeadingTypeIntro(Action):
             })
 
         elif metadata["t"] == 1:
-            h_type = type_description[lang][62] # 스피드 에너자이저 종족
+            h_type = type_description[lang][61] # 스피드 에너자이저 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_1.png"
             msg_1 = type_description[lang][9]
             vID_1 = type_description[voice_num][9]
@@ -148,7 +148,7 @@ class ActionLeadingTypeIntro(Action):
             })
 
         elif metadata["t"] == 2:
-            h_type = type_description[lang][63] # 혁신주도가 종족
+            h_type = type_description[lang][62] # 혁신주도가 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_2.png"
             msg_1 = type_description[lang][12]
             vID_1 = type_description[voice_num][12]
@@ -176,7 +176,7 @@ class ActionLeadingTypeIntro(Action):
             })
 
         elif metadata["t"] == 3:
-            h_type = type_description[lang][64] # 가이드 종족
+            h_type = type_description[lang][63] # 가이드 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_3M.png"
             msg_1 = type_description[lang][19]
             vID_1 = type_description[voice_num][19]
@@ -197,7 +197,7 @@ class ActionLeadingTypeIntro(Action):
             })
 
         elif metadata["t"] == 4:
-            h_type = type_description[lang][65] # 거울 종족
+            h_type = type_description[lang][64] # 거울 종족
             img = "https://asset.i-manual.co.kr/static/images/share/profile/type_4.png"
             msg_1 = type_description[lang][26]
             vID_1 = type_description[voice_num][26]
