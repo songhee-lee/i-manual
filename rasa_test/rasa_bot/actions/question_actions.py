@@ -256,9 +256,11 @@ class ActionDefaultFallback(Action):
 
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
+        ninei = metadata['member']
         disappointed = tracker.get_slot("disappointed")
+
         if disappointed ==1:
-            return[FollowupAction(name="action_smalltalk_first"),SlotSet("smalltalk_step",42), SlotSet("disappointed", 0)]
+            return[SlotSet("smalltalk_step",42), SlotSet("disappointed", 0), FollowupAction(name="action_smalltalk_first")]
 
 
         user_response_type = 0
@@ -283,7 +285,7 @@ class ActionDefaultFallback(Action):
         unego_count = tracker.get_slot("unego_count")
         sentiment_result = tracker.get_slot("sentiment_result")
         ego_or_unego = tracker.get_slot("ego_or_unego")
-        ninei = tracker.get_slot('member')
+        
         voice_num = tracker.get_slot('voice_num')
         if is_question is None or is_sentiment is None or center_question is None or leading_priority is None or center_priority is None or step is None or ego_or_unego is None:
             return [FollowupAction(name='action_set_priority_again')]
@@ -306,9 +308,7 @@ class ActionDefaultFallback(Action):
                         "잘모르겠어요", "글쎄", "글쎄요"]
         # 설명 완료한 개수-> step
         # 방금 설명한 파트는 step - 1의 인덱스를 가짐
-
-        # QA 질문이고 no_list에 해당하지 않는 질문일 경우
-        if is_question and not user_text in yes_list and not user_text in no_list:
+        if is_question:
             q_type = leading_priority[step - 1]
 
             qa_step = ""
@@ -376,42 +376,74 @@ class ActionDefaultFallback(Action):
 
             # 새로운 voice id 생성 필요!!
             voice_create = tracker.get_slot('voice_create')
+            
 
             qa_step = ""
 
-            # QA 답변이 제대로 안나온 경우
-            if answer == "" :
-                # 다시 action_default_fallback으로 넘어오는 분기 필요!!
-                answer = etc_description[lang][7]
-
-                dispatcher.utter_message(
-                    json_message={
-                        "type": "voiceID", 'sender': metadata['uID'],
-                        "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][7])),
-                        "data": answer
-                    })
-
-                buttons = []
-                if center_question == 1:
-                    buttons.append(
-                        {"title": etc_description[lang][18],
-                         "payload": "/question{\"is_question\":1, \"center_question\":1}"})  # 질문 있어요
-                    buttons.append({"title": etc_description[lang][19], "payload": "/center_unego_question"})  # 질문 없어요
+        else:
+            if is_sentiment:
+                # 0:중립, 1:비자아, 2:자아
+                if user_text in yes_list:
+                    user_response_type = 1
+                elif user_text in no_list:
+                    user_response_type = 2
+                elif user_text in neutral_list:
+                    user_response_type = 0
                 else:
-                    buttons.append(
-                        {"title": etc_description[lang][18],
-                         "payload": "/question{\"is_question\":1, \"center_question\":0}"})
-                    buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
-                dispatcher.utter_message(
-                    json_message={
-                        "type": "voiceID", 'sender': metadata['uID'],
-                        "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][4])),
-                        "data": etc_description[lang][4]
-                    })
-                dispatcher.utter_message(buttons=buttons)
-                return [SlotSet("step", step)]
+                    user_response_type = sentiment_predict(question, user_text, lang) ### 여기가 문제다!
+                    #dispatcher.utter_message("predicted{0}".format(user_response_type)) # 디버깅을 위한 것 -> sentiment_result 값 보기
 
-            # QA 답변이 제대로 나온 경우
+                if user_response_type == 0:
+                    print("중립")
+                elif user_response_type == 1:  # 긍정
+                    if question not in opposite_question:
+                        print("비자아")
+                        sentiment_result -= 1
+                    else:
+                        print("자아")
+                        sentiment_result += 1
+                elif user_response_type == 2:  # 부정
+                    if question not in opposite_question:
+                        print("자아")
+                        sentiment_result += 1
+                    else:
+                        print("비자아")
+                        sentiment_result -= 1
+
+        # 올바른 질문이 아닌경우
+        if is_question and answer == "":
+            # 다시 action_default_fallback으로 넘어오는 분기 필요!!
+            answer = etc_description[lang][7]
+
+            dispatcher.utter_message(
+                json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], 
+                    "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][7])), 
+                    "data": answer
+                })
+
+            buttons = []
+            if center_question == 1:
+                buttons.append(
+                    {"title": etc_description[lang][18],
+                     "payload": "/question{\"is_question\":1, \"center_question\":1}"})  # 질문 있어요
+                buttons.append({"title": etc_description[lang][19], "payload": "/center_unego_question"})  # 질문 없어요
+            else:
+                buttons.append(
+                    {"title": etc_description[lang][18],
+                     "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+                buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
+            dispatcher.utter_message(
+                json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], 
+                    "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][4])), 
+                    "data": etc_description[lang][4]
+                })
+            dispatcher.utter_message(buttons=buttons)
+            return [SlotSet("step", step)]
+
+        # QA이면
+        if is_question == 1:
             qa_buttons = []
             # 센터 질문이면
             print("after QA center question", center_question)
@@ -431,145 +463,113 @@ class ActionDefaultFallback(Action):
                     {"title": etc_description[lang][19],
                      "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
-            vID = get_TTS(answer, metadata, voice_create)  # 실시간 문장 생성
+            vID = get_TTS(answer, metadata, voice_create) # 실시간 문장 생성
             dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'],
-                "content": vID,
-                "data": answer
-            })
+                    "type": "voiceID", 'sender': metadata['uID'],
+                    "content": vID,
+                    "data" : answer
+                })
             dispatcher.utter_message(
                 json_message={
-                    "type": "voiceID", 'sender': metadata['uID'],
-                    "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][6])),
+                    "type": "voiceID", 'sender': metadata['uID'], 
+                    "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][6])), 
                     "data": etc_description[lang][6]
                 })
             dispatcher.utter_message(buttons=qa_buttons)
+            
 
-            return [SlotSet("voice_create", voice_create + 1), SlotSet("step", step), SlotSet("is_sentiment", 0),
-                    SlotSet("ego_or_unego", ego_or_unego)]
-
-        # 감정분석인 경우
-        elif is_sentiment:
-            # 0:중립, 1:비자아, 2:자아
-            if user_text in yes_list:
-                user_response_type = 1
-            elif user_text in no_list:
-                user_response_type = 2
-            elif user_text in neutral_list:
-                user_response_type = 0
-            else:
-                user_response_type = sentiment_predict(question, user_text, lang) ### 여기가 문제다!
-                #dispatcher.utter_message("predicted{0}".format(user_response_type)) # 디버깅을 위한 것 -> sentiment_result 값 보기
-
-            if user_response_type == 0:
-                print("중립")
-            elif user_response_type == 1:  # 긍정
-                if question not in opposite_question:
-                    print("비자아")
-                    sentiment_result -= 1
-                else:
-                    print("자아")
-                    sentiment_result += 1
-            elif user_response_type == 2:  # 부정
-                if question not in opposite_question:
-                    print("자아")
-                    sentiment_result += 1
-                else:
-                    print("비자아")
-                    sentiment_result -= 1
-
-            vID = get_TTS(answer, metadata, voice_create)
-            dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'],
-                "content": vID,
-                "data": answer
-            })
-
-            # 비자아 질문 3개 다한 경우
-            if unego_count == 3:
-                if metadata['ct'][center_type] == 0:
-                    unego_question = unego_get_question(center_type, unego_count - 1, lang, defined=False)
-                else:
-                    unego_question = unego_get_question(center_type, unego_count - 1, lang, defined=True)
-
-                # 자아인 경우
-                if sentiment_result > 0:
-                    dispatcher.utter_message(
-                        json_message={
-                            "type": "voiceID", 'sender': metadata['uID'],
-                            "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(unego_description[2][91])),
-                            "data": unego_description[lang][91]
-                        })  # 좋아요 나답게 잘 살고 있어요
-                    answer = unego_question[1]  # 자아 comment
-
-                    ego_or_unego[center_priority[center_step]] = 1
-                    print("ego_or_unego : ", ego_or_unego)
-                    sentiment_get_ego_or_unego(ego_or_unego, metadata)
-                    unego_answer(question, user_text, metadata)
-                    dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'],
-                        "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(unego_question[6])),
-                        "data": answer
-                    })
-
-                # 비자아 혹은 중립인 경우
-                else:
-                    center_info = [etc_description[lang][31], etc_description[lang][32], etc_description[lang][33],
-                                   etc_description[lang][34], etc_description[lang][35], etc_description[lang][36],
-                                   etc_description[lang][37], etc_description[lang][38], etc_description[lang][39]]
-                    message = unego_description[lang][92].format(center_info[center_type])
-                    dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'],
-                        "content": "{0}/{1}/{2}.mp3".format(lang, ninei, 6103 + center_type),
-                        "data": message
-                    })  # ~~에 대한 나다움을 잃고 있어요
-                    answer = unego_question[2]  # 비자아 comment
-                    # dispatcher.utter_message(message) #두번 출력되서 삭제 진행
-                    answer = unego_question[2]
-                    ego_or_unego[center_priority[center_step]] = -1
-                    sentiment_get_ego_or_unego(ego_or_unego, metadata)
-                    unego_answer(question, user_text, metadata)
-                    dispatcher.utter_message(json_message={
-                        "type": "voiceID", 'sender': metadata['uID'],
-                        "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(unego_question[5])),
-                        "data": answer
-                    })
-
-                return [SlotSet("sentiment_result", 0), SlotSet("ego_or_unego", ego_or_unego),
-                        FollowupAction(name='action_center_unego_question')]
-            else:
-                return [SlotSet("sentiment_result", sentiment_result),
-                        FollowupAction(name='action_center_unego_question')]
-
+        # 감정분석이면
         else:
-            notice_buttons = []
-            if center_question == 1:
-                notice_buttons.append(
-                    {"title": etc_description[lang][18],
-                     "payload": "/question{\"is_question\":1, \"center_question\":1}"})
+            print("center step", center_step)
+            if is_sentiment:
+                '''
+                vID = get_TTS(answer, metadata, voice_create)
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'],
+                    "content": vID,
+                    "data" : answer
+                })
+                '''
+
+                # 비자아 질문 3개 다한 경우
+                if unego_count == 3:
+                    if metadata['ct'][center_type] == 0:
+                        unego_question = unego_get_question(center_type, unego_count - 1, lang, defined=False)
+                    else:
+                        unego_question = unego_get_question(center_type, unego_count - 1, lang, defined=True)
+
+                    # 자아인 경우
+                    if sentiment_result > 0:
+                        dispatcher.utter_message(
+                            json_message={
+                                "type": "voiceID", 'sender': metadata['uID'], 
+                                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(unego_description[2][91])), 
+                                "data": unego_description[lang][91]
+                            })  # 좋아요 나답게 잘 살고 있어요
+                        answer = unego_question[1]  # 자아 comment
+                        
+                        ego_or_unego[center_priority[center_step]] = 1
+                        print("ego_or_unego : ", ego_or_unego)
+                        sentiment_get_ego_or_unego(ego_or_unego, metadata)
+                        unego_answer(question, user_text, metadata)
+                        dispatcher.utter_message(json_message={
+                            "type": "voiceID", 'sender': metadata['uID'], 
+                            "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(unego_question[6])),
+                            "data" : answer
+                        })
+
+                    # 비자아 혹은 중립인 경우
+                    else:
+                        center_info = [etc_description[lang][31], etc_description[lang][32], etc_description[lang][33],
+                                       etc_description[lang][34], etc_description[lang][35], etc_description[lang][36],
+                                       etc_description[lang][37], etc_description[lang][38], etc_description[lang][39]]
+                        message = unego_description[lang][92].format(center_info[center_type])
+                        dispatcher.utter_message(json_message={
+                            "type": "voiceID", 'sender': metadata['uID'], 
+                            "content": 6103 + center_type, 
+                            "data" : message
+                        })  # ~~에 대한 나다움을 잃고 있어요
+                        answer = unego_question[2]  # 비자아 comment
+                        # dispatcher.utter_message(message) #두번 출력되서 삭제 진행
+                        ego_or_unego[center_priority[center_step]] = -1
+                        sentiment_get_ego_or_unego(ego_or_unego, metadata)
+                        unego_answer(question, user_text, metadata)
+                        dispatcher.utter_message(json_message={
+                            "type": "voiceID", 'sender': metadata['uID'], 
+                            "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(unego_question[5])),
+                            "data" : answer
+                        })
+
+                    return [SlotSet("sentiment_result", 0), SlotSet("ego_or_unego", ego_or_unego),
+                            FollowupAction(name='action_center_unego_question')]
+                else:
+                    return [SlotSet("sentiment_result", sentiment_result),
+                            FollowupAction(name='action_center_unego_question')]
             else:
+                notice_buttons = []
+                if center_question == 1:
+                    notice_buttons.append(
+                        {"title": etc_description[lang][18],
+                         "payload": "/question{\"is_question\":1, \"center_question\":1}"})
+                else:
+                    notice_buttons.append(
+                        {"title": etc_description[lang][18],
+                         "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+
                 notice_buttons.append(
-                    {"title": etc_description[lang][18],
-                     "payload": "/question{\"is_question\":1, \"center_question\":0}"})
+                    {"title": etc_description[lang][19],
+                     "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
-            notice_buttons.append(
-                {"title": etc_description[lang][19],
-                 "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
+                notice = etc_description[lang][8]
+                notice2 = etc_description[lang][9]
+                dispatcher.utter_message(json_message={
+                    "type": "voiceID", 'sender': metadata['uID'], 
+                    "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][8])),
+                    "data": notice
+                }) #dispatcher.utter_message(f'{notice}')
+                dispatcher.utter_message(f'{notice2}', buttons=notice_buttons)
 
-            notice = etc_description[lang][8]
-            notice2 = etc_description[lang][9]
-            dispatcher.utter_message(json_message={
-                "type": "voiceID", 'sender': metadata['uID'],
-                "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][8])),
-                "data": notice
-            })  # dispatcher.utter_message(f'{notice}')
-
-            buttons = [{"title": etc_description[lang][9]}]
-
-            dispatcher.utter_message(buttons=buttons)
-
-            return [SlotSet("voice_create", voice_create + 1), SlotSet("step", step), SlotSet("is_sentiment", 0),
-                    SlotSet("ego_or_unego", ego_or_unego)]
+        return [SlotSet("voice_create", voice_create+1),SlotSet("step", step), SlotSet("is_sentiment", 0), SlotSet("ego_or_unego", ego_or_unego)]
 
 
 class ActionQuestionIntro(Action):
