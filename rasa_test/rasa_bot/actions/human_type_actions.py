@@ -265,7 +265,7 @@ class ActionLeadingTypeIntro(Action):
             dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], 
                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(vID)),
-                "data": message
+                "data": type_description[lang][65 + metadata['t']]
             })
             return [SlotSet('step', step), FollowupAction(name='action_leading_type_question')]
 
@@ -392,7 +392,7 @@ class ActionLeadingType(Action):
         dispatcher.utter_message(json_message={
                 "type": "voiceID", "sender": metadata['uID'], 
                 "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(vID)),
-                "data": message
+                "data": type_description[lang][65+metadata['t']]
             })
 
         if leading_priority[0]==0:
