@@ -735,6 +735,7 @@ class ActionTypeQuestion(Action):
         print('action_type_question')
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
+        ninei = metadata['member']
 
         type_index = metadata["t"]
         question = tracker.get_slot("bot_question")
@@ -775,6 +776,7 @@ class ActionStrategyQuestion(Action):
         print('action_strategy_question')
         metadata = extract_metadata_from_tracker(tracker)
         lang = metadata['lang']
+        ninei = metadata['member']
 
         type_index = metadata["t"]
         question = tracker.get_slot("bot_question")
