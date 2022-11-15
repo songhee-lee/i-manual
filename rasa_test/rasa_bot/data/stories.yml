@@ -216,6 +216,20 @@ stories:
       - intent: smalltalk_first
       - action: action_set_priority_again
 
+  - story: Say disappointment
+    steps:
+      - intent: change_smalltalk_step
+      - action: action_change_smalltalk_step
+      - intent: initialized
+      - action: action_default_fallback
+
+  - story: Say disappointment
+    steps:
+      - intent: change_smalltalk_step
+      - action: action_change_smalltalk_step
+      - intent: masterbot
+      - action: action_default_fallback
+
   - story: change_smalltalk_step
     steps:
       - intent: change_smalltalk_step

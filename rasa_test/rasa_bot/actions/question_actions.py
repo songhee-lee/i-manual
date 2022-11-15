@@ -258,6 +258,7 @@ class ActionDefaultFallback(Action):
         lang = metadata['lang']
         ninei = metadata['member']
         disappointed = tracker.get_slot("disappointed")
+
         if disappointed ==1:
             return[SlotSet("smalltalk_step",42), SlotSet("disappointed", 0), FollowupAction(name="action_smalltalk_first")]
 
