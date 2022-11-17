@@ -155,8 +155,8 @@ class ActionChangeSmalltalkStep(Action):
             return [SlotSet('voice_create', voice_create+1),SlotSet("smalltalk_step", smalltalk_step + 2), FollowupAction(name="action_smalltalk_first")]
         if smalltalk_step in range(3, 6):
             return [SlotSet('voice_create', voice_create+1),SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
-        elif smalltalk_step in range(6, 9):
-            return [SlotSet('voice_create', voice_create+1),SlotSet("smalltalk_step", 9), FollowupAction(name="action_smalltalk_first")]
+        elif smalltalk_step in range(6, 8):
+            return [SlotSet('voice_create', voice_create+1),SlotSet("smalltalk_step", 10), FollowupAction(name="action_smalltalk_first")]
         elif smalltalk_step == 10:  # 나인아이 멤버 자기소개 단계일 때
             metadata = extract_metadata_from_tracker(tracker)
             ninei = metadata['member']
