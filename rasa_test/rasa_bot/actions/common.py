@@ -144,6 +144,9 @@ def qa_getanswer(context, question, metadata=None, qa_step=''):
             eng_tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
         answer = remove_white_space(answer)
 
+    if answer_start == 1:
+        answer = ""
+
     return answer
 
 
