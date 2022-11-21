@@ -225,7 +225,7 @@ class ActionQuestion(Action):
         step = tracker.get_slot("step")
         print(step)
         center_question = tracker.get_slot("center_question")
-        voice_create = tracker.get_slot('voice_create')
+        
 
         if leading_priority is None or step is None or is_question is None or center_question is None:
             return [FollowupAction(name='action_set_priority_again')]
@@ -375,7 +375,7 @@ class ActionDefaultFallback(Action):
             print(answer)
 
             # 새로운 voice id 생성 필요!!
-            voice_create = tracker.get_slot('voice_create')
+            
             
 
             qa_step = ""
@@ -463,7 +463,7 @@ class ActionDefaultFallback(Action):
                     {"title": etc_description[lang][19],
                      "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
-            vID = get_TTS(answer, metadata, voice_create) # 실시간 문장 생성
+            vID = get_TTS(answer, metadata) # 실시간 문장 생성
             dispatcher.utter_message(json_message={
                     "type": "voiceID", 'sender': metadata['uID'],
                     "content": vID,
@@ -569,7 +569,7 @@ class ActionDefaultFallback(Action):
                 }) #dispatcher.utter_message(f'{notice}')
                 dispatcher.utter_message(f'{notice2}', buttons=notice_buttons)
 
-        return [SlotSet("voice_create", voice_create+1),SlotSet("step", step), SlotSet("is_sentiment", 0), SlotSet("ego_or_unego", ego_or_unego)]
+        return [SlotSet("step", step), SlotSet("is_sentiment", 0), SlotSet("ego_or_unego", ego_or_unego)]
 
 
 class ActionQuestionIntro(Action):
@@ -741,7 +741,7 @@ class ActionTypeQuestion(Action):
         question = tracker.get_slot("bot_question")
         context_index = tracker.get_slot("context_index")
         step = tracker.get_slot("step")
-        voice_create = tracker.get_slot("voice_create")
+        
         voice_num = tracker.get_slot("voice_num")
         if step is None or question is None or context_index is None:
             return [FollowupAction(name='action_set_priority_again')]
@@ -749,7 +749,7 @@ class ActionTypeQuestion(Action):
 
         context = type_retrieve_context(type_index, context_index=context_index, lang=lang)
         answer = qa_getanswer(context, question, metadata=metadata)
-        vID = get_TTS(answer, metadata, voice_create) # 실시간 문장 생성
+        vID = get_TTS(answer, metadata) # 실시간 문장 생성
         dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
                 "content": vID,
@@ -765,7 +765,7 @@ class ActionTypeQuestion(Action):
                 "data" : etc_description[lang][6]
         })
         dispatcher.utter_message(buttons=buttons)
-        return [SlotSet("voice_create", voice_create+1)]
+        return []
 
 
 class ActionStrategyQuestion(Action):
@@ -782,7 +782,7 @@ class ActionStrategyQuestion(Action):
         question = tracker.get_slot("bot_question")
         context_index = tracker.get_slot("context_index")
         step = tracker.get_slot("step")
-        voice_create = tracker.get_slot("voice_create")
+        
         voice_num = tracker.get_slot("voice_num")
         if question is None or context_index is None or step is None:
             return [FollowupAction(name='action_set_priority_again')]
@@ -792,7 +792,7 @@ class ActionStrategyQuestion(Action):
         print(context)
         answer = qa_getanswer(context, question, metadata=metadata)
         print(answer)
-        vID = get_TTS(answer, metadata, voice_create) # 실시간 문장 생성
+        vID = get_TTS(answer, metadata) # 실시간 문장 생성
         dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'],
                 "content": vID,
@@ -808,4 +808,4 @@ class ActionStrategyQuestion(Action):
                 "data" : etc_description[lang][6]
         })
         dispatcher.utter_message(buttons=buttons)
-        return [SlotSet("voice_create", voice_create+1)]
+        return []

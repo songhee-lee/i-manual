@@ -39,11 +39,10 @@ class ActionSmalltalkFirst(Action):
         ninei = metadata['member']
         lang = metadata['lang']
         voice_num = tracker.get_slot('voice_num')
-        voice_create = tracker.get_slot('voice_create')
         question = smalltalk_question[lang][smalltalk_step].format(metadata['pn'], ninei_members[lang][ninei])
         is_real_time = False
         if smalltalk_step in [2, 3, 9, 10, 21, 22, 25, 29, 32, 33, 34, 35, 37, 38, 43, 44]: # 실시간 생성하는 경우
-            vID = get_TTS(question, metadata, int(voice_create)) #생성하고 경로를 가져옴 /// get_TTS의 함수를 고객 이름 + vid로 해야 겠음
+            vID = get_TTS(question, metadata) #생성하고 경로를 가져옴 /// get_TTS의 함수를 고객 이름 + vid로 해야 겠음
             dispatcher.utter_message(json_message={
                         "type": "voiceID", "sender": metadata['uID'], "content": vID,
                         "data": question
@@ -117,7 +116,7 @@ class ActionSmalltalkFirst(Action):
         # buttons 요소 없음
         elif smalltalk_step in [31, 33, 41, 42, 44, 45]:
 
-            return [SlotSet('voice_create', voice_create+1), FollowupAction(name="action_change_smalltalk_step")]
+            return [FollowupAction(name="action_change_smalltalk_step")]
 
         # buttons 요소 1개
         else:
@@ -137,26 +136,25 @@ class ActionChangeSmalltalkStep(Action):
 
         smalltalk_step = tracker.get_slot('smalltalk_step')
         disappointed = tracker.get_slot('disappointed')
-        voice_create = tracker.get_slot('voice_create')
         
 
         # 첫인사 끝
         if smalltalk_step in [34]:  # 종료
-            return [SlotSet('voice_create', voice_create+1),FollowupAction(name="action_start"), ]
+            return [FollowupAction(name="action_start"), ]
         if smalltalk_step == 37:  # 재방문 인사 끝
-            return [SlotSet('voice_create', voice_create+1),FollowupAction(name="action_masterbot"), SlotSet("regreetings", 1)]
+            return [FollowupAction(name="action_masterbot"), SlotSet("regreetings", 1)]
         if smalltalk_step == 45:
-            return [SlotSet('voice_create', voice_create+1),]  # 마무리 인사 끝
+            return []  # 마무리 인사 끝
         if smalltalk_step == 40:
-            return [SlotSet('voice_create', voice_create+1),SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
+            return [SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
         if smalltalk_step == 41:  # 실망한 경우, 슬롯 값 변경후 대기, 입력값을 받고 ActionDefaultFallback 실행
-            return [SlotSet('voice_create', voice_create+1),SlotSet("disappointed", 1)]
+            return [SlotSet("disappointed", 1)]
         if smalltalk_step in range(38, 40):
-            return [SlotSet('voice_create', voice_create+1),SlotSet("smalltalk_step", smalltalk_step + 2), FollowupAction(name="action_smalltalk_first")]
+            return [SlotSet("smalltalk_step", smalltalk_step + 2), FollowupAction(name="action_smalltalk_first")]
         if smalltalk_step in range(3, 6):
-            return [SlotSet('voice_create', voice_create+1),SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
+            return [SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
         elif smalltalk_step in range(6, 8):
-            return [SlotSet('voice_create', voice_create+1),SlotSet("smalltalk_step", 10), FollowupAction(name="action_smalltalk_first")]
+            return [SlotSet("smalltalk_step", 10), FollowupAction(name="action_smalltalk_first")]
         elif smalltalk_step == 10:  # 나인아이 멤버 자기소개 단계일 때
             metadata = extract_metadata_from_tracker(tracker)
             ninei = metadata['member']
@@ -166,8 +164,8 @@ class ActionChangeSmalltalkStep(Action):
             else:
                 img = "https://webapp-dev.i-manual.co.kr/static/images/chat/ninei/profile/en/{0}.png".format(ninei)
                 dispatcher.utter_message(image=img)
-            return [SlotSet('voice_create', voice_create+1),SlotSet("smalltalk_step", smalltalk_step + ninei), FollowupAction(name="action_smalltalk_first")]
+            return [SlotSet("smalltalk_step", smalltalk_step + ninei), FollowupAction(name="action_smalltalk_first")]
         elif smalltalk_step in range(11, 21):
-            return [SlotSet('voice_create', voice_create+1),SlotSet("smalltalk_step", 21), FollowupAction(name="action_smalltalk_first")]
+            return [SlotSet("smalltalk_step", 21), FollowupAction(name="action_smalltalk_first")]
 
-        return [SlotSet('voice_create', voice_create+1),SlotSet("smalltalk_step", smalltalk_step + 1), FollowupAction(name="action_smalltalk_first")]
+        return [SlotSet("smalltalk_step", smalltalk_step + 1), FollowupAction(name="action_smalltalk_first")]

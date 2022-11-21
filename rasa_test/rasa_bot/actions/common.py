@@ -11,6 +11,7 @@ import shutil
 import boto3
 import sys
 from actions.config import S3_CONFIG
+from datetime import datetime
 
 # MongoDB setting
 my_client = MongoClient("mongodb://localhost:27017/")
@@ -68,7 +69,7 @@ def unego_answer(question, user_text, metadata=None):
     if metadata != None:
         mycol.update({"displayID": metadata["uID"]}, {"$addToSet": {"unego_answer": {question: user_text}}})
 
-def get_TTS(string, metadata, vID):
+def get_TTS(string, metadata):
     members= ['', '4_minjun', '5_bahn', '6_berry', '7_seowon', '3_winnie', '2_eden', '1_jaewon', '9_juhyung', '10_jiho', '8_taehun' ]
     model = members[int(metadata['member'])] # 멤버별 모델 선택
     lang = int(metadata['lang'])        
@@ -91,7 +92,9 @@ def get_TTS(string, metadata, vID):
     with torch.no_grad():
         wav = text2speech(string)["wav"]                                
     
-    out_file_name = out+"/"+str(vID)+".wav"                                    
+    now = datetime.now()
+    now = str(now.year) + str(now.month) + str(now.day) + str(now.hour) + str(now.minute) + str(now.second)
+    out_file_name = out+"/"+str(now)+".wav"                                    
     scipy.io.wavfile.write(out_file_name, text2speech.fs , wav.view(-1).cpu().numpy())
     
     s3 = boto3.client(
