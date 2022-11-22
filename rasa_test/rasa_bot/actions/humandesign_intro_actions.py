@@ -113,6 +113,9 @@ class ActionSetPriority(Action):  # 맨 처음
                 SlotSet('voice_num', 2), SlotSet('regreetings', 0)]  # slot추가 필요
 
         else :  # 나인아이 멤버 첫인사 스몰톡으로 이동
+            dispatcher.utter_message(json_message={
+                "chatting_input": "disable"
+                })
             return [FollowupAction(name='action_smalltalk_first'), SlotSet('leading_priority', leading_priority),
                 SlotSet('center_priority', center_priority),
                 SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0),
