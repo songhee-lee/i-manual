@@ -141,7 +141,8 @@ class ActionChangeSmalltalkStep(Action):
         # 첫인사 끝
         if smalltalk_step in [34]:  # 종료
             dispatcher.utter_message(json_message={
-                "chatting_input": "enable"
+                "type": "chatting_input",
+                "content": "enable"
                 })
             return [FollowupAction(name="action_start"), ]
         if smalltalk_step == 37:  # 재방문 인사 끝

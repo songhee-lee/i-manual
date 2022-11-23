@@ -114,7 +114,8 @@ class ActionSetPriority(Action):  # 맨 처음
 
         else :  # 나인아이 멤버 첫인사 스몰톡으로 이동
             dispatcher.utter_message(json_message={
-                "chatting_input": "disable"
+                "type": "chatting_input",
+                "content": "disable"
                 })
             return [FollowupAction(name='action_smalltalk_first'), SlotSet('leading_priority', leading_priority),
                 SlotSet('center_priority', center_priority),
