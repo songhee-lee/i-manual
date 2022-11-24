@@ -241,10 +241,10 @@ class ActionQuestion(Action):
                         "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][5])), 
                         "data": etc_description[lang][5] # 무엇이 궁금하신가요?
                     })
-                # dispatcher.utter_message(json_message={
-                # "type": "chatting_input",
-                # "content": "enable"
-                # })
+                dispatcher.utter_message(json_message={
+                "type": "chatting_input",
+                "content": "enable"
+                })
                 
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
