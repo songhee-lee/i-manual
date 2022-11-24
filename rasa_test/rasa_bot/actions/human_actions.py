@@ -144,6 +144,10 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
         # 처음들어온 user 가 마스터봇 호출할 경우
         disappointed = tracker.get_slot('disappointed')
         if disappointed ==1: # 영어버전 때문에 넣음
+            dispatcher.utter_message(json_message={
+                "type": "chatting_input",
+                "content": "disable"
+                })
             return[SlotSet("smalltalk_step",42), SlotSet("disappointed", 0), FollowupAction(name="action_smalltalk_first")]
 
         if regreetings == 0: #재방문인데, 재방문 인사를 하지 않은 경우
@@ -156,6 +160,10 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
                             "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(vID)),
                             "data" : message
                     })
+            dispatcher.utter_message(json_message={
+                "type": "chatting_input",
+                "content": "disable"
+                })
             return[SlotSet("smalltalk_step",35), FollowupAction(name="action_smalltalk_first")]
         
         if leading_priority is None or step is None:
