@@ -326,8 +326,12 @@ class ActionMore(Action):
                 dispatcher.utter_message(json_message={
                     "type": "voiceID", "sender": metadata['uID'], 
                     "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][2])),
-                    "data": etc_description[lang][2]
+                    "data": etc_description[lang][2] # 계속 할까요?
                 })
+                # dispatcher.utter_message(json_message={
+                # "type": "chatting_input",
+                # "content": "disable"
+                # })
 
                 dispatcher.utter_message(buttons=buttons)
             else:

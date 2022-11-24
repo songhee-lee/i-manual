@@ -140,18 +140,22 @@ class ActionChangeSmalltalkStep(Action):
 
         # 첫인사 끝
         if smalltalk_step in [34]:  # 종료
+            return [FollowupAction(name="action_start"), ]
+        if smalltalk_step == 37:  # 재방문 인사 끝
+            return [FollowupAction(name="action_masterbot"), SlotSet("regreetings", 1)]
+        if smalltalk_step == 45: # 나인아이봇 호출 가능해야 함
             dispatcher.utter_message(json_message={
                 "type": "chatting_input",
                 "content": "enable"
                 })
-            return [FollowupAction(name="action_start"), ]
-        if smalltalk_step == 37:  # 재방문 인사 끝
-            return [FollowupAction(name="action_masterbot"), SlotSet("regreetings", 1)]
-        if smalltalk_step == 45:
             return []  # 마무리 인사 끝
         if smalltalk_step == 40:
             return [SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
         if smalltalk_step == 41:  # 실망한 경우, 슬롯 값 변경후 대기, 입력값을 받고 ActionDefaultFallback 실행
+            dispatcher.utter_message(json_message={
+                "type": "chatting_input",
+                "content": "enable"
+                })
             return [SlotSet("disappointed", 1)]
         if smalltalk_step in range(38, 40):
             return [SlotSet("smalltalk_step", smalltalk_step + 2), FollowupAction(name="action_smalltalk_first")]

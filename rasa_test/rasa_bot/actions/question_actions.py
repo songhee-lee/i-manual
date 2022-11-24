@@ -239,8 +239,13 @@ class ActionQuestion(Action):
                     json_message={
                         "type": "voiceID", 'sender': metadata['uID'], 
                         "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[2][5])), 
-                        "data": etc_description[lang][5]
+                        "data": etc_description[lang][5] # 무엇이 궁금하신가요?
                     })
+                # dispatcher.utter_message(json_message={
+                # "type": "chatting_input",
+                # "content": "enable"
+                # })
+                
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
 
@@ -473,7 +478,7 @@ class ActionDefaultFallback(Action):
                 json_message={
                     "type": "voiceID", 'sender': metadata['uID'], 
                     "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][6])), 
-                    "data": etc_description[lang][6]
+                    "data": etc_description[lang][6] # 다른 질문 있나요?
                 })
             dispatcher.utter_message(buttons=qa_buttons)
             
@@ -493,6 +498,11 @@ class ActionDefaultFallback(Action):
 
                 # 비자아 질문 3개 다한 경우
                 if unego_count == 3:
+                    dispatcher.utter_message(json_message={
+                        "type": "chatting_input",
+                        "content": "disable"
+                        })
+
                     if metadata['ct'][center_type] == 0:
                         unego_question = unego_get_question(center_type, unego_count - 1, lang, defined=False)
                     else:
@@ -715,6 +725,10 @@ class ActionCenterUnegoQuestion(Action):
             dispatcher.utter_message(json_message={
                 "type": "voiceID", 'sender': metadata['uID'], "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(unego_question[3])), "data" : unego_question[0]
             })  # 질문
+            dispatcher.utter_message(json_message={
+                "type": "chatting_input",
+                "content": "enable"
+                })
 
             if unego_count > 1:
                 unego_answer(question, user_text, metadata)
