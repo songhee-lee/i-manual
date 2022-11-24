@@ -265,6 +265,10 @@ class ActionDefaultFallback(Action):
         disappointed = tracker.get_slot("disappointed")
 
         if disappointed ==1:
+            dispatcher.utter_message(json_message={
+                "type": "chatting_input",
+                "content": "disable"
+                })
             return[SlotSet("smalltalk_step",42), SlotSet("disappointed", 0), FollowupAction(name="action_smalltalk_first")]
 
 
