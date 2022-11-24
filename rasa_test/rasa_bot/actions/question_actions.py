@@ -445,6 +445,10 @@ class ActionDefaultFallback(Action):
                     "data": etc_description[lang][4]
                 })
             dispatcher.utter_message(buttons=buttons)
+            dispatcher.utter_message(json_message={
+                "type": "chatting_input",
+                "content": "disable"
+                })
             return [SlotSet("step", step)]
 
         # QA이면
@@ -481,7 +485,10 @@ class ActionDefaultFallback(Action):
                     "data": etc_description[lang][6] # 다른 질문 있나요?
                 })
             dispatcher.utter_message(buttons=qa_buttons)
-            
+            dispatcher.utter_message(json_message={
+                "type": "chatting_input",
+                "content": "disable"
+                })           
 
         # 감정분석이면
         else:
