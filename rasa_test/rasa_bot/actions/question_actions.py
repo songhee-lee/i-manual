@@ -438,15 +438,15 @@ class ActionDefaultFallback(Action):
                     {"title": etc_description[lang][18],
                      "payload": "/question{\"is_question\":1, \"center_question\":0}"})
                 buttons.append({"title": etc_description[lang][19], "payload": "/leading_more"})
+            dispatcher.utter_message(json_message={
+                "type": "chatting_input",
+                "content": "disable"
+                })
             dispatcher.utter_message(
                 json_message={
                     "type": "voiceID", 'sender': metadata['uID'], 
                     "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][4])), 
                     "data": etc_description[lang][4]
-                })
-            dispatcher.utter_message(json_message={
-                "type": "chatting_input",
-                "content": "disable"
                 })
             dispatcher.utter_message(buttons=buttons)
             return [SlotSet("step", step)]
@@ -472,6 +472,10 @@ class ActionDefaultFallback(Action):
                     {"title": etc_description[lang][19],
                      "payload": "/leading_more{\"is_question\":0, \"center_question\":0}"})
 
+            dispatcher.utter_message(json_message={
+                "type": "chatting_input",
+                "content": "disable"
+                })           
             vID = get_TTS(answer, metadata) # 실시간 문장 생성
             dispatcher.utter_message(json_message={
                     "type": "voiceID", 'sender': metadata['uID'],
@@ -484,10 +488,6 @@ class ActionDefaultFallback(Action):
                     "content": "{0}/{1}/{2}.mp3".format(lang, ninei, int(etc_description[voice_num][6])), 
                     "data": etc_description[lang][6] # 다른 질문 있나요?
                 })
-            dispatcher.utter_message(json_message={
-                "type": "chatting_input",
-                "content": "disable"
-                })           
             dispatcher.utter_message(buttons=qa_buttons)
 
         # 감정분석이면
