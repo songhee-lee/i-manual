@@ -244,7 +244,7 @@ class ActionQuestion(Action):
                 dispatcher.utter_message(json_message={
                 "type": "chatting_input",
                 "content": "enable"
-                })
+                }) #채팅창 열기
                 
         else:
             return [SlotSet("is_question", 0), FollowupAction(name="action_default_fallback")]
@@ -268,7 +268,7 @@ class ActionDefaultFallback(Action):
             dispatcher.utter_message(json_message={
                 "type": "chatting_input",
                 "content": "disable"
-                })
+                }) #채팅창 닫기
             return[SlotSet("smalltalk_step",42), SlotSet("disappointed", 0), FollowupAction(name="action_smalltalk_first")]
 
 
@@ -445,7 +445,7 @@ class ActionDefaultFallback(Action):
             dispatcher.utter_message(json_message={
                 "type": "chatting_input",
                 "content": "disable"
-                })
+                }) #채팅창 닫기
             dispatcher.utter_message(
                 json_message={
                     "type": "voiceID", 'sender': metadata['uID'], 
@@ -479,7 +479,7 @@ class ActionDefaultFallback(Action):
             dispatcher.utter_message(json_message={
                 "type": "chatting_input",
                 "content": "disable"
-                })           
+                }) #채팅창 닫기
             vID = get_TTS(answer, metadata) # 실시간 문장 생성
             dispatcher.utter_message(json_message={
                     "type": "voiceID", 'sender': metadata['uID'],
@@ -512,7 +512,7 @@ class ActionDefaultFallback(Action):
                     dispatcher.utter_message(json_message={
                         "type": "chatting_input",
                         "content": "disable"
-                        })
+                        }) # 채팅창 닫기
 
                     if metadata['ct'][center_type] == 0:
                         unego_question = unego_get_question(center_type, unego_count - 1, lang, defined=False)
@@ -739,7 +739,7 @@ class ActionCenterUnegoQuestion(Action):
             dispatcher.utter_message(json_message={
                 "type": "chatting_input",
                 "content": "enable"
-                })
+                }) #채팅창 열기
 
             if unego_count > 1:
                 unego_answer(question, user_text, metadata)

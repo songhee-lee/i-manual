@@ -116,7 +116,7 @@ class ActionSetPriority(Action):  # 맨 처음
             dispatcher.utter_message(json_message={
                 "type": "chatting_input",
                 "content": "disable"
-                })
+                }) # 채팅창 닫기
             return [FollowupAction(name='action_smalltalk_first'), SlotSet('leading_priority', leading_priority),
                 SlotSet('center_priority', center_priority),
                 SlotSet('step', 0), SlotSet('is_finished', 0), SlotSet('center_step', 0), SlotSet('is_question', 0),
@@ -331,7 +331,7 @@ class ActionMore(Action):
                 dispatcher.utter_message(json_message={
                 "type": "chatting_input",
                 "content": "disable"
-                })
+                }) #채팅창 닫기
 
                 dispatcher.utter_message(buttons=buttons)
             else:

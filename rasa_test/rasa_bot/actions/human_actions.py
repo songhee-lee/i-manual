@@ -147,7 +147,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
             dispatcher.utter_message(json_message={
                 "type": "chatting_input",
                 "content": "disable"
-                })
+                }) # 채팅창 닫기
             return[SlotSet("smalltalk_step",42), SlotSet("disappointed", 0), FollowupAction(name="action_smalltalk_first")]
 
         if regreetings == 0: #재방문인데, 재방문 인사를 하지 않은 경우
@@ -163,7 +163,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
             dispatcher.utter_message(json_message={
                 "type": "chatting_input",
                 "content": "disable"
-                })
+                }) # 채팅창 닫기
             return[SlotSet("smalltalk_step",35), FollowupAction(name="action_smalltalk_first")]
         
         if leading_priority is None or step is None:

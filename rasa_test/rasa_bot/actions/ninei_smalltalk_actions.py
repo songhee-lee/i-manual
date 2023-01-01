@@ -147,7 +147,7 @@ class ActionChangeSmalltalkStep(Action):
             dispatcher.utter_message(json_message={
                 "type": "chatting_input",
                 "content": "enable"
-                })
+                }) #채팅창 열기
             return []  # 마무리 인사 끝
         if smalltalk_step == 40:
             return [SlotSet("smalltalk_step", smalltalk_step + 3), FollowupAction(name="action_smalltalk_first")]
@@ -155,7 +155,7 @@ class ActionChangeSmalltalkStep(Action):
             dispatcher.utter_message(json_message={
                 "type": "chatting_input",
                 "content": "enable"
-                })
+                }) #채팅창 열기
             return [SlotSet("disappointed", 1)]
         if smalltalk_step in range(38, 40):
             return [SlotSet("smalltalk_step", smalltalk_step + 2), FollowupAction(name="action_smalltalk_first")]
