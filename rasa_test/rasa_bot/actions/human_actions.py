@@ -193,7 +193,7 @@ class ActionMasterbot(Action):  # 수정필요 entity를 통해 어디부분부�
         else:
             buttons = []
             buttons.append({"title": etc_description[lang][29], "payload": "/leading_masterbot_more"}) # 네 이어서 들을래요
-            buttons.append({"title": etc_description[lang][30], "payload": "/initialized"}) # 아뇨! 처음부터 들을래요
+            buttons.append({"title": etc_description[lang][30], "payload": "/set_initialized"}) # 아뇨! 처음부터 들을래요
 
             vID = etc_description[voice_num][17]
             dispatcher.utter_message(json_message={

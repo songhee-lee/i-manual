@@ -35,7 +35,7 @@ stories:
   #       - action: action_restart
   - story: Say initial
     steps:
-      - intent: initialized
+      - intent: set_initialized
       - action: action_initialized
 
   - story: Say question
@@ -56,7 +56,7 @@ stories:
     steps:
       - intent: question
       - action: action_question
-      - intent: initialized
+      - intent: qa_initialized
       - action: action_default_fallback
 
   - story: Say question
@@ -173,7 +173,7 @@ stories:
     steps:
       - intent: center_unego_question
       - action: action_center_unego_question
-      - intent: initialized
+      - intent: center_initialized
       - action: action_default_fallback
 
   - story: Say center_detail_intro
@@ -215,13 +215,6 @@ stories:
     steps:
       - intent: smalltalk_first
       - action: action_set_priority_again
-
-  - story: Say disappointment
-    steps:
-      - intent: change_smalltalk_step
-      - action: action_change_smalltalk_step
-      - intent: initialized
-      - action: action_default_fallback
 
   - story: Say disappointment
     steps:
